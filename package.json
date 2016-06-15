@@ -1,0 +1,18 @@
+{
+  "name": "orenda-smartlist",
+  "version": "1.0.0",
+  "description": "Super simple and smart todo app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HRR16-Orenda/Smart-list.git"
+  },
+  "keywords": [
+    "smartlist"
+  ],
+  "author": "Team Orenda",
+  "license": "ISC"
+}

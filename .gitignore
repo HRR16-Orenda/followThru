@@ -1,0 +1,17 @@
+## Mac OSX ##
+.DS_Store
+
+## NPM ##
+node_modules/
+npm-debug.log
+
+## Compiled files ##
+build/bundle.js
+build/bundle.map
+
+## API keys ##
+
+## Others ##
+.floo
+.flooignore
+.tern-project
