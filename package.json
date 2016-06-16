@@ -1,18 +1,13 @@
 {
-  "name": "orenda-smartlist",
-  "version": "1.0.0",
-  "description": "Super simple and smart todo app",
-  "main": "index.js",
+  "name": "Orenda",
+  "version": "0.0.1",
+  "description": "List Anything",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node node_modules/react-native/local-cli/cli.js start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HRR16-Orenda/Smart-list.git"
-  },
-  "keywords": [
-    "smartlist"
-  ],
   "author": "Team Orenda",
-  "license": "ISC"
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-native": "0.27.2"
+  }
 }

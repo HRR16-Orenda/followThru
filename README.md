@@ -36,9 +36,10 @@ Super smart and simple todo app
 From within the root directory:
 
 ```sh
-sudo npm install -g bower gulp
+sudo brew install flow
+sudo brew install watchman
+sudo npm install -g react-native-cli
 npm install
-bower install
 ```
 
 ### Roadmap
