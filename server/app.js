@@ -8,7 +8,7 @@ app.get('/', function (req, res) {
   console.log(process.env.RDS_PORT);
   console.log(process.env.RDS_USERNAME);
 
-  res.send('Hello world');
+  res.send('Hello world and die!!!!');
 });
 
 module.exports = app;
