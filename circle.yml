@@ -1,0 +1,18 @@
+test:
+  override:
+    - npm test
+  post:
+    - ./node.sh
+deployment:
+  staging:
+    branch: master
+    codedeploy:
+      Smart-list:
+        application_root: /
+        region: us-west-2
+        revision_location:
+          revision_type: S3
+          s3_location:
+            bucket: elasticbeanstalk-us-west-2-521114051975
+            key_pattern: Smart-list-{BRANCH}-{SHORT_COMMIT}.zip
+        deployment_group: orenda-dg
