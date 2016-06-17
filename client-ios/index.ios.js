@@ -15,10 +15,12 @@ import {
 } from 'react-native';
 import Root from './containers/RootContainer.js';
 
+const store = configureStore();
 class Orenda extends Component {
   render() {
     return (
-      <Root />
+      {/* configureStore*/}
+      <Root store = {store} />
     );
   }
 }
