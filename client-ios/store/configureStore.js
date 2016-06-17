@@ -11,7 +11,7 @@ export default function configureStore() {
   return createStore(
     rootReducer,
     compose(
-      applyMiddleware(thunk, loggerMiddleware)
+      applyMiddleware(thunk, loggerMiddleware),
       // window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   )

@@ -28,8 +28,9 @@ export default class Orenda extends Component {
           </Text>
         </TouchableHighlight>
         <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          //value={'Hey SB!'}
         />
-        {/*fsdfdsfsd*/}
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
