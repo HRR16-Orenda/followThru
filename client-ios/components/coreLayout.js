@@ -11,16 +11,33 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  TextInput
 } from 'react-native';
-import Root from './containers/RootContainer.js';
 
-const store = configureStore();
-class Orenda extends Component {
+export default class Orenda extends Component {
   render() {
     return (
-      {/* configureStore*/}
-      <Root store = {store} />
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <TouchableHighlight style={styles.button}>
+          <Text>
+            touch it!
+          </Text>
+        </TouchableHighlight>
+        <TextInput
+        />
+        {/*fsdfdsfsd*/}
+        <Text style={styles.instructions}>
+          To get started, edit index.ios.js
+        </Text>
+        <Text style={styles.instructions}>
+          Press Cmd+R to reload,{'\n'}
+          Cmd+D or shake for dev menu
+        </Text>
+      </View>
     );
   }
 }
@@ -47,5 +64,3 @@ const styles = StyleSheet.create({
     borderColor: 'black'
   }
 });
-
-AppRegistry.registerComponent('Orenda', () => Orenda);
