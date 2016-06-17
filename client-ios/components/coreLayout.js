@@ -14,6 +14,7 @@ import {
   TouchableHighlight,
   TextInput
 } from 'react-native';
+import Footer from './footer.js';
 
 export default class Orenda extends Component {
   render() {
@@ -38,6 +39,7 @@ export default class Orenda extends Component {
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        <Footer />
       </View>
     );
   }
