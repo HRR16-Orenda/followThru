@@ -14,6 +14,7 @@ import {
   TouchableHighlight,
   TextInput
 } from 'react-native';
+import Footer from './footer.js';
 
 export default class Orenda extends Component {
   render() {
@@ -28,8 +29,9 @@ export default class Orenda extends Component {
           </Text>
         </TouchableHighlight>
         <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          //value={'Hey SB!'}
         />
-        {/*fsdfdsfsd*/}
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
@@ -37,6 +39,7 @@ export default class Orenda extends Component {
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        <Footer />
       </View>
     );
   }
