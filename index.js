@@ -1,3 +1,5 @@
-// index file for web server
 // @flow
-// I'm not sure flow work well with node...just leave it for a while X^D
+var app = require('./server/app.js');
+var port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`listening on ${port}`));

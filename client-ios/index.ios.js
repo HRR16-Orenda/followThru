@@ -14,13 +14,13 @@ import {
   TouchableHighlight
 } from 'react-native';
 import Root from './containers/RootContainer.js';
+import configureStore from './store/configureStore.js';
 
 const store = configureStore();
 class Orenda extends Component {
   render() {
     return (
-      {/* configureStore*/}
-      <Root store = {store} />
+      <Root store={store} />
     );
   }
 }
