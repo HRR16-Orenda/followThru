@@ -43,6 +43,5 @@ android/app/libs
 android/keystores/debug.keystore
 
 # Elastic Beanstalk Files
-.elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml

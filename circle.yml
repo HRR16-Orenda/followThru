@@ -1,6 +1,8 @@
 dependencies:
   pre:
-    - sudo pip install awsebcli
+    - sudo apt-get update
+    - sudo apt-get install build-essential python-dev
+    - sudo -H pip install awsebcli --upgrade --ignore-installed
 test:
   override:
     - npm test
@@ -8,4 +10,4 @@ deployment:
   staging:
     branch: master
     commands:
-      - eb deploy
+      - eb deploy --profile default

@@ -1,0 +1,11 @@
+branch-defaults:
+  master:
+    environment: Orenda-dev
+    group_suffix: null
+global:
+  application_name: Orenda
+  default_ec2_keyname: aws-eb
+  default_platform: Node.js
+  default_region: us-west-2
+  profile: eb-cli
+  sc: git
