@@ -4,11 +4,14 @@ import React, { Component } from "react";
 import {
   NavigatorIOS,
   StyleSheet,
-  Text
+  Text,
+  View
 } from 'react-native';
 // import styles from '../styles/styles.js';
-import Header from './header.js';
+// import Header from './header.js';
 import addLayout from './addLayout.js';
+import { Actions } from 'react-native-router-flux';
+import Footer from './footer.js';
 
 export default class AddScreen extends Component {
   constructor(props) {
@@ -18,14 +21,10 @@ export default class AddScreen extends Component {
   }
   render() {
     return (
+      <View style={{margin: 128}}>
+        <Text>This is PageOne!</Text>
+      </View>
       // <div>
-      {/*<NavigatorIOS
-        style = {styles.container}
-        initialRoute = {{
-          title: 'add layout',
-          component: addLayout
-        }}
-      />*/}
       // <Text>Its working</Text>
       // </div>
     );

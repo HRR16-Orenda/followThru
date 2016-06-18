@@ -1,26 +1,27 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * THESIS START FROM HERE!!!!!!!!!!
- * @flow
- */
-
+// @flow
+// Import libraries
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Navigator,
   StyleSheet,
   Text,
-  View,
-  TouchableHighlight
+  View
 } from 'react-native';
-import Root from './containers/RootContainer.js';
+import { Provider } from 'redux'
+
+// Import additional functionality
+import RootContainer from './containers/RootContainer.js';
 import configureStore from './store/configureStore.js';
+import Footer from './components/footer.js';
 
 const store = configureStore();
 class Orenda extends Component {
   render() {
     return (
-      <Root store={store} />
+      <Provider store = {store}>
+        <RootContainer />
+      </Provider>
     );
   }
 }
