@@ -1,11 +1,13 @@
 var Sequelize = require('sequelize');
-var username = process.env.RDS_USERNAME;
-var password = process.env.RDS_PASSWORD;
-var host = process.env.RDS_HOST;
-var port = process.env.RDS_PORT;
+var username = process.env.RDS_USERNAME || null;
+var password = process.env.RDS_PASSWORD || null;
+var host = process.env.RDS_HOST || 'localhost';
+var port = process.env.RDS_PORT || '5432';
+var dbName = process.env.RDS_DBNAME || 'test';
 
-var sequelize = new Sequelize('test',username, password, {
-  host: host + port,
+var sequelize = new Sequelize(dbName, username, password, {
+  host: host,
+  port: port,
   dialect: 'postgres',
 
   pool: {
@@ -14,6 +16,7 @@ var sequelize = new Sequelize('test',username, password, {
     idle: 10000
   }
 });
+
 sequelize
   .authenticate()
   .then(function(err) {
