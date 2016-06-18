@@ -1,5 +1,6 @@
+var Sequelize = require('sequelize');
+var sequelize = require('../db/config.js');
 var User = sequelize.define('user', {
-  //sequelize automatically creates createdAt and updatedAt and _id(?)
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -19,4 +20,17 @@ var User = sequelize.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   }
-})
+}, {
+  underscored: true,
+  classMethods: {
+    associate: function(models) {
+      User.hasMany(models.User, {
+        as: 'friend',
+        through: models.Friend});
+    }
+  }
+});
+//sequelize automatically creates createdAt and updatedAt
+User.hasMany(Item);
+User.sync();
+module.exports = User;
