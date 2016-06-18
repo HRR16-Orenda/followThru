@@ -2,16 +2,16 @@
 
 import React, { Component } from "react";
 import {
-  NavigatorIOS,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 // import styles from '../styles/styles.js';
 // import Header from './header.js';
-import addLayout from './addLayout.js';
 import { Actions } from 'react-native-router-flux';
 import Footer from './footer.js';
+import InputBox from './inputBox.js';
+import CategoryPicker from './categoryPicker.js';
 
 export default class AddScreen extends Component {
   constructor(props) {
@@ -22,9 +22,10 @@ export default class AddScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{margin:128}}>
-          <Text >This is PageOne!</Text>
-        </View>
+          <Text style={{marginTop: 100, alignSelf: "center"}}>What would you like to add?</Text>
+          <InputBox />
+          <CategoryPicker />
+
         <View style={styles.container}>
           <Footer />
         </View>
@@ -36,7 +37,11 @@ export default class AddScreen extends Component {
 
 var styles = StyleSheet.create({
    container: {
-       flex: 1,
-       backgroundColor: '#F5FCFF'
+     flex: 1,
+     backgroundColor: '#F5FCFF'
+   },
+   inputBox: {
+     flex: 1,
+     height: 30
    }
 });
