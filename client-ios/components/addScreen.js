@@ -12,6 +12,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Footer from './footer.js';
 import InputBox from './inputBox.js';
+import CategoryPicker from './categoryPicker.js';
 
 export default class AddScreen extends Component {
   constructor(props) {
@@ -22,9 +23,9 @@ export default class AddScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-
+          <Text style={{marginTop: 100, alignSelf: "center"}}>What would you like to add?</Text>
           <InputBox />
-          {/*<CategoryPicker />*/}
+          <CategoryPicker />
 
         <View style={styles.container}>
           <Footer />
