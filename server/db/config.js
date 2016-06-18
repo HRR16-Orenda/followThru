@@ -1,3 +1,4 @@
+var Sequelize = require('sequelize');
 var username = process.env.RDS_USERNAME;
 var password = process.env.RDS_PASSWORD;
 var host = process.env.RDS_HOST;
@@ -21,3 +22,5 @@ sequelize
   .catch(function(err) {
     console.log('Unable to connect to the database:', err);
   });
+
+module.exports = sequelize;
