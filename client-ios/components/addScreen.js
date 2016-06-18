@@ -1,12 +1,16 @@
 // @flow
+
 import React, { Component } from "react";
 import {
   NavigatorIOS,
-  StyleSheet
+  StyleSheet,
+  Text
 } from 'react-native';
+// import styles from '../styles/styles.js';
+import Header from './header.js';
 import addLayout from './addLayout.js';
 
-export default class Header extends Component {
+export default class AddScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,16 +18,20 @@ export default class Header extends Component {
   }
   render() {
     return (
-      <NavigatorIOS
+      // <div>
+      {/*<NavigatorIOS
         style = {styles.container}
         initialRoute = {{
           title: 'add layout',
           component: addLayout
         }}
-      />
+      />*/}
+      // <Text>Its working</Text>
+      // </div>
     );
   }
 }
+
 
 var styles = StyleSheet.create({
    container: {

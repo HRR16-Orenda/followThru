@@ -20,13 +20,7 @@ import styles from '../styles/styles.js';
 export default class Orenda extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          //value={'Hey SB!'}
-        />
         <Footer />
-      </View>
     );
   }
 }

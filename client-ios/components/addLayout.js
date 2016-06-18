@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import {
-  TextInput
+  NavigatorIOS
 } from 'react-native';
 import styles from '../styles/styles.js';
 import InputBox from './inputBox.js';
@@ -15,10 +15,7 @@ export default class addLayout extends Component {
   }
   render() {
     return (
-      <TextInput
-        style = {{height: 40, borderColor: 'gray', borderWidth: 1}}
-        //onChangeText={(text) => this.setState({text})}
-      />
+      <InputBox />
     );
   }
 }
