@@ -12,7 +12,6 @@ export default function configureStore() {
     rootReducer,
     compose(
       applyMiddleware(thunk, loggerMiddleware)
-      // window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   )
 };
