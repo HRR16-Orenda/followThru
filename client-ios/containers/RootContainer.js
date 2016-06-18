@@ -7,7 +7,7 @@ import RootComponent from '../components/coreLayout.js';
 
 // Import screens
 import AddScreen from '../components/addScreen.js';
-// import ListScreen from '../components/listScreen.js';
+import ListScreen from '../components/listScreen.js';
 
 class RootContainer extends Component {
 
@@ -22,7 +22,10 @@ class RootContainer extends Component {
         return (
 					<Router>
 						<Scene key="root">
-							<Scene key="addScreen" component={AddScreen} title="Add Screen" initial={true} tabs={true}/>
+							<Scene key="addScreen" component={AddScreen} title="Add Screen" initial={true} tabs={true}>
+							</Scene>
+							<Scene key="listScreen" component={ListScreen} title="List Screen" tabs={true}>
+              </Scene>
 						</Scene>
 					</Router>
         )

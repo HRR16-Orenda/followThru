@@ -10,6 +10,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import AddScreen from './addScreen.js'
 // import ListScreen from './listScreen.js'
 
+import { Actions } from 'react-native-router-flux';
+
 export default class Footer extends Component {
   constructor(props) {
     super(props);
@@ -25,9 +27,7 @@ export default class Footer extends Component {
           iconName="ios-home-outline"
           selectedIconName="ios-home"
           onPress = {() => {
-            this.setState({
-              selectedTab: 'add'
-            });
+            Actions.addScreen();
           }}
         >
           {/*<View style={styles.container}><AddScreen /></View>*/}
@@ -38,9 +38,7 @@ export default class Footer extends Component {
           iconName="ios-albums-outline"
           selectedIconName="ios-albums"
           onPress = {() => {
-            this.setState({
-              selectedTab: 'lists'
-            });
+            Actions.listScreen();
           }}
         >
           {/*<ListScreen />*/}

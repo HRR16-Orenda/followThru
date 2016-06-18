@@ -21,12 +21,14 @@ export default class AddScreen extends Component {
   }
   render() {
     return (
-      <View style={{margin: 128}}>
-        <Text>This is PageOne!</Text>
+      <View style={styles.container}>
+        <View style={{margin:128}}>
+          <Text >This is PageOne!</Text>
+        </View>
+        <View style={styles.container}>
+          <Footer />
+        </View>
       </View>
-      // <div>
-      // <Text>Its working</Text>
-      // </div>
     );
   }
 }
