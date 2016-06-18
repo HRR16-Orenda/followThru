@@ -16,7 +16,7 @@ export default class Footer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'add'
+      selectedTab: 'Add'
     }
   }
   render() {
@@ -24,8 +24,8 @@ export default class Footer extends Component {
       <TabBarIOS selectedTab={this.state.selectedTab}>
         <Icon.TabBarItem
           title="Add"
-          iconName="ios-home-outline"
-          selectedIconName="ios-home"
+          iconName="ios-create-outline"
+          selectedIconName="ios-create-outline"
           onPress = {() => {
             Actions.addScreen();
           }}
@@ -39,6 +39,9 @@ export default class Footer extends Component {
           selectedIconName="ios-albums"
           onPress = {() => {
             Actions.listScreen();
+            this.setState({
+              selectedTab:'Lists'
+            });
           }}
         >
           {/*<ListScreen />*/}
