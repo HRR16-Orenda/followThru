@@ -5,9 +5,8 @@ import {
   TextInput
 } from 'react-native';
 import styles from '../styles/styles.js';
-import InputBox from './inputBox.js';
 
-export default class addLayout extends Component {
+export default class inputBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +15,7 @@ export default class addLayout extends Component {
   render() {
     return (
       <TextInput
-        style = {{height: 40, borderColor: 'gray', borderWidth: 1}}
+        style = {{height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 100}}
         //onChangeText={(text) => this.setState({text})}
       />
     );

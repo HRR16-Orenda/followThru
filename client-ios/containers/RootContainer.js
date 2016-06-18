@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import {Scene, Reducer, Router, Switch, TabBar, Modal, Schema, Actions} from 'react-native-router-flux'
 import {bindActionCreators} from 'redux';
 import React, { Component } from 'react';
-import RootComponent from '../components/coreLayout.js';
 
 // Import screens
 import AddScreen from '../components/addScreen.js';

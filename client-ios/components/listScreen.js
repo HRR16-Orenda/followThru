@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 // import styles from '../styles/styles.js';
 // import Header from './header.js';
-import addLayout from './addLayout.js';
 import { Actions } from 'react-native-router-flux';
 import Footer from './footer.js';
 
