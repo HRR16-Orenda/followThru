@@ -8,6 +8,7 @@
   },
   "author": "Team Orenda",
   "dependencies": {
+    "body-parser": "^1.15.1",
     "express": "^4.14.0",
     "react": "^15.1.0",
     "react-native": "0.27.2",
@@ -16,5 +17,15 @@
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-spawn-mocha": "^2.2.2",
+    "gulp-wait": "0.0.2",
+    "mocha": "^2.5.3",
+    "morgan": "^1.7.0",
+    "sinon": "^1.17.4"
   }
 }
