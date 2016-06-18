@@ -8,7 +8,7 @@ import {
   Text,
   View
 } from 'react-native';
-import { Provider } from 'redux'
+import { Provider } from 'react-redux'
 
 // Import additional functionality
 import RootContainer from './containers/RootContainer.js';

@@ -20,16 +20,21 @@ class RootContainer extends Component {
 		// console.log("Props", this.props, state, actions); // everything ok here
 
         return (
-          <Router>
-            <Scene key="modal" component={Modal} >
-              <Scene key="root">
-                <Scene key="addScreen" component={AddScreen} title="Add Screen" initial={true} tabs={true}/>
-
-              </Scene>
-            </Scene>
-          </Router>
+					<Router>
+						<Scene key="root">
+							<Scene key="addScreen" component={AddScreen} title="Add Screen" initial={true} tabs={true}/>
+						</Scene>
+					</Router>
         )
     }
 }
 
 export default connect()(RootContainer);
+
+// export default connect(state => ({
+//    state: state.counter
+//  }),
+//  (dispatch) => ({
+//    actions: bindActionCreators(actions, dispatch)
+//  })
+// )(RootContainer);
