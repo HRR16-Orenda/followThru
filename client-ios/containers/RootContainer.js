@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 
 // Import screens
 import AddScreen from '../components/addScreen.js';
-import ListScreen from '../components/listScreen.js';
+import AllListsScreen from '../components/allListsScreen.js';
 
 class RootContainer extends Component {
 
@@ -23,7 +23,7 @@ class RootContainer extends Component {
 						<Scene key="root">
 							<Scene key="addScreen" component={AddScreen} title="Add Screen" initial={true} tabs={true}>
 							</Scene>
-							<Scene key="listScreen" component={ListScreen} title="List Screen" tabs={true}>
+							<Scene key="allListsScreen" component={AllListsScreen} title="All your lists" tabs={true}>
               </Scene>
 						</Scene>
 					</Router>

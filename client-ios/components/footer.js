@@ -38,7 +38,7 @@ export default class Footer extends Component {
           iconName="ios-albums-outline"
           selectedIconName="ios-albums"
           onPress = {() => {
-            Actions.listScreen();
+            Actions.allListsScreen();
             this.setState({
               selectedTab:'Lists'
             });

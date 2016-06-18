@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import {
-  NavigatorIOS,
   StyleSheet,
   Text,
   View
