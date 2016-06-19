@@ -7,7 +7,6 @@ var supertest = require('supertest')(app);
 // Uncomment after writing items controller
 // var item = require('../../server/controller/items.js');
 
-
 describe('API Test', function () {
   var server;
 
