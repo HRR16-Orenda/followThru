@@ -17,7 +17,7 @@ import styles from '../styles/styles.js'
 
 var REQUEST_URL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction';
 
-export default class AddScreen extends Component {
+export default class AllListsScreen extends Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
