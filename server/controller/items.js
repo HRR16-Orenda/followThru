@@ -3,7 +3,7 @@ var _ = require('underscore');
 
 module.exports = {
 
-  getItem: function(id, callback) {
+  getOne: function(id, callback) {
     Item.findById(id)
     .then(function(item) {
       callback(item);
@@ -31,7 +31,7 @@ module.exports = {
     })
   },
 
-  updateItem: function(id, newProps, callback) {
+  updateOne: function(id, newProps, callback) {
     getItem(id, function(item) {
       _.extend(item, newProps).save();
     })

@@ -5,6 +5,12 @@ var host = process.env.RDS_HOST || 'localhost';
 var port = process.env.RDS_PORT || '5432';
 var dbName = process.env.RDS_DBNAME || 'test';
 
+if(process.env.CIRCLECI) {
+  dbName = 'circle_test';
+  username = 'ubuntu';
+  password = null;
+}
+
 var sequelize = new Sequelize(dbName, username, password, {
   host: host,
   port: port,
@@ -16,14 +22,5 @@ var sequelize = new Sequelize(dbName, username, password, {
     idle: 10000
   }
 });
-
-sequelize
-  .authenticate()
-  .then(function(err) {
-    console.log('Connection has been established successfully');
-  })
-  .catch(function(err) {
-    console.log('Unable to connect to the database:', err);
-  });
 
 module.exports = sequelize;

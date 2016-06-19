@@ -30,8 +30,8 @@ describe('Server-side Unit test', function () {
       it('should have addOne() method', function () {
         expect(item.addOne).to.be.a('function');
       });
-      it('should have removeAll() method', function () {
-        expect(item.removeAll).to.be.a('function');
+      it('should have getOne() method', function () {
+        expect(item.getOne).to.be.a('function');
       });
       it('should have removeOne() method', function () {
         expect(item.removeOne).to.be.a('function');
@@ -48,8 +48,8 @@ describe('Server-side Unit test', function () {
       it('should have addOne() method', function () {
         expect(user.addOne).to.be.a('function');
       });
-      it('should have removeAll() method', function () {
-        expect(user.removeAll).to.be.a('function');
+      it('should have getOne() method', function () {
+        expect(user.getOne).to.be.a('function');
       });
       it('should have removeOne() method', function () {
         expect(user.removeOne).to.be.a('function');

@@ -42,21 +42,23 @@ describe('API Test', function () {
     var id;
 
     before(function (done) {
-      user.addOne(userToBeAdded1, function () {
-        user.addOne(userToBeAdded2, function () {
-          item.addOne(itemToBeAdded, function (item) {
-            id = item.id;
-            done();
+      sequelize.sync({force: true}).then(function () {
+        user.addOne(userToBeAdded1, function () {
+          user.addOne(userToBeAdded2, function () {
+            item.addOne(itemToBeAdded, function (item) {
+              id = item.id;
+              done();
+            });
           });
         });
-      });
+      }).catch(done);
     });
 
-    after(function (done) {
-      sequelize.sync({force: true}).then(function () {
-        done();
-      });
-    });
+    // after(function (done) {
+    //   sequelize.sync({force: true}).then(function () {
+    //     done();
+    //   });
+    // });
 
     describe('GET request', function () {
       it('should return status code 200', function (done) {

@@ -27,7 +27,7 @@ module.exports = {
     })
   },
 
-  updateUser: function(id, newProps, callback) {
+  updateOne: function(id, newProps, callback) {
     getUser(id, function(user) {
       _.extend(user, newProps).save();
     })
@@ -39,7 +39,7 @@ module.exports = {
     })
   },
 
-  deleteUser: function(id) {
+  removeOne: function(id) {
     getUser(id, function(user) {
       user.destroy();
     })
@@ -56,5 +56,5 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  },
+  }
 }

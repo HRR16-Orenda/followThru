@@ -34,5 +34,5 @@ var User = sequelize.define('user', {
 });
 //sequelize automatically creates createdAt and updatedAt
 // User.hasMany(Item); circular referencing occured (Item already belongsTo User)
-User.sync();
+// User.sync();
 module.exports = User;
