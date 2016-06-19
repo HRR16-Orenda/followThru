@@ -33,6 +33,7 @@ var Item = sequelize.define('item', {
   }
 }, {underscored: true});
 //sequelize automatically creates created_at and updated_at
-Item.belongsTo(User, {as: 'recommendedBy'}); //adds a recommendedBy_id attribute?
+Item.belongsTo(User, {as: 'user'});
+Item.belongsTo(User, {as: 'recommendedBy'});
 Item.sync();
 module.exports = Item;

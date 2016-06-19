@@ -40,7 +40,7 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
+  },
 
   deleteItem: function(id) {
     getItem(id, function(item) {
@@ -49,7 +49,7 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
+  },
 
   getAllItems: function(callback) {
     Item.findAll()
@@ -59,7 +59,7 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
+  },
 
   getCategories: function(callback) {
     getAllItems(function(items) {
@@ -75,7 +75,7 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
+  },
 
   getSubcategories: function(callback) {
     getAllItems(function(items) {
@@ -91,6 +91,5 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
-}
->>>>>>> master
+  }
+};

@@ -37,7 +37,7 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
+  },
 
   deleteUser: function(id) {
     getUser(id, function(user) {
@@ -46,7 +46,7 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
+  },
 
   getAllUsers: function(callback) {
     User.findAll()
@@ -56,6 +56,5 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
+  },
 }
->>>>>>> master
