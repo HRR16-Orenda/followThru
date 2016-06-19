@@ -12,6 +12,18 @@ module.exports = {
     });
   },
 
+  // or like this?
+  //getItem: function(id, callback) {
+  //   Item.findById(id)
+  //   .then(function(item) {
+  //     callback(item);
+  //   })
+  //   .catch(function(error) {
+  //     console.log(error);
+  //   });
+  // },
+
+
   addItem: function(item, callback) {
     var item = Item.create({
       user_id: item.user_id,

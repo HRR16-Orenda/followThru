@@ -1,5 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../db/config.js');
+var Item = require('./items.js');
+var Follower = require('./followers.js');
 var User = sequelize.define('user', {
   id: {
     type: Sequelize.INTEGER,
@@ -25,8 +27,8 @@ var User = sequelize.define('user', {
   classMethods: {
     associate: function(models) {
       User.hasMany(models.User, {
-        as: 'friend',
-        through: models.Friend});
+        as: 'follower',
+        through: models.Follower});
     }
   }
 });

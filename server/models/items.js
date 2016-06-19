@@ -23,15 +23,15 @@ var Item = sequelize.define('item', {
   },
   subcategory: {
     type: Sequelize.STRING,
-    allowNull: false,
-    defaultValue: //this needs javascript to determine
+    allowNull: false
+    //defaultValue: //this needs javascript to determine
   },
   url: {
     type: Sequelize.STRING,
     allowNull: true
   }
 }, {underscored: true});
-//sequelize automatically creates createdAt and updatedAt
-Item.belongsTo(User, {as: 'recommendedBy'}); //adds a recommendedBy_id attribute?
+//sequelize automatically creates created_at and updated_at
+Item.belongsTo(Item, {as: 'recommendedBy'}); //adds a recommendedBy_id attribute?
 Item.sync();
 module.exports = Item;

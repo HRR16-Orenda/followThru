@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../db/config.js');
 
-var Friend = sequelize.define('friend', {
+var Follower = sequelize.define('follower', {
   accepted: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
@@ -9,4 +9,4 @@ var Friend = sequelize.define('friend', {
   }
 }, {underscored: true});
 
-//Friend.hasMany(Friend, {as: 'friend'}); //this isn't right either
+//Follower.hasMany(Follower, {as: 'follower'}); //this isn't right either

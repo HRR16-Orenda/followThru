@@ -1,16 +1,17 @@
 var User = require('../models/users.js');
+var _ = require('underscore');
 var Promise = require('bluebird'); //do i need this?
 
 module.exports = {
 
   getUser: function(id, callback) {
-    User.findById(id).then(function(err, user) {
-      if (err) {
-        console.log(err);
-      } else {
-        callback(user);
-      }
-    });
+    User.findAll()
+    .then(function(users) {
+      callback(users);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
   },
 
   addUser: function(user, callback) {
@@ -19,15 +20,43 @@ module.exports = {
       username: user.username,
       password: user.password
     })
-    .then(callback(addedUser))
+    .then(function(addedUser) {
+      callback(addedUser);
+    })
     .catch(function(error) {
       console.log(error);
     })
   },
 
-  updateUser: function(){};
+  updateUser: function(id, newProps, callback) {
+    getUser(id, function(user) {
+      _.extend(user, newProps).save();
+      return user;
+    })
+    .then(function(user) {
+      callback(user);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  };
 
-  deleteUser: function(){};
+  deleteUser: function(id) {
+    getUser(id, function(user) {
+      return user.destroy();
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  };
 
-  getAllUsers: function(){};
+  getAllUsers: function(callback) {
+    User.findAll()
+    .then(function(users) {
+      callback(users);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  };
 }
