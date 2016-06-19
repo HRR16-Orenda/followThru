@@ -1,5 +1,13 @@
+var Sequelize = require('sequelize');
+var sequelize = require('../db/config.js');
+var Item = require('./items.js');
+var Follower = require('./followers.js');
 var User = sequelize.define('user', {
-  //sequelize automatically creates createdAt and updatedAt and _id(?)
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -14,4 +22,17 @@ var User = sequelize.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   }
-})
+}, {
+  underscored: true,
+  classMethods: {
+    associate: function(models) {
+      User.hasMany(models.User, {
+        as: 'follower',
+        through: models.Follower});
+    }
+  }
+});
+//sequelize automatically creates createdAt and updatedAt
+User.hasMany(Item);
+User.sync();
+module.exports = User;
