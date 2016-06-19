@@ -1,4 +1,4 @@
-var process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'test';
 var expect = require('chai').expect;
 var app = require('../../server/app.js');
 var port = process.env.PORT || 4000;
