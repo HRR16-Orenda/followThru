@@ -1,10 +1,9 @@
+// @flow
 var express = require('express');
 var router = express.Router();
+var handler = require('../handler/handler.js');
 
-router.get('/', function (req, res) {
-  res.send('You are sending GET request to /items');
-});
-
-
+router.get('/', handler.getAllItems);
+// router.post('/', handler.addOneItem);
 
 module.exports = router;

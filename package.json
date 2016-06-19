@@ -4,7 +4,8 @@
   "description": "List Anything",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "./node_modules/.bin/mocha --reporter spec test/integration/ApiSpec.js;"
+    "test": "./node_modules/.bin/mocha --reporter spec test/integration/ApiSpec.js",
+    "coverage": "istanbul cover --root server/ _mocha -- test/server/ -R spec"
   },
   "author": "Team Orenda",
   "dependencies": {
@@ -26,11 +27,14 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
+    "gulp-istanbul": "^1.0.0",
+    "gulp-mocha": "^2.2.0",
     "gulp-nodemon": "^2.1.0",
-    "gulp-spawn-mocha": "^2.2.2",
+    "gulp-plumber": "^1.1.0",
     "gulp-wait": "0.0.2",
     "mocha": "^2.5.3",
     "morgan": "^1.7.0",
-    "sinon": "^1.17.4"
+    "sinon": "^1.17.4",
+    "supertest": "^1.2.0"
   }
 }
