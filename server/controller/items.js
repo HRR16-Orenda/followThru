@@ -13,13 +13,14 @@ module.exports = {
     });
   },
 
-  addItem: function(item, callback) {
+  addOne: function(item, callback) {
     Item.create({
       user_id: item.user_id,
       title: item.title,
       category: item.category,
       subcategory: item.subcategory,
       url: item.url,
+      completed: false,
       recommendedBy_id: item.recommendedBy_id
     })
     .then(function(item) {
@@ -42,16 +43,19 @@ module.exports = {
     })
   },
 
-  deleteItem: function(id) {
-    getItem(id, function(item) {
-      item.destroy();
-    })
-    .catch(function(error) {
-      console.log(error);
-    })
+  removeOne: function(id, cb) {
+    this.getItem(id, function(item) {
+      item.destroy()
+        .then(function (rows) {
+          cb(rows);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
   },
 
-  getAllItems: function(callback) {
+  getAll: function(callback) {
     Item.findAll()
     .then(function(items) {
       callback(items)

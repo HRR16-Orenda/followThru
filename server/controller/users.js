@@ -3,7 +3,7 @@ var _ = require('underscore');
 
 module.exports = {
 
-  getUser: function(id, callback) {
+  getOne: function(id, callback) {
     User.findById(id)
     .then(function(user) {
       callback(user);
@@ -13,7 +13,7 @@ module.exports = {
     })
   },
 
-  addUser: function(user, callback) {
+  addOne: function(user, callback) {
     User.create({
       email: user.email,
       username: user.username,
@@ -48,7 +48,7 @@ module.exports = {
     })
   },
 
-  getAllUsers: function(callback) {
+  getAll: function(callback) {
     User.findAll()
     .then(function(users) {
       callback(users);
