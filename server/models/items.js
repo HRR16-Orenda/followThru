@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../db/config.js');
+var User = require('./users.js');
 
 var Item = sequelize.define('item', {
   id: {
@@ -32,6 +33,6 @@ var Item = sequelize.define('item', {
   }
 }, {underscored: true});
 //sequelize automatically creates created_at and updated_at
-Item.belongsTo(Item, {as: 'recommendedBy'}); //adds a recommendedBy_id attribute?
+Item.belongsTo(User, {as: 'recommendedBy'}); //adds a recommendedBy_id attribute?
 Item.sync();
 module.exports = Item;

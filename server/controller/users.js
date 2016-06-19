@@ -1,13 +1,12 @@
 var User = require('../models/users.js');
 var _ = require('underscore');
-var Promise = require('bluebird'); //do i need this?
 
 module.exports = {
 
   getUser: function(id, callback) {
-    User.findAll()
-    .then(function(users) {
-      callback(users);
+    User.findById(id)
+    .then(function(user) {
+      callback(user);
     })
     .catch(function(error) {
       console.log(error);
@@ -15,7 +14,7 @@ module.exports = {
   },
 
   addUser: function(user, callback) {
-    var user = User.create({
+    User.create({
       email: user.email,
       username: user.username,
       password: user.password
@@ -31,10 +30,9 @@ module.exports = {
   updateUser: function(id, newProps, callback) {
     getUser(id, function(user) {
       _.extend(user, newProps).save();
-      return user;
     })
-    .then(function(user) {
-      callback(user);
+    .then(function(updatedUser) {
+      callback(updatedUser);
     })
     .catch(function(error) {
       console.log(error);
@@ -43,7 +41,7 @@ module.exports = {
 
   deleteUser: function(id) {
     getUser(id, function(user) {
-      return user.destroy();
+      user.destroy();
     })
     .catch(function(error) {
       console.log(error);

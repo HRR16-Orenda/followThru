@@ -1,38 +1,30 @@
 var Item = require('../models/items.js');
 var _ = require('underscore');
-var Promise = require('bluebird'); //do i need this?
 
 module.exports = {
 
   getItem: function(id, callback) {
     Item.findById(id)
-    .then(callback(item))
+    .then(function(item) {
+      callback(item);
+    })
     .catch(function(error) {
       console.log(error);
     });
   },
 
-  // or like this?
-  //getItem: function(id, callback) {
-  //   Item.findById(id)
-  //   .then(function(item) {
-  //     callback(item);
-  //   })
-  //   .catch(function(error) {
-  //     console.log(error);
-  //   });
-  // },
-
-
   addItem: function(item, callback) {
-    var item = Item.create({
+    Item.create({
       user_id: item.user_id,
+      title: item.title,
       category: item.category,
       subcategory: item.subcategory,
-      title: item.title,
+      url: item.url,
       recommendedBy_id: item.recommendedBy_id
     })
-    .then(callback(item))
+    .then(function(item) {
+      callback(item);
+    })
     .catch(function(error) {
       console.log(error);
     })
@@ -41,9 +33,10 @@ module.exports = {
   updateItem: function(id, newProps, callback) {
     getItem(id, function(item) {
       _.extend(item, newProps).save();
-      return item;
     })
-    .then(callback(item))
+    .then(function(item) {
+      callback(item);
+    })
     .catch(function(error) {
       console.log(error);
     })
@@ -51,7 +44,7 @@ module.exports = {
 
   deleteItem: function(id) {
     getItem(id, function(item) {
-      return item.destroy();
+      item.destroy();
     })
     .catch(function(error) {
       console.log(error);
@@ -76,7 +69,9 @@ module.exports = {
       })
       return categories;
     })
-    .then(callback(categories))
+    .then(function(categories) {
+      callback(categories);
+    })
     .catch(function(error) {
       console.log(error);
     })
@@ -90,7 +85,9 @@ module.exports = {
       })
       return subcategories;
     })
-    .then(callback(subcategories))
+    .then(function(subcategories) {
+      callback(subcategories);
+    })
     .catch(function(error) {
       console.log(error);
     })
