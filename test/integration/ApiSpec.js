@@ -3,10 +3,9 @@ var expect = require('chai').expect;
 var app = require('../../server/app.js');
 var port = process.env.PORT || 4000;
 var supertest = require('supertest')(app);
-
-// Uncomment after writing items controller
-// var item = require('../../server/controller/items.js');
-
+var item = require('../../server/controller/items.js');
+var user = require('../../server/controller/users.js');
+var sequelize = require('../../server/db/config.js');
 describe('API Test', function () {
   var server;
 
@@ -22,38 +21,43 @@ describe('API Test', function () {
 
   describe('Route /items', function () {
     var itemToBeAdded = {
-      user: {
-        id: 1,
-        username: 'brent'
-      },
+      user_id: 1,
       category: 'books',
-      subCategory: 'favorite',
+      subcategory: 'favorite',
       title: 'The Lord of the Ring',
       completed: false,
       url: null,
-      recommendedBy: {
-        id: 2,
-        username: 'sb'
-      }
+      recommendedBy_id: 2
     };
+    var userToBeAdded1 = {
+      email: 'test@test.com',
+      username: 'test',
+      password: 'test'
+    };
+    var userToBeAdded2 = {
+      email: 'test2@test.com',
+      username: 'test2',
+      password: 'test'
+    };
+    var id;
 
-    // Uncomment after writing items controller
-    // before(function (done) {
-    //   item.addOne(itemToBeAdded)
-    //   .then(function (item) {
-    //     done();
-    //   }).catch(function (err) {
-    //     done(err);
-    //   });
-    // });
-    //
+    before(function (done) {
+      sequelize.sync({force: true}).then(function () {
+        user.addOne(userToBeAdded1, function () {
+          user.addOne(userToBeAdded2, function () {
+            item.addOne(itemToBeAdded, function (item) {
+              id = item.id;
+              done();
+            });
+          });
+        });
+      }).catch(done);
+    });
+
     // after(function (done) {
-    //   item.clearTable()
-    //     .then(function () {
-    //       done();
-    //     }).catch(function (err) {
-    //       done(err);
-    //     });
+    //   sequelize.sync({force: true}).then(function () {
+    //     done();
+    //   });
     // });
 
     describe('GET request', function () {
@@ -72,15 +76,15 @@ describe('API Test', function () {
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res.body).to.be.an('array');
-          expect(res.body[0]).to.have.property('user');
-          expect(res.body[0].user.username).to.be.ok;
+          expect(res.body[0]).to.have.property('id');
           expect(res.body[0]).to.have.property('category');
-          expect(res.body[0]).to.have.property('subCategory');
+          expect(res.body[0]).to.have.property('subcategory');
           expect(res.body[0]).to.have.property('title');
           expect(res.body[0]).to.have.property('completed');
           expect(res.body[0]).to.have.property('url');
-          expect(res.body[0]).to.have.property('createdAt');
-          expect(res.body[0]).to.have.property('recommendedBy');
+          expect(res.body[0]).to.have.property('created_at');
+          expect(res.body[0]).to.have.property('updated_at');
+          expect(res.body[0]).to.have.property('recommended_by_id');
           done();
         });
       });

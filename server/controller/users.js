@@ -3,7 +3,7 @@ var _ = require('underscore');
 
 module.exports = {
 
-  getUser: function(id, callback) {
+  getOne: function(id, callback) {
     User.findById(id)
     .then(function(user) {
       callback(user);
@@ -13,7 +13,7 @@ module.exports = {
     })
   },
 
-  addUser: function(user, callback) {
+  addOne: function(user, callback) {
     User.create({
       email: user.email,
       username: user.username,
@@ -27,7 +27,7 @@ module.exports = {
     })
   },
 
-  updateUser: function(id, newProps, callback) {
+  updateOne: function(id, newProps, callback) {
     getUser(id, function(user) {
       _.extend(user, newProps).save();
     })
@@ -37,18 +37,18 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
+  },
 
-  deleteUser: function(id) {
+  removeOne: function(id) {
     getUser(id, function(user) {
       user.destroy();
     })
     .catch(function(error) {
       console.log(error);
     })
-  };
+  },
 
-  getAllUsers: function(callback) {
+  getAll: function(callback) {
     User.findAll()
     .then(function(users) {
       callback(users);
@@ -56,6 +56,5 @@ module.exports = {
     .catch(function(error) {
       console.log(error);
     })
-  };
+  }
 }
->>>>>>> master

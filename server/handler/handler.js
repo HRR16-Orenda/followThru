@@ -23,13 +23,15 @@ module.exports = {
         }
       }
     ];
-    item.getAll();
+    item.getAll(function (items) {
+      res.send(items);
+    });
     // Should have interaction with DB controller to get whole items
-    res.send(mockData);
   },
 
   getAllUsers: function (req, res) {
-    user.getAll();
-    res.send([{},{}]);
+    user.getAll(function (users) {
+      res.send(users);
+    });
   }
 }

@@ -2,10 +2,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 // Write index route after starting web dev.
+var sequelize = require('./db/config.js');
 var index = require('./routes/index.js');
 var users = require('./routes/users.js');
 var items = require('./routes/items.js');
-var sequelize = require('./db/config.js');
 
 var app = express();
 
