@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var handler = require('../handler/handler.js');
 
-router.get('/', function (req, res) {
-  res.send('You are sending GET request to /users');
-});
+router.get('/', handler.getAllUsers);
 
 module.exports = router;

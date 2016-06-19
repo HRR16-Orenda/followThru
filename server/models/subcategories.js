@@ -4,6 +4,6 @@ var Subcategory = sequelize.define('subcategory', {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
-    defaultValue: //this needs javascript to determine
+    // defaultValue: //this needs javascript to determine
   }
 })
