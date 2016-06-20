@@ -1,7 +1,8 @@
 process.env.NODE_ENV = 'test';
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var handler = require('../../server/handler/handler.js');
+var handler = require('../../server/helper/handler.js');
+var helper = require('../../server/helper/helpers.js');
 var item = require('../../server/controller/items.js');
 var user = require('../../server/controller/users.js');
 var app = require('../../server/app.js');
@@ -26,6 +27,27 @@ describe('Server-side Unit test', function () {
 
   afterEach(function () {
     this.sandbox.restore()
+  });
+
+  describe('Helper Method test', function () {
+    it('cleanUser should refine user data', function () {
+      var expected = {
+        email: 'test',
+        username: 'test',
+        id: 3
+      };
+      var input = {
+        get: function(field) {
+          var user = {};
+          user.id = 3;
+          user.email = 'test';
+          user.username = 'test';
+          user.password = 'test;'
+          return user[field];
+        }
+      };
+      expect(helper.cleanUser(input)).to.deep.equal(expected);
+    });
   });
 
   describe('Controller Test', function () {
@@ -89,11 +111,14 @@ describe('Server-side Unit test', function () {
       describe('addOneUser()', function () {
         it('should call user.addOne() method and send added user back', function () {
           var stub = this.sandbox.stub(user, 'addOne');
+          var stub2 = this.sandbox.stub(helper, 'cleanUser');
           stub.callsArgWith(1, null, expectedObject);
+          stub2.returns(expectedObject);
 
           handler.addOneUser(req, res);
           expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
           expect(stub.calledOnce).to.equal(true);
+          expect(stub2.calledOnce).to.equal(true);
         });
         it('should send 400 status code when user.addOne() throw error', function () {
           var stub = this.sandbox.stub(user, 'addOne');
@@ -179,89 +204,4 @@ describe('Server-side Unit test', function () {
       });
     });
   });
-});
-
-describe('API Test', function () {
-  var server;
-
-  before(function (done) {
-    server = app.listen(port, function () {
-      done();
-    });
-  });
-
-  after(function (done) {
-    server.close(done);
-  });
-
-  describe('Route /', function () {
-    it('GET request should return response', function (done) {
-      supertest.get('/')
-      .end(function (err, res) {
-        if(err) {return done(err)}
-        expect(res).to.be.ok;
-        done();
-      });
-    });
-  });
-
-  describe('Route /items', function () {
-    it('GET request should return response', function (done) {
-      supertest.get('/items')
-      .end(function (err, res) {
-        if(err) {return done(err)}
-        expect(res).to.be.ok;
-        done();
-      });
-    });
-
-    it('POST request should return response', function (done) {
-      supertest.post('/items')
-      .send({user: 'fake'})
-      .end(function (err, res) {
-        if(err) {return done(err)}
-        expect(res).to.be.ok;
-        done();
-      });
-    });
-  });
-
-  describe('Route /users', function () {
-    it('GET request should return response', function (done) {
-      supertest.get('/users')
-      .end(function (err, res) {
-        if(err) {return done(err)}
-        expect(res).to.be.ok;
-        done();
-      });
-    });
-  });
-
-  describe('Default Route', function () {
-    it('should return status code 404 respond to GET request', function (done) {
-      supertest.get('/whatever')
-      .end(function (err, res) {
-        if(err) {return done(err)}
-        expect(res.status).to.equal(404);
-        done();
-      });
-    });
-    it('should return status code 404 respond to POST request', function (done) {
-      supertest.post('/whatever')
-      .end(function (err, res) {
-        if(err) {return done(err)}
-        expect(res.status).to.equal(404);
-        done();
-      });
-    });
-    it('should return status code 404 respond to DELETE request', function (done) {
-      supertest.del('/whatever')
-      .end(function (err, res) {
-        if(err) {return done(err)}
-        expect(res.status).to.equal(404);
-        done();
-      });
-    });
-  });
-
 });

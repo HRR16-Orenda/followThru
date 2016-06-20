@@ -1,5 +1,6 @@
 var item = require('../controller/items.js');
 var user = require('../controller/users.js');
+var helper = require('./helpers.js');
 
 module.exports = {
   getAllItems: function (req, res) {
@@ -18,8 +19,9 @@ module.exports = {
   addOneUser: function (req, res) {
     var data = req.body;
     user.addOne(data, function (err, user) {
-      if(err) {return res.status(400);}
-      res.send(user);
+      if(err) {return res.status(400).end();}
+      var addedUser = helper.cleanUser(user);
+      res.send(addedUser);
     });
   },
 
