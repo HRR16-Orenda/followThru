@@ -20,7 +20,7 @@ class RootContainer extends Component {
 
     render() {
 		const { state, actions } = this.props;
-		console.log("Props", this.props, state, actions); // everything ok here
+		// console.log("Props", this.props, state, actions); // everything ok here
 
         return (
 					<Router>
