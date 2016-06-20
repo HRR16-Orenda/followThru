@@ -20,10 +20,11 @@ module.exports = {
       password: user.password
     })
     .then(function(addedUser) {
-      callback(addedUser);
+      callback(null, addedUser);
     })
     .catch(function(error) {
       console.log(error);
+      callback(error);
     })
   },
 
@@ -51,10 +52,10 @@ module.exports = {
   getAll: function(callback) {
     User.findAll()
     .then(function(users) {
-      callback(users);
+      callback(null, users);
     })
     .catch(function(error) {
-      console.log(error);
-    })
+      callback(error);
+    });
   }
 }
