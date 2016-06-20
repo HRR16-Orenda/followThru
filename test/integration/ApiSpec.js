@@ -54,12 +54,6 @@ describe('API Test', function () {
       }).catch(done);
     });
 
-    // after(function (done) {
-    //   sequelize.sync({force: true}).then(function () {
-    //     done();
-    //   });
-    // });
-
     describe('GET request', function () {
       it('should return status code 200', function (done) {
         supertest.get('/items')
@@ -77,6 +71,7 @@ describe('API Test', function () {
           if(err) {return done(err)}
           expect(res.body).to.be.an('array');
           expect(res.body[0]).to.have.property('id');
+          expect(res.body[0]).to.have.property('user_id');
           expect(res.body[0]).to.have.property('category');
           expect(res.body[0]).to.have.property('subcategory');
           expect(res.body[0]).to.have.property('title');

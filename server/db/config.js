@@ -5,6 +5,7 @@ var host = process.env.RDS_HOST || 'localhost';
 var port = process.env.RDS_PORT || '5432';
 var dbName = process.env.RDS_DBNAME || 'test';
 
+// CircleCI test environment setting
 if(process.env.CIRCLECI) {
   dbName = 'circle_test';
   username = 'ubuntu';
