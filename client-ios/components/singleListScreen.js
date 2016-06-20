@@ -17,7 +17,7 @@ import styles from '../styles/styles.js'
 
 var REQUEST_URL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction';
 
-export default class AllListsScreen extends Component {
+export default class SingleListScreen extends Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -68,11 +68,7 @@ export default class AllListsScreen extends Component {
       return this.renderLoadingView
     }
     return (
-      <TouchableHighlight
-        onPress = {() => {
-          Actions.singleListScreen();
-        }}
-      >
+      <TouchableHighlight>
         <View>
           <ListItem item={ item } />
           <View style={styles.separator} />

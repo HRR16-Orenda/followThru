@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 // Import screens
 import AddScreen from '../components/addScreen.js';
 import AllListsScreen from '../components/allListsScreen.js';
+import SingleListScreen from '../components/singleListScreen.js';
 
 class RootContainer extends Component {
 
@@ -21,10 +22,12 @@ class RootContainer extends Component {
         return (
 					<Router>
 						<Scene key="root">
-							<Scene key="addScreen" component={AddScreen} title="Add Screen" initial={true} tabs={true}>
+							<Scene key="addScreen" component={AddScreen} title="Add Screen" initial={true} tabs={true} hideBackImage={true}>
 							</Scene>
-							<Scene key="allListsScreen" component={AllListsScreen} title="All your lists" tabs={true}>
+							<Scene key="allListsScreen" component={AllListsScreen} title="All your lists" tabs={true} hideBackImage={true}>
               </Scene>
+							<Scene key="singleListScreen" component={SingleListScreen} title="One single list" tabs={true} hideBackImage={true}>
+							</Scene>
 						</Scene>
 					</Router>
         )
