@@ -19,6 +19,7 @@ describe('Server-side Unit test', function () {
     this.sandbox = sinon.sandbox.create()
     req = res = {};
     req.body = {};
+    req.params = {};
     spyOnSend = res.send = this.sandbox.spy();
     spyOnStatus = res.status = this.sandbox.spy();
   });
@@ -254,7 +255,7 @@ describe('API Test', function () {
       });
     });
     it('should return status code 404 respond to DELETE request', function (done) {
-      supertest.delete('/whatever')
+      supertest.del('/whatever')
       .end(function (err, res) {
         if(err) {return done(err)}
         expect(res.status).to.equal(404);

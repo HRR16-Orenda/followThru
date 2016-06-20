@@ -24,7 +24,7 @@ module.exports = {
   },
 
   removeOneUser: function (req, res) {
-    var id = req.body.id;
+    var id = req.params.id;
     user.removeOne(id, function (err, user) {
       if(err) {return res.status(400);}
       res.send(user);
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   updateOneUser: function (req, res) {
-    var id = req.body.id;
+    var id = req.params.id;
     var updatedData = req.body;
     user.updateOne(id, updatedData, function (err, user) {
       if(err) {return res.status(400);}
