@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import AddScreen from '../components/addScreen.js';
 import AllListsScreen from '../components/allListsScreen.js';
 import SingleListScreen from '../components/singleListScreen.js';
+import ActionConfirmationScreen from '../components/actionConfirmationScreen.js';
 
 class RootContainer extends Component {
 
@@ -27,6 +28,8 @@ class RootContainer extends Component {
 							<Scene key="allListsScreen" component={AllListsScreen} title="All your lists" tabs={true} hideBackImage={true}>
               </Scene>
 							<Scene key="singleListScreen" component={SingleListScreen} title="One single list" tabs={true} hideBackImage={true}>
+							</Scene>
+							<Scene key="actionConfirmationScreen" component={ActionConfirmationScreen} title="Item added" tabs={true} hideBackImage={true}>
 							</Scene>
 						</Scene>
 					</Router>
