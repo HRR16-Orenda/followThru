@@ -4,8 +4,9 @@ import AllListsScreen from '../components/allListsScreen.js';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUpdatedLists: () => {
-      dispatch(actions.fetchUpdatedLists());
+    fetchUserLists: () => {
+      console.log('in the container');
+      dispatch(actions.fetchUserLists());
     }
   };
 };

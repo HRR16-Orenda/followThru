@@ -12,10 +12,10 @@ import { Provider } from 'react-redux'
 
 // Import additional functionality
 import RootContainer from './containers/RootContainer.js';
-import configureStore from './store/configureStore.js';
+import Store from './store/configureStore.js';
 import Footer from './components/footer.js';
 
-const store = configureStore();
+const store = Store;
 class Orenda extends Component {
   render() {
     return (

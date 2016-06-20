@@ -66,17 +66,21 @@ export const addListItemRequest = () => {
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
 export const fetchUserLists = (id = '') => {
   return dispatch => {
-    const url = '/products/' + id;
-    helper.getHelper(url)
-    .then(resp => {
-      var updatedState = resp.data;
-      if (resp.status == 200) {
-        Array.isArray(updatedState) ? dispatch(updateProductsState(updatedState)) : dispatch(updateProductDetail(updatedState));
-      }
-    })
-    .catch(err => {
-      console.error(err);
-    });
+    var updatedState = [{title: 'fun'}, {title: 'awesome'}]
+    // dispatch(updateListsState(updatedState))
+
+    
+    // const url = '/products/' + id;
+    // helper.getHelper(url)
+    // .then(resp => {
+    //   var updatedState = resp.data;
+    //   if (resp.status == 200) {
+    //     Array.isArray(updatedState) ? dispatch(updateProductsState(updatedState)) : dispatch(updateProductDetail(updatedState));
+    //   }
+    // })
+    // .catch(err => {
+    //   console.error(err);
+    // });
   };
 };
 

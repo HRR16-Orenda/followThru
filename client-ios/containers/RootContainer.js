@@ -10,6 +10,8 @@ import AllListsScreen from '../components/allListsScreen.js';
 import SingleListScreen from '../components/singleListScreen.js';
 import ActionConfirmationScreen from '../components/actionConfirmationScreen.js';
 
+import * as actions from '../actions/index.js';
+
 class RootContainer extends Component {
 
 	constructor(props) {
@@ -17,8 +19,8 @@ class RootContainer extends Component {
     }
 
     render() {
-		// const { state, actions } = this.props;
-		// console.log("Props", this.props, state, actions); // everything ok here
+		const { state, actions } = this.props;
+		console.log("Props", this.props, state, actions); // everything ok here
 
         return (
 					<Router>
@@ -37,12 +39,12 @@ class RootContainer extends Component {
     }
 }
 
-export default connect()(RootContainer);
+// export default connect()(RootContainer);
 
-// export default connect(state => ({
-//    state: state.counter
-//  }),
-//  (dispatch) => ({
-//    actions: bindActionCreators(actions, dispatch)
-//  })
-// )(RootContainer);
+export default connect(state => ({
+   state: state
+ }),
+ (dispatch) => ({
+   actions: bindActionCreators(actions, dispatch)
+ })
+)(RootContainer);

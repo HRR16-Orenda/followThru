@@ -7,12 +7,12 @@ export default (state = {
   lists: [],        // State for all lists
   isLoading: '',
   allListsDataSource: [] // State for ListView in AllLists
-}, action) => { 
+}, action) => {
   switch (action.type) {
-    case types.UPDATE_PRODUCTS_STATE:
+    case types.FETCH_USER_LISTS:
     return {
       ...state,
-      items: action.updatedProductsState
+      lists: action.fetchUserLists
     }
     case types.UPDATE_PRODUCT_DETAIL:
     return {
