@@ -1,3 +1,9 @@
+export const ADDLISTITEM_REQUEST = 'ADDLISTITEM_REQUEST';
+
+
+
+
+// Example action type constants below
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';

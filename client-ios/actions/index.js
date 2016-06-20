@@ -12,38 +12,43 @@ import { reset } from 'redux-form';
 // addNewListItem
 // This should add a new item to a specific list
 export const addNewListItem = (fields) => {
-  return (dispatch, getState) => {
-    // parse form data for submission
-    let newProductListing = {
-      ...fields,
-      author: getState().user.username,
-      locationInfo: {
-        address: fields.locationInfo,
-        marker: {
-          lat: getState().ui.location.marker.lat,
-          lng: getState().ui.location.marker.lng
-        }
-      }
-    };
-
-    dispatch(addListingRequest());
-    let url = '/products';
-    helper.postHelper(url, newProductListing)
-    .then(resp => {
-      let newItem = resp.data;
-      dispatch(addListingSuccess(newItem));
-      dispatch(toggleViewAddNewListingForm());
-      dispatch(push('/listings'));
-    })
-    .catch(err => {
-      console.error(err);
-      dispatch(addListingFailure());
-      dispatch(push('/listings'));
-    });
-  };
+  // return (dispatch, getState) => {
+  //   // parse form data for submission
+  //   let newProductListing = {
+  //     ...fields,
+  //     author: getState().user.username,
+  //     locationInfo: {
+  //       address: fields.locationInfo,
+  //       marker: {
+  //         lat: getState().ui.location.marker.lat,
+  //         lng: getState().ui.location.marker.lng
+  //       }
+  //     }
+  //   };
+  //
+  //   dispatch(addListingRequest());
+  //   let url = '/products';
+  //   helper.postHelper(url, newProductListing)
+  //   .then(resp => {
+  //     let newItem = resp.data;
+  //     dispatch(addListingSuccess(newItem));
+  //     dispatch(toggleViewAddNewListingForm());
+  //     dispatch(push('/listings'));
+  //   })
+  //   .catch(err => {
+  //     console.error(err);
+  //     dispatch(addListingFailure());
+  //     dispatch(push('/listings'));
+  //   });
+  // };
 };
 
 // addListItemRequest
+export const addListItemRequest = () => {
+  return {
+    type: types.ADDLISTITEM_REQUEST
+  }
+}
 
 // addListItemSuccess
 // This should trigger the actionConfirmation page to show up and display what list the item was added to
@@ -59,7 +64,7 @@ export const addNewListItem = (fields) => {
 
 // fetchUserLists
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
-export const fetchUpdatedProducts = (id = '') => {
+export const fetchUserLists = (id = '') => {
   return dispatch => {
     const url = '/products/' + id;
     helper.getHelper(url)
@@ -77,20 +82,20 @@ export const fetchUpdatedProducts = (id = '') => {
 
 // fetchUserSingleList
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
-export const fetchUpdatedListItems = (id = '') => {
-  return dispatch => {
-    const url = '/products/' + id;
-    helper.getHelper(url)
-    .then(resp => {
-      var updatedState = resp.data;
-      if (resp.status == 200) {
-        Array.isArray(updatedState) ? dispatch(updateProductsState(updatedState)) : dispatch(updateProductDetail(updatedState));
-      }
-    })
-    .catch(err => {
-      console.error(err);
-    });
-  };
+export const fetchUserSingleList = (id = '') => {
+  // return dispatch => {
+  //   const url = '/products/' + id;
+  //   helper.getHelper(url)
+  //   .then(resp => {
+  //     var updatedState = resp.data;
+  //     if (resp.status == 200) {
+  //       Array.isArray(updatedState) ? dispatch(updateProductsState(updatedState)) : dispatch(updateProductDetail(updatedState));
+  //     }
+  //   })
+  //   .catch(err => {
+  //     console.error(err);
+  //   });
+  // };
 };
 
 
