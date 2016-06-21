@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
-import SingleListScreen from '../components/singleListsScreen.js';
+import SingleListScreen from '../components/singleListScreen.js';
 
 const mapDispatchToProps = (dispatch) => {
   console.log('all lists dispatch ', dispatch);
