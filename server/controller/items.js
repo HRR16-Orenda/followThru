@@ -23,8 +23,8 @@ module.exports = {
       completed: false,
       recommendedBy_id: item.recommendedBy_id
     })
-    .then(function(item) {
-      callback(null, item);
+    .then(function(newItem) {
+      callback(null, newItem);
     })
     .catch(function(error) {
       callback(error);

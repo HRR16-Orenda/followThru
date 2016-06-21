@@ -4,9 +4,43 @@ var helper = require('./helpers.js');
 
 module.exports = {
   getAllItems: function (req, res) {
-    item.getAll(function (items) {
-      res.send(items);
+    item.getAll(function (err, items) {
+      if(err) {return res.status(400);}
+      res.status(200).send(items);
     });
+  },
+
+  getOneItem: function(req, res) {
+    var id = req.params.id;
+    item.getOne(id, function(err, item) {
+      if(err) {return res.status(400);}
+      res.status(200).send(item);
+    });
+  },
+
+  addOneItem: function(req, res) {
+    var item = req.body;
+    item.addOne(item, function(err, newItem) {
+      if(err) {return res.status(400);}
+      res.(201).send(newItem);
+    })
+  },
+
+  removeOneItem: function(req, res) {
+    var id = req.params.id;
+    item.removeOne(id, function(err, rows) {
+      if(err) {return res.status(400);}
+      res.status(200).send(rows);
+    } )
+  },
+
+  updateOneItem: function(req, res) {
+    var id = req.params.id;
+    var newProps = req.body;
+    item.updateOne(id, newProps, function(err, item) {
+      if(err) {return res.status(400);}
+      res.status(202).send(item);
+    })
   },
 
   getAllUsers: function (req, res) {
