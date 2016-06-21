@@ -4,9 +4,14 @@
   "description": "List Anything",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
+    "unittest:server": "./node_modules/.bin/mocha --reporter nyan test/server/ServerSpec.js",
+    "integrationtest": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
+    "test": "npm run unittest:server && npm run integrationtest",
     "coverage": "istanbul cover --root server/ _mocha -- test/server/ -R spec"
   },
+  "pre-commit": [
+  "test"
+  ],
   "author": "Team Orenda",
   "dependencies": {
     "body-parser": "^1.15.1",

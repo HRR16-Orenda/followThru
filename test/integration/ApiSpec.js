@@ -215,7 +215,7 @@ describe('API Test', function () {
       it('should return response', function (done) {
         supertest.del('/users/3')
         .end(function (err, res) {
-          if(err) {return done(err)}
+          if(err) {return done(err);}
           expect(res).to.be.ok;
           done();
         });
