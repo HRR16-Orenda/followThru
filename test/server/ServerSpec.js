@@ -14,7 +14,7 @@ describe('Server-side Unit test', function () {
   var req, res, spy;
   var expectedError = new Error('oops');
   var expectedObject = {};
-  var expectedArray = [];
+  var expectedArray = [{},{}];
 
   beforeEach(function () {
     this.sandbox = sinon.sandbox.create()
@@ -94,11 +94,14 @@ describe('Server-side Unit test', function () {
       describe('getAllUsers()', function () {
         it('should call user.getAll() method and send users data back', function () {
           var stub = this.sandbox.stub(user, 'getAll');
+          var stub2 = this.sandbox.stub(helper, 'cleanUser');
           stub.callsArgWith(0, null, expectedArray);
+          stub2.returns({});
 
           handler.getAllUsers(req, res);
           expect(spyOnSend.calledWith(expectedArray)).to.equal(true);
           expect(stub.calledOnce).to.equal(true);
+          expect(stub2.called).to.equal(true);
         });
         it('should send 400 status code when user.getAll() throw error', function () {
           var stub = this.sandbox.stub(user, 'getAll');

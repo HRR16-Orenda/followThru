@@ -12,7 +12,10 @@ module.exports = {
   getAllUsers: function (req, res) {
     user.getAll(function (err, users) {
       if(err) {return res.status(400);}
-      res.send(users);
+      var returnedUsers = users.map(function (user) {
+        return helper.cleanUser(user);
+      });
+      res.send(returnedUsers);
     });
   },
 

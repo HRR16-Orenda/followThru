@@ -111,12 +111,51 @@ describe('API Test', function () {
           done();
         });
       });
+      it('should return user data when id params specified', function (done) {
+        supertest.get('/users/1')
+        .end(function (err, res) {
+          if(err) {return done(err)}
+          expect(res).to.be.ok;
+          expect(res.body).to.be.a('object');
+          expect(res.body.email).to.equal('test@test.com');
+          expect(res.body.username).to.equal('test');
+          expect(res.body.id).to.equal(1);
+          expect(res.body).to.not.have.property('password');
+          done();
+        });
+      });
+      it('should return whole user data', function (done) {
+        supertest.get('/users')
+        .end(function (err, res) {
+          if(err) {return done(err)}
+          expect(res).to.be.ok;
+          expect(res.body).to.be.a('array');
+          expect(res.body.length).to.equal(2);
+          expect(res.body[0].username).to.equal('test');
+          expect(res.body[0].id).to.equal(1);
+          expect(res.body[0]).to.not.have.property('password');
+          done();
+        });
+      });
     });
     describe('POST request', function () {
       var returnUser;
-      it('should return response', function (done) {
+      it('should return added user data when succeed', function (done) {
         supertest.post('/users')
         .send(userToBeAdded3)
+        .end(function (err, res) {
+          if(err) {return done(err)}
+          expect(res).to.be.ok;
+          expect(res.body).to.be.a('object');
+          expect(res.body.email).to.equal('test3@test.com');
+          expect(res.body.username).to.equal('test3');
+          expect(res.body.id).to.equal(3);
+          expect(res.body).to.not.have.property('password');
+          done();
+        });
+      });
+      it('should store added user data', function (done) {
+        supertest.get('/users/3')
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res).to.be.ok;
