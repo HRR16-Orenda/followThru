@@ -5,18 +5,16 @@ import AllListsScreen from '../components/allListsScreen.js';
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserLists: () => {
-      console.log('hit it');
       dispatch(actions.fetchUserLists());
     }
   };
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('the state from the container ', state);
   return {
     user: "test",
     products: [1,2,3],
-    lists: state.lists
+    lists: state.lists.lists
   };
 }
 

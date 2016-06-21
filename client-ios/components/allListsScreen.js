@@ -85,7 +85,6 @@ export default class AllListsScreen extends Component {
 
 testFunc() {
   this.props.fetchUserLists()
-  // console.log('from the test func, the props ', this.props);
 }
     render() {
       return (
