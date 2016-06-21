@@ -28,28 +28,27 @@ module.exports = {
   },
 
   updateOne: function(id, newProps, callback) {
-    this.getOne(id, function(err, user) {
-      if(err) {return callback(err);}
-      _.extend(user, newProps).save()
-        .then(function(updatedUser) {
-          callback(null, updatedUser);
-        })
-        .catch(function(error) {
-          callback(error);
-        });
+    User.update(newProps, {
+      where: {id: id},
+      returning: true
+    })
+    .then(function(rowAndData) {
+      callback(null, rowAndData[1]);
+    })
+    .catch(function(error) {
+      callback(error);
     });
   },
 
   removeOne: function(id, callback) {
-    this.getOne(id, function(err, user) {
-      if(err) {return callback(err);}
-      user.destroy()
-        .then(function(updatedUser) {
-          callback(null, updatedUser);
-        })
-        .catch(function(error) {
-          callback(error);
-        });
+    User.destroy({where: {
+      id: id
+    }})
+    .then(function(removedRow) {
+      callback(null, removedRow);
+    })
+    .catch(function(error) {
+      callback(error);
     });
   },
 
