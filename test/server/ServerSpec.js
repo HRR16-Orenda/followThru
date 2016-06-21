@@ -21,8 +21,9 @@ describe('Server-side Unit test', function () {
     req = res = {};
     req.body = {};
     req.params = {};
-    spyOnSend = res.send = this.sandbox.spy();
-    spyOnStatus = res.status = this.sandbox.spy();
+    spyOnSend = res.send = this.sandbox.spy(function(){return this;});
+    spyOnEnd = res.end = this.sandbox.spy(function(){return this;});
+    spyOnStatus = res.status = this.sandbox.spy(function(){return this;});
   });
 
   afterEach(function () {
@@ -104,6 +105,27 @@ describe('Server-side Unit test', function () {
           stub.callsArgWith(0, expectedError);
 
           handler.getAllUsers(req, res);
+          expect(spyOnStatus.calledWith(400)).to.equal(true);
+        });
+      });
+
+      describe('getOneUser()', function () {
+        it('should call user.getOne() method and send added user back', function () {
+          var stub = this.sandbox.stub(user, 'getOne');
+          var stub2 = this.sandbox.stub(helper, 'cleanUser');
+          stub.callsArgWith(1, null, expectedObject);
+          stub2.returns(expectedObject);
+
+          handler.getOneUser(req, res);
+          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+          expect(stub.calledOnce).to.equal(true);
+          expect(stub2.calledOnce).to.equal(true);
+        });
+        it('should send 400 status code when user.getOne() throw error', function () {
+          var stub = this.sandbox.stub(user, 'getOne');
+          stub.callsArgWith(1, expectedError);
+
+          handler.getOneUser(req, res);
           expect(spyOnStatus.calledWith(400)).to.equal(true);
         });
       });
