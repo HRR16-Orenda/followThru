@@ -6,10 +6,10 @@ module.exports = {
   getOne: function(id, callback) {
     Item.findById(id)
     .then(function(item) {
-      callback(item);
+      callback(null, item);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     });
   },
 
@@ -24,10 +24,10 @@ module.exports = {
       recommendedBy_id: item.recommendedBy_id
     })
     .then(function(item) {
-      callback(item);
+      callback(null, item);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   },
 
@@ -36,21 +36,21 @@ module.exports = {
       _.extend(item, newProps).save();
     })
     .then(function(item) {
-      callback(item);
+      callback(null, item);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   },
 
-  removeOne: function(id, cb) {
+  removeOne: function(id, callback) {
     this.getItem(id, function(item) {
       item.destroy()
         .then(function (rows) {
-          cb(rows);
+          callback(null, rows);
         })
         .catch(function(error) {
-          console.log(error);
+          callback(error);
         });
     });
   },
@@ -58,10 +58,10 @@ module.exports = {
   getAll: function(callback) {
     Item.findAll()
     .then(function(items) {
-      callback(items)
+      callback(null, items)
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   },
 
@@ -74,10 +74,10 @@ module.exports = {
       return categories;
     })
     .then(function(categories) {
-      callback(categories);
+      callback(null, categories);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   },
 
@@ -90,10 +90,10 @@ module.exports = {
       return subcategories;
     })
     .then(function(subcategories) {
-      callback(subcategories);
+      callback(null, subcategories);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   }
 };
