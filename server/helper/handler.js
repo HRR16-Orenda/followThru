@@ -1,5 +1,6 @@
 var item = require('../controller/items.js');
 var user = require('../controller/users.js');
+var helper = require('./helpers.js');
 
 module.exports = {
   getAllItems: function (req, res) {
@@ -18,13 +19,14 @@ module.exports = {
   addOneUser: function (req, res) {
     var data = req.body;
     user.addOne(data, function (err, user) {
-      if(err) {return res.status(400);}
-      res.send(user);
+      if(err) {return res.status(400).end();}
+      var addedUser = helper.cleanUser(user);
+      res.send(addedUser);
     });
   },
 
   removeOneUser: function (req, res) {
-    var id = req.body.id;
+    var id = req.params.id;
     user.removeOne(id, function (err, user) {
       if(err) {return res.status(400);}
       res.send(user);
@@ -32,7 +34,7 @@ module.exports = {
   },
 
   updateOneUser: function (req, res) {
-    var id = req.body.id;
+    var id = req.params.id;
     var updatedData = req.body;
     user.updateOne(id, updatedData, function (err, user) {
       if(err) {return res.status(400);}

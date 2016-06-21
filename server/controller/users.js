@@ -23,7 +23,6 @@ module.exports = {
       callback(null, addedUser);
     })
     .catch(function(error) {
-      console.log(error);
       callback(error);
     })
   },
