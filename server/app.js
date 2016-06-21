@@ -1,7 +1,5 @@
-// @flow
 var express = require('express');
 var bodyParser = require('body-parser');
-// Write index route after starting web dev.
 var sequelize = require('./db/config.js');
 var index = require('./routes/index.js');
 var users = require('./routes/users.js');
@@ -13,14 +11,14 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-
-app.use('/', index);
+// Router
+app.use('/', index); // nothing here for now
 app.use('/users', users);
 app.use('/items', items);
 
 // default route
 app.use('/*', function (req, res) {
-  res.status(404).send('nonono....');
+  res.sendStatus(404);
 });
 
 module.exports = app;
