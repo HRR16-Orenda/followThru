@@ -124,6 +124,15 @@ describe('API Test', function () {
           done();
         });
       });
+      it('should return error msg when id param is not correct', function (done) {
+        supertest.get('/users/5')
+        .end(function (err, res) {
+          if(err) {return done(err)}
+          expect(res).to.be.ok;
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
       it('should return whole user data', function (done) {
         supertest.get('/users')
         .end(function (err, res) {
@@ -138,7 +147,7 @@ describe('API Test', function () {
         });
       });
     });
-    
+
     describe('POST request', function () {
       var returnUser;
       it('should return added user data when succeed', function (done) {
@@ -202,25 +211,27 @@ describe('API Test', function () {
       });
     });
 
-    describe('PUT request', function () {
-      var returnedUser;
+    describe('DELETE request', function () {
       it('should return response', function (done) {
-        var updatedUser = {
-          email: 'test3@test.com',
-          username: 'test3test',
-          password: 'testtest'
-        };
-        supertest.put('/users/3')
-        .send(updatedUser)
+        supertest.del('/users/3')
         .end(function (err, res) {
           if(err) {return done(err)}
-          returnedUser = res.body
           expect(res).to.be.ok;
           done();
         });
       });
-      it('should update user', function () {
-        expect(returnedUser.username).to.equal('test3test');
+      it('should remove user', function () {
+        supertest.get('/users')
+        .end(function (err, res) {
+          if(err) {return done(err)}
+          expect(res).to.be.ok;
+          expect(res.body).to.be.a('array');
+          expect(res.body.length).to.equal(2);
+          expect(res.body[0].username).to.equal('test');
+          expect(res.body[1].id).to.equal(2);
+          expect(res.body[0]).to.not.have.property('password');
+          done();
+        });
       });
     });
   });
@@ -252,106 +263,3 @@ describe('API Test', function () {
     });
   });
 });
-//
-// describe('API Test', function () {
-//   var server;
-//
-//   before(function (done) {
-//     server = app.listen(port, function () {
-//       done();
-//     });
-//   });
-//
-//   after(function (done) {
-//     server.close(done);
-//   });
-//
-//   describe('Route /', function () {
-//     it('GET request should return response', function (done) {
-//       supertest.get('/')
-//       .end(function (err, res) {
-//         if(err) {return done(err)}
-//         expect(res).to.be.ok;
-//         done();
-//       });
-//     });
-//   });
-//
-//   describe('Route /items', function () {
-//     it('GET request should return response', function (done) {
-//       supertest.get('/items')
-//       .end(function (err, res) {
-//         if(err) {return done(err)}
-//         expect(res).to.be.ok;
-//         done();
-//       });
-//     });
-//
-//     it('POST request should return response', function (done) {
-//       supertest.post('/items')
-//       .send({user: 'fake'})
-//       .end(function (err, res) {
-//         if(err) {return done(err)}
-//         expect(res).to.be.ok;
-//         done();
-//       });
-//     });
-//   });
-//
-//   describe('Route /users', function () {
-//     it('GET request should return response', function (done) {
-//       supertest.get('/users')
-//       .end(function (err, res) {
-//         if(err) {return done(err)}
-//         expect(res).to.be.ok;
-//         done();
-//       });
-//     });
-//     it('POST request should return response', function (done) {
-//       supertest.post('/users')
-//       .send({user: 'fake'})
-//       .end(function (err, res) {
-//         if(err) {return done(err)}
-//         expect(res).to.be.ok;
-//         done();
-//       });
-//     });
-//     it('PUT request should return response', function (done) {
-//       supertest.post('/users')
-//       .send({user: 'fake'})
-//       .end(function (err, res) {
-//         if(err) {return done(err)}
-//         expect(res).to.be.ok;
-//         done();
-//       });
-//     });
-//   });
-//
-//   describe('Default Route', function () {
-//     it('should return status code 404 respond to GET request', function (done) {
-//       supertest.get('/whatever')
-//       .end(function (err, res) {
-//         if(err) {return done(err)}
-//         expect(res.status).to.equal(404);
-//         done();
-//       });
-//     });
-//     it('should return status code 404 respond to POST request', function (done) {
-//       supertest.post('/whatever')
-//       .end(function (err, res) {
-//         if(err) {return done(err)}
-//         expect(res.status).to.equal(404);
-//         done();
-//       });
-//     });
-//     it('should return status code 404 respond to DELETE request', function (done) {
-//       supertest.del('/whatever')
-//       .end(function (err, res) {
-//         if(err) {return done(err)}
-//         expect(res.status).to.equal(404);
-//         done();
-//       });
-//     });
-//   });
-//
-// });
