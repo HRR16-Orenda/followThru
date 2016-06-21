@@ -28,33 +28,38 @@ module.exports = {
   },
 
   updateOne: function(id, newProps, callback) {
-    getUser(id, function(user) {
-      _.extend(user, newProps).save();
-    })
-    .then(function(updatedUser) {
-      callback(updatedUser);
-    })
-    .catch(function(error) {
-      console.log(error);
-    })
+    this.getOne(id, function(err, user) {
+      if(err) {return callback(err);}
+      _.extend(user, newProps).save()
+        .then(function(updatedUser) {
+          callback(null, updatedUser);
+        })
+        .catch(function(error) {
+          callback(error);
+        });
+    });
   },
 
-  removeOne: function(id) {
-    getUser(id, function(user) {
-      user.destroy();
-    })
-    .catch(function(error) {
-      console.log(error);
-    })
+  removeOne: function(id, callback) {
+    this.getOne(id, function(err, user) {
+      if(err) {return callback(err);}
+      user.destroy()
+        .then(function(updatedUser) {
+          callback(null, updatedUser);
+        })
+        .catch(function(error) {
+          callback(error);
+        });
+    });
   },
 
   getAll: function(callback) {
     User.findAll()
-    .then(function(users) {
-      callback(null, users);
-    })
-    .catch(function(error) {
-      callback(error);
-    });
+      .then(function(users) {
+        callback(null, users);
+      })
+      .catch(function(error) {
+        callback(error);
+      });
   }
 }

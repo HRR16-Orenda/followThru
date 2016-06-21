@@ -38,7 +38,7 @@ gulp.task('server-test', ['pre-test'], function(cb) {
     // wait till nodemon get restarted
     .pipe(wait(1500))
     .pipe(mocha({
-      reporter: 'spec'
+      reporter: 'nyan'
     }))
     .pipe(istanbul.writeReports())
     // Enforce a coverage of at least 90%

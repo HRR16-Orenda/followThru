@@ -4,7 +4,7 @@
   "description": "List Anything",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "./node_modules/.bin/mocha --reporter spec test/integration/ApiSpec.js",
+    "test": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
     "coverage": "istanbul cover --root server/ _mocha -- test/server/ -R spec"
   },
   "author": "Team Orenda",
@@ -35,6 +35,7 @@
     "mocha": "^2.5.3",
     "morgan": "^1.7.0",
     "sinon": "^1.17.4",
+    "sinon-as-promised": "^4.0.0",
     "supertest": "^1.2.0"
   }
 }
