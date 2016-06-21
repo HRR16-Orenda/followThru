@@ -3,6 +3,7 @@ import * as actions from '../actions/index.js';
 import AllListsScreen from '../components/allListsScreen.js';
 
 const mapDispatchToProps = (dispatch) => {
+  console.log('all lists dispatch ', dispatch);
   return {
     fetchUserLists: () => {
       console.log('in the container');
@@ -11,10 +12,12 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
+  console.log('all lists state ', state);
+  console.log('all lists ownProps ', ownProps);
   return {
-    user: state.user,
-    products: state.products
+    user: "test",
+    products: [1,2,3]
   };
 }
 

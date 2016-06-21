@@ -7,11 +7,18 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 // const router = routerMiddleware(browserHistory);
 // const loggerMiddleware = createLogger();
 
+// const middleware = [thunk];
+// const store = compose(
+//   applyMiddleware(...middleware)
+// )(createStore)(rootReducer);
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-// const reducer = combineReducers(reducers);
+store = createStore(rootReducer);
 
-const store = createStoreWithMiddleware(rootReducer);
+//
+// const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+// // const reducer = combineReducers(reducers);
+//
+// const store = createStoreWithMiddleware(rootReducer);
 export default store;
 //
 // export default function configureStore() {
