@@ -11,7 +11,7 @@ module.exports = {
 
   getAllUsers: function (req, res) {
     user.getAll(function (err, users) {
-      if(err) {return res.status(400);}
+      if(err) {return res.status(400).send();}
       var returnedUsers = users.map(function (user) {
         return helper.cleanUser(user);
       });
@@ -40,7 +40,7 @@ module.exports = {
   removeOneUser: function (req, res) {
     var id = req.params.id;
     user.removeOne(id, function (err, user) {
-      if(err) {return res.status(400);}
+      if(err) {return res.status(400).send();}
       res.send(user);
     });
   },
@@ -49,8 +49,9 @@ module.exports = {
     var id = req.params.id;
     var updatedData = req.body;
     user.updateOne(id, updatedData, function (err, user) {
-      if(err) {return res.status(400);}
-      res.send(user);
+      if(err) {return res.status(400).send();}
+      var updatedUser = helper.cleanUser(user);
+      res.send(updatedUser);
     });
   }
 }

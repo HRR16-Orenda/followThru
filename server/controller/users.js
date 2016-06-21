@@ -33,7 +33,7 @@ module.exports = {
       returning: true
     })
     .then(function(rowAndData) {
-      callback(null, rowAndData[1]);
+      callback(null, rowAndData[1][0]);
     })
     .catch(function(error) {
       callback(error);
