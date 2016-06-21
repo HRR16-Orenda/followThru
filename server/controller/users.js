@@ -6,10 +6,10 @@ module.exports = {
   getOne: function(id, callback) {
     User.findById(id)
     .then(function(user) {
-      callback(user);
+      callback(null, user);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   },
 

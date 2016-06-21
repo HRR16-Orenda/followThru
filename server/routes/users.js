@@ -3,6 +3,7 @@ var router = express.Router();
 var handler = require('../helper/handler.js');
 
 router.get('/', handler.getAllUsers);
+router.get('/:id', handler.getOneUser);
 router.post('/', handler.addOneUser);
 router.put('/:id', handler.updateOneUser);
 router.delete('/:id', handler.removeOneUser);

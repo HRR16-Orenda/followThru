@@ -16,10 +16,19 @@ module.exports = {
     });
   },
 
+  getOneUser: function (req, res) {
+    var id = req.params.id;
+    user.getOne(id, function (err, user) {
+      if(err) {return res.status(400).send();}
+      var returnedUser = helper.cleanUser(user);
+      res.send(returnedUser);
+    });
+  },
+
   addOneUser: function (req, res) {
     var data = req.body;
     user.addOne(data, function (err, user) {
-      if(err) {return res.status(400).end();}
+      if(err) {return res.status(400).send();}
       var addedUser = helper.cleanUser(user);
       res.send(addedUser);
     });
