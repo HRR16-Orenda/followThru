@@ -132,12 +132,13 @@ describe('API Test', function () {
           expect(res.body).to.be.a('array');
           expect(res.body.length).to.equal(2);
           expect(res.body[0].username).to.equal('test');
-          expect(res.body[0].id).to.equal(1);
+          expect(res.body[1].id).to.equal(2);
           expect(res.body[0]).to.not.have.property('password');
           done();
         });
       });
     });
+    
     describe('POST request', function () {
       var returnUser;
       it('should return added user data when succeed', function (done) {
@@ -178,20 +179,48 @@ describe('API Test', function () {
         });
       });
     });
+
     describe('PUT request', function () {
+      var returnedUser;
       it('should return response', function (done) {
         var updatedUser = {
           email: 'test3@test.com',
-          username: 'test3',
+          username: 'test3test',
           password: 'testtest'
         };
-        supertest.post('/users/3')
+        supertest.put('/users/3')
         .send(updatedUser)
         .end(function (err, res) {
           if(err) {return done(err)}
+          returnedUser = res.body
           expect(res).to.be.ok;
           done();
         });
+      });
+      it('should update user', function () {
+        expect(returnedUser.username).to.equal('test3test');
+      });
+    });
+
+    describe('PUT request', function () {
+      var returnedUser;
+      it('should return response', function (done) {
+        var updatedUser = {
+          email: 'test3@test.com',
+          username: 'test3test',
+          password: 'testtest'
+        };
+        supertest.put('/users/3')
+        .send(updatedUser)
+        .end(function (err, res) {
+          if(err) {return done(err)}
+          returnedUser = res.body
+          expect(res).to.be.ok;
+          done();
+        });
+      });
+      it('should update user', function () {
+        expect(returnedUser.username).to.equal('test3test');
       });
     });
   });
