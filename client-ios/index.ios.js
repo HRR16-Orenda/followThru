@@ -17,18 +17,16 @@ import AllListsContainer from './containers/AllListsContainer.js';
 import SingleListContainer from './containers/SingleListContainer.js';
 import ActionConfirmationContainer from './containers/ActionConfirmationContainer.js';
 
-
 // Import additional functionality
-import RootContainer from './containers/RootContainer.js';
 import Store from './store/configureStore.js';
+
 
 const RouterWithRedux = connect()(Router);
 
-const store = Store;
 class Orenda extends Component {
   render() {
     return (
-      <Provider store = {store}>
+      <Provider store = {Store}>
         <RouterWithRedux>
           <Scene key="root">
             <Scene key="addScreen" component={AddItemContainer} title="Add Screen" initial={true} tabs={true} hideBackImage={true}>
