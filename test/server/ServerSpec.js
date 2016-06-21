@@ -306,7 +306,7 @@ describe('Server-side Unit test', function () {
       });
 
       describe('getOneUser()', function () {
-        it('should call user.getOne() method and send added user back', function () {
+        it('should call user.getOne() method and send user back', function () {
           var stub = this.sandbox.stub(user, 'getOne');
           var stub2 = this.sandbox.stub(helper, 'cleanUser');
           stub.callsArgWith(1, null, expectedObject);
@@ -387,50 +387,104 @@ describe('Server-side Unit test', function () {
       });
     });
 
-    describe.skip('/items Route', function () {
-      it('handler.getAllItems should call item.getAll() method', function () {
-        var stub = this.sandbox.stub(item, 'getAll');
-        stub.returns([]);
+    describe('/items Route', function () {
+      describe('getAllItems()', function(){
+        it('should call items.getAll() method and send items back', function () {
+          var stub = this.sandbox.stub(item, 'getAll');
+          stub.callArgsWith(0, null, expectedArray);
+          stub.returns([]);
+          //check this logic
+          handler.getAllItems(req, res);
+          expect(spy.calledOnce).to.equal(true);
+          expect(stub.calledOnce).to.equal(true);
+        });
+        it('should send status code of 400 when item.getAll() throws an error', function() {
+          var stub = this.sandbox.stub(item, 'getAll');
+          stub.callsArgWith(0, expectedError);
 
-        handler.getAllItems(req, res);
-        expect(spy.calledOnce).to.equal(true);
-        expect(stub.calledOnce).to.equal(true);
+          handler.getAllUsers(req,res);
+          expect(spyOnStatus.calledWith(400)).to.equal(true);
+        });
       });
 
-      it('handler.addOneItem should call item.addOne() method', function () {
-        var stub = this.sandbox.stub(item, 'addOne');
-        stub.returns({});
+      describe('addOneItem()', function(){
+        it('should call items.addOne() method and send added item back', function () {
+          var stub = this.sandbox.stub(item, 'addOne');
+          stub.callArgsWith(0, null, expectedObject);
+          stub.returns(expectedObject);
 
-        handler.addOneItem(req, res);
-        expect(spy.calledOnce).to.equal(true);
-        expect(stub.calledOnce).to.equal(true);
+          handler.addOneItem(req, res);
+          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+          //is this spy.called once necessary?
+          expect(spy.calledOnce).to.equal(true);
+          expect(stub.calledOnce).to.equal(true);
+        });
+        it('should send status code of 400 when item.addOne() throws an error', function() {
+          var stub = this.sandbox.stub(item, 'addOne');
+          stub.callsArgWith(1, expectedError);
+
+          handler.addOneItem(req,res);
+          expect(spyOnStatus.calledWith(400)).to.equal(true);
+        });
       });
 
-      it('handler.removeOneItem() should call item.removeOne() method', function () {
-        var stub = this.sandbox.stub(item, 'removeOne');
-        stub.returns({});
+      describe('removeOneItem()', function(){
+        it('should call items.addOne() method and send removed item back', function () {
+          var stub = this.sandbox.stub(item, 'removeOne');
+          stub.callArgsWith(1, null, expectedObject);
+          stub.returns({});
 
-        handler.removeOneItem(req, res);
-        expect(spy.calledOnce).to.equal(true);
-        expect(stub.calledOnce).to.equal(true);
+          handler.removeOneUser(req, res);
+          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+          expect(stub.calledOnce).to.equal(true);
+        });
+        it('should send status code of 400 when item.removeOne() throws an error', function() {
+          var stub = this.sandbox.stub(item, 'removeOne');
+          stub.callsArgWith(1, expectedError);
+
+          handler.removeOneItem(req, res);
+          expect(spyOnStatus.calledWith(400)).to.equal(true);
+
+        });
       });
 
-      it('handler.updateOneItem() should call item.updateOne() method', function () {
-        var stub = this.sandbox.stub(item, 'updateOne');
-        stub.returns({});
+      describe('updateOneItem()', function () {
+        it('should call item.updateOne() method and send updated item back', function () {
+          var stub = this.sandbox.stub(item, 'updateOne');
+          stub.callsArgWith(2, null, expectedObject);
 
-        handler.updateOneItem(req, res);
-        expect(spy.calledOnce).to.equal(true);
-        expect(stub.calledOnce).to.equal(true);
+          handler.updateOneItem(req, res);
+          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+          expect(stub.calledOnce).to.equal(true);
+        });
+        it('should send 400 status code when item.updateOne() throw error', function () {
+          var stub = this.sandbox.stub(item, 'updateOne');
+          stub.callsArgWith(2, expectedError);
+
+          handler.updateOneItem(req, res);
+          expect(spyOnStatus.calledWith(400)).to.equal(true);
+        });
       });
 
-      it('handler.getOneItem() should call item.getOne() method', function() {
-        var stub = this.sandbox.stub(item, 'getOne');
-        stub.returns({});
+      describe('getOneUser()', function () {
+        it('should call item.getOne() method and send item back', function () {
+          var stub = this.sandbox.stub(user, 'getOne');
+          var stub2 = this.sandbox.stub(helper, 'cleanUser');
+          stub.callsArgWith(1, null, expectedObject);
+          stub2.returns(expectedObject);
 
-        handler.getOneItem(req, res);
-        expect(spy.calledOnce).to.equal(true);
-        expect(stub.calledOnce).to.equal(true);
+          handler.getOneUser(req, res);
+          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+          expect(stub.calledOnce).to.equal(true);
+          expect(stub2.calledOnce).to.equal(true);
+        });
+        it('should send 400 status code when user.getOne() throw error', function () {
+          var stub = this.sandbox.stub(user, 'getOne');
+          stub.callsArgWith(1, expectedError);
+
+          handler.getOneUser(req, res);
+          expect(spyOnStatus.calledWith(400)).to.equal(true);
+        });
       });
     });
   });
