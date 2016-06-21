@@ -88,6 +88,9 @@ export default class AllListsScreen extends Component {
         <View style={styles.container}>
           <Text style={{margin: 128}}>hey</Text>
           <Text style={{margin: 128}}>{this.props.lists}</Text>
+          <TouchableHighlight style={{margin: 10}} onPress = {() => {this.props.fetchUserLists()}}>
+            <Text>Book</Text>
+          </TouchableHighlight>
         </View>
       );
     }

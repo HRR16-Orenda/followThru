@@ -66,10 +66,11 @@ export const addListItemRequest = () => {
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
 export const fetchUserLists = (id = '') => {
   return dispatch => {
+    console.log('made it the actions!');
     var updatedState = [{title: 'fun'}, {title: 'awesome'}]
-    // dispatch(updateListsState(updatedState))
+    dispatch(updateListsState(updatedState))
 
-    
+
     // const url = '/products/' + id;
     // helper.getHelper(url)
     // .then(resp => {
@@ -83,6 +84,12 @@ export const fetchUserLists = (id = '') => {
     // });
   };
 };
+const updateListsState = (updatedState) => {
+  return {
+    type: types.UPDATE_LISTS_STATE,
+    updatedListsState: updatedState
+  }
+}
 
 // fetchUserSingleList
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it

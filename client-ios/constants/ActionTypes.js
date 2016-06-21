@@ -2,6 +2,7 @@ export const ADDLISTITEM_REQUEST = 'ADDLISTITEM_REQUEST';
 
 export const FETCH_USER_LISTS = 'FETCH_USER_LISTS';
 
+export const UPDATE_LISTS_STATE = 'UPDATE_LISTS_STATE';
 
 
 // Example action type constants below

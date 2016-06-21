@@ -14,6 +14,11 @@ export default (state = {
       ...state,
       lists: action.fetchUserLists
     };
+    case types.UPDATE_PRODUCTS_STATE:
+    return {
+      ...state,
+      lists: action.updatedListsState
+    }
     default:
     return state;
   };
