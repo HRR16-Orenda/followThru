@@ -11,11 +11,11 @@ import {
 import {Scene, Reducer, Router, Switch, TabBar, Modal, Schema, Actions} from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
 
-// Import screens
-import AddScreen from './components/addScreen.js';
-import AllListsScreen from './components/allListsScreen.js';
-import SingleListScreen from './components/singleListScreen.js';
-import ActionConfirmationScreen from './components/actionConfirmationScreen.js';
+// Import containers
+import AddItemContainer from './containers/AddItemContainer.js';
+import AllListsContainer from './containers/AllListsContainer.js';
+import SingleListContainer from './containers/SingleListContainer.js';
+import ActionConfirmationContainer from './containers/ActionConfirmationContainer.js';
 
 
 // Import additional functionality
@@ -31,13 +31,13 @@ class Orenda extends Component {
       <Provider store = {store}>
         <RouterWithRedux>
           <Scene key="root">
-            <Scene key="addScreen" component={AddScreen} title="Add Screen" initial={true} tabs={true} hideBackImage={true}>
+            <Scene key="addScreen" component={AddItemContainer} title="Add Screen" initial={true} tabs={true} hideBackImage={true}>
             </Scene>
-            <Scene key="allListsScreen" component={AllListsScreen} title="All your lists" tabs={true} hideBackImage={true}>
+            <Scene key="allListsScreen" component={AllListsContainer} title="All your lists" tabs={true} hideBackImage={true}>
             </Scene>
-            <Scene key="singleListScreen" component={SingleListScreen} title="One single list" tabs={true} hideBackImage={true}>
+            <Scene key="singleListScreen" component={SingleListContainer} title="One single list" tabs={true} hideBackImage={true}>
             </Scene>
-            <Scene key="actionConfirmationScreen" component={ActionConfirmationScreen} title="Item added" tabs={true} hideBackImage={true}>
+            <Scene key="actionConfirmationScreen" component={ActionConfirmationContainer} title="Item added" tabs={true} hideBackImage={true}>
             </Scene>
           </Scene>
         </RouterWithRedux>

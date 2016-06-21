@@ -7,7 +7,7 @@ import listReducer from './listReducer.js'
  */
 const rootReducer = combineReducers({
   form: formReducer, // Reducer provided by 'redux-form' module
-  listReducer
+  // listReducer
 });
 
 export default rootReducer;
