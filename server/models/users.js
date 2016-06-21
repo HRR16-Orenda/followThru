@@ -26,9 +26,7 @@ var User = sequelize.define('user', {
   underscored: true,
   classMethods: {
     associate: function(models) {
-      User.hasMany(models.User, {
-        as: 'follower',
-        through: models.Follower});
+      User.hasMany(models.User, {through: 'follower'});
     }
   }
 });
