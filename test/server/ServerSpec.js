@@ -1,10 +1,12 @@
 process.env.NODE_ENV = 'test';
 var expect = require('chai').expect;
 var sinon = require('sinon');
+require('sinon-as-promised');
 var handler = require('../../server/helper/handler.js');
 var helper = require('../../server/helper/helpers.js');
 var item = require('../../server/controller/items.js');
 var user = require('../../server/controller/users.js');
+var User = require('../../server/models/users.js');
 var app = require('../../server/app.js');
 var supertest = require('supertest')(app);
 
@@ -24,6 +26,9 @@ describe('Server-side Unit test', function () {
     spyOnSend = res.send = this.sandbox.spy(function(){return this;});
     spyOnEnd = res.end = this.sandbox.spy(function(){return this;});
     spyOnStatus = res.status = this.sandbox.spy(function(){return this;});
+    findAllStub = this.sandbox.stub(User, 'findAll');
+    createStub = this.sandbox.stub(User, 'create');
+    findByIdStub = this.sandbox.stub(User, 'findById');
   });
 
   afterEach(function () {
@@ -71,12 +76,48 @@ describe('Server-side Unit test', function () {
     });
 
     describe('user controller', function () {
-      it('should have getAll() method', function () {
-        expect(user.getAll).to.be.a('function');
+      describe('getAll() method', function () {
+        it('should be a function', function () {
+          expect(user.getAll).to.be.a('function');
+        });
+        it('should invoke callback func with users data when succeed', function (done) {
+          findAllStub.resolves(expectedArray)
+          user.getAll(function (err, data) {
+            expect(data).to.deep.equal(expectedArray);
+            expect(err).to.equal(null);
+            done();
+          });
+        });
+        it('should invoke callback func with error when fail', function (done) {
+          findAllStub.rejects(expectedError)
+          user.getAll(function (err, data) {
+            expect(err).to.deep.equal(expectedError);
+            done();
+          });
+        });
       });
-      it('should have addOne() method', function () {
-        expect(user.addOne).to.be.a('function');
+
+      describe('addOne() method', function () {
+        it('should be a function', function () {
+          expect(user.addOne).to.be.a('function');
+        });
+        it('should invoke callback func with a user data when succeed', function (done) {
+          createStub.resolves(expectedObject)
+          user.addOne({} ,function (err, data) {
+            expect(data).to.deep.equal(expectedObject);
+            expect(err).to.equal(null);
+            done();
+          });
+        });
+        it('should invoke callback func with error when fail', function (done) {
+          createStub.rejects(expectedError)
+          user.addOne({}, function (err, data) {
+            expect(err).to.deep.equal(expectedError);
+            done();
+          });
+        });
       });
+
       it('should have getOne() method', function () {
         expect(user.getOne).to.be.a('function');
       });
