@@ -14,8 +14,7 @@ export default (state = {
       ...state,
       lists: action.fetchUserLists
     };
-  }
-
-
-
+    default:
+    return state;
+  };
 };

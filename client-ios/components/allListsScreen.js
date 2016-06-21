@@ -35,7 +35,7 @@ export default class AllListsScreen extends Component {
   }
 
   componentDidMount() {
-    // this.props.fetchUserLists();
+    this.props.fetchUserLists();
     console.log('hey!!!! these are the ', this.props);
     // this.fetchData();
   }
@@ -87,6 +87,7 @@ export default class AllListsScreen extends Component {
       return (
         <View style={styles.container}>
           <Text style={{margin: 128}}>hey</Text>
+          <Text style={{margin: 128}}>{this.props.lists}</Text>
         </View>
       );
     }
