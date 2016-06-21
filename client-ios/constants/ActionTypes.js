@@ -1,3 +1,11 @@
+export const ADDLISTITEM_REQUEST = 'ADDLISTITEM_REQUEST';
+
+export const FETCH_USER_LISTS = 'FETCH_USER_LISTS';
+
+export const UPDATE_LISTS_STATE = 'UPDATE_LISTS_STATE';
+
+
+// Example action type constants below
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';

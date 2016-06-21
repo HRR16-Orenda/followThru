@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
-import AllListsScreen from '../components/allListsScreen.js';
+import SingleListScreen from '../components/singleListScreen.js';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -13,9 +13,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     user: "test",
-    products: [1,2,3],
-    lists: state.lists.lists
+    products: [1,2,3]
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllListsScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleListScreen);
