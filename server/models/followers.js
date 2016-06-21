@@ -1,4 +1,4 @@
-// ask Cody
+//
 // var Sequelize = require('sequelize');
 // var sequelize = require('../db/config.js');
 //
