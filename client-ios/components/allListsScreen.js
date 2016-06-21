@@ -35,8 +35,8 @@ export default class AllListsScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchUserLists();
-    console.log('hey!!!! these are the ', this.props);
+    // this.props.fetchUserLists();
+    // console.log('hey!!!! these are the ', this.props);
     // this.fetchData();
   }
 
@@ -83,12 +83,16 @@ export default class AllListsScreen extends Component {
   //   );
   //   }
 
+testFunc() {
+  this.props.fetchUserLists()
+  // console.log('from the test func, the props ', this.props);
+}
     render() {
       return (
         <View style={styles.container}>
           <Text style={{margin: 128}}>hey</Text>
           <Text style={{margin: 128}}>{this.props.lists}</Text>
-          <TouchableHighlight style={{margin: 10}} onPress = {() => {this.props.fetchUserLists()}}>
+          <TouchableHighlight style={{margin: 10}} onPress = {() => {this.testFunc()}}>
             <Text>Book</Text>
           </TouchableHighlight>
         </View>

@@ -14,10 +14,12 @@ export default (state = {
       ...state,
       lists: action.fetchUserLists
     };
-    case types.UPDATE_PRODUCTS_STATE:
+    case types.UPDATE_LISTS_STATE:
+    // console.log('here is the action ***********************************************', action);
     return {
       ...state,
-      lists: action.updatedListsState
+      // lists: action.updatedListsState
+      lists: [1,2,3, 'test']
     }
     default:
     return state;

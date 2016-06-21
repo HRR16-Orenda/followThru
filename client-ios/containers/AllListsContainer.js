@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('the state ', state);
+  console.log('the state from the container ', state);
   return {
     user: "test",
     products: [1,2,3],
