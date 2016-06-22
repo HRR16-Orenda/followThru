@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  // console.log("")
+  console.log("isLoading :", state.lists )
   return {
     user: state.lists.user.username,
     lists: state.lists.lists.allItems,
