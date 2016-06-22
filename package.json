@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "List Anything",
   "scripts": {
+    "postinstall": "gulp webpack",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "unittest:server": "./node_modules/.bin/mocha --reporter nyan test/server/ServerSpec.js",
     "integrationtest": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
