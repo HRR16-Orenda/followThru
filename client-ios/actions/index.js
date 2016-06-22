@@ -60,17 +60,12 @@ export const addListItemRequest = () => {
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
 export const fetchUserLists = () => {
   return function (dispatch) {
-    // console.log('made it the actions!');
-    // var updatedState = [{title: 'fun'}, {title: 'awesome'}]
-    // const lists = getState().lists.lists;
     let dataSource = new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2
     });
     dataSource = dataSource.cloneWithRows([{listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"}])
-    console.log("dataSource from the actions: ", dataSource)
 
     dispatch(updateListsState(dataSource))
-
 
     // const url = '/products/' + id;
     // helper.getHelper(url)

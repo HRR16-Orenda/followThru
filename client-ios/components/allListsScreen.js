@@ -9,8 +9,7 @@ import {
   Text,
   View
 } from 'react-native';
-// import styles from '../styles/styles.js';
-// import Header from './header.js';
+
 import { Actions } from 'react-native-router-flux';
 import Footer from './footer.js';
 import ListItem from './listItem.js';
@@ -29,22 +28,7 @@ export default class AllListsScreen extends Component {
     this.props.fetchUserLists();
   }
 
-  renderLoadingView() {
-    return (
-      <View style={styles.loading}>
-        <ActivityIndicatorIOS
-            size='large'/>
-        <Text>
-          Loading books...
-        </Text>
-      </View>
-    );
-  }
-
   renderItem(item) {
-    if(this.props.isLoading) {
-      return this.renderLoadingView
-    }
     return (
       <TouchableHighlight
         onPress = {() => {
