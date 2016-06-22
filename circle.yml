@@ -8,7 +8,7 @@ test:
   override:
     - npm test
 deployment:
-  staging:
+  production:
     branch: master
     heroku:
-      appname: smartlist
+      appname: orenda-smartlist

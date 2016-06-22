@@ -12,11 +12,6 @@ render(
     <p> Ollehsdsssss </p>
     <p> Ollehsdsssss </p>
     <p> Ollehsdsssss </p>
-    <p> Ollehsdsssss </p>
-    <p> Ollehsdsssss </p>
-    <p> Ollehsdsssss </p>
-    <p> Ollehsdsssss </p>
-    <p> Ollehsdsssss </p>
   </div>,
   document.getElementById('root')
 )
