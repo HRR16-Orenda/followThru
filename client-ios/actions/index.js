@@ -1,13 +1,7 @@
 import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
-
-
-//PICK UP HERE! We are defining actions that will be needed on the AllListsScreen
-//Will need to create actions for it in ActionTypes.js and finish, update AllListsContainer
-//with the actions to pass as props into the allListsScreen which will also need
-//to be refactored to use the state and methods passed from Container as props.
-
+import { ListView } from 'react-native';
 
 // addNewListItem
 // This should add a new item to a specific list
@@ -64,12 +58,16 @@ export const addListItemRequest = () => {
 
 // fetchUserLists
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
-export const fetchUserLists = (id = '') => {
-  return dispatch => {
-    console.log('made it the actions!');
-    var updatedState = [{title: 'fun'}, {title: 'awesome'}]
-    dispatch(updateListsState(updatedState))
+export const fetchUserLists = () => {
+  return function (dispatch) {
+    let dataSource = new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2
+    });
+    // let lists = getState().lists.lists;
+    // console.log(lists);
+    dataSource = dataSource.cloneWithRows([{listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"}])
 
+    dispatch(updateListsState(dataSource))
 
     // const url = '/products/' + id;
     // helper.getHelper(url)
@@ -87,26 +85,53 @@ export const fetchUserLists = (id = '') => {
 const updateListsState = (updatedState) => {
   return {
     type: types.UPDATE_LISTS_STATE,
-    updatedListsState: updatedState
+    allListsDataSource: updatedState,
+    allListsIsLoading: false
   }
 }
 
 // fetchUserSingleList
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
-export const fetchUserSingleList = (id = '') => {
-  // return dispatch => {
-  //   const url = '/products/' + id;
-  //   helper.getHelper(url)
-  //   .then(resp => {
-  //     var updatedState = resp.data;
-  //     if (resp.status == 200) {
-  //       Array.isArray(updatedState) ? dispatch(updateProductsState(updatedState)) : dispatch(updateProductDetail(updatedState));
-  //     }
-  //   })
-  //   .catch(err => {
-  //     console.error(err);
-  //   });
-  // };
+export const fetchUserSingleList = (listName, listing) => {
+  return function (dispatch) {
+    let dataSource = new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2
+    });
+
+    let tempData = [
+      {
+        listTitle: "Movies",
+        listItemTitle: "Captain America",
+        listItemSubtitle: 2006,
+        links: {
+          wikipedia: "",
+          imdb: "",
+        }
+      },
+      {
+        listTitle: "Movies",
+        listItemTitle: "The Breakfast Club",
+        listItemSubtitle: 1985,
+        links: {
+          wikipedia: "",
+          imdb: "",
+        }
+      }
+    ];
+    dataSource = dataSource.cloneWithRows(tempData)
+    console.log("dataSource from actions: ", dataSource)
+
+    dispatch(updateSingleListState(dataSource))
+
+  };
+};
+
+const updateSingleListState = (updatedState) => {
+  return {
+    type: types.UPDATE_SINGLE_LIST_STATE,
+    singleListDataSource: updatedState,
+    isLoading: false
+  }
 };
 
 
