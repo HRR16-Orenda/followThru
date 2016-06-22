@@ -11,4 +11,4 @@ deployment:
   staging:
     branch: master
     heroku:
-      appname: smartlist
+      appname: orenda-smartlist
