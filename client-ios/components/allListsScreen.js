@@ -15,8 +15,6 @@ import Footer from './footer.js';
 import ListItem from './listItem.js';
 import styles from '../styles/styles.js'
 
-var REQUEST_URL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction';
-
 export default class AllListsScreen extends Component {
 
   constructor(props) {
@@ -36,7 +34,7 @@ export default class AllListsScreen extends Component {
         }}
       >
         <View>
-          <ListItem item={ item } />
+          <ListItem itemTitle={ item.listTitle } />
           <View style={styles.separator} />
         </View>
       </TouchableHighlight>
@@ -52,7 +50,7 @@ export default class AllListsScreen extends Component {
           <ActivityIndicatorIOS
               size='large'/>
           <Text>
-            Loading books...
+            Loading your lists...
           </Text>
         </View>
       );

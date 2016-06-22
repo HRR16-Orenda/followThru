@@ -17,11 +17,15 @@ export default class ListItem extends Component {
   render() {
     return (
       <View style={styles.listContainer}>
-        {/*<Image source={{uri: this.props.item.thumbnail}}
+        {/*<Image source={{uri: this.props.thumbnail}}
           style={styles.thumbnail} />*/}
         <View style={styles.rightContainer}>
-          <Text style={styles.listTitle}>{this.props.item.listTitle}</Text>
-          {/*<Text style={styles.listAuthor}>{this.props.item.authors}</Text>*/}
+          <Text style={styles.listTitle}>{this.props.itemTitle}</Text>
+          {/*{
+            if(this.props.subTitle){
+              <Text style={styles.listAuthor}>{this.props.item.authors}</Text>
+            }
+          }*/}
         </View>
       </View>
     );

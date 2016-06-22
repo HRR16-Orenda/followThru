@@ -119,6 +119,7 @@ export const fetchUserSingleList = (listName, listing) => {
       }
     ];
     dataSource = dataSource.cloneWithRows(tempData)
+    console.log("dataSource from actions: ", dataSource)
 
     dispatch(updateSingleListState(dataSource))
 

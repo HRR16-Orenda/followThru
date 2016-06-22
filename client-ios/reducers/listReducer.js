@@ -8,7 +8,7 @@ export default (state = {
   listItems: [],
   allListsIsLoading: true,
   singleListIsLoading: true,
-  allListsDataSource: null, // State for ListView in AllLists
+  allListsDataSource: null, 
   singleListDataSource: null
 }, action) => {
   switch (action.type) {
@@ -20,20 +20,16 @@ export default (state = {
     };
 
     case types.UPDATE_LISTS_STATE:
-    // console.log('here is the action ***********************************************', action);
     return {
       ...state,
-      // lists: action.updatedListsState
       allListsDataSource: action.allListsDataSource,
       allListsIsLoading: action.allListsIsLoading
     };
 
-    case types.UPDATE_LISTS_STATE:
-    // console.log('here is the action ***********************************************', action);
+    case types.UPDATE_SINGLE_LIST_STATE:
     return {
       ...state,
-      // lists: action.updatedListsState
-      allListsDataSource: action.allListsDataSource,
+      singleListDataSource: action.singleListDataSource,
       singleListIsLoading: action.singleListIsLoading
     };
 
