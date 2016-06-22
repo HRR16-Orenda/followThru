@@ -1,15 +1,16 @@
 var webpack = require('webpack');
 var path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var entry = process.env.NODE_ENV === 'production' ? ['babel-polyfill', './client-web/index.js'] : [
+  'webpack-dev-server/client?http://localhost:8080/',
+  'webpack/hot/dev-server',
+  'babel-polyfill',
+  './client-web/index.js'
+]
 
 module.exports = {
   // uses our init.js for entry point
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080/',
-    'webpack/hot/dev-server',
-    'babel-polyfill',
-    './client-web/index.js'
-  ],
+  entry: entry,
 
   output: {
     // outputs pack to bundle js.

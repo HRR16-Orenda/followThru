@@ -4,6 +4,8 @@ export const FETCH_USER_LISTS = 'FETCH_USER_LISTS';
 
 export const UPDATE_LISTS_STATE = 'UPDATE_LISTS_STATE';
 
+export const UPDATE_SINGLE_LIST_STATE = 'UPDATE_SINGLE_LIST_STATE';
+
 
 // Example action type constants below
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
