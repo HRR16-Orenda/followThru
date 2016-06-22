@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import {
   TouchableHighlight,
+  ActivityIndicatorIOS,
   StyleSheet,
   ListView,
   Text,
@@ -18,97 +19,72 @@ import styles from '../styles/styles.js'
 var REQUEST_URL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction';
 
 export default class AllListsScreen extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //   }
-  // }
 
   constructor(props) {
     super(props);
-    // this.state = {
-    //    isLoading: true,
-    //    dataSource: new ListView.DataSource({
-    //        rowHasChanged: (row1, row2) => row1 !== row2
-    //    })
-    // };
+
   }
 
-  componentDidMount() {
-    // this.props.fetchUserLists();
-    // console.log('hey!!!! these are the ', this.props);
-    // this.fetchData();
+  componentWillMount() {
+    this.props.fetchUserLists();
   }
 
-  // fetchData() {
-  //     fetch(REQUEST_URL)
-  //     .then((response) => response.json())
-  //     .then((responseData) => {
-  //       this.setState({
-  //           dataSource: this.state.dataSource.cloneWithRows(responseData.items),
-  //           isLoading: false
-  //       });
-  //     })
-  //     .done();
-  //
-  //  }
-  //
-  // renderLoadingView() {
-  //   return (
-  //     <View style={styles.loading}>
-  //       <ActivityIndicatorIOS
-  //           size='large'/>
-  //       <Text>
-  //         Loading books...
-  //       </Text>
-  //     </View>
-  //   );
-  // }
-  //
-  // renderItem(item) {
-  //   if(this.state.isLoading) {
-  //     return this.renderLoadingView
-  //   }
-  //   return (
-  //     <TouchableHighlight
-  //       onPress = {() => {
-  //         Actions.singleListScreen();
-  //       }}
-  //     >
-  //       <View>
-  //         <ListItem item={ item } />
-  //         <View style={styles.separator} />
-  //       </View>
-  //     </TouchableHighlight>
-  //   );
-  //   }
+  renderLoadingView() {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicatorIOS
+            size='large'/>
+        <Text>
+          Loading books...
+        </Text>
+      </View>
+    );
+  }
 
-testFunc() {
-  this.props.fetchUserLists()
-}
-    render() {
+  renderItem(item) {
+    if(this.props.isLoading) {
+      return this.renderLoadingView
+    }
+    return (
+      <TouchableHighlight
+        onPress = {() => {
+          Actions.singleListScreen();
+        }}
+      >
+        <View>
+          <ListItem item={ item } />
+          <View style={styles.separator} />
+        </View>
+      </TouchableHighlight>
+    );
+    }
+
+  render() {
+    const { lists, dataSource, isLoading } = this.props
+
+    if(isLoading){
+      return (
+        <View style={styles.loading}>
+          <ActivityIndicatorIOS
+              size='large'/>
+          <Text>
+            Loading books...
+          </Text>
+        </View>
+      );
+    } else {
       return (
         <View style={styles.container}>
-          <Text style={{margin: 128}}>hey</Text>
-          <Text style={{margin: 128}}>{this.props.lists}</Text>
-          <TouchableHighlight style={{margin: 10}} onPress = {() => {this.testFunc()}}>
-            <Text>Book</Text>
-          </TouchableHighlight>
+          <ListView
+              dataSource={this.props.dataSource}
+              renderRow={this.renderItem.bind(this)}
+              style={styles.listView}
+            />
+          <View style={styles.container}>
+            <Footer />
+          </View>
         </View>
       );
     }
-  // render() {
-  //   return (
-  //     <View style={styles.container}>
-  //       <ListView
-  //           dataSource={this.state.dataSource}
-  //           renderRow={this.renderItem.bind(this)}
-  //           style={styles.listView}
-  //         />
-  //       <View style={styles.container}>
-  //         <Footer />
-  //       </View>
-  //     </View>
-  //   );
-  // }
+  }
 }

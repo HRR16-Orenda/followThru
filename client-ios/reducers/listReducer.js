@@ -4,9 +4,9 @@ import * as types from '../constants/ActionTypes';
  *  Reducers related to Lists
  */
 export default (state = {
-  lists: [],        // State for all lists
-  isLoading: '',
-  allListsDataSource: [] // State for ListView in AllLists
+  lists: [ {listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"} ],   // State for all lists
+  isLoading: true,
+  dataSource: null // State for ListView in AllLists
 }, action) => {
   switch (action.type) {
     case types.FETCH_USER_LISTS:
@@ -19,7 +19,8 @@ export default (state = {
     return {
       ...state,
       // lists: action.updatedListsState
-      lists: [1,2,3, 'test']
+      dataSource: action.dataSource,
+      isLoading: action.isLoading
     }
     default:
     return state;

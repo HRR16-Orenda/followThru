@@ -14,7 +14,9 @@ const mapStateToProps = (state, ownProps) => {
   return {
     user: "test",
     products: [1,2,3],
-    lists: state.lists.lists
+    lists: state.lists.lists,
+    dataSource: state.lists.dataSource,
+    isLoading: state.lists.isLoading
   };
 }
 
