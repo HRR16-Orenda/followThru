@@ -4,6 +4,43 @@ var mocha = require('gulp-mocha');
 var wait = require('gulp-wait');
 var istanbul = require('gulp-istanbul');
 var plumber = require('gulp-plumber');
+var webpackStream = require('webpack-stream');
+var webpack = require("webpack");
+var WebpackDevServer = require("webpack-dev-server");
+var gutil = require("gulp-util");
+var webpackConfig = require('./webpack.config.js');
+var path = require('path');
+
+gulp.task('webpack', function() {
+  return gulp.src('./client/index.js')
+    .pipe(webpackStream(webpackConfig))
+    .pipe(gulp.dest('build/'));
+});
+
+gulp.task("webpack-dev-server", function(callback) {
+  // modify some webpack config options
+  var myConfig = Object.create(webpackConfig);
+  myConfig.devtool = "eval";
+  myConfig.debug = true;
+  // Start a webpack-dev-server
+  new WebpackDevServer(webpack(myConfig), {
+    publicPath:  webpackConfig.output.publicPath,
+    contentBase: "./build/",
+    hot: true,
+    stats: {
+      colors: true
+    }
+  }).listen(8080, "localhost", function(err) {
+    if (err) throw new gutil.PluginError("webpack-dev-server", err);
+    gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+  });
+});
+
+gulp.task('watch', function() {
+  gulp.watch('./client-web/**/*.*', ['webpack']);
+});
+
+gulp.task('webpackHMR', ['webpack-dev-server', 'watch']);
 
 gulp.task('pre-test', function () {
   gulp.src(['server/**/*.js'])
@@ -59,6 +96,7 @@ gulp.task('nodemon', function (cb) {
   var started = false;
   return nodemon({
     script: './index',
+    watch: ['./server', './test', './build'],
     ext: 'js'
   }).on('start', function () {
     //avoid nodemon being started multiple times
