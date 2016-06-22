@@ -63,6 +63,8 @@ export const fetchUserLists = () => {
     let dataSource = new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2
     });
+    // let lists = getState().lists.lists;
+    // console.log(lists);
     dataSource = dataSource.cloneWithRows([{listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"}])
 
     dispatch(updateListsState(dataSource))
@@ -83,27 +85,52 @@ export const fetchUserLists = () => {
 const updateListsState = (updatedState) => {
   return {
     type: types.UPDATE_LISTS_STATE,
-    dataSource: updatedState,
-    isLoading: false
+    allListsDataSource: updatedState,
+    allListsIsLoading: false
   }
 }
 
 // fetchUserSingleList
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
-export const fetchUserSingleList = (id = '') => {
-  // return dispatch => {
-  //   const url = '/products/' + id;
-  //   helper.getHelper(url)
-  //   .then(resp => {
-  //     var updatedState = resp.data;
-  //     if (resp.status == 200) {
-  //       Array.isArray(updatedState) ? dispatch(updateProductsState(updatedState)) : dispatch(updateProductDetail(updatedState));
-  //     }
-  //   })
-  //   .catch(err => {
-  //     console.error(err);
-  //   });
-  // };
+export const fetchUserSingleList = (listName, listing) => {
+  return function (dispatch) {
+    let dataSource = new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2
+    });
+
+    let tempData = [
+      {
+        listTitle: "Movies",
+        listItemTitle: "Captain America",
+        listItemSubtitle: 2006,
+        links: {
+          wikipedia: "",
+          imdb: "",
+        }
+      },
+      {
+        listTitle: "Movies",
+        listItemTitle: "The Breakfast Club",
+        listItemSubtitle: 1985,
+        links: {
+          wikipedia: "",
+          imdb: "",
+        }
+      }
+    ];
+    dataSource = dataSource.cloneWithRows(tempData)
+
+    dispatch(updateSingleListState(dataSource))
+
+  };
+};
+
+const updateSingleListState = (updatedState) => {
+  return {
+    type: types.UPDATE_SINGLE_LIST_STATE,
+    singleListDataSource: updatedState,
+    isLoading: false
+  }
 };
 
 

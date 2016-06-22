@@ -4,8 +4,8 @@ import SingleListScreen from '../components/singleListScreen.js';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUserLists: () => {
-      dispatch(actions.fetchUserLists());
+    fetchUserSingleList: (listName, listing) => {
+      dispatch(actions.fetchUserSingleList());
     }
   };
 };
@@ -13,7 +13,10 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     user: "test",
-    products: [1,2,3]
+    products: [1,2,3],
+    listItems: state.lists.lists,
+    dataSource: state.lists.singleListDataSource,
+    isLoading: state.lists.singleListIsLoading
   };
 }
 
