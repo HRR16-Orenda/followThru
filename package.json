@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "List Anything",
   "scripts": {
-    "prestart": "webpack",
     "start": "node index.js",
+    "postinstall": "webpack",
     "unittest:server": "./node_modules/.bin/mocha --reporter nyan test/server/ServerSpec.js",
     "integrationtest": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
     "test": "npm run unittest:server && npm run integrationtest",

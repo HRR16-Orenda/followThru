@@ -4,23 +4,35 @@ import * as types from '../constants/ActionTypes';
  *  Reducers related to Lists
  */
 export default (state = {
-  lists: [],        // State for all lists
-  isLoading: '',
-  allListsDataSource: [] // State for ListView in AllLists
+  lists: [ {listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"} ],   // State for all lists
+  listItems: [],
+  allListsIsLoading: true,
+  singleListIsLoading: true,
+  allListsDataSource: null, 
+  singleListDataSource: null
 }, action) => {
   switch (action.type) {
+
     case types.FETCH_USER_LISTS:
     return {
       ...state,
       lists: action.fetchUserLists
     };
+
     case types.UPDATE_LISTS_STATE:
-    // console.log('here is the action ***********************************************', action);
     return {
       ...state,
-      // lists: action.updatedListsState
-      lists: [1,2,3, 'test']
-    }
+      allListsDataSource: action.allListsDataSource,
+      allListsIsLoading: action.allListsIsLoading
+    };
+
+    case types.UPDATE_SINGLE_LIST_STATE:
+    return {
+      ...state,
+      singleListDataSource: action.singleListDataSource,
+      singleListIsLoading: action.singleListIsLoading
+    };
+
     default:
     return state;
   };
