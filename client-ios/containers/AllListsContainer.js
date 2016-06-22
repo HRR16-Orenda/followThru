@@ -12,11 +12,10 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    user: "test",
-    products: [1,2,3],
-    lists: state.lists.lists,
-    dataSource: state.lists.allListsDataSource,
-    isLoading: state.lists.allListsIsLoading
+    user: state.lists.user.username,
+    lists: state.lists.lists.allItems,
+    dataSource: state.lists.dataSource.allListsDataSource,
+    isLoading: state.lists.ui.allListsIsLoading
   };
 }
 

@@ -68,7 +68,6 @@ export const fetchUserLists = () => {
     dataSource = dataSource.cloneWithRows([{listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"}])
 
     dispatch(updateListsState(dataSource))
-
     // const url = '/products/' + id;
     // helper.getHelper(url)
     // .then(resp => {
@@ -119,7 +118,6 @@ export const fetchUserSingleList = (listName, listing) => {
       }
     ];
     dataSource = dataSource.cloneWithRows(tempData)
-    console.log("dataSource from actions: ", dataSource)
 
     dispatch(updateSingleListState(dataSource))
 
