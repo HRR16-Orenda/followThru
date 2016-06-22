@@ -1,19 +1,22 @@
 var webpack = require('webpack');
+var path = require('path');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   // uses our init.js for entry point
   entry: [
-    'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8080/',
+    'webpack/hot/dev-server',
     'babel-polyfill',
-    __dirname + '/client-web/index.js'
+    './client-web/index.js'
   ],
 
   output: {
     // outputs pack to bundle js.
-    path: __dirname + '/build',
+    path: path.join(__dirname, 'build'),
     filename: "bundle.js",
-    sourceMapFilename: 'bundle.map'
+    sourceMapFilename: 'bundle.map',
+    publicPath: '/build/'
   },
 
   devtool: '#source-map',
@@ -24,7 +27,7 @@ module.exports = {
         // runs all jsx through babel
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        loaders: ['babel-loader']
+        loaders: ['babel-loader?cacheDirectory']
       },
       { test: /\.css$/, loader: "style-loader!css-loader" }
       // ,{ test: /\.png$/, loader: "url-loader?limit=100000" },
@@ -38,5 +41,12 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new CopyWebpackPlugin
+    ([
+      {
+        from: __dirname + '/client-web/index.html',
+        to: __dirname + '/build/index.html'
+      }
+    ])
   ]
 }
