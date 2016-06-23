@@ -29,7 +29,8 @@ export default (state = {
   ],
   userInput: {
     title: '',
-    category: ''
+    category: '',
+    content: ''
   }
 }, action) => {
   switch (action.type) {
@@ -75,7 +76,28 @@ export default (state = {
         isUserTyping: true
       },
       userInput: {
+        ...state.userInput,
         title: action.userInput.title
+      }
+    }
+
+    case types.ADD_NEW_LIST_ITEM:
+    var allItemsCopy = state.lists.allItems.slice();
+    allItemsCopy.push(state.userInput);
+    return {
+      ...state,
+      lists: {
+        allItems: allItemsCopy
+      }
+
+    }
+
+    case types.UPDATE_USER_INPUT_CATEGORY:
+    return {
+      ...state,
+      userInput: {
+        ...state.userInput,
+        category: action.userInput.category
       }
     }
 

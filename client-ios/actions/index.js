@@ -26,6 +26,7 @@ let tempFilter = "Music";
 
 // addNewListItem
 // This should add a new item to a specific list
+<<<<<<< 0fabcc87f21312955f4e3f5ae671f30778968c7d
 export const addNewListItem = ( fields ) => {
   // return (dispatch, getState) => {
   //   // parse form data for submission
@@ -57,6 +58,39 @@ export const addNewListItem = ( fields ) => {
   //   });
   // };
 };
+=======
+// export const addNewListItem = (fields) => {
+//   // return (dispatch, getState) => {
+//   //   // parse form data for submission
+//   //   let newProductListing = {
+//   //     ...fields,
+//   //     author: getState().user.username,
+//   //     locationInfo: {
+//   //       address: fields.locationInfo,
+//   //       marker: {
+//   //         lat: getState().ui.location.marker.lat,
+//   //         lng: getState().ui.location.marker.lng
+//   //       }
+//   //     }
+//   //   };
+//   //
+//   //   dispatch(addListingRequest());
+//   //   let url = '/products';
+//   //   helper.postHelper(url, newProductListing)
+//   //   .then(resp => {
+//   //     let newItem = resp.data;
+//   //     dispatch(addListingSuccess(newItem));
+//   //     dispatch(toggleViewAddNewListingForm());
+//   //     dispatch(push('/listings'));
+//   //   })
+//   //   .catch(err => {
+//   //     console.error(err);
+//   //     dispatch(addListingFailure());
+//   //     dispatch(push('/listings'));
+//   //   });
+//   // };
+// };
+>>>>>>> (feat) Add user inputs to all lists object in global state
 
 // addListItemRequest
 export const addListItemRequest = () => {
@@ -81,9 +115,25 @@ export const userTypeStart = (text) => {
 }
 
 
-export const userCategorySelected = () => {
+export const userCategorySelected = (category) => {
+  return function(dispatch) {
+    dispatch(updateUserInputCategory(category))
+    dispatch(addNewListItem())
+  }
+}
+
+export const updateUserInputCategory = (category) => {
   return {
-    type: types.USER_CATEGORY_SELECTED
+    type: types.UPDATE_USER_INPUT_CATEGORY,
+    userInput: {
+      category: category
+    }
+  }
+}
+
+export const addNewListItem = () => {
+  return {
+    type: types.ADD_NEW_LIST_ITEM
   }
 }
 

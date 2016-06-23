@@ -13,7 +13,8 @@ const mapDispatchToProps = (dispatch) => {
 // TODO Have it revert back to addList afterwards
 function mapStateToProps(state, ownProps) {
   return {
-    isUserTyping: state.lists.ui.isUserTyping
+    isUserTyping: state.lists.ui.isUserTyping,
+    lists: state.lists.allItems
   };
 }
 
