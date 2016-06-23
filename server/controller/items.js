@@ -17,6 +17,7 @@ module.exports = {
     Item.create({
       user_id: item.user_id,
       title: item.title,
+      content: item.content,
       category: item.category,
       subcategory: item.subcategory,
       url: item.url,

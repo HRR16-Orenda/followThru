@@ -10,7 +10,10 @@ var Item = sequelize.define('item', {
   },
   title: {
     type: Sequelize.STRING,
-    //unique: true(?)
+    allowNull: false
+  },
+  content: {
+    type: Sequelize.STRING,
     allowNull: false
   },
   completed: {
