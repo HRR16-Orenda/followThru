@@ -32,26 +32,27 @@ module.exports = {
   },
 
   updateOne: function(id, newProps, callback) {
-    getItem(id, function(item) {
-      _.extend(item, newProps).save();
+    Item.update(newProps, {
+      where: {id: id},
+      returning: true
     })
-    .then(function(item) {
-      callback(null, item);
+    .then(function(rowAndData) {
+      callback(null, rowAndData[1][0]);
     })
     .catch(function(error) {
       callback(error);
-    })
+    });
   },
 
   removeOne: function(id, callback) {
-    this.getItem(id, function(item) {
-      item.destroy()
-        .then(function (rows) {
-          callback(null, rows);
-        })
-        .catch(function(error) {
-          callback(error);
-        });
+    Item.destroy({where: {
+      id: id
+    }})
+    .then(function(removedRow) {
+      callback(null, removedRow);
+    })
+    .catch(function(error) {
+      callback(error);
     });
   },
 
@@ -66,7 +67,7 @@ module.exports = {
   },
 
   getCategories: function(callback) {
-    getAllItems(function(items) {
+    this.getAll(function(items) {
       var categories = [];
       _.each(items, function(item) {
         categories.push(item.category);
@@ -82,7 +83,7 @@ module.exports = {
   },
 
   getSubcategories: function(callback) {
-    getAllItems(function(items) {
+    this.getAll(function(items) {
       var subcategories = [];
       _.each(items, function(item) {
         subcategories.push(item.subcategory);
