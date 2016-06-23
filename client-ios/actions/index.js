@@ -60,14 +60,10 @@ export const addListItemRequest = () => {
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
 export const fetchUserLists = () => {
   return function (dispatch) {
-    let dataSource = new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2
-    });
-    // let lists = getState().lists.lists;
-    // console.log(lists);
-    dataSource = dataSource.cloneWithRows([{listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"}])
 
-    dispatch(updateListsState(dataSource))
+  //use this function to request user data from DB
+
+    dispatch(updateListsState())
     // const url = '/products/' + id;
     // helper.getHelper(url)
     // .then(resp => {
@@ -84,8 +80,7 @@ export const fetchUserLists = () => {
 const updateListsState = (updatedState) => {
   return {
     type: types.UPDATE_LISTS_STATE,
-    allListsDataSource: updatedState,
-    allListsIsLoading: false
+    // allListsIsLoading: false
   }
 }
 

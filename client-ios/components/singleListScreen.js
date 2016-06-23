@@ -31,7 +31,7 @@ export default class SingleListScreen extends Component {
       <TouchableHighlight
       >
         <View>
-          <ListItem itemTitle={ item.listItemTitle } />
+          <ListItem itemTitle={ item.title } />
           <View style={styles.separator} />
         </View>
       </TouchableHighlight>
@@ -41,17 +41,18 @@ export default class SingleListScreen extends Component {
   render() {
     const { lists, dataSource, isLoading } = this.props
 
-    if(isLoading){
-      return (
-        <View style={styles.loading}>
-          <ActivityIndicatorIOS
-              size='large'/>
-          <Text>
-            Loading your list...
-          </Text>
-        </View>
-      );
-    } else {
+//use this logic once client needs to fetch list from server over network
+    // if(isLoading){
+    //   return (
+    //     <View style={styles.loading}>
+    //       <ActivityIndicatorIOS
+    //           size='large'/>
+    //       <Text>
+    //         Loading your list...
+    //       </Text>
+    //     </View>
+    //   );
+    // } else {
       return (
         <View style={styles.container}>
           <ListView
@@ -64,6 +65,6 @@ export default class SingleListScreen extends Component {
           </View>
         </View>
       );
-    }
+    // }
   }
 }
