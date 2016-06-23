@@ -43,7 +43,6 @@ export default class AllListsScreen extends Component {
 
   render() {
     const { lists, dataSource, isLoading } = this.props
-
     if(isLoading){
       return (
         <View style={styles.loading}>

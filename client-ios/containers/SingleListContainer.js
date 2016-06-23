@@ -11,13 +11,20 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("isLoading :", state.lists.ui.singleListIsLoading )
   return {
-    user: "test",
-    products: [1,2,3],
-    listItems: state.lists.lists,
-    dataSource: state.lists.singleListDataSource,
-    isLoading: state.lists.singleListIsLoading
+    user: state.lists.user.username,
+    lists: state.lists.lists.allItems,
+    listItems: state.lists.selectedItems,
+    dataSource: state.lists.dataSource.singleListDataSource,
+    isLoading: state.lists.ui.singleListIsLoading
   };
 }
+// user: state.lists.user.username,
+// lists: state.lists.lists.allItems,
+// dataSource: state.lists.dataSource.allListsDataSource,
+// isLoading: state.lists.ui.allListsIsLoading
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleListScreen);
