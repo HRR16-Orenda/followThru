@@ -1,15 +1,10 @@
 import * as types from '../constants/ActionTypes';
+import { update } from "react";
 
 /**
  *  Reducers related to Lists
  */
 export default (state = {
-  // lists: [ {listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"} ],   // State for all lists
-  // listItems: [],
-  // allListsIsLoading: true,
-  // singleListIsLoading: true,
-  // allListsDataSource: null,
-  // singleListDataSource: null
   user: {
     username: 'back2future',
     email: 'marty@mcfly.com',
@@ -20,28 +15,10 @@ export default (state = {
     isLoading: true
   },
   lists: {
-    category: [
-      'Books', 'Music', 'Movies'
-    ],
-    allItems: [
-      {
-        title: 'Where the red fern grows',
-        category: 'books',
-        content: 'Wilson Rawls'
-      },
-      {
-        title: 'Say Anything',
-        category: 'movies',
-        content: '1989'
-      },
-      {
-        title: 'Blame it on the Rain',
-        category: 'movies',
-        content: 'Milli Vanilli'
-      }
-    ]
+    category: [],
+    allItems: []
   },
-  filter: 'music',
+  filter: '',
   selectedItems: [
     {
       title: 'Blame it on the Rain',
@@ -61,6 +38,10 @@ export default (state = {
     case types.UPDATE_LISTS_STATE:
     return {
       ...state,
+      lists: {
+        ...state.lists,
+        category: action.category
+      }
       // ui: {
       //   isLoading: action.allListsIsLoading,
       // }
@@ -69,6 +50,7 @@ export default (state = {
     case types.UPDATE_SINGLE_LIST_STATE:
     return {
       ...state,
+      selectedItems: action.selectedItems
       // ui: {
       //   isLoading: action.singleListIsLoading,
       // }

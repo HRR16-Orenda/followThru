@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const data = state.lists.lists.category;
+  const data = state;
   return {
     user: state.lists.user.username,
     lists: state.lists.lists.allItems,
