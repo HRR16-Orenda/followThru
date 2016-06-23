@@ -27,10 +27,15 @@ describe('Server-side Unit test', function () {
     spyOnEnd = res.end = this.sandbox.spy(function(){return this;});
     spyOnStatus = res.status = this.sandbox.spy(function(){return this;});
     findAllStub = this.sandbox.stub(User, 'findAll');
+    findAllStub2 = this.sandbox.stub(Item, 'findAll');
     createStub = this.sandbox.stub(User, 'create');
+    createStub2 = this.sandbox.stub(Item, 'create');
     findByIdStub = this.sandbox.stub(User, 'findById');
+    findByIdStub2 = this.sandbox.stub(Item, 'findById');
     destroyStub = this.sandbox.stub(User, 'destroy');
+    destroyStub2 = this.sandbox.stub(Item, 'destroy');
     updateStub = this.sandbox.stub(User, 'update');
+    updateStub2 = this.sandbox.stub(Item, 'update');
   });
 
   afterEach(function () {
@@ -61,11 +66,12 @@ describe('Server-side Unit test', function () {
   describe('Controller Test', function () {
     describe('item controller', function () {
       describe('getAll() method', function () {
-        it('should be a function', function(){
+        it('should be a function that takes 1 argument', function(){
           expect(item.getAll).to.be.a('function');
+          expect(item.getAll.length).to.equal(1);
         });
         it('should invoke the callback with items upon success', function(done) {
-          findAllStub.resolves(expectedArray)
+          findAllStub2.resolves(expectedArray)
           item.getAll(function(err, items) {
             expect(items).to.deep.equal(expectedArray);
             expect(err).to.equal(null);
@@ -73,7 +79,7 @@ describe('Server-side Unit test', function () {
           });
         });
         it('should invoke the callback with error upon failure', function(done) {
-          findAllStub.rejects(expectedErorr)
+          findAllStub2.rejects(expectedError)
           item.getAll(function(err, items) {
             expect(err).to.deep.equal(expectedError);
             done();
@@ -82,19 +88,20 @@ describe('Server-side Unit test', function () {
       });
 
       describe('addOne() method', function () {
-        it('should be a function', function(){
+        it('should be a function that takes 2 arguments', function(){
           expect(item.addOne).to.be.a('function');
+          expect(item.addOne.length).to.equal(2);
         });
         it('should invoke the callback with item upon success', function(done) {
-          createStub.resolves(expectedObject)
-          item.addOne(function(err, item) {
+          createStub2.resolves(expectedObject)
+          item.addOne({}, function(err, item) {
             expect(item).to.deep.equal(expectedObject);
             expect(err).to.equal(null);
             done();
           });
         });
         it('should invoke the callback with error upon failure', function(done) {
-          createStub.rejects(expectedErorr)
+          createStub2.rejects(expectedError)
           item.addOne({}, function(err, item) {
             expect(err).to.deep.equal(expectedError);
             done();
@@ -103,42 +110,43 @@ describe('Server-side Unit test', function () {
       });
 
       describe('getOne() method', function () {
-        it('should be a function', function(){
+        it('should be a function that takes 2 arguments', function(){
           expect(item.getOne).to.be.a('function');
+          expect(item.getOne.length).to.equal(2);
         });
         it('should invoke the callback with item upon success', function(done) {
-          findOneStub.resolves(expectedObject)
-          item.getOne(function(err, item) {
+          findOneStub2.resolves(expectedObject)
+          item.getOne(1, function(err, item) {
             expect(item).to.deep.equal(expectedObject);
             expect(err).to.equal(null);
             done();
           });
         });
         it('should invoke the callback with error upon failure', function(done) {
-          findOneStub.rejects(expectedErorr)
-          item.getOne({}, function(err, item) {
+          findOneStub2.rejects(expectedError)
+          item.getOne(1, function(err, item) {
             expect(err).to.deep.equal(expectedError);
             done();
           });
         });
       });
 
-      //need to work on this one more
       describe('removeOne() method', function () {
-        it('should be a function', function(){
+        it('should be a function that takes 2 arguments', function(){
           expect(item.removeOne).to.be.a('function');
+          expect(item.removeOne.length).to.equal(2);
         });
-        it('should invoke the callback with rows upon success', function(done) {
-          findOneStub.resolves(expectedObject)
-          item.getOne(function(err, item) {
-            expect(item).to.deep.equal(expectedObject);
+        it('should invoke the callback with deleted item upon success', function(done) {
+          destroyStub2.resolves(1)
+          item.removeOne(1, function(err, item) {
+            expect(item).to.deep.equal(1);
             expect(err).to.equal(null);
             done();
           });
         });
         it('should invoke the callback with error upon failure', function(done) {
-          findOneStub.rejects(expectedErorr)
-          item.getOne({}, function(err, item) {
+          destroyStub2.rejects(expectedError)
+          item.removeOne(1, function(err, item) {
             expect(err).to.deep.equal(expectedError);
             done();
           });
@@ -147,20 +155,22 @@ describe('Server-side Unit test', function () {
 
       //need to work on this one more
       describe('updateOne() method', function () {
-        it('should be a function', function(){
+        it('should be a function that takes 3 arguments', function(){
           expect(item.updateOne).to.be.a('function');
+          expect(item.updateOne.length).to.equal(3);
         });
         it('should invoke the callback with updated item upon success', function(done) {
-          findOneStub.resolves(expectedObject)
-          item.updateOne(function(err, item) {
-            expect(item).to.deep.equal(expectedObject);
+          updateStub2.resolves([1, [{key: 'value'}]])
+          item.updateOne(1, {}, function(err, item) {
+            if (err) {return done(err);}
+            expect(item).to.deep.equal({key: 'value'});
             expect(err).to.equal(null);
             done();
           });
         });
         it('should invoke the callback with error upon failure', function(done) {
-          findOneStub.rejects(expectedErorr)
-          item.updateOne({}, function(err, item) {
+          updateStub2.rejects(expectedError)
+          item.updateOne(1, {}, function(err, item) {
             expect(err).to.deep.equal(expectedError);
             done();
           });
@@ -395,7 +405,7 @@ describe('Server-side Unit test', function () {
           stub.returns([]);
           //check this logic
           handler.getAllItems(req, res);
-          expect(spy.calledOnce).to.equal(true);
+          expect(spyOnSend.calledWith(expectedArray)).to.equal(true);
           expect(stub.calledOnce).to.equal(true);
         });
         it('should send status code of 400 when item.getAll() throws an error', function() {
@@ -415,8 +425,6 @@ describe('Server-side Unit test', function () {
 
           handler.addOneItem(req, res);
           expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
-          //is this spy.called once necessary?
-          expect(spy.calledOnce).to.equal(true);
           expect(stub.calledOnce).to.equal(true);
         });
         it('should send status code of 400 when item.addOne() throws an error', function() {
@@ -432,7 +440,6 @@ describe('Server-side Unit test', function () {
         it('should call items.addOne() method and send removed item back', function () {
           var stub = this.sandbox.stub(item, 'removeOne');
           stub.callArgsWith(1, null, expectedObject);
-          stub.returns({});
 
           handler.removeOneUser(req, res);
           expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
@@ -466,23 +473,20 @@ describe('Server-side Unit test', function () {
         });
       });
 
-      describe('getOneUser()', function () {
+      describe('getOneItem()', function () {
         it('should call item.getOne() method and send item back', function () {
           var stub = this.sandbox.stub(user, 'getOne');
-          var stub2 = this.sandbox.stub(helper, 'cleanUser');
           stub.callsArgWith(1, null, expectedObject);
-          stub2.returns(expectedObject);
 
           handler.getOneUser(req, res);
           expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
           expect(stub.calledOnce).to.equal(true);
-          expect(stub2.calledOnce).to.equal(true);
         });
-        it('should send 400 status code when user.getOne() throw error', function () {
-          var stub = this.sandbox.stub(user, 'getOne');
+        it('should send 400 status code when item.getOne() throw error', function () {
+          var stub = this.sandbox.stub(item, 'getOne');
           stub.callsArgWith(1, expectedError);
 
-          handler.getOneUser(req, res);
+          handler.getOneItem(req, res);
           expect(spyOnStatus.calledWith(400)).to.equal(true);
         });
       });
