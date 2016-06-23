@@ -1,7 +1,28 @@
 import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
-import { ListView } from 'react-native';
+
+
+let tempData = [
+  {
+    title: 'Where the red fern grows',
+    category: 'Books',
+    content: 'Wilson Rawls'
+  },
+  {
+    title: 'Say Anything',
+    category: 'Movies',
+    content: '1989'
+  },
+  {
+    title: 'Blame it on the Rain',
+    category: 'Music',
+    content: 'Milli Vanilli'
+  }
+];
+
+let tempFilter = "Music";
+
 
 // addNewListItem
 // This should add a new item to a specific list
@@ -61,9 +82,7 @@ export const addListItemRequest = () => {
 export const fetchUserLists = () => {
   return function (dispatch) {
 
-  //use this function to request user data from DB
-
-    dispatch(updateListsState())
+    dispatch(updateListsState(determineLists(tempData)))
     // const url = '/products/' + id;
     // helper.getHelper(url)
     // .then(resp => {
@@ -77,53 +96,52 @@ export const fetchUserLists = () => {
     // });
   };
 };
+
+const determineLists = (allItems) => {
+  let listsObj = {};
+  let listsArr = [];
+  allItems.map((item)=>{
+    listsObj[item.category] = true;
+  })
+  for(var key in listsObj){
+    listsArr.push(key);
+  }
+  return listsArr;
+};
+
 const updateListsState = (updatedState) => {
   return {
     type: types.UPDATE_LISTS_STATE,
-    // allListsIsLoading: false
+    id: "category",
+    category: updatedState
+    // isLoading: false
   }
 }
 
 // fetchUserSingleList
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
-export const fetchUserSingleList = (listName, listing) => {
+export const fetchUserSingleList = (listName, category) => {
   return function (dispatch) {
-    let dataSource = new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2
-    });
-
-    let tempData = [
-      {
-        listTitle: "Movies",
-        listItemTitle: "Captain America",
-        listItemSubtitle: 2006,
-        links: {
-          wikipedia: "",
-          imdb: "",
-        }
-      },
-      {
-        listTitle: "Movies",
-        listItemTitle: "The Breakfast Club",
-        listItemSubtitle: 1985,
-        links: {
-          wikipedia: "",
-          imdb: "",
-        }
-      }
-    ];
-    dataSource = dataSource.cloneWithRows(tempData)
-
-    dispatch(updateSingleListState(dataSource))
+    let updatedSelectedItems = filterAllItems(tempData, tempFilter);
+    // console.log(updatedSelectedItems);
+    dispatch(updateSingleListState(updatedSelectedItems));
 
   };
 };
 
+const filterAllItems = (allItems, filterCategory) => {
+  let condition = (item) => {
+    return item.category === filterCategory;
+  }
+  return allItems.filter(condition);
+
+}
+
 const updateSingleListState = (updatedState) => {
   return {
     type: types.UPDATE_SINGLE_LIST_STATE,
-    singleListDataSource: updatedState,
-    isLoading: false
+    selectedItems: updatedState
+    // isLoading: false
   }
 };
 
