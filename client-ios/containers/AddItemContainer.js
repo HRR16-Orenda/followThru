@@ -16,10 +16,6 @@ const mapDispatchToProps = (dispatch) => {
 
 function mapStateToProps(state, ownProps) {
   return {
-    user: state.lists.user.username,
-    lists: state.lists.lists.allItems,
-    dataSource: state.lists.dataSource.allListsDataSource,
-    isLoading: state.lists.ui.allListsIsLoading,
     isUserTyping: state.lists.ui.isUserTyping
 // state.addItem.whatever
     // isUserTyping: state.
