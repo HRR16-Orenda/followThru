@@ -4,6 +4,7 @@
   "description": "List Anything",
   "scripts": {
     "start": "node index.js",
+    "prestart": "webpack",
     "postinstall": "webpack",
     "unittest:server": "./node_modules/.bin/mocha --reporter nyan test/server/ServerSpec.js",
     "unittest:web": "./node_modules/.bin/mocha test/.setup.js test/client-web/WebSpec.js",
@@ -16,6 +17,7 @@
   ],
   "author": "Team Orenda",
   "dependencies": {
+    "axios": "^0.12.0",
     "babel-cli": "^6.10.1",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",

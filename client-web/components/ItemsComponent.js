@@ -6,11 +6,13 @@ class ItemsComponent extends Component {
     super(props);
   }
 
-  componentWillMount(){
-    // this.props.fetchUpdatedProducts();
+  componentDidMount(){
+    this.props.fetchItem();
   }
 
   render () {
+    const { items } = this.props;
+    console.log(items);
     return (
       <div>
         <div className="row">
@@ -36,37 +38,20 @@ class ItemsComponent extends Component {
               </thead>
 
               <tbody>
-                {/*Map function here*/}
-                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>false</td>
-                  <td><a className="waves-effect waves-light btn">Remove</a></td>
-                </tr>
-                <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$3.76</td>
-                  <td>false</td>
-                  <td><a className="waves-effect waves-light btn">Remove</a></td>
-                </tr>
-                <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$7.00</td>
-                  <td>false</td>
-                  <td><a className="waves-effect waves-light btn">Remove</a></td>
-                </tr>
+                {items.map(item => {
+                  return (
+                    <tr>
+                      <td>{item.id}</td>
+                      <td>{item.title}</td>
+                      <td>{item.content}</td>
+                      <td>{item.completed}</td>
+                      <td>{item.category}</td>
+                      <td>{item.subcategory}</td>
+                      <td>{item.url}</td>
+                      <td><a className="waves-effect waves-light btn">Remove</a></td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>

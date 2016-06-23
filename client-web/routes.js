@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRedirect } from 'react-router';
 import CoreLayout from './components/CoreLayout';
 import Users from './components/UsersComponent.js';
-import Items from './components/ItemsComponent.js';
+import Items from './containers/ItemsContainer.js';
 // import ManageListings from './containers/ManageListingsContainer';
 // import Login from './containers/LoginContainer';
 // import Signup from './containers/SignupContainer.js';

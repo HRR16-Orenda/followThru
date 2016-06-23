@@ -11,12 +11,12 @@ export default (state = {
     case types.FETCH_USER_SUCCESS:
     return {
       ...state,
-      users: state.users
+      users: action.payload
     }
     case types.FETCH_ITEM_SUCCESS:
     return {
       ...state,
-      items: state.items
+      items: action.payload
     }
     default:
     return state;
