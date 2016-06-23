@@ -6,8 +6,9 @@
     "start": "node index.js",
     "postinstall": "webpack",
     "unittest:server": "./node_modules/.bin/mocha --reporter nyan test/server/ServerSpec.js",
+    "unittest:web": "./node_modules/.bin/mocha test/.setup.js test/client-web/WebSpec.js",
     "integrationtest": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
-    "test": "npm run unittest:server && npm run integrationtest",
+    "test": "npm run unittest:server && npm run unittest:web && npm run integrationtest",
     "coverage": "istanbul cover --root server/ _mocha -- test/server/ -R spec"
   },
   "pre-commit": [
@@ -47,7 +48,10 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
+    "babel-register": "^6.9.0",
     "chai": "^3.5.0",
+    "cheerio": "^0.20.0",
+    "enzyme": "^2.3.0",
     "gulp": "^3.9.1",
     "gulp-istanbul": "^1.0.0",
     "gulp-mocha": "^2.2.0",
@@ -55,9 +59,11 @@
     "gulp-plumber": "^1.1.0",
     "gulp-util": "^3.0.7",
     "gulp-wait": "0.0.2",
+    "jsdom": "^9.2.1",
     "mocha": "^2.5.3",
     "morgan": "^1.7.0",
     "pre-commit": "^1.1.3",
+    "react-addons-test-utils": "^15.1.0",
     "react-hot-loader": "^1.3.0",
     "redux-logger": "^2.6.1",
     "sinon": "^1.17.4",
