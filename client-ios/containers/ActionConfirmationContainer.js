@@ -4,8 +4,8 @@ import ActionConfirmationScreen from '../components/actionConfirmationScreen.js'
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userCategorySelected: (text) => {
-      dispatch(actions.userCategorySelected(text));
+    userCategorySelected: (category) => {
+      dispatch(actions.userCategorySelected(category));
     }
   };
 };

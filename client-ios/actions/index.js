@@ -71,9 +71,12 @@ export const addListItemRequest = () => {
 // addListItemFailure
 
 
-export const userTypeStart = () => {
+export const userTypeStart = (text) => {
   return {
-    type: types.USER_TYPE_START
+    type: types.USER_TYPE_START,
+    userInput: {
+      title: text
+    }
   }
 }
 

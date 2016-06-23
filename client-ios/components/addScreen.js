@@ -29,9 +29,7 @@ export default class AddScreen extends Component {
             style = {{height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20, marginLeft: 20, marginRight: 20}}
             autoFocus={true}
             onChangeText={(text) => this.props.userTypeStart({text})}
-            //onSubmitEditing={(text) => this.props.userTypeEnd({text})}
-            onSubmitEditing={(text) => Actions.actionConfirmationScreen()}
-
+            onSubmitEditing={(text) => this.props.userTypeEnd({text})}
           />
 
 

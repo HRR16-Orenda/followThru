@@ -73,6 +73,9 @@ export default (state = {
       ...state,
       ui: {
         isUserTyping: true
+      },
+      userInput: {
+        title: action.userInput.title
       }
     }
 
