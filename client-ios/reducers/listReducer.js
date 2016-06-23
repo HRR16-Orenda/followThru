@@ -15,7 +15,7 @@ export default (state = {
     isLoading: true
   },
   lists: {
-    category: [],
+    category: ['default'],
     allItems: []
   },
   filter: '',
@@ -46,6 +46,13 @@ export default (state = {
       //   isLoading: action.allListsIsLoading,
       // }
     };
+
+    case types.UPDATE_FILTER_STATE:
+    return {
+      ...state,
+      filter: action.filter
+    };
+
 
     case types.UPDATE_SINGLE_LIST_STATE:
     return {

@@ -30,6 +30,7 @@ export default class AllListsScreen extends Component {
     return (
       <TouchableHighlight
         onPress = {() => {
+          this.props.updateFilter( item.listTitle );
           Actions.singleListScreen();
         }}
       >

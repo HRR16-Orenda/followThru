@@ -5,7 +5,7 @@ import { reset } from 'redux-form';
 
 let tempData = [
   {
-    title: 'Where the red fern grows',
+    title: 'Where the Red Fern Grows',
     category: 'Books',
     content: 'Wilson Rawls'
   },
@@ -26,7 +26,7 @@ let tempFilter = "Music";
 
 // addNewListItem
 // This should add a new item to a specific list
-export const addNewListItem = (fields) => {
+export const addNewListItem = ( fields ) => {
   // return (dispatch, getState) => {
   //   // parse form data for submission
   //   let newProductListing = {
@@ -80,9 +80,9 @@ export const addListItemRequest = () => {
 // fetchUserLists
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
 export const fetchUserLists = () => {
-  return function (dispatch) {
+  return function ( dispatch ) {
 
-    dispatch(updateListsState(determineLists(tempData)))
+    dispatch( updateListsState( determineLists( tempData ) ) )
     // const url = '/products/' + id;
     // helper.getHelper(url)
     // .then(resp => {
@@ -97,19 +97,19 @@ export const fetchUserLists = () => {
   };
 };
 
-const determineLists = (allItems) => {
+const determineLists = ( allItems ) => {
   let listsObj = {};
   let listsArr = [];
-  allItems.map((item)=>{
-    listsObj[item.category] = true;
+  allItems.map(( item ) => {
+    listsObj[ item.category ] = true;
   })
-  for(var key in listsObj){
-    listsArr.push(key);
+  for( var key in listsObj ){
+    listsArr.push( key );
   }
   return listsArr;
 };
 
-const updateListsState = (updatedState) => {
+const updateListsState = ( updatedState ) => {
   return {
     type: types.UPDATE_LISTS_STATE,
     id: "category",
@@ -118,26 +118,39 @@ const updateListsState = (updatedState) => {
   }
 }
 
+export const updateFilter = ( filterString ) => {
+
+  return function ( dispatch ) {
+    dispatch( updateFilterState( filterString ) )
+  }
+}
+
+const updateFilterState = ( updatedState ) => {
+  return {
+    type: types.UPDATE_FILTER_STATE,
+    filter: updatedState
+  }
+}
+
 // fetchUserSingleList
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
-export const fetchUserSingleList = (listName, category) => {
-  return function (dispatch) {
-    let updatedSelectedItems = filterAllItems(tempData, tempFilter);
-    // console.log(updatedSelectedItems);
-    dispatch(updateSingleListState(updatedSelectedItems));
-
+export const fetchUserSingleList = ( listName, category ) => {
+  return function ( dispatch, getState ) {
+    let filter = getState().lists.filter;
+    let updatedSelectedItems = filterAllItems( tempData, filter );
+    dispatch( updateSingleListState( updatedSelectedItems ) );
   };
 };
 
-const filterAllItems = (allItems, filterCategory) => {
-  let condition = (item) => {
+const filterAllItems = ( allItems, filterCategory ) => {
+  let condition = ( item ) => {
     return item.category === filterCategory;
   }
-  return allItems.filter(condition);
+  return allItems.filter( condition );
 
 }
 
-const updateSingleListState = (updatedState) => {
+const updateSingleListState = ( updatedState ) => {
   return {
     type: types.UPDATE_SINGLE_LIST_STATE,
     selectedItems: updatedState
@@ -176,7 +189,7 @@ const updateSingleListState = (updatedState) => {
 
 
 
-export const setMarkerCenter = (pos) => {
+export const setMarkerCenter = ( pos ) => {
   return {
     type: types.SETMARKERCENTER,
     payload: pos
