@@ -23,7 +23,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserLists: () => {
       dispatch(actions.fetchUserLists());
+    },
+    updateFilter: ( filterString ) => {
+      console.log( "from the container: ", filterString );
+      dispatch( actions.updateFilter( filterString ) );
     }
+
   };
 };
 

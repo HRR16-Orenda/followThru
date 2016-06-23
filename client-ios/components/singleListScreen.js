@@ -31,8 +31,8 @@ export default class SingleListScreen extends Component {
       <TouchableHighlight
       >
         <View>
-          <ListItem itemTitle={ item.title } />
-          <View style={styles.separator} />
+          <ListItem itemTitle={ item.title } itemContent={ item.content }/>
+          <View style={ styles.separator } />
         </View>
       </TouchableHighlight>
     );
