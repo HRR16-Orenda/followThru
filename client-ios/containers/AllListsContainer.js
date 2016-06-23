@@ -6,7 +6,7 @@ import { ListView } from 'react-native';
 
 const generateDataSource = (list) => {
   let inputList = [];
-  list.map((item)=>{
+  list.map((item) => {
     inputList.push(
       { listTitle: item }
     )
