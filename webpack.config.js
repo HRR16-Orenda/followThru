@@ -28,7 +28,11 @@ module.exports = {
         // runs all jsx through babel
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        loaders: ['babel-loader?cacheDirectory']
+        loader: 'babel',
+        query: {
+          presets: ["es2015", "react"],
+          plugins: ['typecheck']
+        }
       },
       { test: /\.css$/, loader: "style-loader!css-loader" },
       { test: /\.png$/, loader: "url-loader?limit=100000" },
