@@ -17,12 +17,11 @@ export default (state = {
   },
   ui: {
 //there will only be "isLoading" in final store, not a version for "allLists" and "singleLists"
-    allListsIsLoading: true,
-    singleListIsLoading: true
+    isLoading: true
   },
   lists: {
     category: [
-      'book', 'music', 'movies'
+      'Books', 'Music', 'Movies'
     ],
     allItems: [
       {
@@ -49,12 +48,7 @@ export default (state = {
       category: 'movies',
       content: 'Milli Vanilli'
     }
-  ],
-//dataSource will not be in the final store
-  dataSource: {
-    allListsDataSource: [],
-    singleListDataSource: []
-  }
+  ]
 }, action) => {
   switch (action.type) {
 
@@ -67,27 +61,17 @@ export default (state = {
     case types.UPDATE_LISTS_STATE:
     return {
       ...state,
-      dataSource: {
-        allListsDataSource: action.allListsDataSource,
-        singleListDataSource: []
-      },
-      ui: {
-        allListsIsLoading: action.allListsIsLoading,
-        singleListIsLoading: true
-      }
+      // ui: {
+      //   isLoading: action.allListsIsLoading,
+      // }
     };
 
     case types.UPDATE_SINGLE_LIST_STATE:
     return {
       ...state,
-      dataSource: {
-        singleListDataSource: action.singleListDataSource,
-        allListsIsLoading: []
-      },
-      ui: {
-        singleListIsLoading: action.singleListIsLoading,
-        allListsIsLoading: true
-      }
+      // ui: {
+      //   isLoading: action.singleListIsLoading,
+      // }
     };
 
     default:

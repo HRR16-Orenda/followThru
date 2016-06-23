@@ -43,17 +43,18 @@ export default class AllListsScreen extends Component {
 
   render() {
     const { lists, dataSource, isLoading } = this.props
-    if(isLoading){
-      return (
-        <View style={styles.loading}>
-          <ActivityIndicatorIOS
-              size='large'/>
-          <Text>
-            Loading your lists...
-          </Text>
-        </View>
-      );
-    } else {
+//use this logic once client needs to fetch list from server over network
+    // if(isLoading){
+    //   return (
+    //     <View style={styles.loading}>
+    //       <ActivityIndicatorIOS
+    //           size='large'/>
+    //       <Text>
+    //         Loading your lists...
+    //       </Text>
+    //     </View>
+    //   );
+    // } else {
       return (
         <View style={styles.container}>
           <ListView
@@ -66,6 +67,6 @@ export default class AllListsScreen extends Component {
           </View>
         </View>
       );
-    }
+    // }
   }
 }
