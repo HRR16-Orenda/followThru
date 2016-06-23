@@ -22,11 +22,15 @@ export default (state = {
   filter: '',
   selectedItems: [
     {
-      title: 'Blame it on the Rain',
-      category: 'movies',
+      title: 'Captain America',
+      category: 'Movies',
       content: 'Milli Vanilli'
     }
-  ]
+  ],
+  userInput: {
+    title: '',
+    category: ''
+  }
 }, action) => {
   switch (action.type) {
 
@@ -71,6 +75,12 @@ export default (state = {
         isUserTyping: true
       }
     }
+
+    // case types.USER_CATEGORY_SELECTED:
+    // return {
+    //   ...state,
+    //   lists:
+    // }
 
     default:
     return state;

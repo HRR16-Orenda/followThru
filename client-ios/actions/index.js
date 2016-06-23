@@ -77,6 +77,13 @@ export const userTypeStart = () => {
   }
 }
 
+
+export const userCategorySelected = () => {
+  return {
+    type: types.USER_CATEGORY_SELECTED
+  }
+}
+
 // listItemEdited
 // This should update the list item in the user's list (can be done from the actionConfirmation page or on the singleListScreen)
 

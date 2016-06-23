@@ -16,6 +16,9 @@ export default class ActionConfirmationScreen extends Component {
   constructor(props) {
     super(props);
   }
+
+// TODO have some sort of confirmation when clicked
+
   render() {
     return (
       <View style={styles.container}>
