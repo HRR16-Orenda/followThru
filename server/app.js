@@ -12,6 +12,7 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/', express.static(path.resolve(__dirname, '../build')));
+console.log(path.resolve(__dirname, '../build'));
 
 
 // Router

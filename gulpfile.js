@@ -12,7 +12,7 @@ var webpackConfig = require('./webpack.config.js');
 var path = require('path');
 
 gulp.task('webpack', function() {
-  return gulp.src('./client/index.js')
+  return gulp.src('./client-web/index.js')
     .pipe(webpackStream(webpackConfig))
     .pipe(gulp.dest('build/'));
 });
