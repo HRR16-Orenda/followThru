@@ -12,7 +12,8 @@ export default (state = {
   },
   ui: {
 //there will only be "isLoading" in final store, not a version for "allLists" and "singleLists"
-    isLoading: true
+    isLoading: true,
+    isUserTyping: false
   },
   lists: {
     category: ['default'],
@@ -62,6 +63,14 @@ export default (state = {
       //   isLoading: action.singleListIsLoading,
       // }
     };
+
+    case types.USER_TYPE_START:
+    return {
+      ...state,
+      ui: {
+        isUserTyping: true
+      }
+    }
 
     default:
     return state;

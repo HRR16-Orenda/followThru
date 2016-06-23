@@ -71,6 +71,12 @@ export const addListItemRequest = () => {
 // addListItemFailure
 
 
+export const userTypeStart = () => {
+  return {
+    type: types.USER_TYPE_START
+  }
+}
+
 // listItemEdited
 // This should update the list item in the user's list (can be done from the actionConfirmation page or on the singleListScreen)
 
