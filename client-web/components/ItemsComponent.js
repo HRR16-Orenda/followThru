@@ -32,7 +32,6 @@ class ItemsComponent extends Component {
                   <th data-field="category">Category</th>
                   <th data-field="sub-category">Sub Category</th>
                   <th data-field="url">url</th>
-                  <th data-field="remove">Remove</th>
                 </tr>
               </thead>
 

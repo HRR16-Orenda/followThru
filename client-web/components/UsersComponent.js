@@ -29,7 +29,6 @@ class UsersComponent extends Component {
                   <th data-field="name">Username</th>
                   <th data-field="email">Email</th>
                   <th data-field="admin">Admin</th>
-                  <th data-field="remove">Remove</th>
                 </tr>
               </thead>
 

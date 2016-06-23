@@ -31,7 +31,7 @@ module.exports = {
         loader: 'babel',
         query: {
           presets: ["es2015", "react"],
-          plugins: ['typecheck']
+          plugins: ['typecheck', "transform-object-rest-spread"]
         }
       },
       { test: /\.css$/, loader: "style-loader!css-loader" },
