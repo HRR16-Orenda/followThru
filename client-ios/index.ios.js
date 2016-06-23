@@ -16,6 +16,7 @@ import AddItemContainer from './containers/AddItemContainer.js';
 import AllListsContainer from './containers/AllListsContainer.js';
 import SingleListContainer from './containers/SingleListContainer.js';
 import ActionConfirmationContainer from './containers/ActionConfirmationContainer.js';
+import CategoryPickerContainer from './containers/CategoryPickerContainer.js'
 
 // Import additional functionality
 import configureStore from './store/configureStore.js';
@@ -31,12 +32,15 @@ class Orenda extends Component {
           <Scene key="root">
             <Scene key="addScreen" component={AddItemContainer} title="Add Screen" initial={true} tabs={true} hideBackImage={true}>
             </Scene>
+            <Scene key="categoryPicker" component={CategoryPickerContainer} title="Category Picker"  tabs={true} hideBackImage={true}>
+            </Scene>
             <Scene key="allListsScreen" component={AllListsContainer} title="All your lists" tabs={true} hideBackImage={true}>
             </Scene>
             <Scene key="singleListScreen" component={SingleListContainer} title="One single list" tabs={true} hideBackImage={true}>
             </Scene>
             <Scene key="actionConfirmationScreen" component={ActionConfirmationContainer} title="Item added" tabs={true} hideBackImage={true}>
             </Scene>
+
           </Scene>
         </RouterWithRedux>
       </Provider>

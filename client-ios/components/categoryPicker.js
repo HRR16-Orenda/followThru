@@ -7,12 +7,11 @@ import {
   TouchableHighlight
 } from 'react-native';
 import styles from '../styles/styles.js';
+import { Actions } from 'react-native-router-flux';
 
-export default class categoryPicker extends Component {
+export default class CategoryPicker extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    }
   }
   render() {
     return (
@@ -20,7 +19,7 @@ export default class categoryPicker extends Component {
         <Text>Did you mean...</Text>
         <View style={{flex: 3, flexDirection: "row"}}>
           <TouchableHighlight style={{margin: 10}}>
-            <Text>Book</Text>
+            <Text onPress={() => console.log(this.props)}>Book</Text>
           </TouchableHighlight>
           <TouchableHighlight style={{margin: 10}}>
             <Text>Movies</Text>
