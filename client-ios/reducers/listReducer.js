@@ -68,10 +68,12 @@ export default (state = {
     return {
       ...state,
       dataSource: {
-        allListsDataSource: action.allListsDataSource
+        allListsDataSource: action.allListsDataSource,
+        singleListDataSource: []
       },
       ui: {
-        allListsIsLoading: action.allListsIsLoading
+        allListsIsLoading: action.allListsIsLoading,
+        singleListIsLoading: true
       }
     };
 
@@ -79,10 +81,12 @@ export default (state = {
     return {
       ...state,
       dataSource: {
-        singleListDataSource: action.singleListDataSource
+        singleListDataSource: action.singleListDataSource,
+        allListsIsLoading: []
       },
       ui: {
-        singleListIsLoading: action.singleListIsLoading
+        singleListIsLoading: action.singleListIsLoading,
+        allListsIsLoading: true
       }
     };
 
