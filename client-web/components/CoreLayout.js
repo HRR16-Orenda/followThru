@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export const CoreLayout = ({ children }) => (
   <div>
@@ -6,9 +7,12 @@ export const CoreLayout = ({ children }) => (
       <nav>
         <div class="nav-wrapper">
           <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
+            <Link to="/user">
+              <li>User</li>
+            </Link>
+            <Link to="/item">
+              <li>List Item</li>
+            </Link>
           </ul>
         </div>
       </nav>

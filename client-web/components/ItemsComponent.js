@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 
-class UsersComponent extends Component {
+class ItemsComponent extends Component {
   constructor(props){
     super(props);
   }
@@ -14,11 +14,11 @@ class UsersComponent extends Component {
     return (
       <div>
         <div className="row">
-          this is user component
+          this is items component
         </div>
       </div>
     )
   }
 }
 
-export default UsersComponent;
+export default ItemsComponent;

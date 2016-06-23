@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, IndexRedirect } from 'react-router';
 import CoreLayout from './components/CoreLayout';
 import Users from './components/UsersComponent';
+import Items from './components/ItemsComponent';
 // import ManageListings from './containers/ManageListingsContainer';
 // import Login from './containers/LoginContainer';
 // import Signup from './containers/SignupContainer.js';
@@ -10,8 +11,9 @@ import Users from './components/UsersComponent';
 
 export default (
   <Route path="/" component={CoreLayout}>
-    <IndexRedirect to="/test" />
-    <Route path="test" component={Users} />
+    <IndexRedirect to="/user" />
+    <Route path="/user" component={Users} />
+    <Route path="/item" component={Items} />
     {/*<Route path="test" component={Users} />*/}
   </Route>
 );
