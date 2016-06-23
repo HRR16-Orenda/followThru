@@ -92,10 +92,10 @@ describe('API Test', function () {
     });
 
     describe('POST request', function () {
-      it('should return status code 404 if invalid data send', function (done) {
+      it('should return status code 500 if invalid data send', function (done) {
         supertest.post('/items')
         .send({user: 'fake'})
-        .expect(404)
+        .expect(500)
         .end(done);
       });
     });
