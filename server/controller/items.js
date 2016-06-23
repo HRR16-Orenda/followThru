@@ -6,10 +6,10 @@ module.exports = {
   getOne: function(id, callback) {
     Item.findById(id)
     .then(function(item) {
-      callback(item);
+      callback(null, item);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     });
   },
 
@@ -23,50 +23,51 @@ module.exports = {
       completed: false,
       recommendedBy_id: item.recommendedBy_id
     })
-    .then(function(item) {
-      callback(item);
+    .then(function(newItem) {
+      callback(null, newItem);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   },
 
   updateOne: function(id, newProps, callback) {
-    getItem(id, function(item) {
-      _.extend(item, newProps).save();
+    Item.update(newProps, {
+      where: {id: id},
+      returning: true
     })
-    .then(function(item) {
-      callback(item);
+    .then(function(rowAndData) {
+      callback(null, rowAndData[1][0]);
     })
     .catch(function(error) {
-      console.log(error);
-    })
+      callback(error);
+    });
   },
 
-  removeOne: function(id, cb) {
-    this.getItem(id, function(item) {
-      item.destroy()
-        .then(function (rows) {
-          cb(rows);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+  removeOne: function(id, callback) {
+    Item.destroy({where: {
+      id: id
+    }})
+    .then(function(removedRow) {
+      callback(null, removedRow);
+    })
+    .catch(function(error) {
+      callback(error);
     });
   },
 
   getAll: function(callback) {
     Item.findAll()
     .then(function(items) {
-      callback(items)
+      callback(null, items)
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   },
 
   getCategories: function(callback) {
-    getAllItems(function(items) {
+    this.getAll(function(items) {
       var categories = [];
       _.each(items, function(item) {
         categories.push(item.category);
@@ -74,15 +75,15 @@ module.exports = {
       return categories;
     })
     .then(function(categories) {
-      callback(categories);
+      callback(null, categories);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   },
 
   getSubcategories: function(callback) {
-    getAllItems(function(items) {
+    this.getAll(function(items) {
       var subcategories = [];
       _.each(items, function(item) {
         subcategories.push(item.subcategory);
@@ -90,10 +91,10 @@ module.exports = {
       return subcategories;
     })
     .then(function(subcategories) {
-      callback(subcategories);
+      callback(null, subcategories);
     })
     .catch(function(error) {
-      console.log(error);
+      callback(error);
     })
   }
 };
