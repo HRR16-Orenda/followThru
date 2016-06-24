@@ -81,9 +81,9 @@ export const addNewListItem = () => {
 // fetchUserLists
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
 export const fetchUserLists = () => {
-  return function ( dispatch ) {
-
-    dispatch( updateListsState( determineLists( tempData ) ) )
+  return function ( dispatch, getState ) {
+    let data = getState().lists.lists.allItems
+    dispatch( updateListsState( determineLists( data ) ) )
     // const url = '/products/' + id;
     // helper.getHelper(url)
     // .then(resp => {
@@ -138,7 +138,8 @@ const updateFilterState = ( updatedState ) => {
 export const fetchUserSingleList = ( listName, category ) => {
   return function ( dispatch, getState ) {
     let filter = getState().lists.filter;
-    let updatedSelectedItems = filterAllItems( tempData, filter );
+    let data = getState().lists.lists.allItems
+    let updatedSelectedItems = filterAllItems( data, filter );
     dispatch( updateSingleListState( updatedSelectedItems ) );
   };
 };
