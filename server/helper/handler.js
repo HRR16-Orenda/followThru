@@ -30,7 +30,7 @@ module.exports = {
     var id = req.params.id;
     item.removeOne(id, function(err, rows) {
       if(err) {return res.sendStatus(400);}
-      res.send(rows);
+      res.status(200).end();
     } )
   },
 

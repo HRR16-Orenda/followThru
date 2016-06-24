@@ -53,6 +53,7 @@ module.exports = {
       callback(null, removedRow);
     })
     .catch(function(error) {
+      console.log(error);
       callback(error);
     });
   },

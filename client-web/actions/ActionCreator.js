@@ -1,6 +1,6 @@
 // @flow
 import * as types from '../constants/ActionTypes';
-import { get } from '../services/ApiHelper.js';
+import { get, del } from '../services/ApiHelper.js';
 
 const fetchItemRequest = () => {
   return {
@@ -68,3 +68,36 @@ export const fetchUser = () => {
       });
   }
 };
+
+const removeItemRequest = () => {
+  return {
+    type: types.REMOVE_ITEM_REQUEST
+  }
+};
+
+const removeItemFailure = () => {
+  return {
+    type: types.REMOVE_ITEM_FAILURE
+  }
+};
+
+const removeItemSuccess = (id: string) => {
+  return {
+    type: types.REMOVE_ITEM_SUCCESS,
+    payload: id
+  }
+};
+
+export const removeItem = (id: string) => {
+  return (dispatch) => {
+    dispatch(removeItemRequest());
+    del('/api/items' + '/' + id)
+      .then(res => {
+        dispatch(removeItemSuccess(id));
+      })
+      .catch(err => {
+        console.error(err);
+        dispatch(removeItemFailure());
+      })
+  }
+}

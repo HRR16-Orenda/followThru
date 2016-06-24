@@ -8,7 +8,7 @@ class TableComponent extends Component {
   }
 
   renderTable () {
-    const { items, type } = this.props;
+    const { items, type, clickHandler } = this.props;
     console.log('called with', items);
     if(type === 'items') {
       return items.map((item, i) => {
@@ -24,7 +24,14 @@ class TableComponent extends Component {
             <td>{item.created_at}</td>
             <td>{item.recommended_by_id}</td>
             <td>{item.user_id}</td>
-            <td><a className="waves-effect waves-light btn">Remove</a></td>
+            <td>
+              <a
+                className="waves-effect waves-light btn"
+                onClick={() => clickHandler(item.id.toString())}
+              >
+                Remove
+              </a>
+            </td>
           </tr>
         )
       })

@@ -13,7 +13,7 @@ class ItemsComponent extends Component {
   }
 
   render () {
-    const { items, submitHandler } = this.props;
+    const { items, submitHandler, removeItem } = this.props;
     const fields = [
       'No.',
       'Title',
@@ -40,6 +40,7 @@ class ItemsComponent extends Component {
           items={items}
           fields={fields}
           type="items"
+          clickHandler={removeItem}
         />
       </div>
     )
