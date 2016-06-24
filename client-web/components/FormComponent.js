@@ -15,7 +15,7 @@ class FormComponent extends Component {
       return _.map(fields[fieldType], (field, key) => {
         if(key === 'isAdmin') {
           return (
-            <div className="input-field col s6" key={key}>
+            <div className="input-field col s6 grid-item" key={key}>
               <label>
                 <input id={key} type="checkbox" className="validate" {...field} />
                 <label for={key} onClick={e => field.onChange(!field.value)}>{key}</label>
@@ -24,7 +24,7 @@ class FormComponent extends Component {
           )
         } else if(key === 'completed') {
           return (
-            <div className="input-field col s6" key={key}>
+            <div className="input-field col s6 grid-item" key={key}>
               <label>
                 <input id={key} type="checkbox" className="validate" {...field} />
                 <label for={key} onClick={e => field.onChange(!field.value)}>{key}</label>
@@ -33,7 +33,7 @@ class FormComponent extends Component {
           )
         } else {
           return (
-            <div className="input-field col s6" key={key}>
+            <div className="input-field col s6 grid-item" key={key}>
               <input type="text" className="validate" {...field}/>
               <label for={key}>{key}</label>
             </div>
@@ -55,7 +55,9 @@ class FormComponent extends Component {
       <div className="row">
         <form onSubmit={handleSubmit} className="col s12">
           <div className="row">
-            {this.renderForm()}
+            <div className="grid">
+              {this.renderForm()}
+            </div>
           </div>
           <div>
             <button className="waves-effect waves-light btn" type="submit" >
