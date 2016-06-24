@@ -27,12 +27,9 @@ export default class AddScreen extends Component {
           <Text style={{marginTop: 100, alignSelf: "center"}}>What would you like to add?</Text>
           <TextInput
             style = {{height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20, marginLeft: 20, marginRight: 20}}
-            autoFocus={true}
             onChangeText={(text) => this.props.userTypeStart({text})}
             onSubmitEditing={(text) => this.props.userTypeEnd({text})}
           />
-
-
 
         <View style={styles.container}>
           <Footer />
