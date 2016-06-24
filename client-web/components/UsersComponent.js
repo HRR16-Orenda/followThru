@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import Form from '../containers/FormContainer.js';
 
 class UsersComponent extends Component {
   constructor(props){
@@ -11,7 +12,7 @@ class UsersComponent extends Component {
   }
 
   render () {
-    const { users } = this.props;
+    const { users, submitHandler } = this.props;
     return (
       <div>
         <div className="row">
@@ -21,6 +22,7 @@ class UsersComponent extends Component {
             </h3>
           </div>
         </div>
+        <Form onSubmit={submitHandler} fieldType="user"/>
         <div className="row">
           <div className="col s12">
             <table className="highlight">

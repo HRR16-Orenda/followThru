@@ -6,6 +6,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchItem: () => {
       dispatch(actions.fetchItem());
+    },
+    submitHandler: () => {
+      console.log('WAWA submitted!!!!');
     }
   };
 };
