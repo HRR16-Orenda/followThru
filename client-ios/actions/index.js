@@ -1,11 +1,32 @@
 import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
-import { ListView } from 'react-native';
+
+
+let tempData = [
+  {
+    title: 'Where the Red Fern Grows',
+    category: 'Books',
+    content: 'Wilson Rawls'
+  },
+  {
+    title: 'Say Anything',
+    category: 'Movies',
+    content: '1989'
+  },
+  {
+    title: 'Blame it on the Rain',
+    category: 'Music',
+    content: 'Milli Vanilli'
+  }
+];
+
+let tempFilter = "Music";
+
 
 // addNewListItem
 // This should add a new item to a specific list
-export const addNewListItem = (fields) => {
+export const addNewListItem = ( fields ) => {
   // return (dispatch, getState) => {
   //   // parse form data for submission
   //   let newProductListing = {
@@ -59,15 +80,9 @@ export const addListItemRequest = () => {
 // fetchUserLists
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
 export const fetchUserLists = () => {
-  return function (dispatch) {
-    let dataSource = new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2
-    });
-    // let lists = getState().lists.lists;
-    // console.log(lists);
-    dataSource = dataSource.cloneWithRows([{listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"}])
+  return function ( dispatch ) {
 
-    dispatch(updateListsState(dataSource))
+    dispatch( updateListsState( determineLists( tempData ) ) )
     // const url = '/products/' + id;
     // helper.getHelper(url)
     // .then(resp => {
@@ -81,54 +96,65 @@ export const fetchUserLists = () => {
     // });
   };
 };
-const updateListsState = (updatedState) => {
+
+const determineLists = ( allItems ) => {
+  let listsObj = {};
+  let listsArr = [];
+  allItems.map(( item ) => {
+    listsObj[ item.category ] = true;
+  })
+  for( var key in listsObj ){
+    listsArr.push( key );
+  }
+  return listsArr;
+};
+
+const updateListsState = ( updatedState ) => {
   return {
     type: types.UPDATE_LISTS_STATE,
-    allListsDataSource: updatedState,
-    allListsIsLoading: false
+    id: "category",
+    category: updatedState
+    // isLoading: false
+  }
+}
+
+export const updateFilter = ( filterString ) => {
+
+  return function ( dispatch ) {
+    dispatch( updateFilterState( filterString ) )
+  }
+}
+
+const updateFilterState = ( updatedState ) => {
+  return {
+    type: types.UPDATE_FILTER_STATE,
+    filter: updatedState
   }
 }
 
 // fetchUserSingleList
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
-export const fetchUserSingleList = (listName, listing) => {
-  return function (dispatch) {
-    let dataSource = new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2
-    });
-
-    let tempData = [
-      {
-        listTitle: "Movies",
-        listItemTitle: "Captain America",
-        listItemSubtitle: 2006,
-        links: {
-          wikipedia: "",
-          imdb: "",
-        }
-      },
-      {
-        listTitle: "Movies",
-        listItemTitle: "The Breakfast Club",
-        listItemSubtitle: 1985,
-        links: {
-          wikipedia: "",
-          imdb: "",
-        }
-      }
-    ];
-    dataSource = dataSource.cloneWithRows(tempData)
-
-    dispatch(updateSingleListState(dataSource))
-
+export const fetchUserSingleList = ( listName, category ) => {
+  return function ( dispatch, getState ) {
+    let filter = getState().lists.filter;
+    let updatedSelectedItems = filterAllItems( tempData, filter );
+    dispatch( updateSingleListState( updatedSelectedItems ) );
   };
 };
 
-const updateSingleListState = (updatedState) => {
+const filterAllItems = ( allItems, filterCategory ) => {
+  let condition = ( item ) => {
+    return item.category === filterCategory;
+  }
+  return allItems.filter( condition );
+
+}
+
+const updateSingleListState = ( updatedState ) => {
   return {
     type: types.UPDATE_SINGLE_LIST_STATE,
-    singleListDataSource: updatedState,
-    isLoading: false
+    selectedItems: updatedState
+    // isLoading: false
   }
 };
 
@@ -163,7 +189,7 @@ const updateSingleListState = (updatedState) => {
 
 
 
-export const setMarkerCenter = (pos) => {
+export const setMarkerCenter = ( pos ) => {
   return {
     type: types.SETMARKERCENTER,
     payload: pos

@@ -1,15 +1,10 @@
 import * as types from '../constants/ActionTypes';
+import { update } from "react";
 
 /**
  *  Reducers related to Lists
  */
 export default (state = {
-  // lists: [ {listTitle: "Movies"}, {listTitle: "Music"}, {listTitle: "Books"} ],   // State for all lists
-  // listItems: [],
-  // allListsIsLoading: true,
-  // singleListIsLoading: true,
-  // allListsDataSource: null,
-  // singleListDataSource: null
   user: {
     username: 'back2future',
     email: 'marty@mcfly.com',
@@ -17,44 +12,20 @@ export default (state = {
   },
   ui: {
 //there will only be "isLoading" in final store, not a version for "allLists" and "singleLists"
-    allListsIsLoading: true,
-    singleListIsLoading: true
+    isLoading: true
   },
   lists: {
-    category: [
-      'book', 'music', 'movies'
-    ],
-    allItems: [
-      {
-        title: 'Where the red fern grows',
-        category: 'books',
-        content: 'Wilson Rawls'
-      },
-      {
-        title: 'Say Anything',
-        category: 'movies',
-        content: '1989'
-      },
-      {
-        title: 'Blame it on the Rain',
-        category: 'movies',
-        content: 'Milli Vanilli'
-      }
-    ]
+    category: ['default'],
+    allItems: []
   },
-  filter: 'music',
+  filter: '',
   selectedItems: [
     {
       title: 'Blame it on the Rain',
       category: 'movies',
       content: 'Milli Vanilli'
     }
-  ],
-//dataSource will not be in the final store
-  dataSource: {
-    allListsDataSource: [],
-    singleListDataSource: []
-  }
+  ]
 }, action) => {
   switch (action.type) {
 
@@ -67,27 +38,29 @@ export default (state = {
     case types.UPDATE_LISTS_STATE:
     return {
       ...state,
-      dataSource: {
-        allListsDataSource: action.allListsDataSource,
-        singleListDataSource: []
-      },
-      ui: {
-        allListsIsLoading: action.allListsIsLoading,
-        singleListIsLoading: true
+      lists: {
+        ...state.lists,
+        category: action.category
       }
+      // ui: {
+      //   isLoading: action.allListsIsLoading,
+      // }
     };
+
+    case types.UPDATE_FILTER_STATE:
+    return {
+      ...state,
+      filter: action.filter
+    };
+
 
     case types.UPDATE_SINGLE_LIST_STATE:
     return {
       ...state,
-      dataSource: {
-        singleListDataSource: action.singleListDataSource,
-        allListsIsLoading: []
-      },
-      ui: {
-        singleListIsLoading: action.singleListIsLoading,
-        allListsIsLoading: true
-      }
+      selectedItems: action.selectedItems
+      // ui: {
+      //   isLoading: action.singleListIsLoading,
+      // }
     };
 
     default:

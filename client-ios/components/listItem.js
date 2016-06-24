@@ -10,21 +10,21 @@ import {
 import styles from '../styles/styles.js'
 
 export default class ListItem extends Component {
-  constructor(props){
-    super(props);
+  constructor( props ){
+    super( props );
   };
 
   render() {
     return (
-      <View style={styles.listContainer}>
+      <View style={ styles.listContainer }>
         {/*<Image source={{uri: this.props.thumbnail}}
           style={styles.thumbnail} />*/}
-        <View style={styles.rightContainer}>
-          <Text style={styles.listTitle}>{this.props.itemTitle}</Text>
+        <View style={ styles.rightContainer }>
+          <Text style={ styles.listTitle }>{ this.props.itemTitle }</Text>
           {/*{
-            if(this.props.subTitle){
-              <Text style={styles.listAuthor}>{this.props.item.authors}</Text>
-            }
+            if(this.props.subTitle){*/}
+              <Text style={ styles.listAuthor }>{ this.props.itemContent }</Text>
+            {/*}
           }*/}
         </View>
       </View>
