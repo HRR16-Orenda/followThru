@@ -24,13 +24,47 @@ const fetchItemSuccess = (items: Object[]) => {
 export const fetchItem = () => {
   return (dispatch) => {
     dispatch(fetchItemRequest());
-    get('/items')
+    get('/api/items')
       .then(res => {
         dispatch(fetchItemSuccess(res.data));
       })
       .catch(err => {
         console.error(err);
         dispatch(fetchItemFailure());
+      });
+  }
+};
+
+
+const fetchUserRequest = () => {
+  return {
+    type: types.FETCH_USER_REQUEST
+  }
+};
+
+const fetchUserFailure = () => {
+  return {
+    type: types.FETCH_USER_FAILURE
+  }
+};
+
+const fetchUserSuccess = (users: Object[]) => {
+  return {
+    type: types.FETCH_USER_SUCCESS,
+    payload: users
+  }
+};
+
+export const fetchUser = () => {
+  return (dispatch) => {
+    dispatch(fetchUserRequest());
+    get('/api/users')
+      .then(res => {
+        dispatch(fetchUserSuccess(res.data));
+      })
+      .catch(err => {
+        console.error(err);
+        dispatch(fetchUserFailure());
       });
   }
 };

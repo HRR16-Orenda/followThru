@@ -7,10 +7,11 @@ class UsersComponent extends Component {
   }
 
   componentWillMount(){
-    // this.props.fetchUpdatedProducts();
+    this.props.fetchUser();
   }
 
   render () {
+    const { users } = this.props;
     return (
       <div>
         <div className="row">
@@ -33,28 +34,16 @@ class UsersComponent extends Component {
               </thead>
 
               <tbody>
-                {/*Map function here*/}
-                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
-                  <td>$0.87</td>
-                  <td>false</td>
-                  <td><a className="waves-effect waves-light btn">Remove</a></td>
-                </tr>
-                <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-                  <td>$3.76</td>
-                  <td>false</td>
-                  <td><a className="waves-effect waves-light btn">Remove</a></td>
-                </tr>
-                <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-                  <td>$7.00</td>
-                  <td>false</td>
-                  <td><a className="waves-effect waves-light btn">Remove</a></td>
-                </tr>
+                {users.map(user => {
+                  return (
+                    <tr>
+                      <td>{user.id}</td>
+                      <td>{user.email}</td>
+                      <td>{user.username}</td>
+                      <td><a className="waves-effect waves-light btn">Remove</a></td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>

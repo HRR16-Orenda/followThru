@@ -6,13 +6,12 @@ class ItemsComponent extends Component {
     super(props);
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.fetchItem();
   }
 
   render () {
     const { items } = this.props;
-    console.log(items);
     return (
       <div>
         <div className="row">

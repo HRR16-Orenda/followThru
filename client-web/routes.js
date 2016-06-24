@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRedirect } from 'react-router';
 import CoreLayout from './components/CoreLayout';
-import Users from './components/UsersComponent.js';
+import Users from './containers/UsersContainer.js';
 import Items from './containers/ItemsContainer.js';
 // import ManageListings from './containers/ManageListingsContainer';
 // import Login from './containers/LoginContainer';

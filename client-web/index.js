@@ -1,5 +1,5 @@
 // @flow
-if (module.hot) {
+if (module.hot && process.env.NODE_ENV !== 'production') {
   module.hot.accept();
 }
 
@@ -10,7 +10,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import Root from './containers/RootContainer.js';
 import 'jquery';
 import 'materialize-css';
-import 'materialize-css/dist/css/materialize.min.css';
+require('materialize-css/dist/css/materialize.min.css');
 import Store from './store/configureStore.js';
 
 var store = Store();
