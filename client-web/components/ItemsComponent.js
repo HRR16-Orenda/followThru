@@ -44,7 +44,7 @@ class ItemsComponent extends Component {
                       <td>{item.id}</td>
                       <td>{item.title}</td>
                       <td>{item.content}</td>
-                      <td>{item.completed}</td>
+                      <td>{item.completed.toString()}</td>
                       <td>{item.category}</td>
                       <td>{item.subcategory}</td>
                       <td>{item.url}</td>

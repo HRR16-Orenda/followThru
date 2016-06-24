@@ -238,27 +238,11 @@ describe('API Test', function () {
   });
 
   describe('Default Route', function () {
-    it('should return status code 404 respond to GET request', function (done) {
+    it('should return status code 302 respond to GET request', function (done) {
       supertest.get('/whatever')
       .end(function (err, res) {
         if(err) {return done(err)}
-        expect(res.status).to.equal(404);
-        done();
-      });
-    });
-    it('should return status code 404 respond to POST request', function (done) {
-      supertest.post('/whatever')
-      .end(function (err, res) {
-        if(err) {return done(err)}
-        expect(res.status).to.equal(404);
-        done();
-      });
-    });
-    it('should return status code 404 respond to DELETE request', function (done) {
-      supertest.del('/whatever')
-      .end(function (err, res) {
-        if(err) {return done(err)}
-        expect(res.status).to.equal(404);
+        expect(res.status).to.equal(302);
         done();
       });
     });

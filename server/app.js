@@ -22,7 +22,7 @@ app.use('/items', items);
 
 // default route
 app.use('/*', function (req, res) {
-  res.sendStatus(404);
+  res.redirect('/');
 });
 
 module.exports = app;
