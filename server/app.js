@@ -17,8 +17,8 @@ console.log(path.resolve(__dirname, '../build'));
 
 // Router
 // app.use('/', index); // nothing here for now
-app.use('/users', users);
-app.use('/items', items);
+app.use('/api/users', users);
+app.use('/api/items', items);
 
 // default route
 app.use('/*', function (req, res) {

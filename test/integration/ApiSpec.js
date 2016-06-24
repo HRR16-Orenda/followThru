@@ -46,7 +46,7 @@ describe('API Test', function () {
     server.close(done);
   });
 
-  describe('Route /items', function () {
+  describe('Route /api/items', function () {
 
     before(function (done) {
       sequelize.sync({force: true}).then(function () {
@@ -63,7 +63,7 @@ describe('API Test', function () {
 
     describe('GET request', function () {
       it('should return status code 200', function (done) {
-        supertest.get('/items')
+        supertest.get('/api/items')
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res.status).to.equal(200);
@@ -72,7 +72,7 @@ describe('API Test', function () {
       });
 
       it('should return array with json type', function (done) {
-        supertest.get('/items')
+        supertest.get('/api/items')
         .set('Accept', 'application/json')
         .end(function (err, res) {
           if(err) {return done(err)}
@@ -94,7 +94,7 @@ describe('API Test', function () {
 
     describe('POST request', function () {
       it('should return status code 500 if invalid data send', function (done) {
-        supertest.post('/items')
+        supertest.post('/api/items')
         .send({user: 'fake'})
         .expect(500)
         .end(done);
@@ -102,10 +102,10 @@ describe('API Test', function () {
     });
   });
 
-  describe('Route /users', function () {
+  describe('Route /api/users', function () {
     describe('GET request', function () {
       it('should return status code 200', function (done) {
-        supertest.get('/users')
+        supertest.get('/api/users')
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res.status).to.equal(200);
@@ -113,7 +113,7 @@ describe('API Test', function () {
         });
       });
       it('should return user data when id params specified', function (done) {
-        supertest.get('/users/1')
+        supertest.get('/api/users/1')
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res).to.be.ok;
@@ -126,7 +126,7 @@ describe('API Test', function () {
         });
       });
       it('should return error msg when id param is not correct', function (done) {
-        supertest.get('/users/5')
+        supertest.get('/api/users/5')
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res).to.be.ok;
@@ -135,7 +135,7 @@ describe('API Test', function () {
         });
       });
       it('should return whole user data', function (done) {
-        supertest.get('/users')
+        supertest.get('/api/users')
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res).to.be.ok;
@@ -152,7 +152,7 @@ describe('API Test', function () {
     describe('POST request', function () {
       var returnUser;
       it('should return added user data when succeed', function (done) {
-        supertest.post('/users')
+        supertest.post('/api/users')
         .send(userToBeAdded3)
         .end(function (err, res) {
           if(err) {return done(err)}
@@ -166,7 +166,7 @@ describe('API Test', function () {
         });
       });
       it('should store added user data', function (done) {
-        supertest.get('/users/3')
+        supertest.get('/api/users/3')
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res).to.be.ok;
@@ -179,7 +179,7 @@ describe('API Test', function () {
         });
       });
       it('should return with 400 status code when body contains incorrect data', function (done) {
-        supertest.post('/users')
+        supertest.post('/api/users')
         .send({})
         .end(function (err, res) {
           if(err) {return done(err)}
@@ -198,7 +198,7 @@ describe('API Test', function () {
           username: 'test3test',
           password: 'testtest'
         };
-        supertest.put('/users/3')
+        supertest.put('/api/users/3')
         .send(updatedUser)
         .end(function (err, res) {
           if(err) {return done(err)}
@@ -214,15 +214,15 @@ describe('API Test', function () {
 
     describe('DELETE request', function () {
       it('should return response', function (done) {
-        supertest.del('/users/3')
+        supertest.del('/api/users/3')
         .end(function (err, res) {
           if(err) {return done(err);}
           expect(res).to.be.ok;
           done();
         });
       });
-      it('should remove user', function () {
-        supertest.get('/users')
+      it('should remove user', function (done) {
+        supertest.get('/api/users')
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res).to.be.ok;
@@ -240,6 +240,22 @@ describe('API Test', function () {
   describe('Default Route', function () {
     it('should return status code 302 respond to GET request', function (done) {
       supertest.get('/whatever')
+      .end(function (err, res) {
+        if(err) {return done(err)}
+        expect(res.status).to.equal(302);
+        done();
+      });
+    });
+    it('should return status code 302 respond to POST request', function (done) {
+      supertest.post('/whatever')
+      .end(function (err, res) {
+        if(err) {return done(err)}
+        expect(res.status).to.equal(302);
+        done();
+      });
+    });
+    it('should return status code 302 respond to DELETE request', function (done) {
+      supertest.del('/whatever')
       .end(function (err, res) {
         if(err) {return done(err)}
         expect(res.status).to.equal(302);

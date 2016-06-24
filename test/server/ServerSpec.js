@@ -66,119 +66,119 @@ describe('Server-side Unit test', function () {
   });
 
   describe('Controller Test', function () {
-    describe.skip('item controller', function () {
-      describe('getAll() method', function () {
-        it('should be a function that takes 1 argument', function(){
-          expect(item.getAll).to.be.a('function');
-          expect(item.getAll.length).to.equal(1);
-        });
-        it('should invoke the callback with items upon success', function(done) {
-          findAllStub2.resolves(expectedArray)
-          item.getAll(function(err, items) {
-            expect(items).to.deep.equal(expectedArray);
-            expect(err).to.equal(null);
-            done();
-          });
-        });
-        it('should invoke the callback with error upon failure', function(done) {
-          findAllStub2.rejects(expectedError)
-          item.getAll(function(err, items) {
-            expect(err).to.deep.equal(expectedError);
-            done();
-          });
-        });
-      });
-
-      describe('addOne() method', function () {
-        it('should be a function that takes 2 arguments', function(){
-          expect(item.addOne).to.be.a('function');
-          expect(item.addOne.length).to.equal(2);
-        });
-        it('should invoke the callback with item upon success', function(done) {
-          createStub2.resolves(expectedObject)
-          item.addOne({}, function(err, item) {
-            expect(item).to.deep.equal(expectedObject);
-            expect(err).to.equal(null);
-            done();
-          });
-        });
-        it('should invoke the callback with error upon failure', function(done) {
-          createStub2.rejects(expectedError)
-          item.addOne({}, function(err, item) {
-            expect(err).to.deep.equal(expectedError);
-            done();
-          });
-        });
-      });
-
-      describe('getOne() method', function () {
-        it('should be a function that takes 2 arguments', function(){
-          expect(item.getOne).to.be.a('function');
-          expect(item.getOne.length).to.equal(2);
-        });
-        it('should invoke the callback with item upon success', function(done) {
-          findOneStub2.resolves(expectedObject)
-          item.getOne(1, function(err, item) {
-            expect(item).to.deep.equal(expectedObject);
-            expect(err).to.equal(null);
-            done();
-          });
-        });
-        it('should invoke the callback with error upon failure', function(done) {
-          findOneStub2.rejects(expectedError)
-          item.getOne(1, function(err, item) {
-            expect(err).to.deep.equal(expectedError);
-            done();
-          });
-        });
-      });
-
-      describe('removeOne() method', function () {
-        it('should be a function that takes 2 arguments', function(){
-          expect(item.removeOne).to.be.a('function');
-          expect(item.removeOne.length).to.equal(2);
-        });
-        it('should invoke the callback with deleted item upon success', function(done) {
-          destroyStub2.resolves(1)
-          item.removeOne(1, function(err, item) {
-            expect(item).to.deep.equal(1);
-            expect(err).to.equal(null);
-            done();
-          });
-        });
-        it('should invoke the callback with error upon failure', function(done) {
-          destroyStub2.rejects(expectedError)
-          item.removeOne(1, function(err, item) {
-            expect(err).to.deep.equal(expectedError);
-            done();
-          });
-        });
-      });
-
-      //need to work on this one more
-      describe('updateOne() method', function () {
-        it('should be a function that takes 3 arguments', function(){
-          expect(item.updateOne).to.be.a('function');
-          expect(item.updateOne.length).to.equal(3);
-        });
-        it('should invoke the callback with updated item upon success', function(done) {
-          updateStub2.resolves([1, [{key: 'value'}]])
-          item.updateOne(1, {}, function(err, item) {
-            if (err) {return done(err);}
-            expect(item).to.deep.equal({key: 'value'});
-            expect(err).to.equal(null);
-            done();
-          });
-        });
-        it('should invoke the callback with error upon failure', function(done) {
-          updateStub2.rejects(expectedError)
-          item.updateOne(1, {}, function(err, item) {
-            expect(err).to.deep.equal(expectedError);
-            done();
-          });
-        });
-      });
-    });
+    // describe.skip('item controller', function () {
+    //   describe('getAll() method', function () {
+    //     it('should be a function that takes 1 argument', function(){
+    //       expect(item.getAll).to.be.a('function');
+    //       expect(item.getAll.length).to.equal(1);
+    //     });
+    //     it('should invoke the callback with items upon success', function(done) {
+    //       findAllStub2.resolves(expectedArray)
+    //       item.getAll(function(err, items) {
+    //         expect(items).to.deep.equal(expectedArray);
+    //         expect(err).to.equal(null);
+    //         done();
+    //       });
+    //     });
+    //     it('should invoke the callback with error upon failure', function(done) {
+    //       findAllStub2.rejects(expectedError)
+    //       item.getAll(function(err, items) {
+    //         expect(err).to.deep.equal(expectedError);
+    //         done();
+    //       });
+    //     });
+    //   });
+    //
+    //   describe('addOne() method', function () {
+    //     it('should be a function that takes 2 arguments', function(){
+    //       expect(item.addOne).to.be.a('function');
+    //       expect(item.addOne.length).to.equal(2);
+    //     });
+    //     it('should invoke the callback with item upon success', function(done) {
+    //       createStub2.resolves(expectedObject)
+    //       item.addOne({}, function(err, item) {
+    //         expect(item).to.deep.equal(expectedObject);
+    //         expect(err).to.equal(null);
+    //         done();
+    //       });
+    //     });
+    //     it('should invoke the callback with error upon failure', function(done) {
+    //       createStub2.rejects(expectedError)
+    //       item.addOne({}, function(err, item) {
+    //         expect(err).to.deep.equal(expectedError);
+    //         done();
+    //       });
+    //     });
+    //   });
+    //
+    //   describe('getOne() method', function () {
+    //     it('should be a function that takes 2 arguments', function(){
+    //       expect(item.getOne).to.be.a('function');
+    //       expect(item.getOne.length).to.equal(2);
+    //     });
+    //     it('should invoke the callback with item upon success', function(done) {
+    //       findOneStub2.resolves(expectedObject)
+    //       item.getOne(1, function(err, item) {
+    //         expect(item).to.deep.equal(expectedObject);
+    //         expect(err).to.equal(null);
+    //         done();
+    //       });
+    //     });
+    //     it('should invoke the callback with error upon failure', function(done) {
+    //       findOneStub2.rejects(expectedError)
+    //       item.getOne(1, function(err, item) {
+    //         expect(err).to.deep.equal(expectedError);
+    //         done();
+    //       });
+    //     });
+    //   });
+    //
+    //   describe('removeOne() method', function () {
+    //     it('should be a function that takes 2 arguments', function(){
+    //       expect(item.removeOne).to.be.a('function');
+    //       expect(item.removeOne.length).to.equal(2);
+    //     });
+    //     it('should invoke the callback with deleted item upon success', function(done) {
+    //       destroyStub2.resolves(1)
+    //       item.removeOne(1, function(err, item) {
+    //         expect(item).to.deep.equal(1);
+    //         expect(err).to.equal(null);
+    //         done();
+    //       });
+    //     });
+    //     it('should invoke the callback with error upon failure', function(done) {
+    //       destroyStub2.rejects(expectedError)
+    //       item.removeOne(1, function(err, item) {
+    //         expect(err).to.deep.equal(expectedError);
+    //         done();
+    //       });
+    //     });
+    //   });
+    //
+    //   //need to work on this one more
+    //   describe('updateOne() method', function () {
+    //     it('should be a function that takes 3 arguments', function(){
+    //       expect(item.updateOne).to.be.a('function');
+    //       expect(item.updateOne.length).to.equal(3);
+    //     });
+    //     it('should invoke the callback with updated item upon success', function(done) {
+    //       updateStub2.resolves([1, [{key: 'value'}]])
+    //       item.updateOne(1, {}, function(err, item) {
+    //         if (err) {return done(err);}
+    //         expect(item).to.deep.equal({key: 'value'});
+    //         expect(err).to.equal(null);
+    //         done();
+    //       });
+    //     });
+    //     it('should invoke the callback with error upon failure', function(done) {
+    //       updateStub2.rejects(expectedError)
+    //       item.updateOne(1, {}, function(err, item) {
+    //         expect(err).to.deep.equal(expectedError);
+    //         done();
+    //       });
+    //     });
+    //   });
+    // });
 
     describe('user controller', function () {
       describe('getAll() method', function () {
@@ -399,99 +399,99 @@ describe('Server-side Unit test', function () {
       });
     });
 
-    describe.skip('/items Route', function () {
-      describe('getAllItems()', function(){
-        it('should call items.getAll() method and send items back', function () {
-          var stub = this.sandbox.stub(item, 'getAll');
-          stub.callArgsWith(0, null, expectedArray);
-          stub.returns([]);
-          //check this logic
-          handler.getAllItems(req, res);
-          expect(spyOnSend.calledWith(expectedArray)).to.equal(true);
-          expect(stub.calledOnce).to.equal(true);
-        });
-        it('should send status code of 400 when item.getAll() throws an error', function() {
-          var stub = this.sandbox.stub(item, 'getAll');
-          stub.callsArgWith(0, expectedError);
-
-          handler.getAllUsers(req,res);
-          expect(spyOnSendStatus.calledWith(400)).to.equal(true);
-        });
-      });
-
-      describe('addOneItem()', function(){
-        it('should call items.addOne() method and send added item back', function () {
-          var stub = this.sandbox.stub(item, 'addOne');
-          stub.callArgsWith(0, null, expectedObject);
-          stub.returns(expectedObject);
-
-          handler.addOneItem(req, res);
-          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
-          expect(stub.calledOnce).to.equal(true);
-        });
-        it('should send status code of 400 when item.addOne() throws an error', function() {
-          var stub = this.sandbox.stub(item, 'addOne');
-          stub.callsArgWith(1, expectedError);
-
-          handler.addOneItem(req,res);
-          expect(spyOnSendStatus.calledWith(400)).to.equal(true);
-        });
-      });
-
-      describe('removeOneItem()', function(){
-        it('should call items.addOne() method and send removed item back', function () {
-          var stub = this.sandbox.stub(item, 'removeOne');
-          stub.callArgsWith(1, null, expectedObject);
-
-          handler.removeOneUser(req, res);
-          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
-          expect(stub.calledOnce).to.equal(true);
-        });
-        it('should send status code of 400 when item.removeOne() throws an error', function() {
-          var stub = this.sandbox.stub(item, 'removeOne');
-          stub.callsArgWith(1, expectedError);
-
-          handler.removeOneItem(req, res);
-          expect(spyOnSendStatus.calledWith(400)).to.equal(true);
-
-        });
-      });
-
-      describe('updateOneItem()', function () {
-        it('should call item.updateOne() method and send updated item back', function () {
-          var stub = this.sandbox.stub(item, 'updateOne');
-          stub.callsArgWith(2, null, expectedObject);
-
-          handler.updateOneItem(req, res);
-          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
-          expect(stub.calledOnce).to.equal(true);
-        });
-        it('should send 400 status code when item.updateOne() throw error', function () {
-          var stub = this.sandbox.stub(item, 'updateOne');
-          stub.callsArgWith(2, expectedError);
-
-          handler.updateOneItem(req, res);
-          expect(spyOnSendStatus.calledWith(400)).to.equal(true);
-        });
-      });
-
-      describe('getOneItem()', function () {
-        it('should call item.getOne() method and send item back', function () {
-          var stub = this.sandbox.stub(user, 'getOne');
-          stub.callsArgWith(1, null, expectedObject);
-
-          handler.getOneUser(req, res);
-          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
-          expect(stub.calledOnce).to.equal(true);
-        });
-        it('should send 400 status code when item.getOne() throw error', function () {
-          var stub = this.sandbox.stub(item, 'getOne');
-          stub.callsArgWith(1, expectedError);
-
-          handler.getOneItem(req, res);
-          expect(spyOnSendStatus.calledWith(400)).to.equal(true);
-        });
-      });
-    });
+    // describe.skip('/items Route', function () {
+    //   describe('getAllItems()', function(){
+    //     it('should call items.getAll() method and send items back', function () {
+    //       var stub = this.sandbox.stub(item, 'getAll');
+    //       stub.callArgsWith(0, null, expectedArray);
+    //       stub.returns([]);
+    //       //check this logic
+    //       handler.getAllItems(req, res);
+    //       expect(spyOnSend.calledWith(expectedArray)).to.equal(true);
+    //       expect(stub.calledOnce).to.equal(true);
+    //     });
+    //     it('should send status code of 400 when item.getAll() throws an error', function() {
+    //       var stub = this.sandbox.stub(item, 'getAll');
+    //       stub.callsArgWith(0, expectedError);
+    //
+    //       handler.getAllUsers(req,res);
+    //       expect(spyOnSendStatus.calledWith(400)).to.equal(true);
+    //     });
+    //   });
+    //
+    //   describe('addOneItem()', function(){
+    //     it('should call items.addOne() method and send added item back', function () {
+    //       var stub = this.sandbox.stub(item, 'addOne');
+    //       stub.callArgsWith(0, null, expectedObject);
+    //       stub.returns(expectedObject);
+    //
+    //       handler.addOneItem(req, res);
+    //       expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+    //       expect(stub.calledOnce).to.equal(true);
+    //     });
+    //     it('should send status code of 400 when item.addOne() throws an error', function() {
+    //       var stub = this.sandbox.stub(item, 'addOne');
+    //       stub.callsArgWith(1, expectedError);
+    //
+    //       handler.addOneItem(req,res);
+    //       expect(spyOnSendStatus.calledWith(400)).to.equal(true);
+    //     });
+    //   });
+    //
+    //   describe('removeOneItem()', function(){
+    //     it('should call items.addOne() method and send removed item back', function () {
+    //       var stub = this.sandbox.stub(item, 'removeOne');
+    //       stub.callArgsWith(1, null, expectedObject);
+    //
+    //       handler.removeOneUser(req, res);
+    //       expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+    //       expect(stub.calledOnce).to.equal(true);
+    //     });
+    //     it('should send status code of 400 when item.removeOne() throws an error', function() {
+    //       var stub = this.sandbox.stub(item, 'removeOne');
+    //       stub.callsArgWith(1, expectedError);
+    //
+    //       handler.removeOneItem(req, res);
+    //       expect(spyOnSendStatus.calledWith(400)).to.equal(true);
+    //
+    //     });
+    //   });
+    //
+    //   describe('updateOneItem()', function () {
+    //     it('should call item.updateOne() method and send updated item back', function () {
+    //       var stub = this.sandbox.stub(item, 'updateOne');
+    //       stub.callsArgWith(2, null, expectedObject);
+    //
+    //       handler.updateOneItem(req, res);
+    //       expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+    //       expect(stub.calledOnce).to.equal(true);
+    //     });
+    //     it('should send 400 status code when item.updateOne() throw error', function () {
+    //       var stub = this.sandbox.stub(item, 'updateOne');
+    //       stub.callsArgWith(2, expectedError);
+    //
+    //       handler.updateOneItem(req, res);
+    //       expect(spyOnSendStatus.calledWith(400)).to.equal(true);
+    //     });
+    //   });
+    //
+    //   describe('getOneItem()', function () {
+    //     it('should call item.getOne() method and send item back', function () {
+    //       var stub = this.sandbox.stub(user, 'getOne');
+    //       stub.callsArgWith(1, null, expectedObject);
+    //
+    //       handler.getOneUser(req, res);
+    //       expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+    //       expect(stub.calledOnce).to.equal(true);
+    //     });
+    //     it('should send 400 status code when item.getOne() throw error', function () {
+    //       var stub = this.sandbox.stub(item, 'getOne');
+    //       stub.callsArgWith(1, expectedError);
+    //
+    //       handler.getOneItem(req, res);
+    //       expect(spyOnSendStatus.calledWith(400)).to.equal(true);
+    //     });
+    //   });
+    // });
   });
 });
