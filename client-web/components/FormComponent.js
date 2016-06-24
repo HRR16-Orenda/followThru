@@ -10,32 +10,52 @@ class FormComponent extends Component {
   componentWillMount(){
   }
 
+  renderForm () {
+    const { fields, fieldType } = this.props;
+      return _.map(fields[fieldType], (field, key) => {
+        if(key === 'isAdmin') {
+          return (
+            <div className="input-field col s6" key={key}>
+              <label>
+                <input id={key} type="checkbox" className="validate" {...field} />
+                <label for={key} onClick={e => field.onChange(!field.value)}>{key}</label>
+              </label>
+            </div>
+          )
+        } else if(key === 'completed') {
+          return (
+            <div className="input-field col s6" key={key}>
+              <label>
+                <input id={key} type="checkbox" className="validate" {...field} />
+                <label for={key} onClick={e => field.onChange(!field.value)}>{key}</label>
+              </label>
+            </div>
+          )
+        } else {
+          return (
+            <div className="input-field col s6" key={key}>
+              <input type="text" className="validate" {...field}/>
+              <label for={key}>{key}</label>
+            </div>
+          )
+        }
+      })
+  }
+
   render () {
     const {
       fields,
       handleSubmit,
       resetForm,
       invalid,
-      fieldType
+      onSubmit
     } = this.props;
+    console.log('this props', this.props);
     return (
       <div className="row">
         <form onSubmit={handleSubmit} className="col s12">
           <div className="row">
-            { fieldType === 'item' ?
-              _.map(fields.item, (field, key) => (
-                <div className="input-field col s6" key={key}>
-                  <input type="text" className="validate" {...field}/>
-                  <label for={key}>{key}</label>
-                </div>
-              )) :
-              _.map(fields.user, (field, key) => (
-                <div className="input-field col s6" key={key}>
-                  <input type="text" className="validate" {...field}/>
-                  <label for={key}>{key}</label>
-                </div>
-              ))
-            }
+            {this.renderForm()}
           </div>
           <div>
             <button className="waves-effect waves-light btn" type="submit" >
