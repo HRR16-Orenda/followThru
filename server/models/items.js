@@ -27,12 +27,11 @@ var Item = sequelize.define('item', {
   },
   subcategory: {
     type: Sequelize.STRING,
-    allowNull: false
-    //defaultValue: //this needs javascript to determine
+    defaultValue: 'To do'
   },
   url: {
     type: Sequelize.STRING,
-    allowNull: true
+    defaultValue: 'null'
   }
 }, {underscored: true});
 //sequelize automatically creates created_at and updated_at
