@@ -26,37 +26,6 @@ let tempFilter = "Music";
 
 // addNewListItem
 // This should add a new item to a specific list
-export const addNewListItem = ( fields ) => {
-  // return (dispatch, getState) => {
-  //   // parse form data for submission
-  //   let newProductListing = {
-  //     ...fields,
-  //     author: getState().user.username,
-  //     locationInfo: {
-  //       address: fields.locationInfo,
-  //       marker: {
-  //         lat: getState().ui.location.marker.lat,
-  //         lng: getState().ui.location.marker.lng
-  //       }
-  //     }
-  //   };
-  //
-  //   dispatch(addListingRequest());
-  //   let url = '/products';
-  //   helper.postHelper(url, newProductListing)
-  //   .then(resp => {
-  //     let newItem = resp.data;
-  //     dispatch(addListingSuccess(newItem));
-  //     dispatch(toggleViewAddNewListingForm());
-  //     dispatch(push('/listings'));
-  //   })
-  //   .catch(err => {
-  //     console.error(err);
-  //     dispatch(addListingFailure());
-  //     dispatch(push('/listings'));
-  //   });
-  // };
-};
 
 // addListItemRequest
 export const addListItemRequest = () => {
@@ -71,6 +40,38 @@ export const addListItemRequest = () => {
 // addListItemFailure
 
 
+export const userTypeStart = (text) => {
+  return {
+    type: types.USER_TYPE_START,
+    userInput: {
+      title: text
+    }
+  }
+}
+
+
+export const userCategorySelected = (category) => {
+  return function(dispatch) {
+    dispatch(updateUserInputCategory(category))
+    dispatch(addNewListItem())
+  }
+}
+
+export const updateUserInputCategory = (category) => {
+  return {
+    type: types.UPDATE_USER_INPUT_CATEGORY,
+    userInput: {
+      category: category
+    }
+  }
+}
+
+export const addNewListItem = () => {
+  return {
+    type: types.ADD_NEW_LIST_ITEM
+  }
+}
+
 // listItemEdited
 // This should update the list item in the user's list (can be done from the actionConfirmation page or on the singleListScreen)
 
@@ -80,9 +81,9 @@ export const addListItemRequest = () => {
 // fetchUserLists
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
 export const fetchUserLists = () => {
-  return function ( dispatch ) {
-
-    dispatch( updateListsState( determineLists( tempData ) ) )
+  return function ( dispatch, getState ) {
+    let data = getState().lists.lists.allItems
+    dispatch( updateListsState( determineLists( data ) ) )
     // const url = '/products/' + id;
     // helper.getHelper(url)
     // .then(resp => {
@@ -137,7 +138,8 @@ const updateFilterState = ( updatedState ) => {
 export const fetchUserSingleList = ( listName, category ) => {
   return function ( dispatch, getState ) {
     let filter = getState().lists.filter;
-    let updatedSelectedItems = filterAllItems( tempData, filter );
+    let data = getState().lists.lists.allItems
+    let updatedSelectedItems = filterAllItems( data, filter );
     dispatch( updateSingleListState( updatedSelectedItems ) );
   };
 };
@@ -182,22 +184,3 @@ const updateSingleListState = ( updatedState ) => {
 // verifySuccess
 
 // verifyFailure
-
-
-
-
-
-
-
-export const setMarkerCenter = ( pos ) => {
-  return {
-    type: types.SETMARKERCENTER,
-    payload: pos
-  };
-};
-
-export const toggleViewAddNewListingForm = () => {
-  return {
-    type: types.UI_TOGGLE_VIEW_ADDNEWLISTINGFORM
-  };
-};

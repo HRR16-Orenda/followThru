@@ -12,7 +12,8 @@ export default (state = {
   },
   ui: {
 //there will only be "isLoading" in final store, not a version for "allLists" and "singleLists"
-    isLoading: true
+    isLoading: true,
+    isUserTyping: false
   },
   lists: {
     category: ['default'],
@@ -21,11 +22,16 @@ export default (state = {
   filter: '',
   selectedItems: [
     {
-      title: 'Blame it on the Rain',
-      category: 'movies',
+      title: 'Captain America',
+      category: 'Movies',
       content: 'Milli Vanilli'
     }
-  ]
+  ],
+  userInput: {
+    title: '',
+    category: '',
+    content: ''
+  }
 }, action) => {
   switch (action.type) {
 
@@ -62,6 +68,45 @@ export default (state = {
       //   isLoading: action.singleListIsLoading,
       // }
     };
+
+    case types.USER_TYPE_START:
+    return {
+      ...state,
+      ui: {
+        isUserTyping: true
+      },
+      userInput: {
+        ...state.userInput,
+        title: action.userInput.title
+      }
+    }
+
+    case types.ADD_NEW_LIST_ITEM:
+    var allItemsCopy = state.lists.allItems.slice();
+    allItemsCopy.push(state.userInput);
+    return {
+      ...state,
+      lists: {
+        ...state.lists,
+        allItems: allItemsCopy
+      }
+
+    }
+
+    case types.UPDATE_USER_INPUT_CATEGORY:
+    return {
+      ...state,
+      userInput: {
+        ...state.userInput,
+        category: action.userInput.category
+      }
+    }
+
+    // case types.USER_CATEGORY_SELECTED:
+    // return {
+    //   ...state,
+    //   lists:
+    // }
 
     default:
     return state;

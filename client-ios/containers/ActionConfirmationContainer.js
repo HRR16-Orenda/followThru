@@ -3,21 +3,18 @@ import * as actions from '../actions/index.js';
 import ActionConfirmationScreen from '../components/actionConfirmationScreen.js';
 
 const mapDispatchToProps = (dispatch) => {
-  console.log('all lists dispatch ', dispatch);
   return {
-    fetchUserLists: () => {
-      console.log('in the container');
-      dispatch(actions.fetchUserLists());
+    userCategorySelected: (category) => {
+      dispatch(actions.userCategorySelected(category));
     }
   };
 };
 
-const mapStateToProps = (state, ownProps) => {
-  console.log('all lists state ', state);
-  console.log('all lists ownProps ', ownProps);
+// TODO Have it revert back to addList afterwards
+function mapStateToProps(state, ownProps) {
   return {
-    user: "test",
-    products: [1,2,3]
+    isUserTyping: state.lists.ui.isUserTyping,
+    lists: state.lists.allItems
   };
 }
 

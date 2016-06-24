@@ -4,27 +4,35 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput
 } from 'react-native';
 // import styles from '../styles/styles.js';
 // import Header from './header.js';
 import { Actions } from 'react-native-router-flux';
 import Footer from './footer.js';
-import InputBox from './inputBox.js';
 import CategoryPicker from './categoryPicker.js';
+
+// TODO remove this?
+// import InputBox from './inputBox.js';
+
 
 export default class AddScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    }
   }
   render() {
     return (
       <View style={styles.container}>
           <Text style={{marginTop: 100, alignSelf: "center"}}>What would you like to add?</Text>
-          <InputBox />
-          <CategoryPicker />
+          <TextInput
+            style = {{height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20, marginLeft: 20, marginRight: 20}}
+            autoFocus={true}
+            onChangeText={(text) => this.props.userTypeStart({text})}
+            onSubmitEditing={(text) => this.props.userTypeEnd({text})}
+          />
+
+
 
         <View style={styles.container}>
           <Footer />
@@ -33,7 +41,7 @@ export default class AddScreen extends Component {
     );
   }
 }
-
+          // {this.props.isUserTyping ? <CategoryPicker /> : null}
 
 var styles = StyleSheet.create({
    container: {
