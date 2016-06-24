@@ -2,7 +2,7 @@ import createLogger from 'redux-logger'
 import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import { routerMiddleware, push } from 'react-router-redux';
-import rootReducer from '../reducers/rootReducer.js';
+import rootReducer from '../reducers/RootReducer.js';
 import { createStore, applyMiddleware, compose } from 'redux';
 
 const router = routerMiddleware(browserHistory);
