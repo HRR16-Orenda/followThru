@@ -7,10 +7,11 @@ class ItemsComponent extends Component {
   }
 
   componentWillMount(){
-    // this.props.fetchUpdatedProducts();
+    this.props.fetchItem();
   }
 
   render () {
+    const { items } = this.props;
     return (
       <div>
         <div className="row">
@@ -32,42 +33,24 @@ class ItemsComponent extends Component {
                   <th data-field="category">Category</th>
                   <th data-field="sub-category">Sub Category</th>
                   <th data-field="url">url</th>
-                  <th data-field="remove">Remove</th>
                 </tr>
               </thead>
 
               <tbody>
-                {/*Map function here*/}
-                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>false</td>
-                  <td><a className="waves-effect waves-light btn">Remove</a></td>
-                </tr>
-                <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$3.76</td>
-                  <td>false</td>
-                  <td><a className="waves-effect waves-light btn">Remove</a></td>
-                </tr>
-                <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$0.87</td>
-                  <td>$7.00</td>
-                  <td>false</td>
-                  <td><a className="waves-effect waves-light btn">Remove</a></td>
-                </tr>
+                {items.map(item => {
+                  return (
+                    <tr>
+                      <td>{item.id}</td>
+                      <td>{item.title}</td>
+                      <td>{item.content}</td>
+                      <td>{item.completed.toString()}</td>
+                      <td>{item.category}</td>
+                      <td>{item.subcategory}</td>
+                      <td>{item.url}</td>
+                      <td><a className="waves-effect waves-light btn">Remove</a></td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>
