@@ -32,8 +32,6 @@ export default class AddScreen extends Component {
             onSubmitEditing={(text) => this.props.userTypeEnd({text})}
           />
 
-
-
         <View style={styles.container}>
           <Footer />
         </View>
