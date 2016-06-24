@@ -183,22 +183,3 @@ const updateSingleListState = ( updatedState ) => {
 // verifySuccess
 
 // verifyFailure
-
-
-
-
-
-
-
-export const setMarkerCenter = ( pos ) => {
-  return {
-    type: types.SETMARKERCENTER,
-    payload: pos
-  };
-};
-
-export const toggleViewAddNewListingForm = () => {
-  return {
-    type: types.UI_TOGGLE_VIEW_ADDNEWLISTINGFORM
-  };
-};

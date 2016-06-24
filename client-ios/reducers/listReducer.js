@@ -87,6 +87,7 @@ export default (state = {
     return {
       ...state,
       lists: {
+        ...state.lists,
         allItems: allItemsCopy
       }
 
