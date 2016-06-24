@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import Form from '../containers/FormContainer.js';
+import Table from '../components/TableComponent.js';
 
 class ItemsComponent extends Component {
   constructor(props){
@@ -13,6 +14,18 @@ class ItemsComponent extends Component {
 
   render () {
     const { items, submitHandler } = this.props;
+    const fields = [
+      'No.',
+      'Title',
+      'Content',
+      'Completed',
+      'Category',
+      'Sub Category',
+      'Url',
+      'Created At',
+      'Author',
+      'Recommended By'
+    ];
     return (
       <div>
         <div className="row">
@@ -23,40 +36,11 @@ class ItemsComponent extends Component {
           </div>
         </div>
         <Form onSubmit={submitHandler} fieldType="item"/>
-        <div className="row">
-          <div className="col s12">
-            <table className="highlight">
-              <thead>
-                <tr>
-                  <th data-field="id">No.</th>
-                  <th data-field="title">Title</th>
-                  <th data-field="content">Content</th>
-                  <th data-field="completed">Completed</th>
-                  <th data-field="category">Category</th>
-                  <th data-field="sub-category">Sub Category</th>
-                  <th data-field="url">url</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {items.map(item => {
-                  return (
-                    <tr>
-                      <td>{item.id}</td>
-                      <td>{item.title}</td>
-                      <td>{item.content}</td>
-                      <td>{item.completed.toString()}</td>
-                      <td>{item.category}</td>
-                      <td>{item.subcategory}</td>
-                      <td>{item.url}</td>
-                      <td><a className="waves-effect waves-light btn">Remove</a></td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <Table
+          items={items}
+          fields={fields}
+          type="items"
+        />
       </div>
     )
   }

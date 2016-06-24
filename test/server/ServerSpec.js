@@ -46,22 +46,22 @@ describe('Server-side Unit test', function () {
 
   describe('Helper Method test', function () {
     it('cleanUser should refine user data', function () {
-      var expected = {
-        email: 'test',
-        username: 'test',
-        id: 3
-      };
       var input = {
         get: function(field) {
           var user = {};
           user.id = 3;
           user.email = 'test';
           user.username = 'test';
-          user.password = 'test;'
+          user.password = 'test';
+          user.created_at = 'test';
+          user.isAdmin = false;
           return user[field];
         }
       };
-      expect(helper.cleanUser(input)).to.deep.equal(expected);
+      expect(helper.cleanUser(input)).to.have.property('email');
+      expect(helper.cleanUser(input)).to.have.property('username');
+      expect(helper.cleanUser(input)).to.have.property('isAdmin');
+      expect(helper.cleanUser(input)).to.not.have.property('password');
     });
   });
 

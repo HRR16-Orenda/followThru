@@ -18,7 +18,6 @@ class FormComponent extends Component {
       invalid,
       fieldType
     } = this.props;
-    // const fields = ['username', 'email', 'password', 'isAdmin'];
     return (
       <div className="row">
         <form onSubmit={handleSubmit} className="col s12">
@@ -39,10 +38,10 @@ class FormComponent extends Component {
             }
           </div>
           <div>
-            <button type="submit" >
+            <button className="waves-effect waves-light btn" type="submit" >
               Submit
             </button>
-            <button type="button" onClick={resetForm}>
+            <button className="waves-effect waves-light btn" type="button" onClick={resetForm}>
               Clear Values
             </button>
           </div>
