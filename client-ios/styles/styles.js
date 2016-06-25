@@ -7,20 +7,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  button: {
-    borderWidth: 2,
-    borderColor: 'black'
-  },
+
 
 /*********************************
 ListView Specific Styles
@@ -60,6 +47,37 @@ ListView Specific Styles
   loading: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+/*********************************
+Signup Screen Specific Styles
+*********************************/
+  signUpContainer: {
+    justifyContent: 'center',
+    marginTop: 50,
+    padding: 20,
+    backgroundColor: '#ffffff',
+  },
+  signUpTitle: {
+    fontSize: 30,
+    alignSelf: 'center',
+    marginTop: 80,
+    marginBottom: 30
+  },
+  signUpButtonText: {
+    fontSize: 16,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  signUpButton: {
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
     justifyContent: 'center'
   }
 });

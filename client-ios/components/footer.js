@@ -25,9 +25,12 @@ export default class Footer extends Component {
         <Icon.TabBarItem
           title="Add"
           iconName="ios-create-outline"
-          selectedIconName="ios-create-outline"
+          selectedIconName="ios-create"
           onPress = {() => {
             Actions.addScreen();
+            this.setState({
+              selectedTab:'Lists'
+            });
           }}
         >
           {/*<View style={styles.container}><AddScreen /></View>*/}
@@ -45,6 +48,18 @@ export default class Footer extends Component {
           }}
         >
           {/*<ListScreen />*/}
+        </Icon.TabBarItem>
+        <Icon.TabBarItem
+          title="Settings"
+          iconName="ios-settings-outline"
+          selectedIconName="ios-settings"
+          onPress = {() => {
+            Actions.settingsScreen();
+            this.setState({
+              selectedTab:'Settings'
+            });
+          }}
+        >
         </Icon.TabBarItem>
       </TabBarIOS>
     );
