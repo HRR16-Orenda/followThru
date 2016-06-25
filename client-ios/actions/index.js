@@ -196,34 +196,34 @@ reducers should have no side effects.*/
 
 }
 
-const requestLogin( creds ) {
+const requestLogin = function( creds ) {
   return {
-    type: LOGIN_REQUEST,
+    type: types.LOGIN_REQUEST,
     isFetching: true,
     isAuthenticated: false,
     creds
   }
-};
+}
 
-const receiveLogin( user ) {
+const receiveLogin = function( user ) {
   return {
-    type: ,
+    type: types.LOGIN_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
     id_token: user.id_token
   }
 }
 
-const loginError( message ) {
+const loginError = function( message ) {
   return {
-    type: LOGIN_FAILURE,
+    type: types.LOGIN_FAILURE,
     isFetching: false,
     isAuthenticated: false,
     message
   }
 }
 
-// makeSignupRequest
+// makeSignupRequest ----> This will be similar to the above login flow;
 
 // signupSuccess
 
@@ -240,17 +240,17 @@ export const logoutUser = function() {
   }
 }
 
-function requestLogout() {
+const requestLogout = function() {
   return {
-    type: LOGOUT_REQUEST,
+    type: types.LOGOUT_REQUEST,
     isFetching: true,
     isAuthenticated: true
   }
 }
 
-function receiveLogout() {
+const receiveLogout = function() {
   return {
-    type: LOGOUT_SUCCESS,
+    type: types.LOGOUT_SUCCESS,
     isFetching: false,
     isAuthenticated: false
   }
