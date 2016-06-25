@@ -6,6 +6,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     userCategorySelected: (category) => {
       dispatch(actions.userCategorySelected(category));
+    },
+    toggle: () => {
+      console.log('anything');
+      dispatch(actions.toggle());
     }
   };
 };

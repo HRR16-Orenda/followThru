@@ -97,6 +97,12 @@ export const toggleShow = () => {
     type: types.TOGGLE_SHOW
   }
 }
+
+export const toggle = () => {
+  return function (dispatch) {
+    dispatch(toggleShow());
+  }
+}
 // ******* EDIT ITEMS SECTION ******
 
 // listItemEdited

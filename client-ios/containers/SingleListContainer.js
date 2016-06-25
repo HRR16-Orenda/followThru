@@ -20,9 +20,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserSingleList: (listName, listing) => {
       dispatch(actions.fetchUserSingleList());
-    },
-    selectTab: (tab) => {
-      dispatch(actions.selectTab(tab));
     }
   };
 };
@@ -33,8 +30,7 @@ const mapStateToProps = (state, ownProps) => {
     lists: state.lists.lists.allItems,
     listItems: state.lists.selectedItems,
     dataSource: generateDataSource(state.lists.selectedItems),
-    isLoading: state.lists.ui.isLoading,
-    tabSelected: state.lists.tabSelected
+    isLoading: state.lists.ui.isLoading
   };
 }
 

@@ -48,7 +48,7 @@ export default class ActionConfirmationScreen extends Component {
           </Text>
         </View>
       }
-        <View style={styles.container}>
+        <View style={styles.container} onPress={() => this.props.toggle()}>
           <Footer />
         </View>
       </View>

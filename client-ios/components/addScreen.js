@@ -21,13 +21,7 @@ export default class AddScreen extends Component {
   constructor(props) {
     super(props);
   }
-
-  componentDidMount() {
-    this.props.fetchInitialDatabase();  
-  }
-
   render() {
-    console.log('addScreenprops', this.props);
     return (
       <View style={styles.container}>
           <Text style={{marginTop: 100, alignSelf: "center"}}>What would you like to add?</Text>

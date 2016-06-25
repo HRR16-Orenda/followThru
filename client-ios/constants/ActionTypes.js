@@ -3,6 +3,7 @@ export const USER_TYPE_START = 'USER_TYPE_START';
 export const UPDATE_USER_INPUT_CATEGORY = 'UPDATE_USER_INPUT_CATEGORY';
 export const ADD_NEW_LIST_ITEM = 'ADD_NEW_LIST_ITEM';
 export const TOGGLE_SHOW = 'TOGGLE_SHOW';
+export const TOGGLE = 'TOGGLE';
 
 // server/database interactions
 export const ADD_NEW_LIST_ITEM_DATABASE_REQUEST = 'ADD_NEW_LIST_ITEM_DATABASE_REQUEST';
