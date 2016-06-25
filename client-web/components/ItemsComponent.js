@@ -13,7 +13,7 @@ class ItemsComponent extends Component {
   }
 
   render () {
-    const { items, submitHandler, removeItem } = this.props;
+    const { items, addItem, removeItem } = this.props;
     const fields = [
       'No.',
       'Title',
@@ -35,7 +35,7 @@ class ItemsComponent extends Component {
             </h3>
           </div>
         </div>
-        <Form onSubmit={submitHandler} fieldType="item"/>
+        <Form onSubmit={addItem} fieldType="item"/>
         <Table
           items={items}
           fields={fields}

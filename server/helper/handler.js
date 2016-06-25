@@ -19,8 +19,9 @@ module.exports = {
   },
 
   addOneItem: function(req, res) {
-    var item = req.body;
-    item.addOne(item, function(err, newItem) {
+    console.log('req body from client', req.body);
+    var newItem = req.body;
+    item.addOne(newItem, function(err, newItem) {
       if(err) {return res.sendStatus(400);}
       res.status(201).send(newItem);
     })

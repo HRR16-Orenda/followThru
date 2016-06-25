@@ -13,7 +13,7 @@ class UsersComponent extends Component {
   }
 
   render () {
-    const { users, submitHandler, removeUser } = this.props;
+    const { users, addUser, removeUser } = this.props;
     const fields = [
       'No.',
       'Username',
@@ -30,7 +30,7 @@ class UsersComponent extends Component {
             </h3>
           </div>
         </div>
-        <Form onSubmit={submitHandler} fieldType="user"/>
+        <Form onSubmit={addUser} fieldType="user"/>
         <Table
           items={users}
           fields={fields}

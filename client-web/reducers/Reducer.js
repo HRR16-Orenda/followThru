@@ -29,6 +29,20 @@ export default (state = {
       ...state,
       users: _.filter(state.users, item => item.id.toString() !== action.payload)
     }
+    case types.ADD_USER_SUCCESS:
+    let newUserList = state.users.slice();
+    newUserList.push(action.payload);
+    return {
+      ...state,
+      users: newUserList
+    }
+    case types.ADD_ITEM_SUCCESS:
+    let newItemList = state.items.slice();
+    newItemList.push(action.payload);
+    return {
+      ...state,
+      items: newItemList
+    }
     default:
     return state;
   }
