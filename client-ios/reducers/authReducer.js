@@ -8,13 +8,29 @@ export default (state = {
   isAuthenticated: false
 }, action) => {
   switch (action.type) {
-    case types.UPDATE_LISTS_STATE:
-    return {
-      ...state,
-      lists: {
-        ...state.lists,
-        category: action.category
-      }
+    case types.LOGIN_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        isAuthenticated: false
+        user: action.creds
+    };
+    case types.LOGIN_SUCCESS:
+      return {
+        ...state,
+        lists: {}
+    };
+
+    case types.LOGIN_FAILURE:
+      return {
+        ...state,
+        lists: {}
+    };
+
+    case types.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        lists: {}
     };
 
     default:
