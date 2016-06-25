@@ -23,6 +23,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteListItem: (item) => {
       dispatch(actions.deleteListItem(item));
+    },
+    toggleCheckOnListItem: (item) => {
+      dispatch(actions.toggleCheckOnListItem(item));
     }
   };
 };

@@ -108,6 +108,24 @@ export const toggle = () => {
 // listItemEdited
 // This should update the list item in the user's list (can be done from the actionConfirmation page or on the singleListScreen)
 
+export const toggleCheckOnListItem = (item) => {
+  return function(dispatch, getState) {
+    let stateData = getState().lists.lists.allItems;
+    let updatedList = findAndToggleCheck(item, stateData)
+    dispatch(fetchUserLists(updatedList))
+  }
+}
+
+const findAndToggleCheck = (itemToToggle, array) => {
+  var itemToToggleIndex = array.map(function(item) {
+    return item.id
+  }).indexOf(itemToToggle.id);
+
+  itemToToggle.crossedOff = !itemToToggle.crossedOff
+  array[itemToToggleIndex] = itemToToggle
+  return array;
+}
+
 export const deleteListItem = (item) => {
   return function(dispatch) {
     dispatch(deleteListItemLocal(item));

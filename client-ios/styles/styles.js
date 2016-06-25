@@ -33,8 +33,17 @@ ListView Specific Styles
       fontSize: 20,
       marginBottom: 8
   },
+  listTitleCrossedOff: {
+    fontSize: 20,
+    marginBottom: 8,
+    textDecorationLine: 'line-through'
+  },
   listAuthor: {
       color: '#656565'
+  },
+  listAuthorCrossedOff: {
+    color: '#656565',
+    textDecorationLine: 'line-through'
   },
   separator: {
        height: 1,
