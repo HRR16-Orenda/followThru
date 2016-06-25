@@ -7,7 +7,7 @@ import authReducer from './authReducer.js';
  *  About Reducer in Redux : http://redux.js.org/docs/basics/Reducers.html
  */
 const rootReducer = combineReducers({
-  form: formReducer, // Reducer provided by 'redux-form' module
+  // form: formReducer, 
   lists: listReducer,
   auth: authReducer
 });

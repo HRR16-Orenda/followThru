@@ -22,7 +22,7 @@ let User = t.struct({
 
 const options = {};
 
-export default class settingsScreen extends Component {
+export default class SettingsScreen extends Component {
 
   render() {
     return (

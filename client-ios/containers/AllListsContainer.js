@@ -26,7 +26,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actions.fetchUserLists());
     },
     updateFilter: ( filterString ) => {
-      console.log( "from the container: ", filterString );
       dispatch( actions.updateFilter( filterString ) );
     }
 
@@ -34,13 +33,13 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const data = state;
-  return {
+    return {
     user: state.lists.user.username,
     lists: state.lists.lists.allItems,
-    // dataSource: state.lists.dataSource.allListsDataSource,
     dataSource: generateDataSource(state.lists.lists.category),
-    isLoading: state.lists.ui.isLoading
+    isLoading: state.lists.ui.isLoading,
+    isFetching: state.auth.isFetching,
+    isAuthenticated: state.auth.isAuthenticated
   };
 }
 
