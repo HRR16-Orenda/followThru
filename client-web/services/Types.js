@@ -16,6 +16,7 @@ export type ItemType = {
   subcategory: string;
   url: string;
   recommended_by_id: any;
-  user_id: number;
-  created_at: string
+  user_id: any;
+  created_at: string;
+  updated_at: string
 }

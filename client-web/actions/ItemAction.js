@@ -56,6 +56,7 @@ const addItemSuccess = (item: ItemType) => {
 };
 
 export const addItem = (item: Object) => {
+  console.log(item);
   return (dispatch) => {
     dispatch(addItemRequest());
     post('/api/items', item)
