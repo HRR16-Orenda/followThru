@@ -13,9 +13,9 @@ import Footer from './footer.js';
 import styles from '../styles/styles.js';
 
 import t from 'tcomb-form-native';
-var Form = t.form.Form;
+let Form = t.form.Form;
 
-var User = t.struct({
+let User = t.struct({
   username: t.String,
   password: t.String
 });
