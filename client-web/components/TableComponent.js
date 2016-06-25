@@ -44,7 +44,14 @@ class TableComponent extends Component {
             <td>{item.email}</td>
             <td>{item.isAdmin.toString()}</td>
             <td>{item.created_at}</td>
-            <td><a className="waves-effect waves-light btn">Remove</a></td>
+            <td>
+              <a
+                className="waves-effect waves-light btn"
+                onClick={() => clickHandler(item.id.toString())}
+              >
+                Remove
+              </a>
+            </td>
           </tr>
         )
       })

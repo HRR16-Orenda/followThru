@@ -9,6 +9,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     submitHandler: (data) => {
       console.log('WAWA submitted!!!!', data.user);
+    },
+    removeUser: (id: string) => {
+      dispatch(actions.removeUser(id))
+      console.log('WAWA removed!!!!!!');
     }
   };
 };

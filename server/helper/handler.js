@@ -75,7 +75,7 @@ module.exports = {
     var id = req.params.id;
     user.removeOne(id, function (err, user) {
       if(err) {return res.sendStatus(400).send();}
-      res.send(user);
+      res.sendStatus(200);
     });
   },
 

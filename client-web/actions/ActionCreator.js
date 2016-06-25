@@ -101,3 +101,36 @@ export const removeItem = (id: string) => {
       })
   }
 }
+
+const removeUserRequest = () => {
+  return {
+    type: types.REMOVE_USER_REQUEST
+  }
+};
+
+const removeUserFailure = () => {
+  return {
+    type: types.REMOVE_USER_FAILURE
+  }
+};
+
+const removeUserSuccess = (id: string) => {
+  return {
+    type: types.REMOVE_USER_SUCCESS,
+    payload: id
+  }
+};
+
+export const removeUser = (id: string) => {
+  return (dispatch) => {
+    dispatch(removeUserRequest());
+    del('/api/users' + '/' + id)
+      .then(res => {
+        dispatch(removeUserSuccess(id));
+      })
+      .catch(err => {
+        console.error(err);
+        dispatch(removeUserFailure());
+      })
+  }
+}

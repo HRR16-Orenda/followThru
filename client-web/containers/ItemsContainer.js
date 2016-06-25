@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeItem: (id: string) => {
       dispatch(actions.removeItem(id))
-      console.log('WAWA removed!!!!!!');
+      console.log('WAWA removsed!s!!!!!');
     }
   };
 };

@@ -365,7 +365,7 @@ describe('Server-side Unit test', function () {
           stub.callsArgWith(1, null, expectedObject);
 
           handler.removeOneUser(req, res);
-          expect(spyOnSend.calledWith(expectedObject)).to.equal(true);
+          expect(spyOnSendStatus.calledWith(200)).to.equal(true);
           expect(stub.calledOnce).to.equal(true);
         });
         it('should send 400 status code when user.removeOne() throw error', function () {

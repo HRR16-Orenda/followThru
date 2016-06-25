@@ -13,7 +13,7 @@ class UsersComponent extends Component {
   }
 
   render () {
-    const { users, submitHandler } = this.props;
+    const { users, submitHandler, removeUser } = this.props;
     const fields = [
       'No.',
       'Username',
@@ -35,6 +35,7 @@ class UsersComponent extends Component {
           items={users}
           fields={fields}
           type="users"
+          clickHandler={removeUser}
         />
       </div>
     )
