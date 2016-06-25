@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   TouchableHighlight
 } from 'react-native';
 // import styles from '../styles/styles.js';
@@ -20,8 +21,11 @@ export default class ActionConfirmationScreen extends Component {
 // TODO have some sort of confirmation when clicked
 
   render() {
+    console.log('title', this.props.userInput);
     return (
+
       <View style={styles.container}>
+      {this.props.toggleShow ?
         <View style = {{height: 50, borderColor: 'gray', borderWidth: 1, marginLeft: 35, marginRight: 35, marginTop: 100, alignItems: "center"}}>
           <Text>Add to...</Text>
           <View style={{flex: 3, flexDirection: "row"}}>
@@ -36,7 +40,14 @@ export default class ActionConfirmationScreen extends Component {
             </TouchableHighlight>
           </View>
         </View>
-
+        :
+        <View style={styles.container}>
+          <Image source={{uri:'http://cliparts.co/cliparts/pio/dBR/piodBRjiE.png'}} style={styles.checkmark} />
+          <Text style={{marginTop: 30, alignSelf: "center"}}>
+            Your item '{this.props.userInput}' has been added to {this.props.category}
+          </Text>
+        </View>
+      }
         <View style={styles.container}>
           <Footer />
         </View>
@@ -54,5 +65,12 @@ var styles = StyleSheet.create({
    inputBox: {
      flex: 1,
      height: 30
+   },
+   checkmark: {
+     marginTop: 30,
+     width: 160,
+     height: 160,
+     alignSelf: "center",
+     backgroundColor: 'transparent'
    }
 });

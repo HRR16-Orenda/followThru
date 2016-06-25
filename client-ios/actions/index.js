@@ -4,9 +4,9 @@ import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
 
+
 // ******* ADD ITEM SECTION ******
 
-// updates the global state as the user types in input form
 export const userTypeStart = (text) => {
   return {
     type: types.USER_TYPE_START,
@@ -22,6 +22,7 @@ export const userCategorySelected = (category) => {
     dispatch(updateUserInputCategory(category));
     dispatch(addNewListItem());
     dispatch(addNewListItemDatabase());
+    dispatch(toggleShow())
   }
 }
 
@@ -91,6 +92,11 @@ export const addNewListItemDatabaseSuccess = () => {
   }
 }
 
+export const toggleShow = () => {
+  return {
+    type: types.TOGGLE_SHOW
+  }
+}
 // ******* EDIT ITEMS SECTION ******
 
 // listItemEdited

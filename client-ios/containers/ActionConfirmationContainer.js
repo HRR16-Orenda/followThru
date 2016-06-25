@@ -14,7 +14,10 @@ const mapDispatchToProps = (dispatch) => {
 function mapStateToProps(state, ownProps) {
   return {
     isUserTyping: state.lists.ui.isUserTyping,
-    lists: state.lists.allItems
+    lists: state.lists.allItems,
+    userInput: state.lists.userInput.title,
+    category: state.lists.userInput.category,
+    toggleShow: state.lists.toggleShow
   };
 }
 

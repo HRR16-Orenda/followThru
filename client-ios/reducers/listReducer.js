@@ -32,7 +32,8 @@ export default (state = {
     category: '',
     content: ''
   },
-  tabSelected: ''
+  tabSelected: '',
+  toggleShow: true
 }, action) => {
   switch (action.type) {
 
@@ -42,6 +43,12 @@ export default (state = {
       tabSelected: action.selected
     }
 
+    case types.TOGGLE_SHOW:
+    return {
+      ...state,
+        toggleShow: !state.toggleShow
+    }
+    
     case types.FETCH_USER_LISTS:
     return {
       ...state,
