@@ -108,9 +108,6 @@ export const toggle = () => {
 // listItemEdited
 // This should update the list item in the user's list (can be done from the actionConfirmation page or on the singleListScreen)
 
-// deleteListItem
-// This should remove an item from a specific list
-
 export const deleteListItem = (item) => {
   return function(dispatch) {
     dispatch(deleteListItemLocal(item));
