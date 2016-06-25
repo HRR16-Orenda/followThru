@@ -112,12 +112,6 @@ export default (state = {
       }
     }
 
-    // case types.USER_CATEGORY_SELECTED:
-    // return {
-    //   ...state,
-    //   lists:
-    // }
-
     default:
     return state;
   };
