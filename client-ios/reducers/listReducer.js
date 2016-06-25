@@ -31,9 +31,16 @@ export default (state = {
     title: '',
     category: '',
     content: ''
-  }
+  },
+  toggleShow: true
 }, action) => {
   switch (action.type) {
+
+    case types.TOGGLE_SHOW:
+    return {
+      ...state,
+        toggleShow: !state.toggleShow
+    }
 
     case types.FETCH_USER_LISTS:
     return {

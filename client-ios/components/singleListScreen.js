@@ -61,7 +61,7 @@ export default class SingleListScreen extends Component {
               style={styles.listView}
             />
           <View style={styles.container}>
-            <Footer />
+            <Footer  />
           </View>
         </View>
       );

@@ -21,11 +21,6 @@ export default class AddScreen extends Component {
   constructor(props) {
     super(props);
   }
-
-  componentDidMount() {
-    this.props.fetchInitialDatabase();  
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -37,13 +32,12 @@ export default class AddScreen extends Component {
           />
 
         <View style={styles.container}>
-          <Footer />
+          <Footer/>
         </View>
       </View>
     );
   }
 }
-          // {this.props.isUserTyping ? <CategoryPicker /> : null}
 
 var styles = StyleSheet.create({
    container: {
