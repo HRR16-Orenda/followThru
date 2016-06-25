@@ -67,7 +67,7 @@ var styles = StyleSheet.create({
      height: 30
    },
    checkmark: {
-     marginTop: 30,
+     marginTop: 100,
      width: 160,
      height: 160,
      alignSelf: "center",
