@@ -27,6 +27,7 @@ export default class AddScreen extends Component {
   }
 
   render() {
+    console.log('addScreenprops', this.props);
     return (
       <View style={styles.container}>
           <Text style={{marginTop: 100, alignSelf: "center"}}>What would you like to add?</Text>
@@ -37,13 +38,12 @@ export default class AddScreen extends Component {
           />
 
         <View style={styles.container}>
-          <Footer />
+          <Footer/>
         </View>
       </View>
     );
   }
 }
-          // {this.props.isUserTyping ? <CategoryPicker /> : null}
 
 var styles = StyleSheet.create({
    container: {

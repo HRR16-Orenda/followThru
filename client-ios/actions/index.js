@@ -4,7 +4,6 @@ import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
 
-
 // ******* ADD ITEM SECTION ******
 
 // updates the global state as the user types in input form

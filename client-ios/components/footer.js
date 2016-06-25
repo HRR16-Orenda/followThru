@@ -20,7 +20,7 @@ export default class Footer extends Component {
     // }
   }
   render() {
-    console.log(this.props);
+    console.log('the props', this.props);
     return (
       <TabBarIOS>
         <Icon.TabBarItem

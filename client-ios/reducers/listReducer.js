@@ -31,9 +31,16 @@ export default (state = {
     title: '',
     category: '',
     content: ''
-  }
+  },
+  tabSelected: ''
 }, action) => {
   switch (action.type) {
+
+    case types.SELECT_TAB:
+    return {
+      ...state,
+      tabSelected: action.selected
+    }
 
     case types.FETCH_USER_LISTS:
     return {
