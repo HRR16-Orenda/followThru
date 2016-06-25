@@ -15,13 +15,14 @@ import { Actions } from 'react-native-router-flux';
 export default class Footer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedTab: 'Add'
-    }
+    // this.state = {
+    //   selectedTab: 'Add'
+    // }
   }
   render() {
+    console.log(this.props);
     return (
-      <TabBarIOS selectedTab={this.state.selectedTab}>
+      <TabBarIOS>
         <Icon.TabBarItem
           title="Add"
           iconName="ios-create-outline"
@@ -33,21 +34,20 @@ export default class Footer extends Component {
             });
           }}
         >
-          {/*<View style={styles.container}><AddScreen /></View>*/}
-          <View style={styles.container}><Text>Home Tab</Text></View>
+
+
         </Icon.TabBarItem>
         <Icon.TabBarItem
           title="Lists"
           iconName="ios-albums-outline"
           selectedIconName="ios-albums"
+          selected={this.props.tabSelected === 'lists'}
           onPress = {() => {
             Actions.allListsScreen();
-            this.setState({
-              selectedTab:'Lists'
-            });
+            this.props.selectTab('lists');
           }}
         >
-          {/*<ListScreen />*/}
+
         </Icon.TabBarItem>
         <Icon.TabBarItem
           title="Settings"
