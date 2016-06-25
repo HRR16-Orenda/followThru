@@ -41,7 +41,7 @@ export default (state = {
       lists: action.fetchUserLists
     };
 
-    case types.UPDATE_LISTS_STATE:
+    case types.UPDATE_LISTS_CATEGORY:
     return {
       ...state,
       lists: {
@@ -52,6 +52,15 @@ export default (state = {
       //   isLoading: action.allListsIsLoading,
       // }
     };
+
+    case types.UPDATE_ALL_LISTS_STATE:
+    return {
+      ...state,
+      lists: {
+        ...state.lists,
+        allItems:action.allLists
+      }
+    }
 
     case types.UPDATE_FILTER_STATE:
     return {
@@ -90,8 +99,9 @@ export default (state = {
         ...state.lists,
         allItems: allItemsCopy
       }
-
     }
+
+    // updateAllListsState
 
     case types.UPDATE_USER_INPUT_CATEGORY:
     return {

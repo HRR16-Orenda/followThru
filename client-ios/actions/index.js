@@ -54,6 +54,21 @@ export const userCategorySelected = (category) => {
   return function(dispatch) {
     dispatch(updateUserInputCategory(category))
     dispatch(addNewListItem())
+
+// call getState to grab the userinput
+    fetch('http://localhost:3000/api/items/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    }).then((response) => {
+      console.log('***************************** heres the response ', response);
+      console.log('####################### ', response.body);
+    })
+    .catch((error) => {
+      console.log('there was a big error ????????????????????????????', error)
+    })
   }
 }
 
@@ -83,18 +98,25 @@ export const addNewListItem = () => {
 export const fetchUserLists = () => {
   return function ( dispatch, getState ) {
     let data = getState().lists.lists.allItems
-    dispatch( updateListsState( determineLists( data ) ) )
-    // const url = '/products/' + id;
-    // helper.getHelper(url)
-    // .then(resp => {
-    //   var updatedState = resp.data;
-    //   if (resp.status == 200) {
-    //     Array.isArray(updatedState) ? dispatch(updateProductsState(updatedState)) : dispatch(updateProductDetail(updatedState));
-    //   }
-    // })
-    // .catch(err => {
-    //   console.error(err);
-    // });
+
+    // console.log('let me see that data ', data);
+//localhost:8081
+    fetch('http://localhost:3000/api/items/', {
+      method: 'GET'
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((responseData) => {
+      console.log("*************** ", responseData);
+      dispatch( updateListsCategory( determineLists( responseData ) ) )
+      dispatch( updateAllListsState( responseData ) )
+    })
+    .catch((error) => {
+      console.log('there was a big error ????????????????????????????', error)
+    })
+
+
   };
 };
 
@@ -110,12 +132,20 @@ const determineLists = ( allItems ) => {
   return listsArr;
 };
 
-const updateListsState = ( updatedState ) => {
+// Update this to just say category
+const updateListsCategory = ( updatedState ) => {
   return {
-    type: types.UPDATE_LISTS_STATE,
+    type: types.UPDATE_LISTS_CATEGORY,
     id: "category",
     category: updatedState
     // isLoading: false
+  }
+}
+
+export const updateAllListsState = (updatedState) => {
+  return {
+    type: types.UPDATE_ALL_LISTS_STATE,
+    allLists: updatedState
   }
 }
 
@@ -136,9 +166,12 @@ const updateFilterState = ( updatedState ) => {
 // fetchUserSingleList
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
 export const fetchUserSingleList = ( listName, category ) => {
+  // The filter is not currently being set
   return function ( dispatch, getState ) {
     let filter = getState().lists.filter;
     let data = getState().lists.lists.allItems
+
+    console.log('single data ', data);
     let updatedSelectedItems = filterAllItems( data, filter );
     dispatch( updateSingleListState( updatedSelectedItems ) );
   };
