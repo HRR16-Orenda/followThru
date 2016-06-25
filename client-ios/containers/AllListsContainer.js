@@ -6,7 +6,7 @@ import { ListView } from 'react-native';
 
 const generateDataSource = (list) => {
   let inputList = [];
-  console.log('lets see that list ', list)
+  // console.log('lets see that list ', list)
   list.map((item) => {
     inputList.push(
       { listTitle: item }
@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actions.fetchUserLists());
     },
     updateFilter: ( filterString ) => {
-      console.log( "from the container: ", filterString );
+      // console.log( "from the container: ", filterString );
       dispatch( actions.updateFilter( filterString ) );
     }
 

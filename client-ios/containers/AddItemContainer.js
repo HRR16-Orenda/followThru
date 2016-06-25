@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => {
     userTypeEnd: (text) => {
       Actions.actionConfirmationScreen()
       // dispatch(actions.userTypeEnd(text));
+    },
+    fetchInitialDatabase: () => {
+      dispatch(actions.fetchInitialDatabase());
     }
   };
 };
