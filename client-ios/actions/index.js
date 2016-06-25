@@ -51,20 +51,33 @@ export const userTypeStart = (text) => {
 
 
 export const userCategorySelected = (category) => {
-  return function(dispatch) {
-    dispatch(updateUserInputCategory(category))
-    dispatch(addNewListItem())
+  return function(dispatch, getState) {
+    dispatch(updateUserInputCategory(category));
+    dispatch(addNewListItem());
 
-// call getState to grab the userinput
+    let user = getState().lists.user;
+    let userInput = getState().lists.userInput
+    // console.log('********** the user ******** ', user)
+    // console.log('********** the userInput ******** ', userInput)
+
+    let newInput = {
+      title: userInput.title,
+      content: 'Add something here',
+      category: userInput.category,
+      subcategory: 'favorite',
+      url: null,
+      user_id: user.user_id
+    }
+    // console.log('********** the newInput ******** ', newInput)
     fetch('http://localhost:3000/api/items/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-      }
+      },
+      body: JSON.stringify(newInput)
     }).then((response) => {
       console.log('***************************** heres the response ', response);
-      console.log('####################### ', response.body);
     })
     .catch((error) => {
       console.log('there was a big error ????????????????????????????', error)
@@ -93,14 +106,11 @@ export const addNewListItem = () => {
 // deleteListItem
 // This should remove an item from a specific list
 
-// fetchUserLists
-// This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
-export const fetchUserLists = () => {
-  return function ( dispatch, getState ) {
-    let data = getState().lists.lists.allItems
-
-    // console.log('let me see that data ', data);
-//localhost:8081
+// This should only be called once when a user logs in
+// Currently this is called whenever the add screen is chosen
+// Which overwrites the allLists
+export const fetchInitialDatabase = () => {
+  return function(dispatch) {
     fetch('http://localhost:3000/api/items/', {
       method: 'GET'
     })
@@ -108,13 +118,39 @@ export const fetchUserLists = () => {
       return response.json();
     })
     .then((responseData) => {
-      console.log("*************** ", responseData);
       dispatch( updateListsCategory( determineLists( responseData ) ) )
       dispatch( updateAllListsState( responseData ) )
     })
     .catch((error) => {
-      console.log('there was a big error ????????????????????????????', error)
+      console.log('there was an error', error)
     })
+
+  }
+}
+
+// fetchUserLists
+// This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
+export const fetchUserLists = () => {
+  return function ( dispatch, getState ) {
+    let data = getState().lists.lists.allItems
+    dispatch( updateListsCategory( determineLists( data ) ) )
+      dispatch( updateAllListsState( data ) )
+    // console.log('let me see that data ', data);
+//localhost:8081
+    // fetch('http://localhost:3000/api/items/', {
+    //   method: 'GET'
+    // })
+    // .then((response) => {
+    //   return response.json();
+    // })
+    // .then((responseData) => {
+    //   console.log("*************** ", responseData);
+    //   dispatch( updateListsCategory( determineLists( responseData ) ) )
+    //   dispatch( updateAllListsState( responseData ) )
+    // })
+    // .catch((error) => {
+    //   console.log('there was a big error ????????????????????????????', error)
+    // })
 
 
   };
