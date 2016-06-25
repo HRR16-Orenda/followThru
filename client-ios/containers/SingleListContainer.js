@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserSingleList: (listName, listing) => {
       dispatch(actions.fetchUserSingleList());
+    },
+    deleteListItem: (item) => {
+      dispatch(actions.deleteListItem(item));
     }
   };
 };

@@ -29,9 +29,10 @@ export default class SingleListScreen extends Component {
   renderItem(item) {
     return (
       <TouchableHighlight
+        onLongPress={() => {this.props.deleteListItem(item)}}
       >
         <View>
-          <ListItem itemTitle={ item.title } itemContent={ item.content }/>
+          <ListItem itemTitle={ item.title } itemContent={ item.content } />
           <View style={ styles.separator } />
         </View>
       </TouchableHighlight>

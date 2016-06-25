@@ -111,6 +111,70 @@ export const toggle = () => {
 // deleteListItem
 // This should remove an item from a specific list
 
+export const deleteListItem = (item) => {
+  return function(dispatch) {
+    dispatch(deleteListItemLocal(item));
+    dispatch(deleteListItemDatabase(item));
+  }
+}
+
+const deleteListItemLocal = (item) => {
+  return function(dispatch, getState) {
+    let stateData = getState().lists.lists.allItems;
+    let updatedList = findAndRemoveItem(item, stateData);
+    dispatch(fetchUserLists(updatedList))
+  }
+}
+
+const findAndRemoveItem = (itemToDelete, array) => {
+  var itemToDeleteIndex = array.map(function(item) {
+    return item.id
+  }).indexOf(itemToDelete.id);
+
+  // in case the item is not found
+  if (itemToDeleteIndex === -1) {
+    return array;
+  }
+
+  array.splice(itemToDeleteIndex, 1);
+  return array;
+}
+
+const deleteListItemDatabase = (item) => {
+  return function(dispatch, getState) {
+    dispatch(deleteListItemDatabaseRequest());
+
+    fetch('http://localhost:3000/api/items/' + item.id, {
+      method: 'DELETE'
+    }).then((response) => {
+      dispatch(deleteListItemDatabaseSuccess());
+    })
+    .catch((error) => {
+      console.log('error error');
+      dispatch(deleteListItemDatabaseFailure());
+    })
+  }
+}
+
+export const deleteListItemDatabaseRequest = () => {
+  return {
+    type: types.DELETE_LIST_ITEM_DATABASE_REQUEST
+  }
+}
+
+export const deleteListItemDatabaseFailure = () => {
+  return {
+    type: types.DELETE_LIST_ITEM_DATABASE_FAILURE
+  }
+}
+
+export const deleteListItemDatabaseSuccess = () => {
+  return {
+    type: types.DELETE_LIST_ITEM_DATABASE_SUCCESS
+  }
+}
+
+
 // ******* FETCH ITEMS SECTION ******
 
 // This should only be called once when a user logs in
