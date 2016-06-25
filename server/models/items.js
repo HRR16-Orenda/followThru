@@ -22,7 +22,6 @@ var Item = sequelize.define('item', {
   },
   category: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   subcategory: {
