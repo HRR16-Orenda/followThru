@@ -107,6 +107,8 @@ export const addNewListItemDatabaseSuccess = () => {
 // Which overwrites the allLists
 export const fetchInitialDatabase = () => {
   return function(dispatch) {
+    dispatch(fetchDatabaseListsRequest());
+
     fetch('http://localhost:3000/api/items/', {
       method: 'GET'
     })
@@ -114,20 +116,38 @@ export const fetchInitialDatabase = () => {
       return response.json();
     })
     .then((responseData) => {
-      dispatch( updateListsCategory( determineLists( responseData ) ) )
-      dispatch( updateAllListsState( responseData ) )
+      dispatch(fetchDatabaseListsSuccess(responseData))
     })
     .catch((error) => {
-      console.log('there was an error', error)
+      dispatch(fetchDatabaseListsFailure())
     })
 
   }
 }
 
+export const fetchDatabaseListsRequest = () => {
+  return {
+    type: types.FETCH_DATABASE_LISTS_REQUEST
+  }
+}
+
+export const fetchDatabaseListsFailure = () => {
+  return {
+    type: types.FETCH_DATABASE_LISTS_FAILURE
+  }
+}
+
+export const fetchDatabaseListsSuccess = (responseData) => {
+  return function (dispatch) {
+    dispatch(fetchUserLists(responseData))
+  }
+}
+
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
-export const fetchUserLists = () => {
+export const fetchUserLists = (responseData) => {
   return function ( dispatch, getState ) {
-    let data = getState().lists.lists.allItems
+    let stateData = getState().lists.lists.allItems;
+    let data = responseData || stateData;
     dispatch( updateListsCategory( determineLists( data ) ) )
     dispatch( updateAllListsState( data ) )
   };
@@ -166,12 +186,10 @@ export const updateAllListsState = (updatedState) => {
 // fetchUserSingleList
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
 export const fetchUserSingleList = ( listName, category ) => {
-  // The filter is not currently being set
   return function ( dispatch, getState ) {
     let filter = getState().lists.filter;
     let data = getState().lists.lists.allItems
 
-    console.log('single data ', data);
     let updatedSelectedItems = filterAllItems( data, filter );
     dispatch( updateSingleListState( updatedSelectedItems ) );
   };
@@ -188,7 +206,6 @@ const updateSingleListState = ( updatedState ) => {
   return {
     type: types.UPDATE_SINGLE_LIST_STATE,
     selectedItems: updatedState
-    // isLoading: false
   }
 };
 
