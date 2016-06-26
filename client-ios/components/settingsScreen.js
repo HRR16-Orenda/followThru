@@ -20,7 +20,6 @@ let User = t.struct({
   password: t.String
 });
 
-var STORAGE_KEY = 'id_token';
 const options = {};
 
 export default class SettingsScreen extends Component {
