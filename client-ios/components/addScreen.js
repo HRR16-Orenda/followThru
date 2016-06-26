@@ -7,8 +7,6 @@ import {
   View,
   TextInput
 } from 'react-native';
-// import styles from '../styles/styles.js';
-// import Header from './header.js';
 import { Actions } from 'react-native-router-flux';
 import CategoryPicker from './categoryPicker.js';
 import Form from '../containers/FormContainer.js';

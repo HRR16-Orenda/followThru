@@ -17,14 +17,14 @@ export default class ActionConfirmationScreen extends Component {
   }
 
   pressHandler(data) {
-    const { fields, userCategorySelected, destroyForm } = this.props;
+    const { fields, userCategorySelected, resetForm } = this.props;
 
     // manually set category form field with given argument
     fields.item.category.onChange(data);
     userCategorySelected(data);
 
-    // manually destroy value of form field
-    destroyForm('general');
+    // manually resetForm value of form field
+    resetForm('general');
   }
 
   render() {
