@@ -196,7 +196,7 @@ export const loginUser = function( creds ) {
 //             dispatch(loginError(user.message))
 //             return Promise.reject(user)
 //           } else {
-// //*********>>>  need to store this in AsyncStorage unlike the browser example:
+// need to store this in AsyncStorage unlike the browser example:
 //           // localStorage.setItem('id_token', user.id_token)
 // /* Note: it's important to note that we don't add it in the reducer becuase
 // reducers should have no side effects.*/
@@ -245,7 +245,7 @@ const loginError = function( message ) {
 export const logoutUser = function() {
   return function ( dispatch ) {
     dispatch(requestLogout()),
-//*********>>>  need to remove this from  AsyncStorage, similar to the browser example:
+//need to remove this from  AsyncStorage, similar to the browser example:
     // localStorage.removeItem('id_token'),
     dispatch(receiveLogout())
   }
