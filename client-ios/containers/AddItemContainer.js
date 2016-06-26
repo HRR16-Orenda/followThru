@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     submitHandler: (data) => {
       console.log(data.item);
-      Actions.categoryPicker();
+      Actions.actionConfirmation();
     }
   };
 };

@@ -11,7 +11,7 @@ import routeReducer from './routeReducer.js';
 const rootReducer = combineReducers({
   form: formReducer,
   lists: listReducer,
-  auth: authReducer
+  auth: authReducer,
   route: routeReducer
 });
 

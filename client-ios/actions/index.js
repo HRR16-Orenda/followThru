@@ -230,8 +230,9 @@ export const fetchDatabaseListsFailure = () => {
 }
 
 export const fetchDatabaseListsSuccess = (responseData) => {
-  return function (dispatch) {
-    dispatch(fetchUserLists(responseData))
+  return {
+    type: types.FETCH_DATABASE_LISTS_SUCCESS,
+    payload: responseData
   }
 }
 
