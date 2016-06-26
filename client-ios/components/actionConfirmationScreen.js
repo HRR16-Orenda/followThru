@@ -17,7 +17,15 @@ export default class ActionConfirmationScreen extends Component {
     super(props);
   }
 
+  pressHandler(data) {
+    console.log('shit 1st', data);
+    const { fields, userCategorySelected } = this.props;
+    fields.item.category.onChange(data);
+    userCategorySelected(data);
+  }
+
   render() {
+    const { fields } = this.props;
     console.log('title', this.props.userInput);
     return (
 
@@ -26,13 +34,13 @@ export default class ActionConfirmationScreen extends Component {
           <View style = {{height: 50, borderColor: 'gray', borderWidth: 1, marginLeft: 35, marginRight: 35, marginTop: 100, alignItems: "center"}}>
             <Text>Add to...</Text>
             <View style={{flex: 3, flexDirection: "row"}}>
-              <TouchableHighlight style={{margin: 10}} onPress={() => this.props.userCategorySelected('Books')}>
+              <TouchableHighlight style={{margin: 10}} onPress={this.pressHandler.bind(this, 'Books')}>
                 <Text>Book</Text>
               </TouchableHighlight>
-              <TouchableHighlight style={{margin: 10}} onPress={() => this.props.userCategorySelected('Movies')}>
+              <TouchableHighlight style={{margin: 10}} onPress={this.pressHandler.bind(this, 'Movies')}>
                 <Text>Movies</Text>
               </TouchableHighlight>
-              <TouchableHighlight style={{margin: 10}} onPress={() => this.props.userCategorySelected('Music')}>
+              <TouchableHighlight style={{margin: 10}} onPress={this.pressHandler.bind(this, 'Music')}>
                 <Text>Music</Text>
               </TouchableHighlight>
             </View>
