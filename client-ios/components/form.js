@@ -12,6 +12,11 @@ import {
 import styles from '../styles/styles.js';
 
 class FormComponent extends Component {
+  props: {
+    detailFields: Array<string>,
+    fieldType: string
+  };
+
   constructor(props){
     super(props);
   }
@@ -20,8 +25,8 @@ class FormComponent extends Component {
   }
 
   renderForm () {
-    const { fields, fieldType } = this.props;
-      return _.map(fields[fieldType], (field, key) => {
+    const { fields, fieldType, detailFields } = this.props;
+      return _.map(detailFields, (field, i) => {
         // if(key === 'isAdmin') {
         //   return (
         //     <View key={key} style={{borderColor: 'red', borderWidth: 1}}>
@@ -36,10 +41,10 @@ class FormComponent extends Component {
         //   )
         // } else {
           return (
-            <View key={key} style={{ flexDirection:'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <Text style={styles.text}>{key} : </Text>
+            <View key={i} style={{ flexDirection:'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+              <Text style={styles.text}>{field.toUpperCase()} : </Text>
               <View style={{ borderBottomColor: '#000000', borderBottomWidth: 1}}>
-                <TextInput style={styles.inputField} {...field}/>
+                <TextInput style={styles.inputField} {...fields[fieldType][detailFields]}/>
               </View>
             </View>
           )

@@ -26,10 +26,13 @@ export default class AddScreen extends Component {
 
   render() {
     const { submitHandler } = this.props;
+    const detailFields = [
+      'title'
+    ];
     return (
       <View style={styles.container}>
         <Text style={styles.h4}>What would you like to add?</Text>
-        <Form fieldType="item" onSubmit={submitHandler}/>
+        <Form fieldType="item" detailFields={detailFields} onSubmit={submitHandler}/>
       </View>
     );
   }

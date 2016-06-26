@@ -32,10 +32,9 @@ export default StyleSheet.create({
     alignItems: 'flex-start'
   },
 
-
-/*********************************
-ListView Specific Styles
-*********************************/
+  /*********************************
+  ListView Specific Styles
+  *********************************/
 
   rightContainer: {
       flex: 1
@@ -83,9 +82,9 @@ ListView Specific Styles
     justifyContent: 'center'
   },
 
-/*********************************
-Signup Screen Specific Styles
-*********************************/
+  /*********************************
+  Signup Screen Specific Styles
+  *********************************/
   signUpContainer: {
     justifyContent: 'center',
     marginTop: 50,
