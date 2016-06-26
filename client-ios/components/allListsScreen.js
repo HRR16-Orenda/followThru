@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
-import Footer from './footer.js';
 import ListItem from './listItem.js';
 import styles from '../styles/styles.js'
 
@@ -59,13 +58,10 @@ export default class AllListsScreen extends Component {
       return (
         <View style={styles.container}>
           <ListView
-              dataSource={this.props.dataSource}
-              renderRow={this.renderItem.bind(this)}
-              style={styles.listView}
-            />
-          <View style={styles.container}>
-            <Footer />
-          </View>
+            dataSource={this.props.dataSource}
+            renderRow={this.renderItem.bind(this)}
+            style={styles.listView}
+          />
         </View>
       );
     // }
