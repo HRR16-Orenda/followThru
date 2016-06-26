@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../db/config.js');
+var bcrypt = require('bcrypt');
 var Item = require('./items.js');
 var Follower = require('./followers.js');
 var User = sequelize.define('user', {
