@@ -108,8 +108,87 @@ export const toggle = () => {
 // listItemEdited
 // This should update the list item in the user's list (can be done from the actionConfirmation page or on the singleListScreen)
 
-// deleteListItem
-// This should remove an item from a specific list
+export const toggleCheckOnListItem = (item) => {
+  return function(dispatch, getState) {
+    let stateData = getState().lists.lists.allItems;
+    let updatedList = findAndToggleCheck(item, stateData)
+    dispatch(fetchUserLists(updatedList))
+  }
+}
+
+const findAndToggleCheck = (itemToToggle, array) => {
+  var itemToToggleIndex = array.map(function(item) {
+    return item.id
+  }).indexOf(itemToToggle.id);
+
+  itemToToggle.crossedOff = !itemToToggle.crossedOff
+  array[itemToToggleIndex] = itemToToggle
+  return array;
+}
+
+export const deleteListItem = (item) => {
+  return function(dispatch) {
+    dispatch(deleteListItemLocal(item));
+    dispatch(deleteListItemDatabase(item));
+  }
+}
+
+const deleteListItemLocal = (item) => {
+  return function(dispatch, getState) {
+    let stateData = getState().lists.lists.allItems;
+    let updatedList = findAndRemoveItem(item, stateData);
+    dispatch(fetchUserLists(updatedList))
+  }
+}
+
+const findAndRemoveItem = (itemToDelete, array) => {
+  var itemToDeleteIndex = array.map(function(item) {
+    return item.id
+  }).indexOf(itemToDelete.id);
+
+  // in case the item is not found
+  if (itemToDeleteIndex === -1) {
+    return array;
+  }
+
+  array.splice(itemToDeleteIndex, 1);
+  return array;
+}
+
+const deleteListItemDatabase = (item) => {
+  return function(dispatch, getState) {
+    dispatch(deleteListItemDatabaseRequest());
+
+    fetch('http://localhost:3000/api/items/' + item.id, {
+      method: 'DELETE'
+    }).then((response) => {
+      dispatch(deleteListItemDatabaseSuccess());
+    })
+    .catch((error) => {
+      console.log('error error');
+      dispatch(deleteListItemDatabaseFailure());
+    })
+  }
+}
+
+export const deleteListItemDatabaseRequest = () => {
+  return {
+    type: types.DELETE_LIST_ITEM_DATABASE_REQUEST
+  }
+}
+
+export const deleteListItemDatabaseFailure = () => {
+  return {
+    type: types.DELETE_LIST_ITEM_DATABASE_FAILURE
+  }
+}
+
+export const deleteListItemDatabaseSuccess = () => {
+  return {
+    type: types.DELETE_LIST_ITEM_DATABASE_SUCCESS
+  }
+}
+
 
 // ******* FETCH ITEMS SECTION ******
 
