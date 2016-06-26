@@ -1,6 +1,7 @@
 // @flow
 import * as types from '../constants/ActionTypes';
-import { get, del } from '../services/ApiHelper.js';
+import { get, del, post } from '../services/ApiHelper.js';
+import type { ItemType } from '../services/Types.js';
 
 const fetchItemRequest = () => {
   return {
@@ -35,37 +36,38 @@ export const fetchItem = () => {
   }
 };
 
-
-const fetchUserRequest = () => {
+const addItemRequest = () => {
   return {
-    type: types.FETCH_USER_REQUEST
+    type: types.ADD_ITEM_REQUEST
   }
 };
 
-const fetchUserFailure = () => {
+const addItemFailure = () => {
   return {
-    type: types.FETCH_USER_FAILURE
+    type: types.ADD_ITEM_FAILURE
   }
 };
 
-const fetchUserSuccess = (users: Object[]) => {
+const addItemSuccess = (item: ItemType) => {
   return {
-    type: types.FETCH_USER_SUCCESS,
-    payload: users
+    type: types.ADD_ITEM_SUCCESS,
+    payload: item
   }
 };
 
-export const fetchUser = () => {
+export const addItem = (item: Object) => {
+  console.log(item);
   return (dispatch) => {
-    dispatch(fetchUserRequest());
-    get('/api/users')
+    dispatch(addItemRequest());
+    post('/api/items', item)
       .then(res => {
-        dispatch(fetchUserSuccess(res.data));
+        console.log(res.data);
+        dispatch(addItemSuccess(res.data));
       })
       .catch(err => {
         console.error(err);
-        dispatch(fetchUserFailure());
-      });
+        dispatch(addItemFailure());
+      })
   }
 };
 
@@ -98,39 +100,6 @@ export const removeItem = (id: string) => {
       .catch(err => {
         console.error(err);
         dispatch(removeItemFailure());
-      })
-  }
-}
-
-const removeUserRequest = () => {
-  return {
-    type: types.REMOVE_USER_REQUEST
-  }
-};
-
-const removeUserFailure = () => {
-  return {
-    type: types.REMOVE_USER_FAILURE
-  }
-};
-
-const removeUserSuccess = (id: string) => {
-  return {
-    type: types.REMOVE_USER_SUCCESS,
-    payload: id
-  }
-};
-
-export const removeUser = (id: string) => {
-  return (dispatch) => {
-    dispatch(removeUserRequest());
-    del('/api/users' + '/' + id)
-      .then(res => {
-        dispatch(removeUserSuccess(id));
-      })
-      .catch(err => {
-        console.error(err);
-        dispatch(removeUserFailure());
       })
   }
 }

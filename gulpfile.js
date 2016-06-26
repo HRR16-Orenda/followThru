@@ -84,9 +84,10 @@ gulp.task('server-test', ['pre-test'], function(cb) {
 });
 
 // the real stuff
-gulp.task('default', ['nodemon', 'server-test'], function () {
+gulp.task('default', ['nodemon', 'server-test', 'webpack'], function () {
   gulp.watch('./server/**/*.js', {debounceDelay: 500}, ['server-test']);
   gulp.watch('./test/server/*.js', {debounceDelay: 500}, ['server-test']);
+  gulp.watch('./client-web/**/*.js', {debounceDelay: 500}, ['webpack']);
 });
 
 // our gulp-nodemon task

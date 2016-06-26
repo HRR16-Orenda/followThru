@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import Form from '../containers/FormContainer.js';
+import Table from '../components/TableComponent.js';
 
 class UsersComponent extends Component {
   constructor(props){
@@ -12,7 +13,14 @@ class UsersComponent extends Component {
   }
 
   render () {
-    const { users, submitHandler } = this.props;
+    const { users, addUser, removeUser } = this.props;
+    const fields = [
+      'No.',
+      'Username',
+      'Email',
+      'Admin',
+      'Created At'
+    ];
     return (
       <div>
         <div className="row">
@@ -22,34 +30,13 @@ class UsersComponent extends Component {
             </h3>
           </div>
         </div>
-        <Form onSubmit={submitHandler} fieldType="user"/>
-        <div className="row">
-          <div className="col s12">
-            <table className="highlight">
-              <thead>
-                <tr>
-                  <th data-field="id">No.</th>
-                  <th data-field="name">Username</th>
-                  <th data-field="email">Email</th>
-                  <th data-field="admin">Admin</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {users.map(user => {
-                  return (
-                    <tr>
-                      <td>{user.id}</td>
-                      <td>{user.email}</td>
-                      <td>{user.username}</td>
-                      <td><a className="waves-effect waves-light btn">Remove</a></td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <Form onSubmit={addUser} fieldType="user"/>
+        <Table
+          items={users}
+          fields={fields}
+          type="users"
+          clickHandler={removeUser}
+        />
       </div>
     )
   }

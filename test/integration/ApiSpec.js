@@ -52,8 +52,10 @@ describe('API Test', function () {
       sequelize.sync({force: true}).then(function () {
         user.addOne(userToBeAdded1, function () {
           user.addOne(userToBeAdded2, function () {
-            item.addOne(itemToBeAdded, function (item) {
-              id = item.id;
+            item.addOne(itemToBeAdded, function (err, returnedItem) {
+              if(err) {return done(err);}
+              id = returnedItem.get('id');
+              console.log(id);
               done();
             });
           });
@@ -93,10 +95,10 @@ describe('API Test', function () {
     });
 
     describe('POST request', function () {
-      it('should return status code 500 if invalid data send', function (done) {
+      it('should return status code 400 if invalid data send', function (done) {
         supertest.post('/api/items')
         .send({user: 'fake'})
-        .expect(500)
+        .expect(400)
         .end(done);
       });
     });

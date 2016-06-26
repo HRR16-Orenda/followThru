@@ -1,40 +1,7 @@
 // @flow
 import * as types from '../constants/ActionTypes';
-import { get, del } from '../services/ApiHelper.js';
-
-const fetchItemRequest = () => {
-  return {
-    type: types.FETCH_ITEM_REQUEST
-  }
-};
-
-const fetchItemFailure = () => {
-  return {
-    type: types.FETCH_ITEM_FAILURE
-  }
-};
-
-const fetchItemSuccess = (items: Object[]) => {
-  return {
-    type: types.FETCH_ITEM_SUCCESS,
-    payload: items
-  }
-};
-
-export const fetchItem = () => {
-  return (dispatch) => {
-    dispatch(fetchItemRequest());
-    get('/api/items')
-      .then(res => {
-        dispatch(fetchItemSuccess(res.data));
-      })
-      .catch(err => {
-        console.error(err);
-        dispatch(fetchItemFailure());
-      });
-  }
-};
-
+import { get, del, post } from '../services/ApiHelper.js';
+import type { UserType } from '../services/Types.js';
 
 const fetchUserRequest = () => {
   return {
@@ -69,38 +36,39 @@ export const fetchUser = () => {
   }
 };
 
-const removeItemRequest = () => {
+const addUserRequest = () => {
   return {
-    type: types.REMOVE_ITEM_REQUEST
+    type: types.ADD_USER_REQUEST
   }
 };
 
-const removeItemFailure = () => {
+const addUserFailure = () => {
   return {
-    type: types.REMOVE_ITEM_FAILURE
+    type: types.ADD_USER_FAILURE
   }
 };
 
-const removeItemSuccess = (id: string) => {
+const addUserSuccess = (user: UserType) => {
   return {
-    type: types.REMOVE_ITEM_SUCCESS,
-    payload: id
+    type: types.ADD_USER_SUCCESS,
+    payload: user
   }
 };
 
-export const removeItem = (id: string) => {
+export const addUser = (user: Object) => {
   return (dispatch) => {
-    dispatch(removeItemRequest());
-    del('/api/items' + '/' + id)
+    dispatch(addUserRequest());
+    post('/api/users', user)
       .then(res => {
-        dispatch(removeItemSuccess(id));
+        console.log(res.data);
+        dispatch(addUserSuccess(res.data));
       })
       .catch(err => {
         console.error(err);
-        dispatch(removeItemFailure());
+        dispatch(addUserFailure());
       })
   }
-}
+};
 
 const removeUserRequest = () => {
   return {
@@ -133,4 +101,4 @@ export const removeUser = (id: string) => {
         dispatch(removeUserFailure());
       })
   }
-}
+};

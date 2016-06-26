@@ -19,8 +19,8 @@ module.exports = {
   },
 
   addOneItem: function(req, res) {
-    var item = req.body;
-    item.addOne(item, function(err, newItem) {
+    var newItem = req.body;
+    item.addOne(newItem, function(err, newItem) {
       if(err) {return res.sendStatus(400);}
       res.status(201).send(newItem);
     })
@@ -30,7 +30,7 @@ module.exports = {
     var id = req.params.id;
     item.removeOne(id, function(err, rows) {
       if(err) {return res.sendStatus(400);}
-      res.send(rows);
+      res.status(200).end();
     } )
   },
 
@@ -75,7 +75,7 @@ module.exports = {
     var id = req.params.id;
     user.removeOne(id, function (err, user) {
       if(err) {return res.sendStatus(400).send();}
-      res.send(user);
+      res.sendStatus(200);
     });
   },
 

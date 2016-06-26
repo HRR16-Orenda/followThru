@@ -1,14 +1,20 @@
 import { connect } from 'react-redux';
 import UsersComponent from '../components/UsersComponent.js';
 import * as actions from '../actions/ActionCreator.js';
+import { addUser } from '../actions/UserAction.js';
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUser: () => {
       dispatch(actions.fetchUser());
     },
-    submitHandler: () => {
-      console.log('WAWA submitted!!!!');
+    addUser: (data) => {
+      console.log('WAWA submitted!!!!', data.user);
+      dispatch(addUser(data.user));
+    },
+    removeUser: (id: string) => {
+      dispatch(actions.removeUser(id));
+      console.log('WAWA removed!!!!!!');
     }
   };
 };

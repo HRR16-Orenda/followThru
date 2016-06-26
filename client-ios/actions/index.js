@@ -1,3 +1,5 @@
+// @flow
+
 import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
@@ -5,42 +7,7 @@ import {
   AsyncStorage
 } from 'react-native';
 
-let tempData = [
-  {
-    title: 'Where the Red Fern Grows',
-    category: 'Books',
-    content: 'Wilson Rawls'
-  },
-  {
-    title: 'Say Anything',
-    category: 'Movies',
-    content: '1989'
-  },
-  {
-    title: 'Blame it on the Rain',
-    category: 'Music',
-    content: 'Milli Vanilli'
-  }
-];
-
-let tempFilter = "Music";
-
-
-// addNewListItem
-// This should add a new item to a specific list
-
-// addListItemRequest
-export const addListItemRequest = () => {
-  return {
-    type: types.ADDLISTITEM_REQUEST
-  }
-}
-
-// addListItemSuccess
-// This should trigger the actionConfirmation page to show up and display what list the item was added to
-
-// addListItemFailure
-
+// ******* ADD ITEM SECTION ******
 
 export const userTypeStart = (text) => {
   return {
@@ -51,14 +18,17 @@ export const userTypeStart = (text) => {
   }
 }
 
-
+// when a user clicks on what category they want their list item to be added to
 export const userCategorySelected = (category) => {
   return function(dispatch) {
-    dispatch(updateUserInputCategory(category))
-    dispatch(addNewListItem())
+    dispatch(updateUserInputCategory(category));
+    dispatch(addNewListItem());
+    dispatch(addNewListItemDatabase());
+    dispatch(toggleShow())
   }
 }
 
+// updates the global state with the selected category
 export const updateUserInputCategory = (category) => {
   return {
     type: types.UPDATE_USER_INPUT_CATEGORY,
@@ -68,38 +38,223 @@ export const updateUserInputCategory = (category) => {
   }
 }
 
+// updates the global state allItems from the userInput
 export const addNewListItem = () => {
   return {
     type: types.ADD_NEW_LIST_ITEM
   }
 }
 
+// adds the userInput to the database
+export const addNewListItemDatabase = () => {
+  return function(dispatch, getState) {
+    dispatch(addNewListItemDatabaseRequest());
+
+    let user = getState().lists.user;
+    let userInput = getState().lists.userInput
+    let newInput = {
+      title: userInput.title,
+      content: 'Add something here',
+      category: userInput.category,
+      subcategory: 'favorite',
+      url: null,
+      user_id: user.user_id
+    }
+    fetch('http://localhost:3000/api/items/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newInput)
+    }).then((response) => {
+      dispatch(addNewListItemDatabaseSuccess());
+    })
+    .catch((error) => {
+      dispatch(addNewListItemDatabaseFailure());
+    })
+  }
+}
+
+export const addNewListItemDatabaseRequest = () => {
+  return {
+    type: types.ADD_NEW_LIST_ITEM_DATABASE_REQUEST
+  }
+}
+
+export const addNewListItemDatabaseFailure = () => {
+  return {
+    type: types.ADD_NEW_LIST_ITEM_DATABASE_FAILURE
+  }
+}
+
+export const addNewListItemDatabaseSuccess = () => {
+  return {
+    type: types.ADD_NEW_LIST_ITEM_DATABASE_SUCCESS
+  }
+}
+
+export const toggleShow = () => {
+  return {
+    type: types.TOGGLE_SHOW
+  }
+}
+
+export const toggle = () => {
+  return function (dispatch) {
+    dispatch(toggleShow());
+  }
+}
+// ******* EDIT ITEMS SECTION ******
+
 // listItemEdited
 // This should update the list item in the user's list (can be done from the actionConfirmation page or on the singleListScreen)
 
-// deleteListItem
-// This should remove an item from a specific list
+export const toggleCheckOnListItem = (item) => {
+  return function(dispatch, getState) {
+    let stateData = getState().lists.lists.allItems;
+    let updatedList = findAndToggleCheck(item, stateData)
+    dispatch(fetchUserLists(updatedList))
+  }
+}
 
-// fetchUserLists
+const findAndToggleCheck = (itemToToggle, array) => {
+  var itemToToggleIndex = array.map(function(item) {
+    return item.id
+  }).indexOf(itemToToggle.id);
+
+  itemToToggle.crossedOff = !itemToToggle.crossedOff
+  array[itemToToggleIndex] = itemToToggle
+  return array;
+}
+
+export const deleteListItem = (item) => {
+  return function(dispatch) {
+    dispatch(deleteListItemLocal(item));
+    dispatch(deleteListItemDatabase(item));
+  }
+}
+
+const deleteListItemLocal = (item) => {
+  return function(dispatch, getState) {
+    let stateData = getState().lists.lists.allItems;
+    let updatedList = findAndRemoveItem(item, stateData);
+    dispatch(fetchUserLists(updatedList))
+  }
+}
+
+const findAndRemoveItem = (itemToDelete, array) => {
+  var itemToDeleteIndex = array.map(function(item) {
+    return item.id
+  }).indexOf(itemToDelete.id);
+
+  // in case the item is not found
+  if (itemToDeleteIndex === -1) {
+    return array;
+  }
+
+  array.splice(itemToDeleteIndex, 1);
+  return array;
+}
+
+const deleteListItemDatabase = (item) => {
+  return function(dispatch, getState) {
+    dispatch(deleteListItemDatabaseRequest());
+
+    fetch('http://localhost:3000/api/items/' + item.id, {
+      method: 'DELETE'
+    }).then((response) => {
+      dispatch(deleteListItemDatabaseSuccess());
+    })
+    .catch((error) => {
+      console.log('error error');
+      dispatch(deleteListItemDatabaseFailure());
+    })
+  }
+}
+
+export const deleteListItemDatabaseRequest = () => {
+  return {
+    type: types.DELETE_LIST_ITEM_DATABASE_REQUEST
+  }
+}
+
+export const deleteListItemDatabaseFailure = () => {
+  return {
+    type: types.DELETE_LIST_ITEM_DATABASE_FAILURE
+  }
+}
+
+export const deleteListItemDatabaseSuccess = () => {
+  return {
+    type: types.DELETE_LIST_ITEM_DATABASE_SUCCESS
+  }
+}
+
+
+// ******* FETCH ITEMS SECTION ******
+
+// This should only be called once when a user logs in
+// Currently this is called whenever the add screen is chosen
+// Which overwrites the allLists
+export const fetchInitialDatabase = () => {
+  return function(dispatch) {
+    dispatch(fetchDatabaseListsRequest());
+
+    fetch('http://localhost:3000/api/items/', {
+      method: 'GET'
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((responseData) => {
+      dispatch(fetchDatabaseListsSuccess(responseData))
+    })
+    .catch((error) => {
+      dispatch(fetchDatabaseListsFailure())
+    })
+
+  }
+}
+
+export const fetchDatabaseListsRequest = () => {
+  return {
+    type: types.FETCH_DATABASE_LISTS_REQUEST
+  }
+}
+
+export const fetchDatabaseListsFailure = () => {
+  return {
+    type: types.FETCH_DATABASE_LISTS_FAILURE
+  }
+}
+
+export const fetchDatabaseListsSuccess = (responseData) => {
+  return function (dispatch) {
+    dispatch(fetchUserLists(responseData))
+  }
+}
+
 // This should get a user's lists (Movies, Books, Meals to Cook) just the names of them will be displayed in the allListsScreen
-export const fetchUserLists = () => {
+export const fetchUserLists = (responseData) => {
   return function ( dispatch, getState ) {
-    let data = getState().lists.lists.allItems
-    dispatch( updateListsState( determineLists( data ) ) )
-    // const url = '/products/' + id;
-    // helper.getHelper(url)
-    // .then(resp => {
-    //   var updatedState = resp.data;
-    //   if (resp.status == 200) {
-    //     Array.isArray(updatedState) ? dispatch(updateProductsState(updatedState)) : dispatch(updateProductDetail(updatedState));
-    //   }
-    // })
-    // .catch(err => {
-    //   console.error(err);
-    // });
+    let stateData = getState().lists.lists.allItems;
+    let data = responseData || stateData;
+    dispatch( updateListsCategory( determineLists( data ) ) )
+    dispatch( updateAllListsState( data ) )
   };
 };
 
+const updateListsCategory = ( updatedState ) => {
+  return {
+    type: types.UPDATE_LISTS_CATEGORY,
+    id: "category",
+    category: updatedState
+    // isLoading: false
+  }
+}
+
+// helper function to find all the different categories
 const determineLists = ( allItems ) => {
   let listsObj = {};
   let listsArr = [];
@@ -112,17 +267,41 @@ const determineLists = ( allItems ) => {
   return listsArr;
 };
 
-const updateListsState = ( updatedState ) => {
+export const updateAllListsState = (updatedState) => {
   return {
-    type: types.UPDATE_LISTS_STATE,
-    id: "category",
-    category: updatedState
-    // isLoading: false
+    type: types.UPDATE_ALL_LISTS_STATE,
+    allLists: updatedState
   }
 }
 
-export const updateFilter = ( filterString ) => {
 
+// fetchUserSingleList
+// This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
+export const fetchUserSingleList = ( listName, category ) => {
+  return function ( dispatch, getState ) {
+    let filter = getState().lists.filter;
+    let data = getState().lists.lists.allItems
+
+    let updatedSelectedItems = filterAllItems( data, filter );
+    dispatch( updateSingleListState( updatedSelectedItems ) );
+  };
+};
+
+const filterAllItems = ( allItems, filterCategory ) => {
+  let condition = ( item ) => {
+    return item.category === filterCategory;
+  }
+  return allItems.filter( condition );
+}
+
+const updateSingleListState = ( updatedState ) => {
+  return {
+    type: types.UPDATE_SINGLE_LIST_STATE,
+    selectedItems: updatedState
+  }
+};
+
+export const updateFilter = ( filterString ) => {
   return function ( dispatch ) {
     dispatch( updateFilterState( filterString ) )
   }
@@ -134,35 +313,6 @@ const updateFilterState = ( updatedState ) => {
     filter: updatedState
   }
 }
-
-// fetchUserSingleList
-// This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
-export const fetchUserSingleList = ( listName, category ) => {
-  return function ( dispatch, getState ) {
-    let filter = getState().lists.filter;
-    let data = getState().lists.lists.allItems
-    let updatedSelectedItems = filterAllItems( data, filter );
-    dispatch( updateSingleListState( updatedSelectedItems ) );
-  };
-};
-
-const filterAllItems = ( allItems, filterCategory ) => {
-  let condition = ( item ) => {
-    return item.category === filterCategory;
-  }
-  return allItems.filter( condition );
-
-}
-
-const updateSingleListState = ( updatedState ) => {
-  return {
-    type: types.UPDATE_SINGLE_LIST_STATE,
-    selectedItems: updatedState
-    // isLoading: false
-  }
-};
-
-
 
 // ******* LOGIN SECTION ******
 export const loginUser = function( creds ) {

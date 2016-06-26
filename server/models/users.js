@@ -24,7 +24,8 @@ var User = sequelize.define('user', {
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
+    defaultValue: false,
+    allowNull: false
   }
 }, {
   underscored: true,

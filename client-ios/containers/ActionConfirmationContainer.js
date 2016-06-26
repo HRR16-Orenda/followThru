@@ -6,6 +6,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     userCategorySelected: (category) => {
       dispatch(actions.userCategorySelected(category));
+    },
+    toggle: () => {
+      console.log('anything');
+      dispatch(actions.toggle());
     }
   };
 };
@@ -14,7 +18,10 @@ const mapDispatchToProps = (dispatch) => {
 function mapStateToProps(state, ownProps) {
   return {
     isUserTyping: state.lists.ui.isUserTyping,
-    lists: state.lists.allItems
+    lists: state.lists.allItems,
+    userInput: state.lists.userInput.title,
+    category: state.lists.userInput.category,
+    toggleShow: state.lists.toggleShow
   };
 }
 

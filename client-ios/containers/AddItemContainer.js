@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => {
     userTypeEnd: (text) => {
       Actions.actionConfirmationScreen()
       // dispatch(actions.userTypeEnd(text));
+    },
+    fetchInitialDatabase: () => {
+      dispatch(actions.fetchInitialDatabase());
     }
   };
 };
@@ -19,9 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 function mapStateToProps(state, ownProps) {
   return {
     isUserTyping: state.lists.ui.isUserTyping,
-    userInput: state.lists.userInput.title
-// state.addItem.whatever
-    // isUserTyping: state.
+    userInput: state.lists.userInput.title,
   };
 }
 

@@ -29,9 +29,11 @@ export default class SingleListScreen extends Component {
   renderItem(item) {
     return (
       <TouchableHighlight
+        onLongPress={() => {this.props.deleteListItem(item)}}
+        onPress = {() => {this.props.toggleCheckOnListItem(item)}}
       >
         <View>
-          <ListItem itemTitle={ item.title } itemContent={ item.content }/>
+          <ListItem itemTitle={ item.title } itemContent={ item.content } isItemCrossedOff={ item.crossedOff} />
           <View style={ styles.separator } />
         </View>
       </TouchableHighlight>
@@ -61,7 +63,7 @@ export default class SingleListScreen extends Component {
               style={styles.listView}
             />
           <View style={styles.container}>
-            <Footer />
+            <Footer  />
           </View>
         </View>
       );

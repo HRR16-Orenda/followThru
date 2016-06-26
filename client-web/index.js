@@ -10,7 +10,9 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import Root from './containers/RootContainer.js';
 import 'jquery';
 import 'materialize-css';
+import 'masonry-layout';
 require('materialize-css/dist/css/materialize.min.css');
+require('./css/style.css');
 import Store from './store/configureStore.js';
 
 var store = Store();
