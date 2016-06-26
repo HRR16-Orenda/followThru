@@ -33,6 +33,27 @@ export default StyleSheet.create({
   },
 
   /*********************************
+  Action confirmation Specific Styles
+  *********************************/
+  actionConfirm: {
+    flex: 1,
+    backgroundColor: '#F5FCFF'
+  },
+  checkmark: {
+    marginTop: 100,
+    marginBottom: 20,
+    width: 160,
+    height: 160,
+    alignSelf: "center",
+    backgroundColor: 'transparent'
+  },
+  categoryPicker: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  /*********************************
   ListView Specific Styles
   *********************************/
 
@@ -134,7 +155,8 @@ export default StyleSheet.create({
   *********************************/
   text: {
     fontSize: 16,
-    fontFamily: 'Helvetica'
+    fontFamily: 'Helvetica',
+    alignSelf: 'center'
   },
   h4: {
     fontSize: 20,
@@ -151,9 +173,18 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginTop: 20,
+    marginLeft: 20,
+    marginRight: 20,
     marginBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+    alignSelf: 'center'
+  },
 });

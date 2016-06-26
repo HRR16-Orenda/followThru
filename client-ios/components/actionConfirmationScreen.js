@@ -8,8 +8,7 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
-// import styles from '../styles/styles.js';
-// import Header from './header.js';
+import styles from '../styles/styles.js';
 import { Actions } from 'react-native-router-flux';
 
 export default class ActionConfirmationScreen extends Component {
@@ -35,24 +34,24 @@ export default class ActionConfirmationScreen extends Component {
 
       <View style={styles.container}>
         {this.props.toggleShow ?
-          <View style = {{height: 50, borderColor: 'gray', borderWidth: 1, marginLeft: 35, marginRight: 35, marginTop: 100, alignItems: "center"}}>
-            <Text>Add to...</Text>
-            <View style={{flex: 3, flexDirection: "row"}}>
-              <TouchableHighlight style={{margin: 10}} onPress={this.pressHandler.bind(this, 'Books')}>
-                <Text>Book</Text>
+          <View>
+            <Text style={styles.text}>Add to...</Text>
+            <View style={styles.categoryPicker}>
+              <TouchableHighlight style={styles.button} onPress={this.pressHandler.bind(this, 'Books')}>
+                <Text style={styles.buttonText}>Book</Text>
               </TouchableHighlight>
-              <TouchableHighlight style={{margin: 10}} onPress={this.pressHandler.bind(this, 'Movies')}>
-                <Text>Movies</Text>
+              <TouchableHighlight style={styles.button} onPress={this.pressHandler.bind(this, 'Movies')}>
+                <Text style={styles.buttonText}>Movies</Text>
               </TouchableHighlight>
-              <TouchableHighlight style={{margin: 10}} onPress={this.pressHandler.bind(this, 'Music')}>
-                <Text>Music</Text>
+              <TouchableHighlight style={styles.button} onPress={this.pressHandler.bind(this, 'Music')}>
+                <Text style={styles.buttonText}>Music</Text>
               </TouchableHighlight>
             </View>
           </View>
           :
-            <View style={styles.container}>
+            <View>
               <Image source={{uri:'http://cliparts.co/cliparts/pio/dBR/piodBRjiE.png'}} style={styles.checkmark} />
-              <Text style={{marginTop: 30, alignSelf: "center"}}>
+              <Text style={styles.text}>
                 Your item '{this.props.userInput}' has been added to {this.props.category}
               </Text>
             </View>
@@ -61,22 +60,3 @@ export default class ActionConfirmationScreen extends Component {
     );
   }
 }
-
-
-var styles = StyleSheet.create({
-   container: {
-     flex: 1,
-     backgroundColor: '#F5FCFF'
-   },
-   inputBox: {
-     flex: 1,
-     height: 30
-   },
-   checkmark: {
-     marginTop: 100,
-     width: 160,
-     height: 160,
-     alignSelf: "center",
-     backgroundColor: 'transparent'
-   }
-});
