@@ -49,7 +49,7 @@ export default StyleSheet.create({
   },
   categoryPicker: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center'
   },
 
@@ -143,11 +143,22 @@ export default StyleSheet.create({
     alignItems: 'flex-start'
   },
   inputField: {
-    height: 40,
-    width: 100,
-    marginTop: 10,
-    marginLeft: 20,
-    marginRight: 20
+    height: 36,
+    padding: 4,
+    flex: 4,
+    fontSize: 18,
+    marginBottom: 10,
+    marginRight: 5,
+    marginLeft: 5,
+    borderWidth: 1,
+    borderColor: '#48BBEC',
+    borderRadius: 8,
+    color: '#48BBEC'
+  },
+  flowRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'stretch'
   },
 
   /*********************************
@@ -162,28 +173,32 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Helvetica'
   },
+  description: {
+    marginBottom: 20,
+    fontSize: 18,
+    textAlign: 'center',
+    color: '#656565'
+  },
 
   /*********************************
   Button Common Styles
   *********************************/
   button: {
     height: 36,
+    flex: 1,
+    flexDirection: 'row',
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
     borderWidth: 1,
     borderRadius: 8,
-    marginTop: 20,
-    marginLeft: 20,
-    marginRight: 20,
     marginBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    marginRight: 5,
+    marginLeft: 5,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 18,
     color: 'white',
     alignSelf: 'center'
   },

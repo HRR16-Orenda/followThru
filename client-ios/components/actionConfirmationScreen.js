@@ -35,7 +35,7 @@ export default class ActionConfirmationScreen extends Component {
       <View style={styles.container}>
         {this.props.toggleShow ?
           <View>
-            <Text style={styles.text}>Add to...</Text>
+            <Text style={styles.description}>Add to...</Text>
             <View style={styles.categoryPicker}>
               <TouchableHighlight style={styles.button} onPress={this.pressHandler.bind(this, 'Books')}>
                 <Text style={styles.buttonText}>Book</Text>

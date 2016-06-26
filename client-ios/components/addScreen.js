@@ -31,7 +31,7 @@ export default class AddScreen extends Component {
     ];
     return (
       <View style={styles.container}>
-        <Text style={styles.h4}>What would you like to add?</Text>
+        <Text style={styles.description}>What would you like to add?</Text>
         <Form fieldType="item" detailFields={detailFields} onSubmit={submitHandler}/>
       </View>
     );

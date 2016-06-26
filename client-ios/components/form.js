@@ -24,7 +24,7 @@ class FormComponent extends Component {
   componentWillMount(){
   }
 
-  renderForm () {
+  renderGeneralForm () {
     const { fields, fieldType, detailFields } = this.props;
       return _.map(detailFields, (field, i) => {
         // if(key === 'isAdmin') {
@@ -41,11 +41,12 @@ class FormComponent extends Component {
         //   )
         // } else {
           return (
-            <View key={i} style={{ flexDirection:'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <Text style={styles.text}>{field.toUpperCase()} : </Text>
-              <View style={{ borderBottomColor: '#000000', borderBottomWidth: 1}}>
-                <TextInput style={styles.inputField} {...fields[fieldType][detailFields]}/>
-              </View>
+            <View key={i} style={styles.flowRight}>
+              <TextInput
+                style={styles.inputField}
+                {...fields[fieldType][detailFields]}
+                placeholder={field}
+              />
             </View>
           )
         // }
@@ -61,9 +62,13 @@ class FormComponent extends Component {
     } = this.props;
     return (
       <View style={styles.formContainer}>
-        {this.renderForm()}
-        <TouchableHighlight style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.text}>
+        {this.renderGeneralForm()}
+        <TouchableHighlight
+          style={styles.button}
+          onPress={handleSubmit}
+          underlayColor='#99d9f4'
+        >
+          <Text style={styles.buttonText}>
             Submit
           </Text>
         </TouchableHighlight>
