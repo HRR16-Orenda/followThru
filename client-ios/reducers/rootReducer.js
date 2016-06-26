@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import listReducer from './listReducer.js';
 import authReducer from './authReducer.js';
+import routeReducer from './routeReducer.js';
+
 /**
  *  Root Reducer that combines every Reducers
  *  About Reducer in Redux : http://redux.js.org/docs/basics/Reducers.html
@@ -9,7 +11,8 @@ import authReducer from './authReducer.js';
 const rootReducer = combineReducers({
   form: formReducer,
   lists: listReducer,
-  auth: authReducer
+  auth: authReducer,
+  route: routeReducer
 });
 
 export default rootReducer;

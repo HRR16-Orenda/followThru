@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
 import ActionConfirmationScreen from '../components/actionConfirmationScreen.js';
+import { reduxForm } from 'redux-form';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -25,4 +26,9 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ActionConfirmationScreen);
+export default reduxForm({
+  form: 'general',
+  fields: ['item.category']
+}, mapStateToProps,
+  mapDispatchToProps
+)(ActionConfirmationScreen);

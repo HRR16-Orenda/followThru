@@ -42,10 +42,13 @@ export default (state = {
         toggleShow: !state.toggleShow
     }
 
-    case types.FETCH_USER_LISTS:
+    case types.FETCH_DATABASE_LISTS_SUCCESS:
     return {
       ...state,
-      lists: action.fetchUserLists
+      lists: {
+        category: determineLists(action.payload),
+        allItems: action.payload
+      }
     };
 
     case types.UPDATE_LISTS_CATEGORY:
@@ -55,9 +58,6 @@ export default (state = {
         ...state.lists,
         category: action.category
       }
-      // ui: {
-      //   isLoading: action.allListsIsLoading,
-      // }
     };
 
     case types.UPDATE_ALL_LISTS_STATE:
@@ -119,7 +119,26 @@ export default (state = {
       }
     }
 
+    case 'jump':
+    return {
+      ...state,
+      toggleShow: true
+    }
+
     default:
     return state;
   };
+};
+
+// helper function to find all the different categories
+const determineLists = ( allItems ) => {
+  let listsObj = {};
+  let listsArr = [];
+  allItems.map(( item ) => {
+    listsObj[ item.category ] = true;
+  })
+  for( var key in listsObj ){
+    listsArr.push( key );
+  }
+  return listsArr;
 };

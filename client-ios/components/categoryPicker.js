@@ -15,17 +15,17 @@ export default class CategoryPicker extends Component {
   }
   render() {
     return (
-      <View style = {{height: 50, borderColor: 'gray', borderWidth: 1, marginLeft: 35, marginRight: 35, alignItems: "center"}}>
-        <Text>Did you mean...</Text>
-        <View style={{flex: 3, flexDirection: "row"}}>
+      <View style={styles.container}>
+        <Text style={styles.text}>Did you mean...</Text>
+        <View style={styles.categoryContainer}>
           <TouchableHighlight style={{margin: 10}} onPress={() => console.log(this.props)}>
-            <Text>Book</Text>
+            <Text style={styles.text}>Book</Text>
           </TouchableHighlight>
           <TouchableHighlight style={{margin: 10}}>
-            <Text>Movies</Text>
+            <Text style={styles.text}>Movies</Text>
           </TouchableHighlight>
           <TouchableHighlight style={{margin: 10}}>
-            <Text>Music</Text>
+            <Text style={styles.text}>Music</Text>
           </TouchableHighlight>
         </View>
       </View>

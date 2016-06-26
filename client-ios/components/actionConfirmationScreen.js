@@ -8,69 +8,55 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
-// import styles from '../styles/styles.js';
-// import Header from './header.js';
+import styles from '../styles/styles.js';
 import { Actions } from 'react-native-router-flux';
-import Footer from './footer.js';
 
 export default class ActionConfirmationScreen extends Component {
   constructor(props) {
     super(props);
   }
 
-// TODO have some sort of confirmation when clicked
+  pressHandler(data) {
+    const { fields, userCategorySelected, resetForm } = this.props;
+
+    // manually set category form field with given argument
+    fields.item.category.onChange(data);
+    userCategorySelected(data);
+
+    // manually resetForm value of form field
+    resetForm('general');
+  }
 
   render() {
-    console.log('title', this.props.userInput);
+    const { fields } = this.props;
+    console.log('title', this.props);
     return (
 
       <View style={styles.container}>
-      {this.props.toggleShow ?
-        <View style = {{height: 50, borderColor: 'gray', borderWidth: 1, marginLeft: 35, marginRight: 35, marginTop: 100, alignItems: "center"}}>
-          <Text>Add to...</Text>
-          <View style={{flex: 3, flexDirection: "row"}}>
-            <TouchableHighlight style={{margin: 10}} onPress={() => this.props.userCategorySelected('Books')}>
-              <Text>Book</Text>
-            </TouchableHighlight>
-            <TouchableHighlight style={{margin: 10}} onPress={() => this.props.userCategorySelected('Movies')}>
-              <Text>Movies</Text>
-            </TouchableHighlight>
-            <TouchableHighlight style={{margin: 10}} onPress={() => this.props.userCategorySelected('Music')}>
-              <Text>Music</Text>
-            </TouchableHighlight>
+        {this.props.toggleShow ?
+          <View>
+            <Text style={styles.description}>Add to...</Text>
+            <View style={styles.categoryPicker}>
+              <TouchableHighlight style={styles.button} onPress={this.pressHandler.bind(this, 'Books')}>
+                <Text style={styles.buttonText}>Book</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.button} onPress={this.pressHandler.bind(this, 'Movies')}>
+                <Text style={styles.buttonText}>Movies</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.button} onPress={this.pressHandler.bind(this, 'Music')}>
+                <Text style={styles.buttonText}>Music</Text>
+              </TouchableHighlight>
+            </View>
           </View>
-        </View>
-        :
-        <View style={styles.container}>
-          <Image source={{uri:'http://cliparts.co/cliparts/pio/dBR/piodBRjiE.png'}} style={styles.checkmark} />
-          <Text style={{marginTop: 30, alignSelf: "center"}}>
-            Your item '{this.props.userInput}' has been added to {this.props.category}
-          </Text>
-        </View>
-      }
-        <View style={styles.container} onPress={() => this.props.toggle()}>
-          <Footer />
-        </View>
+          :
+            <View>
+              <Image source={{uri:'http://cliparts.co/cliparts/pio/dBR/piodBRjiE.png'}} style={styles.checkmark} />
+              <Text style={styles.text}>
+                Your item '{this.props.userInput}' has been added to {this.props.category}
+              </Text>
+            </View>
+        }
       </View>
     );
   }
 }
-
-
-var styles = StyleSheet.create({
-   container: {
-     flex: 1,
-     backgroundColor: '#F5FCFF'
-   },
-   inputBox: {
-     flex: 1,
-     height: 30
-   },
-   checkmark: {
-     marginTop: 100,
-     width: 160,
-     height: 160,
-     alignSelf: "center",
-     backgroundColor: 'transparent'
-   }
-});
