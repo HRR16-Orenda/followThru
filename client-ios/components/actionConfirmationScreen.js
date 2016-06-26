@@ -18,15 +18,19 @@ export default class ActionConfirmationScreen extends Component {
   }
 
   pressHandler(data) {
-    console.log('shit 1st', data);
-    const { fields, userCategorySelected } = this.props;
+    const { fields, userCategorySelected, destroyForm } = this.props;
+
+    // manually set category form field with given argument
     fields.item.category.onChange(data);
     userCategorySelected(data);
+
+    // manually destroy value of form field
+    destroyForm('general');
   }
 
   render() {
     const { fields } = this.props;
-    console.log('title', this.props.userInput);
+    console.log('title', this.props);
     return (
 
       <View style={styles.container}>

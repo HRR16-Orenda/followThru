@@ -119,6 +119,12 @@ export default (state = {
       }
     }
 
+    case 'jump':
+    return {
+      ...state,
+      toggleShow: true
+    }
+
     default:
     return state;
   };

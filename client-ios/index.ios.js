@@ -35,8 +35,8 @@ class Orenda extends Component {
           <Scene key="nav" tabs={true} hideNavBar={true} >
             <Scene key="add" title="Add" icon={TabIcon} >
               <Scene key="addScreen" component={AddItemContainer} title="Add Screen" />
-              <Scene key="actionConfirmation" component={ActionConfirmationContainer} title="Action Confirmation" />
             </Scene>
+            <Scene key="actionConfirmation" component={ActionConfirmationContainer} title="Action Confirmation" />
             <Scene key="list" title="List" icon={TabIcon} >
               <Scene key="allListsScreen" component={AllListsContainer} title="All your lists" />
               <Scene key="singleListScreen" component={SingleListContainer} title="One single list" />
