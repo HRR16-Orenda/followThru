@@ -3,7 +3,9 @@
 import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
-
+import {
+  AsyncStorage
+} from 'react-native';
 
 // ******* ADD ITEM SECTION ******
 
@@ -313,21 +315,107 @@ const updateFilterState = ( updatedState ) => {
 }
 
 // ******* LOGIN SECTION ******
-// We'll obviously need a login section and all of the actions that go with that
+export const loginUser = function( creds ) {
+  // async _onValueChange(item, selectedValue) {
+  //   try {
+  //     await AsyncStorage.setItem(item, selectedValue);
+  //   } catch (error) {
+  //     console.log('AsyncStorage error: ' + error.message);
+  //   }
+  // }
 
-// makeLoginRequest
 
-// loginSuccess
 
-// loginFailure
+//   let config = {
+//     method: 'POST',
+//     headers: { 'Content-Type':'application/x-www-form-urlencoded' },
+//     body: `username=${creds.username}&password=${creds.password}`
+//   }
+//
+//   return dispatch => {
+//     dispatch(requestLogin( creds ))
+// //need to create this API endpoint in the server.  Also, is this
+// //how you make a REST call on a native device? refer to the Auth0
+// //example for reference
+//     return fetch('http://localhost:3001/api/auth', config)
+//       .then(response =>
+//         response.json()
+//         .then( user => ({ user, response })))
+//         .then(({ user, response }) => {
+//           if (!response.ok) {
+//             dispatch(loginError(user.message))
+//             return Promise.reject(user)
+//           } else {
+// need to store this in AsyncStorage unlike the browser example:
+//           // localStorage.setItem('id_token', user.id_token)
+// /* Note: it's important to note that we don't add it in the reducer becuase
+// reducers should have no side effects.*/
+//             dispatch(receiveLogin(user))
+//           }
+//         }).catch(err => console.log("Error: ", err))
+//   }
 
-// makeSignupRequest
+}
+
+const requestLogin = function( creds ) {
+  return {
+    type: types.LOGIN_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+    creds
+  }
+}
+
+const receiveLogin = function( user ) {
+  return {
+    type: types.LOGIN_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    id_token: user.id_token
+  }
+}
+
+const loginError = function( message ) {
+  return {
+    type: types.LOGIN_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    message
+  }
+}
+
+// makeSignupRequest ----> This will be similar to the above login flow;
 
 // signupSuccess
 
 // signupFailure
 
 // logOut
+
+export const logoutUser = function() {
+  return function ( dispatch ) {
+    dispatch(requestLogout()),
+//need to remove this from  AsyncStorage, similar to the browser example:
+    // localStorage.removeItem('id_token'),
+    dispatch(receiveLogout())
+  }
+}
+
+const requestLogout = function() {
+  return {
+    type: types.LOGOUT_REQUEST,
+    isFetching: true,
+    isAuthenticated: true
+  }
+}
+
+const receiveLogout = function() {
+  return {
+    type: types.LOGOUT_SUCCESS,
+    isFetching: false,
+    isAuthenticated: false
+  }
+}
 
 // verifyUser
 

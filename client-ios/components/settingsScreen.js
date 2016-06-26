@@ -13,16 +13,38 @@ import Footer from './footer.js';
 import styles from '../styles/styles.js';
 
 import t from 'tcomb-form-native';
-var Form = t.form.Form;
+let Form = t.form.Form;
 
-var User = t.struct({
+let User = t.struct({
   username: t.String,
   password: t.String
 });
 
 const options = {};
 
-export default class settingsScreen extends Component {
+export default class SettingsScreen extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  _userLogout = () => {
+    this.props.logoutUser();
+  }
+
+  _userSignup = () => {
+    var creds = this.refs.form.getValue();
+    if (creds) { // if validation fails, value will be null
+      this.props.signupUser(creds);
+    }
+  }
+
+  _userLogin = () => {
+    var creds = this.refs.form.getValue();
+    if (creds) { // if validation fails, value will be null
+      this.props.loginUser(creds);
+    }
+  }
 
   render() {
     return (
@@ -38,13 +60,13 @@ export default class settingsScreen extends Component {
           />
         </View>
         <View style={ styles.row }>
-          <TouchableHighlight style={ styles.signUpButton } underlayColor='#99d9f4'>
+          <TouchableHighlight style={ styles.signUpButton } onPress={this._userSignup} underlayColor='#99d9f4'>
             <Text style={styles.signUpButtonText}>Signup</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={ styles.signUpButton } underlayColor='#99d9f4'>
+          <TouchableHighlight style={ styles.signUpButton } onPress={ this._userLogin } underlayColor='#99d9f4'>
             <Text style={ styles.signUpButtonText }>Login</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={ styles.signUpButton } underlayColor='#99d9f4'>
+          <TouchableHighlight style={ styles.signUpButton } onPress={ this._userLogout } underlayColor='#99d9f4'>
             <Text style={ styles.signUpButtonText }>Logout</Text>
           </TouchableHighlight>
         </View>
