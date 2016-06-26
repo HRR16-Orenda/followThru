@@ -10,11 +10,9 @@ import {
 // import styles from '../styles/styles.js';
 // import Header from './header.js';
 import { Actions } from 'react-native-router-flux';
-import Footer from './footer.js';
 import CategoryPicker from './categoryPicker.js';
-
-// TODO remove this?
-// import InputBox from './inputBox.js';
+import Form from '../containers/FormContainer.js';
+import styles from '../styles/styles.js';
 
 
 export default class AddScreen extends Component {
@@ -27,30 +25,12 @@ export default class AddScreen extends Component {
   }
 
   render() {
+    const { submitHandler } = this.props;
     return (
       <View style={styles.container}>
-          <Text style={{marginTop: 100, alignSelf: "center"}}>What would you like to add?</Text>
-          <TextInput
-            style = {{height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20, marginLeft: 20, marginRight: 20}}
-            onChangeText={(text) => this.props.userTypeStart({text})}
-            onSubmitEditing={(text) => this.props.userTypeEnd({text})}
-          />
-
-        <View style={styles.container}>
-          <Footer/>
-        </View>
+        <Text style={styles.h4}>What would you like to add?</Text>
+        <Form fieldType="item" onSubmit={submitHandler}/>
       </View>
     );
   }
 }
-
-var styles = StyleSheet.create({
-   container: {
-     flex: 1,
-     backgroundColor: '#F5FCFF'
-   },
-   inputBox: {
-     flex: 1,
-     height: 30
-   }
-});

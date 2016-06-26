@@ -18,6 +18,7 @@ import SingleListContainer from './containers/SingleListContainer.js';
 import ActionConfirmationContainer from './containers/ActionConfirmationContainer.js';
 import CategoryPickerContainer from './containers/CategoryPickerContainer.js'
 import SettingsContainer from './containers/SettingsContainer.js'
+import TabIcon from './components/icons.js';
 
 // Import additional functionality
 import configureStore from './store/configureStore.js';
@@ -25,24 +26,22 @@ import configureStore from './store/configureStore.js';
 const store = configureStore()
 const RouterWithRedux = connect()(Router);
 
-// TODO remove categoryPicker?
+
 class Orenda extends Component {
   render() {
     return (
       <Provider store = {store}>
         <RouterWithRedux>
-          <Scene key="root">
-            <Scene key="addScreen" component={AddItemContainer} title="Add Screen" initial={true} tabs={true} hideBackImage={true}>
+          <Scene key="nav" tabs={true} hideNavBar={true} >
+            <Scene key="add" title="Add" icon={TabIcon} >
+              <Scene key="addScreen" component={AddItemContainer} title="Add Screen" />
+              <Scene key="categoryPicker" component={CategoryPickerContainer} title="Category Picker" />
             </Scene>
-            <Scene key="categoryPicker" component={CategoryPickerContainer} title="Category Picker"  tabs={true} hideBackImage={true} />
-            <Scene key="allListsScreen" component={AllListsContainer} title="All your lists" tabs={true} hideBackImage={true}>
+            <Scene key="list" title="List" icon={TabIcon} >
+              <Scene key="allListsScreen" component={AllListsContainer} title="All your lists" />
+              <Scene key="singleListScreen" component={SingleListContainer} title="One single list" />
             </Scene>
-            <Scene key="singleListScreen" component={SingleListContainer} title="One single list" tabs={true} hideBackImage={true}>
-            </Scene>
-            <Scene key="actionConfirmationScreen" component={ActionConfirmationContainer} title="Item added" tabs={true} hideBackImage={true}>
-            </Scene>
-            <Scene key="settingsScreen" component={SettingsContainer} title="Settings" tabs={true} hideBackImage={true}>
-            </Scene>
+            <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" initial={true} />
           </Scene>
         </RouterWithRedux>
       </Provider>
