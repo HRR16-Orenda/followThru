@@ -5,12 +5,14 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput
+  TextInput,
+  TouchableHighlight
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import CategoryPicker from './categoryPicker.js';
 import Form from '../containers/FormContainer.js';
 import styles from '../styles/styles.js';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 export default class AddScreen extends Component {

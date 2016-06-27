@@ -41,6 +41,24 @@ export default StyleSheet.create({
     right: 0,
     top: 20
   },
+//hold
+  mainButton: {
+    height: 40,
+    width: 56,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginRight: 5,
+    marginLeft: 5,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+
+  icon: {
+    fontSize: 60
+  },
 
   /*********************************
   Action confirmation Specific Styles
