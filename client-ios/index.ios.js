@@ -18,6 +18,7 @@ import SingleListContainer from './containers/SingleListContainer.js';
 import ActionConfirmationContainer from './containers/ActionConfirmationContainer.js';
 import CategoryPickerContainer from './containers/CategoryPickerContainer.js'
 import SettingsContainer from './containers/SettingsContainer.js'
+import AuthScreenContainer from './containers/AuthScreenContainer.js'
 import TabIcon from './components/icons.js';
 
 // Import additional functionality
@@ -41,8 +42,11 @@ class Orenda extends Component {
               <Scene key="allListsScreen" component={AllListsContainer} title="All your lists" />
               <Scene key="singleListScreen" component={SingleListContainer} title="One single list" />
             </Scene>
-            <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" initial={true} />
+            <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" />
           </Scene>
+          <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Auth" />
+          <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Auth" initial={true} />
+          {/*<Scene key="authScreen" component={AuthScreenContainer} title="Auth" initial={true} />*/}
         </RouterWithRedux>
       </Provider>
     );
