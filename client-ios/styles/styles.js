@@ -225,4 +225,8 @@ export default StyleSheet.create({
     color: 'white',
     alignSelf: 'center'
   },
+  icon: {
+    height: 25,
+    width: 25
+  }
 });

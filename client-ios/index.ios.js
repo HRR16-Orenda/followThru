@@ -20,6 +20,7 @@ import CategoryPickerContainer from './containers/CategoryPickerContainer.js'
 import SettingsContainer from './containers/SettingsContainer.js'
 import AuthScreenContainer from './containers/AuthScreenContainer.js'
 import TabIcon from './components/icons.js';
+import styles from './styles/styles.js';
 
 // Import additional functionality
 import configureStore from './store/configureStore.js';
@@ -33,9 +34,9 @@ class Orenda extends Component {
     return (
       <Provider store = {store}>
         <RouterWithRedux>
-          <Scene key="addScreen" component={AddItemContainer} title="Add Screen" type="reset" rightTitle="Setting" onRight={() => Actions.settingsScreen()}/>
-          <Scene key="actionConfirmation" component={ActionConfirmationContainer} title="Action Confirmation" />
-          <Scene key="singleListScreen" component={SingleListContainer} title="One single list" type="push" rightTitle="Setting" onRight={() => Actions.settingsScreen()}/>
+          <Scene key="addScreen" component={AddItemContainer} title="Add Screen" type="reset" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} onRight={() => Actions.settingsScreen()}/>
+          <Scene key="actionConfirmation" component={ActionConfirmationContainer} title="Action Confirmation" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} />
+          <Scene key="singleListScreen" component={SingleListContainer} title="One single list" type="push" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} onRight={() => Actions.settingsScreen()}/>
           <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" type="push"/>
           <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Welcome!" type="reset" rightTitle="Signup" onRight={() => Actions.signupScreen()}/>
           <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Welcome!" type="reset" leftTitle="Login" onLeft={() => Actions.loginScreen()}/>
