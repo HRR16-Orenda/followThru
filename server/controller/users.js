@@ -65,14 +65,3 @@ module.exports = {
       });
   }
 };
-
-// var hashPassword = function(pwd){
-//   return "hashed!";
-// }
-//
-// User.beforeCreate(function(user, options) {
-//   console.log("trying to hash! here is the user: ,", user)
-//   return hashPassword(user.password).then(function (hashedPw) {
-//     user.password = hashedPw;
-//   });
-// })

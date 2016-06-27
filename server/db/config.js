@@ -5,8 +5,6 @@ var host = process.env.RDS_HOST || 'localhost';
 var port = process.env.RDS_PORT || '5432';
 var dbName = process.env.RDS_DBNAME || 'test';
 var url = process.env.DATABASE_URL || 'postgres://localhost:5432/test';
-var secret = "orendarulesbabyhenrydroolsalot";
-
 
 // CircleCI test environment setting
 if(process.env.CIRCLECI) {
