@@ -20,7 +20,7 @@ const mapDispatchToProps = ( dispatch ) => {
 
       // temporary redirectings
       // This redirecting should be move to inside of 'loginSuccess' action creator
-      Actions.nav();
+      Actions.addScreen();
     },
     logoutUser: () => {
       // dispatch(actions.logoutUser());

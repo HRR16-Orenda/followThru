@@ -11,7 +11,6 @@ import {
 import {Scene, Reducer, Router, Switch, TabBar, Modal, Schema, Actions} from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
 import { reduxForm } from 'redux-form';
-
 // Import containers
 import AddItemContainer from './containers/AddItemContainer.js';
 import AllListsContainer from './containers/AllListsContainer.js';
@@ -34,21 +33,12 @@ class Orenda extends Component {
     return (
       <Provider store = {store}>
         <RouterWithRedux>
-          <Scene key="nav" tabs={true} hideNavBar={true} >
-            <Scene key="add" title="Add" icon={TabIcon} >
-              <Scene key="addScreen" component={AddItemContainer} title="Add Screen" />
-            </Scene>
-            <Scene key="actionConfirmation" component={ActionConfirmationContainer} title="Action Confirmation" />
-            <Scene key="list" title="List" icon={TabIcon} >
-              <Scene key="allListsScreen" component={AllListsContainer} title="All your lists" />
-              <Scene key="singleListScreen" component={SingleListContainer} title="One single list" />
-            </Scene>
-            <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" />
-          </Scene>
-          <Scene key="auth" initial={true} >
-            <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Welcome!" type="replace" rightTitle="Signup" onRight={() => Actions.signupScreen()}/>
-            <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Welcome!" type="replace" leftTitle="Login" onLeft={() => Actions.loginScreen()}/>
-          </Scene>
+          <Scene key="addScreen" component={AddItemContainer} title="Add Screen" rightTitle="Setting" onRight={() => Actions.signupScreen()}/>
+          <Scene key="actionConfirmation" component={ActionConfirmationContainer} title="Action Confirmation" />
+          <Scene key="singleListScreen" component={SingleListContainer} title="One single list" type="replace" rightTitle="Setting" onRight={() => Actions.signupScreen()}/>
+          <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" type="replace" rightTitle="Setting" onRight={() => Actions.signupScreen()}/>
+          <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Welcome!" type="replace" rightTitle="Signup" onRight={() => Actions.signupScreen()}/>
+          <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Welcome!" type="replace" leftTitle="Login" onLeft={() => Actions.loginScreen()}/>
           {/*<Scene key="authScreen" component={AuthScreenContainer} title="Auth" initial={true} />*/}
         </RouterWithRedux>
       </Provider>
