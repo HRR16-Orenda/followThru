@@ -17,19 +17,22 @@ export default class ActionConfirmationScreen extends Component {
   }
 
   pressHandler(data) {
-    const { fields, userCategorySelected, resetForm } = this.props;
+    const { fields, addItem, resetForm } = this.props;
 
     // manually set category form field with given argument
     fields.item.category.onChange(data);
-    userCategorySelected(data);
-
+    let item = {
+      title: fields.item.title.value,
+      category: data
+    };
+    addItem(item);
+    // userCategorySelected(data);
     // manually resetForm value of form field
     resetForm('general');
   }
 
   render() {
     const { fields } = this.props;
-    console.log('title', this.props);
     return (
 
       <View style={styles.container}>
@@ -38,7 +41,7 @@ export default class ActionConfirmationScreen extends Component {
             <Text style={styles.description}>Add to...</Text>
             <View style={styles.categoryPicker}>
               <TouchableHighlight style={styles.button} onPress={this.pressHandler.bind(this, 'Books')}>
-                <Text style={styles.buttonText}>Book</Text>
+                <Text style={styles.buttonText}>Books</Text>
               </TouchableHighlight>
               <TouchableHighlight style={styles.button} onPress={this.pressHandler.bind(this, 'Movies')}>
                 <Text style={styles.buttonText}>Movies</Text>

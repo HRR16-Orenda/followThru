@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import styles from '../styles/styles.js';
+import AuthForm from '../containers/AuthFormContainer.js';
 
 import t from 'tcomb-form-native';
 let Form = t.form.Form;
@@ -51,24 +52,7 @@ export default class SettingsScreen extends Component {
         <View style={ styles.row }>
           <Text style={ styles.signUpTitle } onPress={() => console.log(this.refs.form)} >Signup/Login</Text>
         </View>
-        <View style={ styles.row }>
-          <Form
-            ref="form"
-            type={ User }
-            options={ options }
-          />
-        </View>
-        <View style={ styles.row }>
-          <TouchableHighlight style={ styles.signUpButton } onPress={this._userSignup} underlayColor='#99d9f4'>
-            <Text style={styles.signUpButtonText}>Signup</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={ styles.signUpButton } onPress={ this._userLogin } underlayColor='#99d9f4'>
-            <Text style={ styles.signUpButtonText }>Login</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={ styles.signUpButton } onPress={ this._userLogout } underlayColor='#99d9f4'>
-            <Text style={ styles.signUpButtonText }>Logout</Text>
-          </TouchableHighlight>
-        </View>
+        <AuthForm formType="signup" />
       </View>
     );
   }

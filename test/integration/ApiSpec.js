@@ -12,7 +12,7 @@ describe('API Test', function () {
   var itemToBeAdded = {
     user_id: 1,
     content: 'this is the best novel',
-    category: 'books',
+    category: 'Books',
     subcategory: 'favorite',
     title: 'The Lord of the Ring',
     completed: false,

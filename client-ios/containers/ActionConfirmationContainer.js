@@ -1,12 +1,19 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
 import ActionConfirmationScreen from '../components/actionConfirmationScreen.js';
-import { reduxForm } from 'redux-form';
+import { reduxForm, getValues } from 'redux-form';
 
 const mapDispatchToProps = (dispatch) => {
   return {
     userCategorySelected: (category) => {
       dispatch(actions.userCategorySelected(category));
+    },
+    addNewListItemDatabase: (item) => {
+      console.log(item);
+    },
+    addItem: (item) => {
+      console.log('addItem called', item);
+      dispatch(actions.addItem(item));
     },
     toggle: () => {
       console.log('anything');
@@ -18,17 +25,14 @@ const mapDispatchToProps = (dispatch) => {
 // TODO Have it revert back to addList afterwards
 function mapStateToProps(state, ownProps) {
   return {
-    isUserTyping: state.lists.ui.isUserTyping,
     lists: state.lists.allItems,
-    userInput: state.lists.userInput.title,
-    category: state.lists.userInput.category,
     toggleShow: state.lists.toggleShow
   };
 }
 
 export default reduxForm({
   form: 'general',
-  fields: ['item.category']
+  fields: ['item.category', 'item.title']
 }, mapStateToProps,
   mapDispatchToProps
 )(ActionConfirmationScreen);
