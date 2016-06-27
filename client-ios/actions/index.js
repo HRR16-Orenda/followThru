@@ -45,8 +45,47 @@ export const addNewListItem = () => {
   }
 }
 
+// REFACTORED version
+export const addItem = (item) => {
+  return (dispatch, getState) => {
+    dispatch(addNewListItemDatabaseRequest());
+    let user = getState().lists.user;
+    let newInput = {
+      title: item.title,
+      content: 'Add something here',
+      category: item.category,
+      subcategory: 'favorite',
+      url: null,
+      user_id: user.user_id
+    };
+
+    fetch('http://localhost:3000/api/items/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newInput)
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      dispatch(addItemSuccess(data));
+    }).catch((error) => {
+      console.log(error);
+      dispatch(addNewListItemDatabaseFailure());
+    })
+  }
+}
+
+const addItemSuccess = (data) => {
+  return {
+    type: types.ADD_ITEM_SUCCESS,
+    payload: data
+  }
+};
+
 // adds the userInput to the database
-export const addNewListItemDatabase = () => {
+export const addNewListItemDatabase = (item) => {
   return function(dispatch, getState) {
     dispatch(addNewListItemDatabaseRequest());
 

@@ -12,8 +12,7 @@ export default (state = {
   },
   ui: {
 //there will only be "isLoading" in final store, not a version for "allLists" and "singleLists"
-    isLoading: true,
-    isUserTyping: false
+    isLoading: true
   },
   lists: {
     category: ['default'],
@@ -27,11 +26,6 @@ export default (state = {
       content: 'Milli Vanilli'
     }
   ],
-  userInput: {
-    title: '',
-    category: '',
-    content: ''
-  },
   toggleShow: true
 }, action) => {
   switch (action.type) {
@@ -85,37 +79,26 @@ export default (state = {
       // }
     };
 
-    case types.USER_TYPE_START:
-    return {
-      ...state,
-      ui: {
-        isUserTyping: true
-      },
-      userInput: {
-        ...state.userInput,
-        title: action.userInput.title
-      }
-    }
-
     case types.ADD_NEW_LIST_ITEM:
     var allItemsCopy = state.lists.allItems.slice();
-    allItemsCopy.push(state.userInput);
+    allItemsCopy.push(action.payload);
     return {
       ...state,
       lists: {
-        ...state.lists,
         allItems: allItemsCopy
       }
     }
 
-    // updateAllListsState
-
-    case types.UPDATE_USER_INPUT_CATEGORY:
+    // REFACTORED version
+    case types.ADD_ITEM_SUCCESS:
+    var allItemsCopy = state.lists.allItems.slice();
+    allItemsCopy.push(action.payload);
     return {
       ...state,
-      userInput: {
-        ...state.userInput,
-        category: action.userInput.category
+      toggleShow: false,
+      lists: {
+        category: determineLists(allItemsCopy),
+        allItems: allItemsCopy
       }
     }
 

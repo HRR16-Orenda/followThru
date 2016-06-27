@@ -6,10 +6,11 @@ import {
   Text
 } from 'react-native';
 
+// icon name set matched with title props
 const icons = {
   Add: 'ios-create-outline',
   List: 'ios-albums-outline',
-  Setting: 'ios-settings-outline'
+  Settings: 'ios-settings-outline'
 }
 
 export default class TabIcon extends React.Component {
