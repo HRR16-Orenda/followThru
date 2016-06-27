@@ -1,5 +1,6 @@
 var User = require('../models/users.js');
 var _ = require('underscore');
+var bcrypt = require('bcrypt');
 
 module.exports = {
 
@@ -14,10 +15,12 @@ module.exports = {
   },
 
   addOne: function(user, callback) {
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(user.password, salt);
     User.create({
       email: user.email,
       username: user.username,
-      password: user.password
+      password: hash
     })
     .then(function(addedUser) {
       callback(null, addedUser);
@@ -61,4 +64,15 @@ module.exports = {
         callback(error);
       });
   }
-}
+};
+
+// var hashPassword = function(pwd){
+//   return "hashed!";
+// }
+//
+// User.beforeCreate(function(user, options) {
+//   console.log("trying to hash! here is the user: ,", user)
+//   return hashPassword(user.password).then(function (hashedPw) {
+//     user.password = hashedPw;
+//   });
+// })
