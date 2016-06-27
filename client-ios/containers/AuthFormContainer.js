@@ -20,6 +20,9 @@ const validate = (values, props) => {
     errors.password = 'Required'
   } else if (values.password.length < 4) {
     errors.password = 'Must be at least 4 characters or more'
+  } else if (values.password !== values.confirm && props.formType === 'signup') {
+    console.log(values);
+    errors.confirm = 'Must be same as password'
   }
   return errors
 }
@@ -28,6 +31,7 @@ export const fields = [
   'username',
   'email',
   'password',
+  'confirm'
 ];
 
 export default reduxForm({

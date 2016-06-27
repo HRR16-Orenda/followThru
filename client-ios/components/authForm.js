@@ -108,11 +108,21 @@ class AuthFormComponent extends Component {
         {fields.password.touched && fields.password.error &&
           <Error error={fields.password.error} />
         }
+        <View style={styles.flowRight}>
+          <TextInput
+            style={styles.inputField}
+            {...fields.confirm}
+            secureTextEntry={true}
+            placeholder='Confirm your Password'
+          />
+        </View>
+        {fields.confirm.touched && fields.confirm.error &&
+          <Error error={fields.confirm.error} />
+        }
         <TouchableHighlight
           style={styles.button}
           onPress={handleSubmit}
           underlayColor='#99d9f4'
-          disables={true}
         >
           <Text style={styles.buttonText}>
             Signup
