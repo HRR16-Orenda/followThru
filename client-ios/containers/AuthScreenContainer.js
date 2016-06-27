@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
 import AuthScreen from '../components/authScreen.js';
+import { Actions } from 'react-native-router-flux';
 import {
   AlertIOS,
   AsyncStorage
@@ -9,18 +10,22 @@ import {
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
-    loginUser: (creds: {username: string, email: void, password: string}) => {
+    loginUser: (creds: string) => {
 
       // dispatch(actions.loginUser(creds));
-      AlertIOS.alert(", thank you for returning!")
+      AlertIOS.alert(creds.username + ", thank you for returning!");
+
+      // temporary redirectings
+      // This redirecting should be move to inside of 'loginSuccess' action creator
+      Actions.nav();
     },
     logoutUser: () => {
       // dispatch(actions.logoutUser());
       AlertIOS.alert("Sorry to see you go!!");
     },
-    signupUser: (creds: {username: string, email: string, password: string}) => {
+    signupUser: (creds) => {
       // dispatch(actions.signupUser());
-      AlertIOS.alert(" thank you for joining!")
+      AlertIOS.alert(creds.username + ", thank you for joining!")
     }
   }
 };

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {Scene, Reducer, Router, Switch, TabBar, Modal, Schema, Actions} from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
+import { reduxForm } from 'redux-form';
 
 // Import containers
 import AddItemContainer from './containers/AddItemContainer.js';
@@ -44,8 +45,10 @@ class Orenda extends Component {
             </Scene>
             <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" />
           </Scene>
-          <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Auth" />
-          <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Auth" initial={true} />
+          <Scene key="auth" initial={true} >
+            <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Auth" type="replace" />
+            <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Auth" type="replace" leftTitle="Login" onLeft={() => Actions.loginScreen()}/>
+          </Scene>
           {/*<Scene key="authScreen" component={AuthScreenContainer} title="Auth" initial={true} />*/}
         </RouterWithRedux>
       </Provider>
