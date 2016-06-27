@@ -356,7 +356,40 @@ const updateFilterState = ( updatedState ) => {
   }
 }
 
+<<<<<<< 0f29f4a9317ba4bde556f7e20726fbfb9456c0a7
 // ******* LOGIN/SIGNUP/LOGOUT SECTION ******
+=======
+// ******* AUTOCOMPLETE SECTION ******
+export const queryWikipedia = () => {
+  return function( dispatch, getState ) {
+    let searchQuery = getState().form.general.item.title.value;
+    let formattedSearchQuery = putInWikipediaFormat(searchQuery);
+    console.log('the input ', formattedSearchQuery);
+    fetch('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + formattedSearchQuery, {
+      method: 'GET'
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((response) => {
+      console.log('********* response **** ', response[1]);
+      // dispatch(addNewListItemDatabaseSuccess());
+    })
+    .catch((error) => {
+      console.log('********* error **** ', error);
+
+      // dispatch(addNewListItemDatabaseFailure());
+    })
+  }
+}
+
+const putInWikipediaFormat = ( query ) => {
+  let spiltString = query.split(' ');
+  return spiltString.join('+');
+}
+
+// ******* LOGIN SECTION ******
+>>>>>>> (feat) Add an opensearch query to wikipedia api
 export const loginUser = function( creds ) {
   // async _onValueChange(item, selectedValue) {
   //   try {
