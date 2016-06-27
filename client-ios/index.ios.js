@@ -46,7 +46,7 @@ class Orenda extends Component {
             <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" />
           </Scene>
           <Scene key="auth" initial={true} >
-            <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Auth" type="replace" />
+            <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Auth" type="replace" rightTitle="Signup" onRight={() => Actions.signupScreen()}/>
             <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Auth" type="replace" leftTitle="Login" onLeft={() => Actions.loginScreen()}/>
           </Scene>
           {/*<Scene key="authScreen" component={AuthScreenContainer} title="Auth" initial={true} />*/}

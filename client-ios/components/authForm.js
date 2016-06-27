@@ -10,11 +10,12 @@ import {
   Text,
   View
 } from 'react-native';
+import Error from './errorMsg.js';
 import styles from '../styles/styles.js';
 
 class AuthFormComponent extends Component {
   props: {
-    formType: string
+    formType: number
   };
 
   constructor(props){
@@ -29,6 +30,7 @@ class AuthFormComponent extends Component {
       invalid,
       formType
     } = this.props;
+
     return (
       <View style={styles.formContainer}>
         <View style={styles.flowRight}>
@@ -38,6 +40,9 @@ class AuthFormComponent extends Component {
             placeholder='Username'
           />
         </View>
+        {fields.username.touched && fields.username.error &&
+          <Error error={fields.username.error} />
+        }
         <View style={styles.flowRight}>
           <TextInput
             style={styles.inputField}
@@ -46,6 +51,9 @@ class AuthFormComponent extends Component {
             placeholder='Password'
           />
         </View>
+        {fields.password.touched && fields.password.error &&
+          <Error error={fields.password.error} />
+        }
         <TouchableHighlight
           style={styles.button}
           onPress={handleSubmit}
@@ -53,15 +61,6 @@ class AuthFormComponent extends Component {
         >
           <Text style={styles.buttonText}>
             Login
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={() => Actions.signupScreen()}
-          underlayColor='#99d9f4'
-        >
-          <Text style={styles.buttonText}>
-            Signup
           </Text>
         </TouchableHighlight>
       </View>
@@ -85,6 +84,9 @@ class AuthFormComponent extends Component {
             placeholder='Username'
           />
         </View>
+        {fields.username.touched && fields.username.error &&
+          <Error error={fields.username.error} />
+        }
         <View style={styles.flowRight}>
           <TextInput
             style={styles.inputField}
@@ -92,6 +94,9 @@ class AuthFormComponent extends Component {
             placeholder='Email'
           />
         </View>
+        {fields.email.touched && fields.email.error &&
+          <Error error={fields.email.error} />
+        }
         <View style={styles.flowRight}>
           <TextInput
             style={styles.inputField}
@@ -100,10 +105,14 @@ class AuthFormComponent extends Component {
             placeholder='Password'
           />
         </View>
+        {fields.password.touched && fields.password.error &&
+          <Error error={fields.password.error} />
+        }
         <TouchableHighlight
           style={styles.button}
           onPress={handleSubmit}
           underlayColor='#99d9f4'
+          disables={true}
         >
           <Text style={styles.buttonText}>
             Signup

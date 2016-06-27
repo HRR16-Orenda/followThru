@@ -10,7 +10,10 @@ import {
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
-    loginUser: (creds: string) => {
+    /*
+     * @params - creds: Object {username: string, password: string}
+     */
+    loginUser: (creds) => {
 
       // dispatch(actions.loginUser(creds));
       AlertIOS.alert(creds.username + ", thank you for returning!");
@@ -23,6 +26,9 @@ const mapDispatchToProps = ( dispatch ) => {
       // dispatch(actions.logoutUser());
       AlertIOS.alert("Sorry to see you go!!");
     },
+    /*
+     * @params - creds: Object {username: string, email: string, password: string}
+     */
     signupUser: (creds) => {
       // dispatch(actions.signupUser());
       AlertIOS.alert(creds.username + ", thank you for joining!")
