@@ -8,17 +8,9 @@ import {
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
-    loginUser: (creds) => {
-      // dispatch(actions.loginUser(creds));
-      AlertIOS.alert(creds.username + ", thank you for returning!")
-    },
     logoutUser: () => {
-      // dispatch(actions.logoutUser());
+      dispatch(actions.logoutUser());
       AlertIOS.alert("Sorry to see you go!!");
-    },
-    signupUser: (creds) => {
-      // dispatch(actions.signupUser());
-      AlertIOS.alert(creds.username + ", thank you for joining!")
     }
   }
 };

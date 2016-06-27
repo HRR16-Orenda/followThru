@@ -33,12 +33,12 @@ class Orenda extends Component {
     return (
       <Provider store = {store}>
         <RouterWithRedux>
-          <Scene key="addScreen" component={AddItemContainer} title="Add Screen" rightTitle="Setting" onRight={() => Actions.signupScreen()}/>
+          <Scene key="addScreen" component={AddItemContainer} title="Add Screen" type="reset" rightTitle="Setting" onRight={() => Actions.settingsScreen()}/>
           <Scene key="actionConfirmation" component={ActionConfirmationContainer} title="Action Confirmation" />
-          <Scene key="singleListScreen" component={SingleListContainer} title="One single list" type="replace" rightTitle="Setting" onRight={() => Actions.signupScreen()}/>
-          <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" type="replace" rightTitle="Setting" onRight={() => Actions.signupScreen()}/>
-          <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Welcome!" type="replace" rightTitle="Signup" onRight={() => Actions.signupScreen()}/>
-          <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Welcome!" type="replace" leftTitle="Login" onLeft={() => Actions.loginScreen()}/>
+          <Scene key="singleListScreen" component={SingleListContainer} title="One single list" type="push" rightTitle="Setting" onRight={() => Actions.settingsScreen()}/>
+          <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" type="push"/>
+          <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Welcome!" type="reset" rightTitle="Signup" onRight={() => Actions.signupScreen()}/>
+          <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Welcome!" type="reset" leftTitle="Login" onLeft={() => Actions.loginScreen()}/>
           {/*<Scene key="authScreen" component={AuthScreenContainer} title="Auth" initial={true} />*/}
         </RouterWithRedux>
       </Provider>

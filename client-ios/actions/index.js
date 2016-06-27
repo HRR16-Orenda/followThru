@@ -6,6 +6,7 @@ import { reset } from 'redux-form';
 import {
   AsyncStorage
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 // ******* ADD ITEM SECTION ******
 
@@ -435,6 +436,7 @@ const loginError = function( message ) {
 export const logoutUser = function() {
   return function ( dispatch ) {
     dispatch(requestLogout()),
+    Actions.loginScreen();
 //need to remove this from  AsyncStorage, similar to the browser example:
     // localStorage.removeItem('id_token'),
     dispatch(receiveLogout())
