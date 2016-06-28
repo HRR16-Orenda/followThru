@@ -1,5 +1,7 @@
+// @flow
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
+import { modalOpen, modalClose } from '../actions/listScreenAction.js';
 import SingleListScreen from '../components/singleListScreen.js';
 import { ListView } from 'react-native';
 
@@ -26,6 +28,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     toggleCheckOnListItem: (item) => {
       dispatch(actions.toggleCheckOnListItem(item));
+    },
+    modalOpen: (item: Object) => {
+      dispatch(modalOpen(item));
+    },
+    modalClose: () => {
+      dispatch(modalClose());
     }
   };
 };
@@ -36,7 +44,7 @@ const mapStateToProps = (state, ownProps) => {
     lists: state.lists.lists.allItems,
     listItems: state.lists.selectedItems,
     dataSource: generateDataSource(state.lists.selectedItems),
-    isLoading: state.lists.ui.isLoading
+    modal: state.lists.modal
   };
 }
 

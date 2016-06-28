@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   AsyncStorage,
-  StyleSheet,
   Text,
   View,
   TouchableHighlight,
-  AlertIOS,
+  Image
 } from 'react-native';
 
 import styles from '../styles/styles.js';
