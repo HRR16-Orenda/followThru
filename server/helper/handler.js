@@ -52,7 +52,7 @@ module.exports = {
       var returnedUsers = users.map(function (user) {
         return helper.cleanUser(user);
       });
-      res.send(users);
+      res.send(returnedUsers);
     });
   },
 
@@ -61,7 +61,7 @@ module.exports = {
     user.getOne(id, function (err, user) {
       if(err) {return res.sendStatus(400).send();}
       var returnedUser = helper.cleanUser(user);
-      res.send(user);
+      res.send(returnedUser);
     });
   },
 
@@ -70,7 +70,7 @@ module.exports = {
     user.addOne(data, function (err, user) {
       if(err) {return res.sendStatus(400).send();}
       var addedUser = helper.cleanUser(user);
-      res.send(user);
+      res.send(addedUser);
     });
   },
 
@@ -96,7 +96,7 @@ module.exports = {
     user.updateOne(id, updatedData, function (err, user) {
       if(err) {return res.sendStatus(400).send();}
       var updatedUser = helper.cleanUser(user);
-      res.send(user);
+      res.send(updatedUser);
     });
   }
 }
