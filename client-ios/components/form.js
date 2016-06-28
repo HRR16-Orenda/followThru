@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import styles from '../styles/styles.js';
 
+import * as actions from '../actions/index.js';
+
 class FormComponent extends Component {
   props: {
     detailFields: Array<string>,
@@ -26,6 +28,8 @@ class FormComponent extends Component {
 
   renderGeneralForm () {
     const { fields, fieldType, detailFields } = this.props;
+    actions.queryWikipedia(fields.item.title.value);
+
       return _.map(detailFields, (field, i) => {
         return (
           <View key={i} style={styles.flowRight}>
@@ -33,6 +37,7 @@ class FormComponent extends Component {
               style={styles.inputField}
               {...fields[fieldType][detailFields]}
               placeholder={field}
+              //onChangeText={(text) => {test(text)}}
             />
           </View>
         )
@@ -44,7 +49,9 @@ class FormComponent extends Component {
       fields,
       handleSubmit,
       resetForm,
-      invalid
+      invalid,
+      fieldType,
+      detailFields
     } = this.props;
     return (
       <View style={styles.formContainer}>

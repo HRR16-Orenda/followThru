@@ -360,11 +360,8 @@ const updateFilterState = ( updatedState ) => {
 // ******* LOGIN/SIGNUP/LOGOUT SECTION ******
 =======
 // ******* AUTOCOMPLETE SECTION ******
-export const queryWikipedia = () => {
-  return function( dispatch, getState ) {
-    let searchQuery = getState().form.general.item.title.value;
-    let formattedSearchQuery = putInWikipediaFormat(searchQuery);
-    console.log('the input ', formattedSearchQuery);
+export const queryWikipedia = (input) => {
+    let formattedSearchQuery = putInWikipediaFormat(input);
     fetch('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + formattedSearchQuery, {
       method: 'GET'
     })
@@ -380,7 +377,6 @@ export const queryWikipedia = () => {
 
       // dispatch(addNewListItemDatabaseFailure());
     })
-  }
 }
 
 const putInWikipediaFormat = ( query ) => {
