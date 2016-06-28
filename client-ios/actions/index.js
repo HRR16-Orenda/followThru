@@ -356,6 +356,7 @@ const updateFilterState = ( updatedState ) => {
   }
 }
 
+<<<<<<< e22fb9e30d7b3ca20de6ea8d043a8e3909b7ece4
 <<<<<<< 0f29f4a9317ba4bde556f7e20726fbfb9456c0a7
 // ******* LOGIN/SIGNUP/LOGOUT SECTION ******
 =======
@@ -405,6 +406,8 @@ export const updateUserInput = (inputData) => {
   }
 }
 
+=======
+>>>>>>> (feat) Rearrange action index.js file
 
 // ******* LOGIN SECTION ******
 >>>>>>> (feat) Add an opensearch query to wikipedia api
@@ -583,3 +586,51 @@ const receiveLogout = function() {
 // verifySuccess
 
 // verifyFailure
+
+
+
+// ******* AUTOCOMPLETE SECTION ******
+export const queryWikipedia = (input) => {
+  return function (dispatch) {
+    let formattedSearchQuery = putInWikipediaFormat(input);
+    fetch('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + formattedSearchQuery + '&limit=5', {
+      method: 'GET'
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((response) => {
+      dispatch(updateSearchSuggestionsSuccess(response[1]));
+    })
+    .catch((error) => {
+      // dispatch(updateSearchSuggestionsFailure());
+    })
+  }
+}
+
+const putInWikipediaFormat = ( query ) => {
+  let spiltString = query.split(' ');
+  return spiltString.join('+');
+}
+
+export const updateSearchSuggestionsSuccess = (inputSuggestions) => {
+  return {
+    type: types.UPDATE_SEARCH_SUGGESTIONS_SUCCESS,
+    suggestions: inputSuggestions
+  }
+}
+
+export const updateInputWithSuggestion = (inputData) => {
+  return function ( dispatch ) {
+    // clears out the search suggestions
+    dispatch(updateSearchSuggestionsSuccess([]));
+    dispatch(updateUserInput(inputData));
+  }
+}
+
+export const updateUserInput = (inputData) => {
+  return {
+    type: types.UPDATE_USER_INPUT,
+    inputData: inputData
+  }
+}
