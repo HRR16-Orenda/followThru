@@ -355,7 +355,7 @@ const updateFilterState = ( updatedState ) => {
   }
 }
 
-// ******* LOGIN SECTION ******
+// ******* LOGIN/SIGNUP/LOGOUT SECTION ******
 export const loginUser = function( creds ) {
   // async _onValueChange(item, selectedValue) {
   //   try {
@@ -426,23 +426,50 @@ const loginError = function( message ) {
 }
 
 // makeSignupRequest ----> This will be similar to the above login flow;
+export const signupUser = function( creds ) {
+  
+}
 
-// signupSuccess
+const requestSignup = function( creds ) {
+  return {
+    type: types.SIGNUP_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+    creds
+  }
+}
 
-// signupFailure
+const signupSuccess = function( user ) {
+  return {
+    type: types.SIGNUP_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    id_token: user.id_token
+  }
+}
+
+const signupError = function( message ) {
+  return {
+    type: types.SIGNUP_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    message
+  }
+}
+
 
 // logOut
-
 export const logoutUser = function() {
   return function ( dispatch ) {
     dispatch(requestLogout()),
     Actions.loginScreen();
-//need to remove this from  AsyncStorage, similar to the browser example:
+    //need to remove this from  AsyncStorage, similar to the browser example:
     // localStorage.removeItem('id_token'),
     dispatch(receiveLogout())
   }
 }
 
+//WHAT IS THIS DOING?? DON'T see it being used anywhere
 const requestLogout = function() {
   return {
     type: types.LOGOUT_REQUEST,
