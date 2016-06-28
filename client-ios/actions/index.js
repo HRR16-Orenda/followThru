@@ -11,16 +11,8 @@ import { Actions } from 'react-native-router-flux';
 
 // ******* ADD ITEM SECTION ******
 
-export const userTypeStart = (text) => {
-  return {
-    type: types.USER_TYPE_START,
-    userInput: {
-      title: text
-    }
-  }
-}
-
 // when a user clicks on what category they want their list item to be added to
+//REMOVE?
 export const userCategorySelected = (category) => {
   return function(dispatch) {
     dispatch(updateUserInputCategory(category));
@@ -31,6 +23,7 @@ export const userCategorySelected = (category) => {
 }
 
 // updates the global state with the selected category
+//REMOVE? <= andrew says 'ok'
 export const updateUserInputCategory = (category) => {
   return {
     type: types.UPDATE_USER_INPUT_CATEGORY,
@@ -41,12 +34,31 @@ export const updateUserInputCategory = (category) => {
 }
 
 // updates the global state allItems from the userInput
+//REMOVE?
 export const addNewListItem = () => {
   return {
     type: types.ADD_NEW_LIST_ITEM
   }
 }
 
+export const mainButtonPressed = (buttonCategory) => {
+  return (dispatch, getState) => {
+    dispatch(updateFilter(buttonCategory));
+    Actions.singleListScreen();
+    // let userInput = getState().lists.userInput;
+    // if (userInput) {
+    //   let newItem = {
+    //     title: userInput,
+    //     category: buttonCategory
+    //   }
+    //   dispatch(addItemLocally(newItem));
+    //   dispatch(addItemToDatabase(newItem));
+    // } else {
+    //   dispatch(updateFilter(buttonCategory));
+    //   Actions.singleListScreen();
+    // }
+  }
+}
 // REFACTORED version
 export const addItem = (item) => {
   return (dispatch, getState) => {

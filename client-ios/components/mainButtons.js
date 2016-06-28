@@ -32,47 +32,32 @@ export default class mainButtons extends Component {
     // manually resetForm value of form field
     resetForm('general');
 
-    //FUNCTION THAT SET-TIMEOUTS BUTTON TO BE A CHECK
   }
   //1. create submit functionality button during 'add' state
   //2. move pressHandler functionality that assigns category inside new submit function
   //3. places where buttonStyle state change needs to happen:
     //  - default state set to 'mainButton' style
     //  - checking length of user input in input box (change to 'add' style)
-    //  - onPress of add (change to 'checked' style)
+    //  - onPress of add (change to 'checked' style for specific button)
     //  - within the delay function inside onPress function (changes back to regular)
 
   render() {
-<<<<<<< 6f7a1dc51587a2cf443076e774864beda55fc263
 
-
-=======
->>>>>>> (feat) Further refactor main button component ternary for clarity
-    const {
-      fields,
-      handleSubmit
-    } = this.props;
-    const adding = !(fields.item.title.value.length === 0);
-    const buttons = this.props.buttons.map((threeButtons) => {
+    const adding = !(this.props.userInput.length === 0);
+    const fashion = this.props.buttonStyle;
+    const buttons = this.props.buttons.map((threeButtons, index) => {
       return (
-        <View style={styles.buttonContainer}>
-          {threeButtons.map((button) => {
+        <View style={styles.buttonContainer} key={threeButtons[index].category}>
+          {threeButtons.map((button, index) => {
+
             return (
-<<<<<<< 1874d0281d689e78a495b8f772e72f8be8a61c25
-<<<<<<< 6f7a1dc51587a2cf443076e774864beda55fc263
 
               // {adding ? <Text>{button.category}</Text> : null}
-              <TouchableHighlight style={ buttonStyle }>
-=======
-=======
-              // {adding ? <Text>{button.category}</Text> : null}
->>>>>>> (feat) Begin refactor to put main button conditional style in state
-              <TouchableHighlight style={ adding ? styles.mainButton_add : styles.mainButton }>
->>>>>>> (feat) Further refactor main button component ternary for clarity
+              <TouchableHighlight style={styles.mainButton} key={button.icon}>
               <Icon
                 name={adding ? 'ios-add-outline' : button.icon}
                 style={styles.icon}
-                onPress={() => {this.pressHandler.bind(this, button.category)}}
+                onPress={() => {this.props.mainButtonPressed(button.category)}}
               />
               </TouchableHighlight>
             );
@@ -83,7 +68,7 @@ export default class mainButtons extends Component {
     });
 
     return (
-      <View >
+      <View>
         {buttons}
       </View>
     );

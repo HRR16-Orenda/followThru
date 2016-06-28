@@ -5,19 +5,12 @@ import { reduxForm, getValues } from 'redux-form';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userCategorySelected: (category) => {
-      dispatch(actions.userCategorySelected(category));
-    },
-    addNewListItemDatabase: (item) => {
-      console.log(item);
-    },
     addItem: (item) => {
       console.log('addItem called', item);
       dispatch(actions.addItem(item));
     },
-    toggle: () => {
-      console.log('anything');
-      dispatch(actions.toggle());
+    mainButtonPressed: (buttonCategory) => {
+      dispatch(actions.mainButtonPressed(buttonCategory));
     }
   };
 };
@@ -28,13 +21,9 @@ function mapStateToProps(state, ownProps) {
     lists: state.lists.allItems,
     toggleShow: state.lists.toggleShow,
     buttons: state.lists.buttons,
-    buttonStyle: state.lists.ui.buttonStyle
+    buttonStyle: state.lists.ui.buttonStyle,
+    userInput: state.lists.userInput
   };
 }
 
-export default reduxForm({
-  form: 'general',
-  fields: ['item.category', 'item.title']
-}, mapStateToProps,
-  mapDispatchToProps
-)(MainButtons);
+export default connect(mapStateToProps, mapDispatchToProps)(MainButtons);

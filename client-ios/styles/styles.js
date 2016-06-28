@@ -39,7 +39,7 @@ export default StyleSheet.create({
     left: 0,
     position: 'absolute',
     right: 0,
-    top: 20
+    top: 200
   },
 //hold
   buttonContainer: {
@@ -57,6 +57,8 @@ export default StyleSheet.create({
     height: 60,
     flex: 1,
     flexDirection: 'row',
+    //REMOVE?
+    position: 'relative',
     backgroundColor: '#ffffff',
     borderColor: '#48BBEC',
     borderWidth: 1,
@@ -73,6 +75,21 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#ffffff',
+    borderColor: '#ff1a75',
+    borderWidth: 1,
+    borderRadius: 0,
+    marginBottom: 10,
+    marginRight: 10,
+    marginLeft: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+
+  mainButton_check: {
+    height: 60,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#ff1fff',
     borderColor: '#ff1a75',
     borderWidth: 1,
     borderRadius: 0,
