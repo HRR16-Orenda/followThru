@@ -6,7 +6,7 @@
     "start": "node index.js",
     "prestart": "webpack",
     "postinstall": "webpack",
-    "unittest:server": "./node_modules/.bin/mocha --reporter nyan test/server/ServerSpec.js",
+    "unittest:server": "./node_modules/.bin/mocha --reporter nyan test/server/index.js",
     "unittest:web": "./node_modules/.bin/mocha test/.setup.js test/client-web/WebSpec.js",
     "integrationtest": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
     "test": "npm run unittest:server && npm run unittest:web && npm run integrationtest",

@@ -1,5 +1,5 @@
 var Item = require('../models/items.js');
-var _ = require('underscore');
+var _ = require('lodash');
 
 module.exports = {
 
@@ -9,7 +9,6 @@ module.exports = {
       callback(null, item);
     })
     .catch(function(error) {
-      console.log(error);
       callback(error);
     });
   },
@@ -29,7 +28,6 @@ module.exports = {
       callback(null, newItem);
     })
     .catch(function(error) {
-      console.log(error);
       callback(error);
     })
   },
@@ -43,7 +41,6 @@ module.exports = {
       callback(null, rowAndData[1][0]);
     })
     .catch(function(error) {
-      console.log(error);
       callback(error);
     });
   },
@@ -56,7 +53,6 @@ module.exports = {
       callback(null, removedRow);
     })
     .catch(function(error) {
-      console.log(error);
       callback(error);
     });
   },
@@ -67,7 +63,6 @@ module.exports = {
       callback(null, items)
     })
     .catch(function(error) {
-      console.log(error);
       callback(error);
     })
   },
@@ -84,7 +79,6 @@ module.exports = {
       callback(null, categories);
     })
     .catch(function(error) {
-      console.log(error);
       callback(error);
     })
   },
@@ -101,7 +95,6 @@ module.exports = {
       callback(null, subcategories);
     })
     .catch(function(error) {
-      console.log(error);
       callback(error);
     })
   }

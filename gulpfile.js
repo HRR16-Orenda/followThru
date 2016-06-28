@@ -50,7 +50,7 @@ gulp.task('pre-test', function () {
 
 gulp.task('coverage', ['pre-test'], function (cb) {
   var mochaErr;
-  gulp.src(['test/server/ServerSpec.js'])
+  gulp.src(['test/server/index.js'])
     .pipe(plumber())
     .pipe(mocha())
     .on('error', function (err) {
@@ -68,7 +68,7 @@ gulp.task('coverage', ['pre-test'], function (cb) {
 gulp.task('server-test', ['pre-test'], function(cb) {
   var mochaErr;
 
-  gulp.src('./test/server/ServerSpec.js', {read: false})
+  gulp.src('./test/server/index.js', {read: false})
     .pipe(plumber())
     // wait till nodemon get restarted
     .pipe(wait(1500))
