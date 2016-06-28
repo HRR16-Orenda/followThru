@@ -26,7 +26,8 @@ const mapDispatchToProps = (dispatch) => {
 function mapStateToProps(state, ownProps) {
   return {
     lists: state.lists.allItems,
-    toggleShow: state.lists.toggleShow
+    toggleShow: state.lists.toggleShow,
+    buttons: state.lists.buttons
   };
 }
 

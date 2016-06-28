@@ -44,6 +44,7 @@ export default class mainButtons extends Component {
 
   render() {
 
+
     const {
       fields,
       handleSubmit
@@ -54,6 +55,7 @@ export default class mainButtons extends Component {
         <View style={styles.buttonContainer}>
           {threeButtons.map((button) => {
             return (
+
               // {adding ? <Text>{button.category}</Text> : null}
               <TouchableHighlight style={ buttonStyle }>
               <Icon
@@ -137,4 +139,4 @@ export default class mainButtons extends Component {
   //     </View>
   //   );
   // }
-  }
+}
