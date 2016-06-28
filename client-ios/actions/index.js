@@ -444,6 +444,7 @@ export const signupUser = function(creds) {
       return response.json();
     })
     .then((data) => {
+      console.log(data);
       var jwtObj = {
         jwt: data.jwt
       }
@@ -478,7 +479,7 @@ const signupSuccess = function( user ) {
     type: types.SIGNUP_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
-    id_token: user.id_token
+    user
   }
 }
 
@@ -504,7 +505,7 @@ export const logoutUser = function() {
       } else {
         AlertIOS.alert("Sorry to see you go!!");
         Actions.loginScreen();
-        dispatch(logoutSuccess);
+        dispatch(logoutSuccess());
       }
     })
   }
@@ -529,7 +530,7 @@ const logoutSuccess = function() {
 const storeLocally = function( key, object, callback ) {
   AsyncStorage.setItem(key, JSON.stringify(object), () => {
     AsyncStorage.getItem(key, (err, result) => {
-      console.log("this is coming from local storage!!", JSON.parse(result));
+      // console.log("this is coming from local storage!!", JSON.parse(result));
       if(err){
         return callback(err);
       }

@@ -5,11 +5,6 @@ import { update } from "react";
  *  Reducers related to Lists
  */
 export default (state = {
-  user: {
-    username: 'back2future',
-    email: 'marty@mcfly.com',
-    user_id: 1
-  },
   ui: {
 //there will only be "isLoading" in final store, not a version for "allLists" and "singleLists"
     isLoading: true
