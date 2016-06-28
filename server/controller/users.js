@@ -19,6 +19,20 @@ module.exports = {
   },
 
   addOne: function(user, callback) {
+    User.create({
+      email: user.email,
+      username: user.username,
+      password: user.password
+    })
+    .then(function(addedUser) {
+      callback(null, addedUser);
+    })
+    .catch(function(error) {
+      callback(error);
+    })
+  },
+
+  signupOne: function(user, callback) {
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(user.password, salt);
     User.create({
@@ -27,7 +41,16 @@ module.exports = {
       password: hash
     })
     .then(function(addedUser) {
-      callback(null, addedUser);
+      // var addedUserWithJWT =
+      var token = jwt.sign(helpers.cleanUser(addedUser), secret, {
+        expiresIn: 60 * 60 * 24 * 7 // a week in seconds
+      });
+      console.log("token from new user: ", token);
+      var userWithJwt = {
+        addedUser: addedUser,
+        jwt: 'JWT ' + token
+      }
+      callback(null, userWithJwt);
     })
     .catch(function(error) {
       callback(error);

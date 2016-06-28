@@ -436,7 +436,7 @@ export const signupUser = function( creds ) {
       "username": creds.username.value,
       "password": creds.password.value
     }
-    return fetch('http://localhost:3000/api/users/', {
+    return fetch('http://localhost:3000/api/users/signup/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
