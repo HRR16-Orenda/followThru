@@ -31,6 +31,7 @@ class FormComponent extends Component {
 
   renderGeneralForm () {
     const { fields, fieldType, detailFields } = this.props;
+    // fields.item.title.value to get that field data
 
       return _.map(detailFields, (field, i) => {
         return (
@@ -38,14 +39,22 @@ class FormComponent extends Component {
             <Autocomplete
               //containerStyle={styles.inputField}
               {...fields[fieldType][detailFields]}
+              value={this.props.userInput || fields.item.title.value}
               placeholder={field}
               data = {this.props.suggestions}
-              renderItem={(data) => (
-                <TouchableOpacity onPress={() => fields.item.title.value=data}>
-                  <Text>{data}</Text>
+              renderItem={(itemData) => (
+                <TouchableOpacity onPress={() => this.props.updateInputWithSuggestion(itemData)}>
+                  <Text>{itemData}</Text>
                 </TouchableOpacity>
               )}
-              onChangeText={(text) => {this.props.queryWikipedia(text)}}
+              onChangeText={(text) => {
+                this.props.queryWikipedia(text);
+                this.props.updateUserInput(text);
+              }}
+              //onChange={(event) => {
+              //  console.log('here is the event ***** ', event)
+              //  // fields.onChange(event);
+              //}}
             />
           </View>
         )

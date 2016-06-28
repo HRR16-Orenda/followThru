@@ -31,10 +31,22 @@ export default (state = {
     item: {}
   },
   toggleShow: true,
-  suggestions: []
+  suggestions: [],
+  userInput: ''
 }, action) => {
   switch (action.type) {
 
+    case types.UPDATE_USER_INPUT:
+    return {
+      ...state,
+      userInput: action.inputData
+    }
+
+    case types.UPDATE_INPUT_WITH_SUGGESTION:
+    return {
+      ...state,
+      userInput: action.inputData
+    }
     case types.UPDATE_SEARCH_SUGGESTIONS:
     return {
       ...state,

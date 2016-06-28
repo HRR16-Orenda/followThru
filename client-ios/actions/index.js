@@ -401,6 +401,27 @@ const putInWikipediaFormat = ( query ) => {
   return spiltString.join('+');
 }
 
+export const updateInputWithSuggestionFirst = (inputData) => {
+  return function ( dispatch ) {
+    dispatch(updateSearchSuggestions([]));
+    dispatch(updateInputWithSuggestion(inputData));
+  }
+}
+
+export const updateInputWithSuggestion = (inputData) => {
+
+  return {
+    type: types.UPDATE_INPUT_WITH_SUGGESTION,
+    inputData: inputData
+  }
+}
+
+export const updateUserInput = (inputData) => {
+  return {
+    type: types.UPDATE_USER_INPUT,
+    inputData: inputData
+  }
+}
 // ******* LOGIN SECTION ******
 >>>>>>> (feat) Add an opensearch query to wikipedia api
 export const loginUser = function( creds ) {

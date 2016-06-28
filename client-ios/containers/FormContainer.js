@@ -23,7 +23,8 @@ const queryWikipedia = (data) => {
 
 function mapStateToProps(state, ownProps) {
   return {
-    suggestions: state.lists.suggestions
+    suggestions: state.lists.suggestions,
+    userInput: state.lists.userInput
   };
 }
 
@@ -31,6 +32,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     queryWikipedia: (data) => {
       dispatch(actions.queryWikipedia(data));
+    },
+    updateInputWithSuggestion: (input) => {
+      console.log('***', input);
+      dispatch(actions.updateInputWithSuggestionFirst(input));
+    },
+    updateUserInput: (input) => {
+      dispatch(actions.updateUserInput(input))
     }
   };
 };
