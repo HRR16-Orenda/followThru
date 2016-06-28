@@ -57,10 +57,10 @@ export default StyleSheet.create({
     height: 60,
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#48BBEC',
+    backgroundColor: '#ffffff',
     borderColor: '#48BBEC',
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 0,
     marginBottom: 10,
     marginRight: 5,
     marginLeft: 5,
@@ -72,19 +72,20 @@ export default StyleSheet.create({
     height: 60,
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#ff1a75',
+    backgroundColor: '#ffffff',
     borderColor: '#ff1a75',
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 0,
     marginBottom: 10,
-    marginRight: 5,
-    marginLeft: 5,
+    marginRight: 10,
+    marginLeft: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
 
   icon: {
-    fontSize: 60
+    fontSize: 60,
+    color: '#48BBEC'
   },
   /**********************************
   Icon Swipe Description Feature
