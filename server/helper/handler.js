@@ -74,6 +74,16 @@ module.exports = {
     });
   },
 
+  signupUser: function (req, res) {
+    var data = req.body;
+    user.signupOne(data, function (err, userWithJwt) {
+      if(err) {return res.sendStatus(400).send();}
+      var addedUser = helper.cleanUser(userWithJwt.addedUser);
+      addedUser.jwt = userWithJwt.jwt;
+      res.send(addedUser);
+    });
+  },
+
   loginUser: function (req, res) {
     var data = req.body;
     user.loginOne(data, function (err, token) {
