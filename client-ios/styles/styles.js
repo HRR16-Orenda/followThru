@@ -42,9 +42,21 @@ export default StyleSheet.create({
     top: 20
   },
 //hold
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    backgroundColor: '#F5FCFF',
+    paddingTop: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 0
+  },
+
   mainButton: {
-    height: 40,
-    width: 56,
+    height: 60,
+    flex: 1,
+    flexDirection: 'row',
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
     borderWidth: 1,

@@ -12,7 +12,6 @@ import styles from '../styles/styles.js';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
 export default class mainButtons extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +30,7 @@ export default class mainButtons extends Component {
     // userCategorySelected(data);
     // manually resetForm value of form field
     resetForm('general');
+
     //FUNCTION THAT SET-TIMEOUTS BUTTON TO BE A CHECK
   }
   //1. create submit functionality button during 'add' state
@@ -134,4 +134,4 @@ export default class mainButtons extends Component {
   //     </View>
   //   );
   // }
-}
+  }

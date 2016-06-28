@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
-import ActionConfirmationScreen from '../components/actionConfirmationScreen.js';
+import MainButtons from '../components/mainButtons.js';
 import { reduxForm, getValues } from 'redux-form';
 
 const mapDispatchToProps = (dispatch) => {
@@ -35,4 +35,4 @@ export default reduxForm({
   fields: ['item.category', 'item.title']
 }, mapStateToProps,
   mapDispatchToProps
-)(ActionConfirmationScreen);
+)(MainButtons);

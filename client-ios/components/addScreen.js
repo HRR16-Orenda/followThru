@@ -6,13 +6,11 @@ import {
   Text,
   View,
   TextInput,
-  TouchableHighlight
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import CategoryPicker from './categoryPicker.js';
 import Form from '../containers/FormContainer.js';
 import styles from '../styles/styles.js';
-import Icon from 'react-native-vector-icons/Ionicons';
+import MainButtons from '../containers/MainButtonsContainer.js'
 
 
 export default class AddScreen extends Component {
@@ -28,6 +26,9 @@ export default class AddScreen extends Component {
     return (
       <View style={styles.container}>
         <Form />
+        <Text style={styles.description}>What would you like to add?</Text>
+        <Form fieldType="item" detailFields={detailFields} onSubmit={submitHandler}/>
+        <MainButtons />
       </View>
     );
   }

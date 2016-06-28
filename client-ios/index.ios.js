@@ -15,7 +15,7 @@ import { reduxForm } from 'redux-form';
 import AddItemContainer from './containers/AddItemContainer.js';
 import AllListsContainer from './containers/AllListsContainer.js';
 import SingleListContainer from './containers/SingleListContainer.js';
-import ActionConfirmationContainer from './containers/ActionConfirmationContainer.js';
+import MainButtonsContainer from './containers/MainButtonsContainer.js';
 import CategoryPickerContainer from './containers/CategoryPickerContainer.js'
 import SettingsContainer from './containers/SettingsContainer.js'
 import AuthScreenContainer from './containers/AuthScreenContainer.js'
@@ -35,7 +35,7 @@ class Orenda extends Component {
       <Provider store = {store}>
         <RouterWithRedux>
           <Scene key="addScreen" component={AddItemContainer} title="Add Screen" type="reset" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} onRight={() => Actions.settingsScreen()} leftTitle="ListScreen" onLeft={() => Actions.singleListScreen()}/>
-          <Scene key="actionConfirmation" component={ActionConfirmationContainer} title="Action Confirmation" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} />
+          <Scene key="mainButtons" component={MainButtonsContainer} title="Main Buttons" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} />
           <Scene key="singleListScreen" component={SingleListContainer} title="One single list" type="push" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} onRight={() => Actions.settingsScreen()}/>
           <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" type="push"/>
           <Scene key="loginScreen" component={AuthScreenContainer} initial={true} formType="login" title="Welcome!" type="reset" rightTitle="Signup" onRight={() => Actions.signupScreen()}/>
