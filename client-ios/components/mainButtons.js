@@ -58,11 +58,15 @@ export default class mainButtons extends Component {
         <View style={styles.buttonContainer}>
           {threeButtons.map((button) => {
             return (
+<<<<<<< 1874d0281d689e78a495b8f772e72f8be8a61c25
 <<<<<<< 6f7a1dc51587a2cf443076e774864beda55fc263
 
               // {adding ? <Text>{button.category}</Text> : null}
               <TouchableHighlight style={ buttonStyle }>
 =======
+=======
+              // {adding ? <Text>{button.category}</Text> : null}
+>>>>>>> (feat) Begin refactor to put main button conditional style in state
               <TouchableHighlight style={ adding ? styles.mainButton_add : styles.mainButton }>
 >>>>>>> (feat) Further refactor main button component ternary for clarity
               <Icon

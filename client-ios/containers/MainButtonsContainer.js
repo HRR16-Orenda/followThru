@@ -27,7 +27,8 @@ function mapStateToProps(state, ownProps) {
   return {
     lists: state.lists.allItems,
     toggleShow: state.lists.toggleShow,
-    buttons: state.lists.buttons
+    buttons: state.lists.buttons,
+    buttonStyle: state.lists.ui.buttonStyle
   };
 }
 
