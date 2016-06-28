@@ -37,11 +37,8 @@ module.exports = {
   loginOne: function(data, callback) {
     User.findOne({ where: {email: data.email } })
     .then(function(foundUser){
-      console.log("user found: ", foundUser.email);
-      console.log("result of bcrypt.compareSync: ", bcrypt.compareSync(data.password, foundUser.password));
-      if (bcrypt.compareSync(data.password, foundUser.password)) {
+        if (bcrypt.compareSync(data.password, foundUser.password)) {
         //generate jwt
-        console.log("foundUser: ", helpers.cleanUser(foundUser))
         var token = jwt.sign(helpers.cleanUser(foundUser), secret, {
           expiresIn: 60 * 60 * 24 * 7 // a week in seconds
         });
