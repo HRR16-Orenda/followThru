@@ -68,8 +68,51 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
 
+  mainButton_add: {
+    height: 60,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#ff1a75',
+    borderColor: '#ff1a75',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginRight: 5,
+    marginLeft: 5,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+
   icon: {
     fontSize: 60
+  },
+  /**********************************
+  Icon Swipe Description Feature
+  **********************************/
+
+  wrapper: {},
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5',
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
   },
 
   /*********************************

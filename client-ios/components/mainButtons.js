@@ -12,6 +12,7 @@ import styles from '../styles/styles.js';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+
 export default class mainButtons extends Component {
   constructor(props) {
     super(props);
