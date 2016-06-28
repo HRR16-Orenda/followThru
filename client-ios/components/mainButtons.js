@@ -43,6 +43,7 @@ export default class mainButtons extends Component {
     //  - within the delay function inside onPress function (changes back to regular)
 
   render() {
+
     const {
       fields,
       handleSubmit
@@ -63,6 +64,7 @@ export default class mainButtons extends Component {
               </TouchableHighlight>
             );
           })}
+
         </View>
       )
     });
