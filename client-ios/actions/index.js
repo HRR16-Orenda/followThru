@@ -370,29 +370,11 @@ export const queryWikipedia = (input) => {
       return response.json();
     })
     .then((response) => {
-      // console.log('********* response **** ', response[1]);
-      dispatch(updateSearchSuggestions(response[1]));
+      dispatch(updateSearchSuggestionsSuccess(response[1]));
     })
     .catch((error) => {
-      // console.log('********* error **** ', error);
-
-      // dispatch(addNewListItemDatabaseFailure());
+      // dispatch(updateSearchSuggestionsFailure());
     })
-  }
-}
-
-const updateSearchSuggestionsFor = (inputSuggestions) => {
-  console.log('hit the first one');
-  return function(dispatch) {
-    dispatch(updateSearchSuggestions(inputSuggestions));
-  }
-}
-
-export const updateSearchSuggestions = (inputSuggestions) => {
-  console.log('hit it ', inputSuggestions)
-  return {
-    type: types.UPDATE_SEARCH_SUGGESTIONS,
-    suggestions: inputSuggestions
   }
 }
 
@@ -401,18 +383,18 @@ const putInWikipediaFormat = ( query ) => {
   return spiltString.join('+');
 }
 
-export const updateInputWithSuggestionFirst = (inputData) => {
-  return function ( dispatch ) {
-    dispatch(updateSearchSuggestions([]));
-    dispatch(updateInputWithSuggestion(inputData));
+export const updateSearchSuggestionsSuccess = (inputSuggestions) => {
+  return {
+    type: types.UPDATE_SEARCH_SUGGESTIONS_SUCCESS,
+    suggestions: inputSuggestions
   }
 }
 
 export const updateInputWithSuggestion = (inputData) => {
-
-  return {
-    type: types.UPDATE_INPUT_WITH_SUGGESTION,
-    inputData: inputData
+  return function ( dispatch ) {
+    // clears out the search suggestions
+    dispatch(updateSearchSuggestionsSuccess([]));
+    dispatch(updateUserInput(inputData));
   }
 }
 
@@ -422,6 +404,8 @@ export const updateUserInput = (inputData) => {
     inputData: inputData
   }
 }
+
+
 // ******* LOGIN SECTION ******
 >>>>>>> (feat) Add an opensearch query to wikipedia api
 export const loginUser = function( creds ) {

@@ -47,7 +47,7 @@ export default (state = {
       ...state,
       userInput: action.inputData
     }
-    case types.UPDATE_SEARCH_SUGGESTIONS:
+    case types.UPDATE_SEARCH_SUGGESTIONS_SUCCESS:
     return {
       ...state,
       suggestions: action.suggestions

@@ -34,6 +34,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start'
   },
+  autocompleteContainer: {
+    flex: 1,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 20
+  },
 
   /*********************************
   Action confirmation Specific Styles
