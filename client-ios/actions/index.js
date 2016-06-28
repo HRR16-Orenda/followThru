@@ -436,12 +436,6 @@ export const signupUser = function( creds ) {
       "username": creds.username.value,
       "password": creds.password.value
     }
-    console.log("New user is string?: ", newUser);
-    console.log("New user email is string?: ", newUser.email);
-    console.log("New user username is string?: ", newUser.username);
-    console.log("New user password is string?: ", newUser.password);
-
-
     return fetch('http://localhost:3000/api/users/', {
       method: 'POST',
       headers: {
@@ -451,11 +445,9 @@ export const signupUser = function( creds ) {
       body: JSON.stringify(newUser)
     })
     .then((response) => {
-      // console.log(response);
       return response.json();
     })
     .then((data) => {
-      console.log("data from the server!!: ", data);
       Actions.addScreen()
       AlertIOS.alert(data.username + ", thank you for joining!")
       dispatch(signupSuccess(data))
