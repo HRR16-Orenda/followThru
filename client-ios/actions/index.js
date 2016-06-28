@@ -363,7 +363,7 @@ const updateFilterState = ( updatedState ) => {
 export const queryWikipedia = (input) => {
   return function (dispatch) {
     let formattedSearchQuery = putInWikipediaFormat(input);
-    fetch('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + formattedSearchQuery, {
+    fetch('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + formattedSearchQuery + '&limit=5', {
       method: 'GET'
     })
     .then((response) => {
