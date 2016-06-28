@@ -358,49 +358,43 @@ const updateFilterState = ( updatedState ) => {
 
 
 // ******* LOGIN/SIGNUP/LOGOUT SECTION ******
-export const loginUser = function( creds ) {
-  // async _onValueChange(item, selectedValue) {
-  //   try {
-  //     await AsyncStorage.setItem(item, selectedValue);
-  //   } catch (error) {
-  //     console.log('AsyncStorage error: ' + error.message);
-  //   }
-  // }
-
-
-
-//   let config = {
-//     method: 'POST',
-//     headers: { 'Content-Type':'application/x-www-form-urlencoded' },
-//     body: `username=${creds.username}&password=${creds.password}`
-//   }
-//
-//   return dispatch => {
-//     dispatch(requestLogin( creds ))
-// //need to create this API endpoint in the server.  Also, is this
-// //how you make a REST call on a native device? refer to the Auth0
-// //example for reference
-//     return fetch('http://localhost:3001/api/auth', config)
-//       .then(response =>
-//         response.json()
-//         .then( user => ({ user, response })))
-//         .then(({ user, response }) => {
-//           if (!response.ok) {
-//             dispatch(loginError(user.message))
-//             return Promise.reject(user)
-//           } else {
-// need to store this in AsyncStorage unlike the browser example:
-//           // localStorage.setItem('id_token', user.id_token)
-// /* Note: it's important to note that we don't add it in the reducer becuase
-// reducers should have no side effects.*/
-//             dispatch(receiveLogin(user))
-//           }
-//         }).catch(err => console.log("Error: ", err))
-//   }
-
+export const loginUser = function(creds) {
+  return function (dispatch, getState){
+    dispatch(requestLogin());
+    let creds = getState().form.auth;
+    let loginCreds = {
+      username: creds.username.value,
+      password: creds.password.value
+    }
+    return fetch('http://localhost:3000/api/users/login/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginCreds)
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      var jwtObj = {
+        jwt: data.message
+      }
+      storeLocally('JWT_TOKEN', jwtObj, function(err, result){
+        if(err){
+          console.log("Error with storing JWT to AsynchStorage: ", err);
+        } else {
+          AlertIOS.alert('Welcome back!');
+          Actions.addScreen();
+          dispatch(loginSuccess(data))
+        };
+      });
+    })
+  }
 }
 
-const requestLogin = function( creds ) {
+const requestLogin = function(creds) {
   return {
     type: types.LOGIN_REQUEST,
     isFetching: true,
@@ -409,7 +403,7 @@ const requestLogin = function( creds ) {
   }
 }
 
-const receiveLogin = function( user ) {
+const loginSuccess = function(user) {
   return {
     type: types.LOGIN_SUCCESS,
     isFetching: false,
@@ -418,7 +412,7 @@ const receiveLogin = function( user ) {
   }
 }
 
-const loginError = function( message ) {
+const loginError = function(message) {
   return {
     type: types.LOGIN_FAILURE,
     isFetching: false,
@@ -428,8 +422,8 @@ const loginError = function( message ) {
 }
 
 // makeSignupRequest
-export const signupUser = function( creds ) {
-  return function ( dispatch, getState ) {
+export const signupUser = function(creds) {
+  return function (dispatch, getState) {
     dispatch(requestSignup());
     let creds = getState().form.auth;
     let newUser = {
@@ -437,6 +431,7 @@ export const signupUser = function( creds ) {
       "username": creds.username.value,
       "password": creds.password.value
     }
+//refactor to use AXIOS (don't need to include localhost or the server address)
     return fetch('http://localhost:3000/api/users/signup/', {
       method: 'POST',
       headers: {
@@ -449,14 +444,18 @@ export const signupUser = function( creds ) {
       return response.json();
     })
     .then((data) => {
-      Actions.addScreen()
-      AlertIOS.alert(data.username + ", thank you for joining!")
-//should this be done as a promise prior to changing screens or alerting success?
       var jwtObj = {
         jwt: data.jwt
       }
-      storeLocally('JWT_TOKEN', jwtObj);
-      dispatch(signupSuccess(data))
+      storeLocally('JWT_TOKEN', jwtObj, function(err, result){
+        if(err){
+          console.log("Error with storing JWT to AsynchStorage: ", err);
+        } else {
+          Actions.addScreen();
+          AlertIOS.alert(data.username + ", thank you for joining!")
+          dispatch(signupSuccess(data))
+        };
+      });
     })
     .catch((error) => {
       console.log("error from user fetch call: ", error);
@@ -492,26 +491,25 @@ const signupError = function( message ) {
   }
 }
 
-const storeLocally = function( key, object ) {
-  AsyncStorage.setItem(key, JSON.stringify(object), () => {
-    AsyncStorage.getItem(key, (err, result) => {
-      console.log("this is coming from local storage!!", JSON.parse(result));
-    });
-  });
-}
-
 // logOut
 export const logoutUser = function() {
   return function ( dispatch ) {
-    dispatch(requestLogout()),
-    Actions.loginScreen();
-    //need to remove this from  AsyncStorage, similar to the browser example:
-    // localStorage.removeItem('id_token'),
-    dispatch(receiveLogout())
+    dispatch(requestLogout());
+    jwtObj = {
+      jwt: undefined
+    }
+    storeLocally('JWT_TOKEN', jwtObj, function(err, result){
+      if(err){
+        console.log('error with removing JWT from AsyncStorage: ', err);
+      } else {
+        AlertIOS.alert("Sorry to see you go!!");
+        Actions.loginScreen();
+        dispatch(logoutSuccess);
+      }
+    })
   }
 }
 
-//WHAT IS THIS DOING?? DON'T see it being used anywhere
 const requestLogout = function() {
   return {
     type: types.LOGOUT_REQUEST,
@@ -520,12 +518,24 @@ const requestLogout = function() {
   }
 }
 
-const receiveLogout = function() {
+const logoutSuccess = function() {
   return {
     type: types.LOGOUT_SUCCESS,
     isFetching: false,
     isAuthenticated: false
   }
+}
+
+const storeLocally = function( key, object, callback ) {
+  AsyncStorage.setItem(key, JSON.stringify(object), () => {
+    AsyncStorage.getItem(key, (err, result) => {
+      console.log("this is coming from local storage!!", JSON.parse(result));
+      if(err){
+        return callback(err);
+      }
+      callback(null, result);
+    });
+  });
 }
 
 // verifyUser
