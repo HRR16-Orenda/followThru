@@ -30,8 +30,8 @@ const mapDispatchToProps = ( dispatch ) => {
      * @params - creds: Object {username: string, email: string, password: string}
      */
     signupUser: (creds) => {
-      // dispatch(actions.signupUser());
-      AlertIOS.alert(creds.username + ", thank you for joining!")
+      dispatch(actions.signupUser());
+      // AlertIOS.alert(creds.username + ", thank you for joining!")
     }
   }
 };

@@ -34,6 +34,31 @@ module.exports = {
     })
   },
 
+  signupOne: function(user, callback) {
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(user.password, salt);
+    User.create({
+      email: user.email,
+      username: user.username,
+      password: hash
+    })
+    .then(function(addedUser) {
+      // var addedUserWithJWT =
+      var token = jwt.sign(helpers.cleanUser(addedUser), secret, {
+        expiresIn: 60 * 60 * 24 * 7 // a week in seconds
+      });
+      console.log("token from new user: ", token);
+      var userWithJwt = {
+        addedUser: addedUser,
+        jwt: 'JWT ' + token
+      }
+      callback(null, userWithJwt);
+    })
+    .catch(function(error) {
+      callback(error);
+    })
+  },
+
   loginOne: function(data, callback) {
     User.findOne({ where: {email: data.email } })
     .then(function(foundUser){

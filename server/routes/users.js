@@ -24,6 +24,13 @@ router.get('/:id', handler.getOneUser);
 router.post('/', handler.addOneUser);
 
 /**
+ * handler for signing up a new user
+ * @input: userdata(email, username, password) as req.body
+ * @return: <Object> - object of added user without password info
+**/
+router.post('/signup/', handler.signupUser);
+
+/**
  * handler for logging in a user
  * @input: userdata(email, username, password) as req.body
  * @return: <Object> - object of added user with JWT and without password info
