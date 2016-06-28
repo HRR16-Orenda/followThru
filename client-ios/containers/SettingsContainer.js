@@ -10,7 +10,6 @@ const mapDispatchToProps = ( dispatch ) => {
   return {
     logoutUser: () => {
       dispatch(actions.logoutUser());
-      AlertIOS.alert("Sorry to see you go!!");
     }
   }
 };

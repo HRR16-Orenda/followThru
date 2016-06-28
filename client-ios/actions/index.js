@@ -506,15 +506,22 @@ const storeLocally = function( key, object, callback ) {
 // logOut
 export const logoutUser = function() {
   return function ( dispatch ) {
-    dispatch(requestLogout()),
-    Actions.loginScreen();
-    //need to remove this from  AsyncStorage, similar to the browser example:
-    // localStorage.removeItem('id_token'),
-    dispatch(receiveLogout())
+    dispatch(requestLogout());
+    jwtObj = {
+      jwt: undefined
+    }
+    storeLocally('JWT_TOKEN', jwtObj, function(err, result){
+      if(err){
+        console.log('error with removing JWT from AsyncStorage: ', err);
+      } else {
+        AlertIOS.alert("Sorry to see you go!!");
+        Actions.loginScreen();
+        dispatch(logoutSuccess);
+      }
+    })
   }
 }
 
-//WHAT IS THIS DOING?? DON'T see it being used anywhere
 const requestLogout = function() {
   return {
     type: types.LOGOUT_REQUEST,
@@ -523,7 +530,7 @@ const requestLogout = function() {
   }
 }
 
-const receiveLogout = function() {
+const logoutSuccess = function() {
   return {
     type: types.LOGOUT_SUCCESS,
     isFetching: false,

@@ -14,17 +14,7 @@ const mapDispatchToProps = ( dispatch ) => {
      * @params - creds: Object {username: string, password: string}
      */
     loginUser: (creds) => {
-
       dispatch(actions.loginUser(creds));
-      // AlertIOS.alert(creds.username + ", thank you for returning!");
-
-      // temporary redirectings
-      // This redirecting should be move to inside of 'loginSuccess' action creator
-      Actions.addScreen();
-    },
-    logoutUser: () => {
-      // dispatch(actions.logoutUser());
-      AlertIOS.alert("Sorry to see you go!!");
     },
     /*
      * @params - creds: Object {username: string, email: string, password: string}
