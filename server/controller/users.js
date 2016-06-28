@@ -60,7 +60,7 @@ module.exports = {
   },
 
   loginOne: function(data, callback) {
-    User.findOne({ where: {email: data.email } })
+    User.findOne({ where: {username: data.username } })
     .then(function(foundUser){
         if (bcrypt.compareSync(data.password, foundUser.password)) {
         //generate jwt

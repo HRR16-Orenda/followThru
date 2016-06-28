@@ -15,8 +15,8 @@ const mapDispatchToProps = ( dispatch ) => {
      */
     loginUser: (creds) => {
 
-      // dispatch(actions.loginUser(creds));
-      AlertIOS.alert(creds.username + ", thank you for returning!");
+      dispatch(actions.loginUser(creds));
+      // AlertIOS.alert(creds.username + ", thank you for returning!");
 
       // temporary redirectings
       // This redirecting should be move to inside of 'loginSuccess' action creator
@@ -30,8 +30,7 @@ const mapDispatchToProps = ( dispatch ) => {
      * @params - creds: Object {username: string, email: string, password: string}
      */
     signupUser: (creds) => {
-      dispatch(actions.signupUser());
-      // AlertIOS.alert(creds.username + ", thank you for joining!")
+      dispatch(actions.signupUser(creds));
     }
   }
 };
