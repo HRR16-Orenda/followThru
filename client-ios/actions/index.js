@@ -4,7 +4,8 @@ import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
 import {
-  AsyncStorage
+  AsyncStorage,
+  AlertIOS
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -425,9 +426,45 @@ const loginError = function( message ) {
   }
 }
 
-// makeSignupRequest ----> This will be similar to the above login flow;
+// makeSignupRequest
 export const signupUser = function( creds ) {
-  
+  return function ( dispatch, getState ) {
+    dispatch(requestSignup());
+    let creds = getState().form.auth;
+    let newUser = {
+      "email": creds.email.value,
+      "username": creds.username.value,
+      "password": creds.password.value
+    }
+    console.log("New user is string?: ", newUser);
+    console.log("New user email is string?: ", newUser.email);
+    console.log("New user username is string?: ", newUser.username);
+    console.log("New user password is string?: ", newUser.password);
+
+
+    return fetch('http://localhost:3000/api/users/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newUser)
+    })
+    .then((response) => {
+      // console.log(response);
+      return response.json();
+    })
+    .then((data) => {
+      console.log("data from the server!!: ", data);
+      Actions.addScreen()
+      AlertIOS.alert(data.username + ", thank you for joining!")
+      dispatch(signupSuccess(data))
+    })
+    .catch((error) => {
+      console.log("error from user fetch call: ", error);
+      dispatch(signupError(error))
+    })
+  }
 }
 
 const requestSignup = function( creds ) {
