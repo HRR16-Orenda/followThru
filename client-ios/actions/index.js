@@ -454,7 +454,7 @@ export const signupUser = function( creds ) {
       var jwtObj = {
         jwt: data.jwt
       }
-      storeLocally(jwtObj);
+      storeLocally('JWT_TOKEN', jwtObj);
       dispatch(signupSuccess(data))
     })
     .catch((error) => {
@@ -491,9 +491,9 @@ const signupError = function( message ) {
   }
 }
 
-const storeLocally = function( object ) {
-  AsyncStorage.setItem('JWT_TOKEN', JSON.stringify(object), () => {
-    AsyncStorage.getItem('JWT_TOKEN', (err, result) => {
+const storeLocally = function( key, object ) {
+  AsyncStorage.setItem(key, JSON.stringify(object), () => {
+    AsyncStorage.getItem(key, (err, result) => {
       console.log("this is coming from local storage!!", JSON.parse(result));
     });
   });
