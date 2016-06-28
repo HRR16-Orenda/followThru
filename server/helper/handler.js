@@ -1,6 +1,9 @@
 var item = require('../controller/items.js');
 var user = require('../controller/users.js');
 var helper = require('./helpers.js');
+var bcrypt = require('bcrypt');
+var User = require('../models/users.js');
+
 
 module.exports = {
   getAllItems: function (req, res) {
@@ -69,6 +72,14 @@ module.exports = {
       var addedUser = helper.cleanUser(user);
       res.send(user);
     });
+  },
+
+  loginUser: function (req, res) {
+    var data = req.body;
+    user.loginOne(data, function (err, token) {
+      if(err) {return res.sendStatus(400).send();}
+      res.send(token);
+    })
   },
 
   removeOneUser: function (req, res) {
