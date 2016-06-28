@@ -8,7 +8,7 @@ import {
   TouchableHighlight,
   Text,
   View,
-  StyleSheet
+  TouchableOpacity
 } from 'react-native';
 import styles from '../styles/styles.js';
 
@@ -36,13 +36,14 @@ class FormComponent extends Component {
         return (
           <View key={i} style={styles.flowRight}>
             <Autocomplete
-              defaultValue={'hello'}
               //containerStyle={styles.inputField}
               {...fields[fieldType][detailFields]}
               placeholder={field}
               data = {this.props.suggestions}
-              renderItem={data => (
-                <Text>{data}</Text>
+              renderItem={(data) => (
+                <TouchableOpacity onPress={() => fields.item.title.value=data}>
+                  <Text>{data}</Text>
+                </TouchableOpacity>
               )}
               onChangeText={(text) => {this.props.queryWikipedia(text)}}
             />
