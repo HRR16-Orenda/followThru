@@ -1,23 +1,28 @@
 // @flow
-import { reduxForm, addArrayValue } from 'redux-form';
+import { connect } from 'react-redux';
 import FormComponent from '../components/form.js';
+import * as actions from '../actions/index.js';
 
-export const fields = [
-  'user.username',
-  'user.email',
-  'user.password',
-  'user.isAdmin',
-  'item.title',
-  'item.content',
-  'item.category',
-  'item.completed',
-  'item.sub-category',
-  'item.url'
-];
 
-export default reduxForm({
-  form: 'general',
-  fields,
-}, undefined, {
-  addValue: addArrayValue // mapDispatchToProps (will bind action creator to dispatch)
-})(FormComponent)
+function mapStateToProps(state, ownProps) {
+  return {
+    suggestions: state.lists.suggestions,
+    userInput: state.lists.userInput
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    queryWikipedia: (data) => {
+      dispatch(actions.queryWikipedia(data));
+    },
+    updateInputWithSuggestion: (input) => {
+      dispatch(actions.updateInputWithSuggestion(input));
+    },
+    updateUserInput: (input) => {
+      dispatch(actions.updateUserInput(input))
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormComponent);

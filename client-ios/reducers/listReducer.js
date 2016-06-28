@@ -30,9 +30,28 @@ export default (state = {
     isOpen: false,
     item: {}
   },
-  toggleShow: true
+  toggleShow: true,
+  suggestions: [],
+  userInput: ''
 }, action) => {
   switch (action.type) {
+
+    case types.UPDATE_USER_INPUT:
+    return {
+      ...state,
+      userInput: action.inputData
+    }
+
+    case types.UPDATE_INPUT_WITH_SUGGESTION:
+    return {
+      ...state,
+      userInput: action.inputData
+    }
+    case types.UPDATE_SEARCH_SUGGESTIONS_SUCCESS:
+    return {
+      ...state,
+      suggestions: action.suggestions
+    }
 
     case types.TOGGLE_SHOW:
     return {
