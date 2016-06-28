@@ -1,5 +1,5 @@
 // @flow
-
+import React from 'react'
 import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
@@ -450,6 +450,11 @@ export const signupUser = function( creds ) {
     .then((data) => {
       Actions.addScreen()
       AlertIOS.alert(data.username + ", thank you for joining!")
+//should this be done as a promise prior to changing screens or alerting success?
+      var jwtObj = {
+        jwt: data.jwt
+      }
+      storeLocally(jwtObj);
       dispatch(signupSuccess(data))
     })
     .catch((error) => {
@@ -486,6 +491,13 @@ const signupError = function( message ) {
   }
 }
 
+const storeLocally = function( object ) {
+  AsyncStorage.setItem('JWT_TOKEN', JSON.stringify(object), () => {
+    AsyncStorage.getItem('JWT_TOKEN', (err, result) => {
+      console.log("this is coming from local storage!!", JSON.parse(result));
+    });
+  });
+}
 
 // logOut
 export const logoutUser = function() {
