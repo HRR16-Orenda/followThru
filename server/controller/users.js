@@ -1,6 +1,10 @@
 var User = require('../models/users.js');
 var _ = require('underscore');
 var bcrypt = require('bcrypt');
+var secret = require('../helper/config.js');
+var jwt = require('jsonwebtoken');
+var helpers = require('../helper/helpers')
+
 
 module.exports = {
 
@@ -27,6 +31,28 @@ module.exports = {
     })
     .catch(function(error) {
       callback(error);
+    })
+  },
+
+  loginOne: function(data, callback) {
+    User.findOne({ where: {email: data.email } })
+    .then(function(foundUser){
+      console.log("user found: ", foundUser.email);
+      console.log("result of bcrypt.compareSync: ", bcrypt.compareSync(data.password, foundUser.password));
+      if (bcrypt.compareSync(data.password, foundUser.password)) {
+        //generate jwt
+        console.log("foundUser: ", helpers.cleanUser(foundUser))
+        var token = jwt.sign(helpers.cleanUser(foundUser), secret, {
+          expiresIn: 60 * 60 * 24 * 7 // a week in seconds
+        });
+        callback( null, { success: true, message: 'JWT ' + token });
+      }
+      else {
+        callback(error)
+      }
+    })
+    .catch(function(){
+      callback({ success: false, message: 'Authentication failed. Email does exist.' });
     })
   },
 

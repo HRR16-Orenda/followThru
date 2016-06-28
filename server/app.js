@@ -6,7 +6,6 @@ var jwt = require('jsonwebtoken');
 var sequelize = require('./db/config.js');
 var index = require('./routes/index.js');
 var users = require('./routes/users.js');
-var User = require('./models/users.js')
 var items = require('./routes/items.js');
 var path = require('path');
 
