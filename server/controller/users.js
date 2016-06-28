@@ -19,10 +19,12 @@ module.exports = {
   },
 
   addOne: function(user, callback) {
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(user.password, salt);
     User.create({
       email: user.email,
       username: user.username,
-      password: user.password
+      password: hash
     })
     .then(function(addedUser) {
       callback(null, addedUser);

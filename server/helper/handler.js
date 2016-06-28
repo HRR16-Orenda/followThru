@@ -1,6 +1,9 @@
 var item = require('../controller/items.js');
 var user = require('../controller/users.js');
 var helper = require('./helpers.js');
+var bcrypt = require('bcrypt');
+var User = require('../models/users.js');
+
 
 module.exports = {
   getAllItems: function (req, res) {

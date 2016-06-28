@@ -225,4 +225,38 @@ export default StyleSheet.create({
     color: 'white',
     alignSelf: 'center'
   },
+  icon: {
+    height: 25,
+    width: 25
+  },
+
+  /*********************************
+  List Screen Specific Styles
+  *********************************/
+  innerContainer: {
+    alignItems: 'center'
+  },
+  modalBackground: {
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  innerContainerTransparent: {
+    backgroundColor: '#fff',
+    padding: 20
+  },
+  innerContainerText: {
+    marginBottom: 20,
+    fontSize: 18,
+    textAlign: 'center',
+    color: 'gray'
+  },
+  modalButton: {
+    borderRadius: 5,
+    flex: 1,
+    height: 44,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  }
 });

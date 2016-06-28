@@ -26,6 +26,10 @@ export default (state = {
       content: 'Milli Vanilli'
     }
   ],
+  modal: {
+    isOpen: false,
+    item: {}
+  },
   toggleShow: true
 }, action) => {
   switch (action.type) {
@@ -73,7 +77,9 @@ export default (state = {
     case types.UPDATE_SINGLE_LIST_STATE:
     return {
       ...state,
-      selectedItems: action.selectedItems
+      // uncomment when integration with main screen is completed
+      // selectedItems: action.selectedItems
+
       // ui: {
       //   isLoading: action.singleListIsLoading,
       // }
@@ -102,6 +108,25 @@ export default (state = {
       }
     }
 
+    case types.MODAL_OPEN:
+    return {
+      ...state,
+      modal: {
+        isOpen: true,
+        item: action.payload
+      }
+    }
+
+    case types.MODAL_CLOSE:
+    return {
+      ...state,
+      modal: {
+        isOpen: false,
+        item: {}
+      }
+    }
+
+    // Reducer for resetting toggleShow
     case 'jump':
     return {
       ...state,

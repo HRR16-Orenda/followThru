@@ -37,5 +37,9 @@ export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAILURE = "SIGNUP_FAILURE";
 
+// ******* LIST SCREEN SECTION ******
+export const MODAL_OPEN = "MODAL_OPEN";
+export const MODAL_CLOSE = "MODAL_CLOSE";
+
 // Where is this being called??
 export const FETCH_USER_LISTS = 'FETCH_USER_LISTS';

@@ -30,7 +30,6 @@ router.post('/', handler.addOneUser);
 **/
 router.post('/signup/', handler.signupUser);
 
-
 /**
  * handler for logging in a user
  * @input: userdata(email, username, password) as req.body
