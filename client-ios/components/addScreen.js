@@ -23,16 +23,9 @@ export default class AddScreen extends Component {
   }
 
   render() {
-    const { submitHandler } = this.props;
-    const detailFields = [
-      'title'
-    ];
     return (
       <View style={styles.container}>
-        <Text style={styles.description}>What would you like to add?</Text>
-        <Form fieldType="item" detailFields={detailFields} onSubmit={submitHandler}/>
-        <Text>---------------------------------------</Text>
-        <Text>Button Group Component Starts Here!!!</Text>
+        <Form />
       </View>
     );
   }
