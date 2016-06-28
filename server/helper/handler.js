@@ -33,7 +33,7 @@ module.exports = {
     var id = req.params.id;
     item.removeOne(id, function(err, rows) {
       if(err) {return res.sendStatus(400);}
-      res.status(200).end();
+      res.sendStatus(200);
     } )
   },
 
@@ -48,7 +48,7 @@ module.exports = {
 
   getAllUsers: function (req, res) {
     user.getAll(function (err, users) {
-      if(err) {return res.sendStatus(400).send();}
+      if(err) {return res.sendStatus(400);}
       var returnedUsers = users.map(function (user) {
         return helper.cleanUser(user);
       });
@@ -59,7 +59,7 @@ module.exports = {
   getOneUser: function (req, res) {
     var id = req.params.id;
     user.getOne(id, function (err, user) {
-      if(err) {return res.sendStatus(400).send();}
+      if(err) {return res.sendStatus(400);}
       var returnedUser = helper.cleanUser(user);
       res.send(returnedUser);
     });
@@ -68,7 +68,7 @@ module.exports = {
   addOneUser: function (req, res) {
     var data = req.body;
     user.addOne(data, function (err, user) {
-      if(err) {return res.sendStatus(400).send();}
+      if(err) {return res.sendStatus(400);}
       var addedUser = helper.cleanUser(user);
       res.send(addedUser);
     });
@@ -77,7 +77,7 @@ module.exports = {
   signupUser: function (req, res) {
     var data = req.body;
     user.signupOne(data, function (err, userWithJwt) {
-      if(err) {return res.sendStatus(400).send();}
+      if(err) {return res.sendStatus(400);}
       var addedUser = helper.cleanUser(userWithJwt.addedUser);
       addedUser.jwt = userWithJwt.jwt;
       res.send(addedUser);
@@ -87,7 +87,7 @@ module.exports = {
   loginUser: function (req, res) {
     var data = req.body;
     user.loginOne(data, function (err, token) {
-      if(err) {return res.sendStatus(400).send();}
+      if(err) {return res.sendStatus(400);}
       res.send(token);
     })
   },
@@ -95,7 +95,7 @@ module.exports = {
   removeOneUser: function (req, res) {
     var id = req.params.id;
     user.removeOne(id, function (err, user) {
-      if(err) {return res.sendStatus(400).send();}
+      if(err) {return res.sendStatus(400);}
       res.sendStatus(200);
     });
   },
@@ -104,7 +104,7 @@ module.exports = {
     var id = req.params.id;
     var updatedData = req.body;
     user.updateOne(id, updatedData, function (err, user) {
-      if(err) {return res.sendStatus(400).send();}
+      if(err) {return res.sendStatus(400);}
       var updatedUser = helper.cleanUser(user);
       res.send(updatedUser);
     });

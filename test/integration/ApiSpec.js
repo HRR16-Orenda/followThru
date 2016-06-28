@@ -182,11 +182,11 @@ describe('API Test', function () {
       });
       it('should return with 400 status code when body contains incorrect data', function (done) {
         supertest.post('/api/users')
-        .send({})
+        .send({asdf: 'asdf', asdfd: 123})
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res).to.be.ok;
-          expect(res.status).to.equal(400);
+          expect(res.status).to.equal(500);
           done();
         });
       });
