@@ -36,7 +36,7 @@ class Orenda extends Component {
         <RouterWithRedux>
           <Scene key="addScreen" component={AddItemContainer} title="Add Screen" type="reset" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} onRight={() => Actions.settingsScreen()}/>
           <Scene key="actionConfirmation" component={ActionConfirmationContainer} title="Action Confirmation" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} />
-          <Scene key="singleListScreen" component={SingleListContainer} title="One single list" type="push" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} onRight={() => Actions.settingsScreen()}/>
+          <Scene key="singleListScreen" component={SingleListContainer} initial={true} title="One single list" type="push" rightButtonImage={require('./assets/settings-256.png')} rightButtonIconStyle={styles.icon} onRight={() => Actions.settingsScreen()}/>
           <Scene key="settingsScreen" icon={TabIcon} component={SettingsContainer} title="Settings" type="push"/>
           <Scene key="loginScreen" component={AuthScreenContainer} formType="login" title="Welcome!" type="reset" rightTitle="Signup" onRight={() => Actions.signupScreen()}/>
           <Scene key="signupScreen" component={AuthScreenContainer} formType="signup" title="Welcome!" type="reset" leftTitle="Login" onLeft={() => Actions.loginScreen()}/>

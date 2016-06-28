@@ -73,7 +73,9 @@ export default (state = {
     case types.UPDATE_SINGLE_LIST_STATE:
     return {
       ...state,
-      selectedItems: action.selectedItems
+      // uncomment when integration with main screen is completed
+      // selectedItems: action.selectedItems
+
       // ui: {
       //   isLoading: action.singleListIsLoading,
       // }
