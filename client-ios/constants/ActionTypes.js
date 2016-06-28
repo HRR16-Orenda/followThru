@@ -43,3 +43,8 @@ export const MODAL_CLOSE = "MODAL_CLOSE";
 
 // Where is this being called??
 export const FETCH_USER_LISTS = 'FETCH_USER_LISTS';
+
+
+
+// wikipedia
+export const UPDATE_SEARCH_SUGGESTIONS = 'UPDATE_SEARCH_SUGGESTIONS';

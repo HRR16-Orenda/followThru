@@ -7,11 +7,14 @@ import {
   TextInput,
   TouchableHighlight,
   Text,
-  View
+  View,
+  StyleSheet
 } from 'react-native';
 import styles from '../styles/styles.js';
 
 import * as actions from '../actions/index.js';
+
+import Autocomplete from 'react-native-autocomplete-input';
 
 class FormComponent extends Component {
   props: {
@@ -28,16 +31,20 @@ class FormComponent extends Component {
 
   renderGeneralForm () {
     const { fields, fieldType, detailFields } = this.props;
-    actions.queryWikipedia(fields.item.title.value);
 
       return _.map(detailFields, (field, i) => {
         return (
           <View key={i} style={styles.flowRight}>
-            <TextInput
-              style={styles.inputField}
+            <Autocomplete
+              defaultValue={'hello'}
+              //containerStyle={styles.inputField}
               {...fields[fieldType][detailFields]}
               placeholder={field}
-              //onChangeText={(text) => {test(text)}}
+              data = {this.props.suggestions}
+              renderItem={data => (
+                <Text>{data}</Text>
+              )}
+              onChangeText={(text) => {this.props.queryWikipedia(text)}}
             />
           </View>
         )
@@ -69,5 +76,7 @@ class FormComponent extends Component {
     )
   }
 }
+
+
 
 export default FormComponent;

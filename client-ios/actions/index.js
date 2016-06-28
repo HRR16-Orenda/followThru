@@ -361,6 +361,7 @@ const updateFilterState = ( updatedState ) => {
 =======
 // ******* AUTOCOMPLETE SECTION ******
 export const queryWikipedia = (input) => {
+  return function (dispatch) {
     let formattedSearchQuery = putInWikipediaFormat(input);
     fetch('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + formattedSearchQuery, {
       method: 'GET'
@@ -369,14 +370,30 @@ export const queryWikipedia = (input) => {
       return response.json();
     })
     .then((response) => {
-      console.log('********* response **** ', response[1]);
-      // dispatch(addNewListItemDatabaseSuccess());
+      // console.log('********* response **** ', response[1]);
+      dispatch(updateSearchSuggestions(response[1]));
     })
     .catch((error) => {
-      console.log('********* error **** ', error);
+      // console.log('********* error **** ', error);
 
       // dispatch(addNewListItemDatabaseFailure());
     })
+  }
+}
+
+const updateSearchSuggestionsFor = (inputSuggestions) => {
+  console.log('hit the first one');
+  return function(dispatch) {
+    dispatch(updateSearchSuggestions(inputSuggestions));
+  }
+}
+
+export const updateSearchSuggestions = (inputSuggestions) => {
+  console.log('hit it ', inputSuggestions)
+  return {
+    type: types.UPDATE_SEARCH_SUGGESTIONS,
+    suggestions: inputSuggestions
+  }
 }
 
 const putInWikipediaFormat = ( query ) => {
