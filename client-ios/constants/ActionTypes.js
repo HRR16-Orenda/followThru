@@ -34,5 +34,9 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
+// ******* LIST SCREEN SECTION ******
+export const MODAL_OPEN = "MODAL_OPEN";
+export const MODAL_CLOSE = "MODAL_CLOSE";
+
 // Where is this being called??
 export const FETCH_USER_LISTS = 'FETCH_USER_LISTS';
