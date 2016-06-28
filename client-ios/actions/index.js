@@ -491,18 +491,6 @@ const signupError = function( message ) {
   }
 }
 
-const storeLocally = function( key, object, callback ) {
-  AsyncStorage.setItem(key, JSON.stringify(object), () => {
-    AsyncStorage.getItem(key, (err, result) => {
-      console.log("this is coming from local storage!!", JSON.parse(result));
-      if(err){
-        return callback(err);
-      }
-      callback(null, result);
-    });
-  });
-}
-
 // logOut
 export const logoutUser = function() {
   return function ( dispatch ) {
@@ -536,6 +524,18 @@ const logoutSuccess = function() {
     isFetching: false,
     isAuthenticated: false
   }
+}
+
+const storeLocally = function( key, object, callback ) {
+  AsyncStorage.setItem(key, JSON.stringify(object), () => {
+    AsyncStorage.getItem(key, (err, result) => {
+      console.log("this is coming from local storage!!", JSON.parse(result));
+      if(err){
+        return callback(err);
+      }
+      callback(null, result);
+    });
+  });
 }
 
 // verifyUser
