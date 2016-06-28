@@ -43,8 +43,11 @@ export default class mainButtons extends Component {
     //  - within the delay function inside onPress function (changes back to regular)
 
   render() {
+<<<<<<< 6f7a1dc51587a2cf443076e774864beda55fc263
 
 
+=======
+>>>>>>> (feat) Further refactor main button component ternary for clarity
     const {
       fields,
       handleSubmit
@@ -55,9 +58,13 @@ export default class mainButtons extends Component {
         <View style={styles.buttonContainer}>
           {threeButtons.map((button) => {
             return (
+<<<<<<< 6f7a1dc51587a2cf443076e774864beda55fc263
 
               // {adding ? <Text>{button.category}</Text> : null}
               <TouchableHighlight style={ buttonStyle }>
+=======
+              <TouchableHighlight style={ adding ? styles.mainButton_add : styles.mainButton }>
+>>>>>>> (feat) Further refactor main button component ternary for clarity
               <Icon
                 name={adding ? 'ios-add-outline' : button.icon}
                 style={styles.icon}
