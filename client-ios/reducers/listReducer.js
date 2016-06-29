@@ -6,8 +6,11 @@ import { update } from "react";
  */
 export default (state = {
   ui: {
-//there will only be "isLoading" in final store, not a version for "allLists" and "singleLists"
-    isLoading: true
+    isLoading: true,
+    loginError: false,
+    loginErrorMsg: 'Wrong username or password',
+    signupError: true,
+    signupErrorMsg: 'Username already taken'
   },
   lists: {
     category: ['default'],
