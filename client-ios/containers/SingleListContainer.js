@@ -26,8 +26,8 @@ const mapDispatchToProps = (dispatch) => {
     deleteListItem: (item) => {
       dispatch(actions.deleteListItem(item));
     },
-    toggleCheckOnListItem: (item) => {
-      dispatch(actions.toggleCheckOnListItem(item));
+    toggleItem: (item) => {
+      dispatch(actions.toggleItem(item));
     },
     modalOpen: (item: Object) => {
       dispatch(modalOpen(item));

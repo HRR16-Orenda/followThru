@@ -6,7 +6,7 @@ import { update } from "react";
  */
 export default (state = {
   ui: {
-    buttonStyle: 'mainButton'
+    buttonStyle: 'mainButton',
     isLoading: false,
     loginError: false,
     loginErrorMsg: '',
@@ -197,6 +197,41 @@ export default (state = {
         isLoading: false,
         loginError: false,
         signupError: false,
+      }
+    }
+
+    case types.TOGGLE_ITEM_REQUEST:
+    return {
+      ...state,
+      ui: {
+        isLoading: true
+      }
+    }
+
+    case types.TOGGLE_ITEM_SUCCESS:
+    var oldItems = state.lists.allItems.slice();
+    var updatedItems = oldItems.map(item => {
+      if(item.id === action.payload) {
+        item.completed = !item.completed;
+      }
+      return item;
+    });
+    return {
+      ...state,
+      lists: {
+        category: state.lists.category,
+        allItems: updatedItems
+      },
+      ui: {
+        isLoading: false
+      }
+    }
+
+    case types.TOGGLE_ITEM_FAILURE:
+    return {
+      ...state,
+      ui: {
+        isLoading: false
       }
     }
 

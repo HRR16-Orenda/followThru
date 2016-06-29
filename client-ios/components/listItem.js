@@ -18,16 +18,16 @@ export default class ListItem extends Component {
     return (
       <View style={ styles.listContainer }>
         {/*<Image source={{uri: this.props.thumbnail}}
-          style={styles.thumbnail} />*/}
+        style={styles.thumbnail} />*/}
         <View style={ styles.rightContainer }>
-          {this.props.isItemCrossedOff ?
-          <Text style={ styles.listTitleCrossedOff }>{ this.props.itemTitle }</Text>
-          :
-          <Text style={ styles.listTitle }>{ this.props.itemTitle }</Text>
-        }
+          {this.props.completed ?
+            <Text style={ styles.listTitleCrossedOff }>{ this.props.itemTitle }</Text>
+            :
+              <Text style={ styles.listTitle }>{ this.props.itemTitle }</Text>
+          }
           {/*{
-            if(this.props.subTitle){*/}
-            {this.props.isItemCrossedOff ?
+          if(this.props.subTitle){*/}
+          {this.props.completed ?
               <Text style={ styles.listAuthorCrossedOff }>{ this.props.itemContent }</Text>
               :
               <Text style={ styles.listAuthor }>{ this.props.itemContent }</Text>
