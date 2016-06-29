@@ -11,16 +11,8 @@ import { Actions } from 'react-native-router-flux';
 
 // ******* ADD ITEM SECTION ******
 
-export const userTypeStart = (text) => {
-  return {
-    type: types.USER_TYPE_START,
-    userInput: {
-      title: text
-    }
-  }
-}
-
 // when a user clicks on what category they want their list item to be added to
+//REMOVE?
 export const userCategorySelected = (category) => {
   return function(dispatch) {
     dispatch(updateUserInputCategory(category));
@@ -31,6 +23,7 @@ export const userCategorySelected = (category) => {
 }
 
 // updates the global state with the selected category
+//REMOVE? <= andrew says 'ok'
 export const updateUserInputCategory = (category) => {
   return {
     type: types.UPDATE_USER_INPUT_CATEGORY,
@@ -41,17 +34,38 @@ export const updateUserInputCategory = (category) => {
 }
 
 // updates the global state allItems from the userInput
+//REMOVE?
 export const addNewListItem = () => {
   return {
     type: types.ADD_NEW_LIST_ITEM
   }
 }
 
+export const mainButtonPressed = (buttonCategory) => {
+  return (dispatch, getState) => {
+
+    let userInput = getState().lists.userInput;
+    if (userInput) {
+      let newItem = {
+        title: userInput,
+        category: buttonCategory
+      }
+      console.log('category', buttonCategory);
+
+      dispatch(addItemLocally(newItem));
+      dispatch(addItemToDatabase(newItem));
+    }
+    else {
+      dispatch(updateFilter(buttonCategory));
+      Actions.singleListScreen();
+    }
+  }
+}
 // REFACTORED version
-export const addItem = (item) => {
+export const addItemToDatabase = (item) => {
   return (dispatch, getState) => {
     dispatch(addNewListItemDatabaseRequest());
-    let user = getState().lists.user;
+    let user = getState().auth.user;
     let newInput = {
       title: item.title,
       content: 'Add something here',
@@ -71,51 +85,19 @@ export const addItem = (item) => {
     }).then((response) => {
       return response.json();
     }).then((data) => {
-      dispatch(addItemSuccess(data));
+      dispatch(addNewListItemDatabaseSuccess(data));
     }).catch((error) => {
       console.log(error);
       dispatch(addNewListItemDatabaseFailure());
     })
   }
 }
-
-const addItemSuccess = (data) => {
+const addItemLocally = (data) => {
   return {
-    type: types.ADD_ITEM_SUCCESS,
+    type: types.ADD_ITEM_LOCALLY,
     payload: data
   }
 };
-
-// adds the userInput to the database
-export const addNewListItemDatabase = (item) => {
-  return function(dispatch, getState) {
-    dispatch(addNewListItemDatabaseRequest());
-
-    let user = getState().lists.user;
-    let userInput = getState().lists.userInput
-    let newInput = {
-      title: userInput.title,
-      content: 'Add something here',
-      category: userInput.category,
-      subcategory: 'favorite',
-      url: null,
-      user_id: user.user_id
-    }
-    fetch('http://localhost:3000/api/items/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newInput)
-    }).then((response) => {
-      dispatch(addNewListItemDatabaseSuccess());
-    })
-    .catch((error) => {
-      dispatch(addNewListItemDatabaseFailure());
-    })
-  }
-}
 
 export const addNewListItemDatabaseRequest = () => {
   return {
@@ -297,6 +279,7 @@ const updateListsCategory = ( updatedState ) => {
 }
 
 // helper function to find all the different categories
+//REMOVE?
 const determineLists = ( allItems ) => {
   let listsObj = {};
   let listsArr = [];

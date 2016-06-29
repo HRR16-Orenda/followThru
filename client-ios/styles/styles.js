@@ -39,7 +39,98 @@ export default StyleSheet.create({
     left: 0,
     position: 'absolute',
     right: 0,
-    top: 20
+    top: 200
+  },
+//hold
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    backgroundColor: '#F5FCFF',
+    paddingTop: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 0
+  },
+
+  mainButton: {
+    height: 60,
+    flex: 1,
+    flexDirection: 'row',
+    //REMOVE?
+    position: 'relative',
+    backgroundColor: '#ffffff',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 0,
+    marginBottom: 10,
+    marginRight: 5,
+    marginLeft: 5,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+
+  mainButton_add: {
+    height: 60,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+    borderColor: '#ff1a75',
+    borderWidth: 1,
+    borderRadius: 0,
+    marginBottom: 10,
+    marginRight: 10,
+    marginLeft: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+
+  mainButton_check: {
+    height: 60,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#ff1fff',
+    borderColor: '#ff1a75',
+    borderWidth: 1,
+    borderRadius: 0,
+    marginBottom: 10,
+    marginRight: 10,
+    marginLeft: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+
+  icon: {
+    fontSize: 60,
+    color: '#48BBEC'
+  },
+  /**********************************
+  Icon Swipe Description Feature
+  **********************************/
+
+  wrapper: {},
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5',
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
   },
 
   /*********************************

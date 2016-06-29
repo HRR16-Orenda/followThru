@@ -48,9 +48,9 @@ const addItemFailure = () => {
   }
 };
 
-const addItemSuccess = (item: ItemType) => {
+const addItemLocally = (item: ItemType) => {
   return {
-    type: types.ADD_ITEM_SUCCESS,
+    type: types.ADD_ITEM_LOCALLY,
     payload: item
   }
 };
@@ -62,7 +62,7 @@ export const addItem = (item: Object) => {
     post('/api/items', item)
       .then(res => {
         console.log(res.data);
-        dispatch(addItemSuccess(res.data));
+        dispatch(addItemLocally(res.data));
       })
       .catch(err => {
         console.error(err);

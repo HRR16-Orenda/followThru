@@ -7,7 +7,8 @@ import { update } from "react";
 export default (state = {
   ui: {
 //there will only be "isLoading" in final store, not a version for "allLists" and "singleLists"
-    isLoading: true
+    isLoading: true,
+    buttonStyle: 'mainButton'
   },
   lists: {
     category: ['default'],
@@ -25,6 +26,7 @@ export default (state = {
     isOpen: false,
     item: {}
   },
+  //REMOVE?
   toggleShow: true,
   suggestions: [],
   userInput: ''
@@ -110,14 +112,14 @@ export default (state = {
     }
 
     // REFACTORED version
-    case types.ADD_ITEM_SUCCESS:
+    case types.ADD_ITEM_LOCALLY:
     var allItemsCopy = state.lists.allItems.slice();
     allItemsCopy.push(action.payload);
     return {
       ...state,
       toggleShow: false,
       lists: {
-        category: determineLists(allItemsCopy),
+        //category: determineLists(allItemsCopy),
         allItems: allItemsCopy
       }
     }

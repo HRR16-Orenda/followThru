@@ -6,16 +6,8 @@ import { Actions } from 'react-native-router-flux';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userTypeEnd: (text) => {
-      Actions.actionConfirmationScreen()
-      // dispatch(actions.userTypeEnd(text));
-    },
     fetchInitialDatabase: () => {
       dispatch(actions.fetchInitialDatabase());
-    },
-    submitHandler: (data) => {
-      console.log(data.item);
-      Actions.actionConfirmation();
     }
   };
 };
