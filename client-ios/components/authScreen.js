@@ -19,12 +19,10 @@ export default class AuthScreen extends Component {
   }
 
   _userSignup = (creds) => {
-    // console.log(creds);
       this.props.signupUser(creds);
   }
 
   _userLogin = (creds) => {
-    // console.log(creds);
       this.props.loginUser(creds);
   }
 
@@ -34,6 +32,10 @@ export default class AuthScreen extends Component {
         <Text style={ styles.error }>{ message }</Text>
       </View>
     )
+  }
+
+  componentWillUnmount = () => {
+    this.props.resetDisplay();
   }
 
   render() {

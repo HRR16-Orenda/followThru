@@ -141,11 +141,12 @@ export const toggleShow = () => {
   }
 }
 
-export const toggle = () => {
-  return function (dispatch) {
-    dispatch(toggleShow());
+export const resetDisplay = () => {
+  return {
+    type: types.RESET_UI_DISPLAY
   }
 }
+
 // ******* EDIT ITEMS SECTION ******
 
 // listItemEdited
@@ -390,6 +391,10 @@ export const loginUser = function(creds) {
           dispatch(loginSuccess(data))
         };
       });
+    })
+    .catch((error) => {
+      console.log("error from user fetch call: ", error);
+      dispatch(loginError("Wrong username or password"))
     })
   }
 }

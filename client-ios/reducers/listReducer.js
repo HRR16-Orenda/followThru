@@ -6,11 +6,11 @@ import { update } from "react";
  */
 export default (state = {
   ui: {
-    isLoading: true,
+    isLoading: false,
     loginError: false,
-    loginErrorMsg: 'Wrong username or password',
+    loginErrorMsg: '',
     signupError: false,
-    signupErrorMsg: 'Username already taken'
+    signupErrorMsg: ''
   },
   lists: {
     category: ['default'],
@@ -185,6 +185,16 @@ export default (state = {
         ...state.ui,
         loginError: action.loginError,
         loginErrorMsg: action.message
+      }
+    }
+
+    case types.RESET_UI_DISPLAY:
+    return {
+      ...state,
+      ui: {
+        isLoading: false,
+        loginError: false,
+        signupError: false,
       }
     }
 
