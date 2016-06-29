@@ -361,6 +361,7 @@ const updateFilterState = ( updatedState ) => {
 // ******* LOGIN/SIGNUP/LOGOUT SECTION ******
 export const loginUser = function(creds) {
   return function (dispatch, getState){
+    dispatch(resetDisplay());
     dispatch(requestLogin());
     let creds = getState().form.auth;
     let loginCreds = {
@@ -431,6 +432,7 @@ const loginError = function(message) {
 // makeSignupRequest
 export const signupUser = function(creds) {
   return function (dispatch, getState) {
+    dispatch(resetDisplay());
     dispatch(requestSignup());
     let creds = getState().form.auth;
     let newUser = {
@@ -512,7 +514,7 @@ export const logoutUser = function() {
       if(err){
         console.log('error with removing JWT from AsyncStorage: ', err);
       } else {
-        AlertIOS.alert("Sorry to see you go!!");
+        AlertIOS.alert("Come back soon!");
         Actions.loginScreen();
         dispatch(logoutSuccess());
       }
