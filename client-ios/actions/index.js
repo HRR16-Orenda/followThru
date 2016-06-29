@@ -391,6 +391,9 @@ export const loginUser = function(creds) {
         };
       });
     })
+    .catch((err) => {
+      console.error(err);
+    })
   }
 }
 
