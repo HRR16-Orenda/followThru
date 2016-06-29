@@ -3,6 +3,13 @@ var user = require('../controller/users.js');
 var helper = require('./helpers.js');
 var bcrypt = require('bcrypt');
 var User = require('../models/users.js');
+var amazon = require('amazon-product-api');
+
+var client = amazon.createClient({
+  awsId: "AKIAIBOPOFKRSZJ47XUA",
+  awsSecret: "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",
+  awsTag: "echo304-20"
+});
 
 module.exports = {
   getAllItems: function (req, res) {
@@ -108,6 +115,24 @@ module.exports = {
       if(err) {return res.sendStatus(400);}
       var updatedUser = helper.cleanUser(user);
       res.send(updatedUser);
+    });
+  },
+
+  getAmazonItem: function (req, res) {
+    var query = req.params.query;
+
+    client.itemSearch({
+      // Amazon product API configuration
+      keywords: query,
+      searchIndex: 'Books',
+      // Configuration for returned data
+      responseGroup: 'Small,Images,BrowseNodes'
+    }).then(function(results){
+      console.log(results);
+      res.send(results[0]);
+    }).catch(function(err){
+      console.log(err);
+      res.end();
     });
   }
 }
