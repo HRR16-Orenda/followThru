@@ -6,6 +6,7 @@ import {
   View,
   TouchableHighlight,
   AlertIOS,
+  ActivityIndicatorIOS
 } from 'react-native';
 
 import styles from '../styles/styles.js';
@@ -37,6 +38,7 @@ export default class AuthScreen extends Component {
 
   render() {
     const {
+      isFetching,
       formType,
       isAuthenticated,
       loginError,
@@ -45,6 +47,12 @@ export default class AuthScreen extends Component {
       signupErrorMsg
     } = this.props;
     let handler = formType === 'signup' ? this._userSignup : this._userLogin;
+    let spinner = isFetching ?
+      ( <ActivityIndicatorIOS
+        hidden='true'
+        size='large'/> ) :
+      ( <View/> );
+
     return (
       <View style={ styles.container } >
         <View>
@@ -52,6 +60,7 @@ export default class AuthScreen extends Component {
         </View>
         { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
         { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
+        { spinner }
         <AuthForm formType={formType} onSubmit={handler}/>
       </View>
     );

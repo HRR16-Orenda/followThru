@@ -27,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    isFetching: state.auth.isFetching, 
     isAuthenticated: state.auth.isAuthenticated,
     loginError: state.lists.ui.loginError,
     loginErrorMsg: state.lists.ui.loginErrorMsg,

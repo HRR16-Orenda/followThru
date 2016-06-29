@@ -460,7 +460,7 @@ export const signupUser = function(creds) {
     })
     .catch((error) => {
       console.log("error from user fetch call: ", error);
-      dispatch(signupError(error))
+      dispatch(signupError("Username/email already taken"))
     })
   }
 }
@@ -479,6 +479,7 @@ const signupSuccess = function( user ) {
     type: types.SIGNUP_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
+    signupError: false,
     user
   }
 }
@@ -488,7 +489,8 @@ const signupError = function( message ) {
     type: types.SIGNUP_FAILURE,
     isFetching: false,
     isAuthenticated: false,
-    message
+    signupError: true,
+    message: message
   }
 }
 

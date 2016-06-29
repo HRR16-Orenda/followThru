@@ -9,7 +9,7 @@ export default (state = {
     isLoading: true,
     loginError: false,
     loginErrorMsg: 'Wrong username or password',
-    signupError: true,
+    signupError: false,
     signupErrorMsg: 'Username already taken'
   },
   lists: {
@@ -148,6 +148,25 @@ export default (state = {
     return {
       ...state,
       toggleShow: true
+    }
+
+    case types.SIGNUP_FAILURE:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        signupError: action.signupError,
+      }
+    }
+
+    case types.SIGNUP_FAILURE:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        signupError: action.signupError,
+        signupErrorMsg: action.message
+      }
     }
 
     default:
