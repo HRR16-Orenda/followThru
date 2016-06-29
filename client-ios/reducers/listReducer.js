@@ -18,13 +18,7 @@ export default (state = {
     allItems: []
   },
   filter: '',
-  selectedItems: [
-    {
-      title: 'Captain America',
-      category: 'Movies',
-      content: 'Milli Vanilli'
-    }
-  ],
+  selectedItems: [],
   modal: {
     isOpen: false,
     item: {}
@@ -98,10 +92,7 @@ export default (state = {
       ...state,
       // uncomment when integration with main screen is completed
       // selectedItems: action.selectedItems
-
-      // ui: {
-      //   isLoading: action.singleListIsLoading,
-      // }
+      selectedItems: action.selectedItems
     };
 
     case types.ADD_NEW_LIST_ITEM:

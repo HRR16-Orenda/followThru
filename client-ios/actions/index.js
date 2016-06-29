@@ -14,7 +14,6 @@ import { Actions } from 'react-native-router-flux';
 
 export const mainButtonPressed = (buttonCategory) => {
   return (dispatch, getState) => {
-
     let userInput = getState().lists.userInput;
     if (userInput) {
       let newItem = {
@@ -321,10 +320,13 @@ export const updateAllListsState = (updatedState) => {
 // This should get all of the items inside of a user's specific list (Movies for example) and bring back with it
 export const fetchUserSingleList = ( listName, category ) => {
   return function ( dispatch, getState ) {
+
+    // filter would come from the button that is clicked
     let filter = getState().lists.filter;
     let data = getState().lists.lists.allItems
 
     let updatedSelectedItems = filterAllItems( data, filter );
+    console.log('****** CHECK THIS OUT ******* ', updatedSelectedItems);
     dispatch( updateSingleListState( updatedSelectedItems ) );
   };
 };
