@@ -12,6 +12,7 @@ import { Actions } from 'react-native-router-flux';
 
 // ******* ADD ITEM SECTION ******
 
+
 export const mainButtonPressed = (buttonCategory) => {
   return (dispatch, getState) => {
     let userInput = getState().lists.userInput;
