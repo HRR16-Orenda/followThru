@@ -1,7 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/HRR16-triceratops/triceratops.png?label=ready&title=Ready)](https://waffle.io/HRR16-triceratops/triceratops)
 # Project Name
 Smart-list
-> Pithy project description
 
 ## Team
 
@@ -16,18 +15,18 @@ Smart-list
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
+    1. [Run ios app](#run-ios-aoo)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
 ## Usage
 Super smart and simple todo app
-> Some usage instructions
 
 ## Requirements
 
 - Node 6.0.x
 - Npm 3.8.x
-- postgreSQL x.x.x
+- postgreSQL 9.5.x
 
 ## Development
 
@@ -36,15 +35,32 @@ Super smart and simple todo app
 From within the root directory:
 
 ```sh
-sudo brew install flow
-sudo brew install watchman
-sudo npm install -g react-native-cli
-npm install
+$ sudo brew install flow
+$ sudo brew install watchman
+$ sudo npm install -g react-native-cli
+$ npm install
 ```
+### Tasks
+
+From within the root directory:
+This will build bundle.js file and run server with automated test and nodemon
+
+```sh
+$ gulp
+```
+
+### Run ios app
+
+From within the root directory:
+
+```sh
+$ react-native run-ios
+```
+
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/HRR16-Orenda/Smart-list/issues)
 
 
 ## Contributing
