@@ -33,13 +33,13 @@ export default class SingleListScreen extends Component {
     return (
       <TouchableHighlight
         onLongPress={this._setModalVisible.bind(this, true, item)}
-        onPress = {() => {this.props.toggleCheckOnListItem(item)}}
+        onPress = {() => {this.props.toggleItem(item)}}
       >
         <View>
           <ListItem
             itemTitle={ item.title }
             itemContent={ item.content }
-            isItemCrossedOff={ item.crossedOff}
+            completed={ item.completed}
           />
           <View style={ styles.separator } />
         </View>

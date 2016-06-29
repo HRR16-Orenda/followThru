@@ -3,6 +3,7 @@ import React from 'react'
 import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
+import _ from 'lodash';
 import {
   AsyncStorage,
   AlertIOS
@@ -10,36 +11,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 
 // ******* ADD ITEM SECTION ******
-
-// when a user clicks on what category they want their list item to be added to
-//REMOVE?
-export const userCategorySelected = (category) => {
-  return function(dispatch) {
-    dispatch(updateUserInputCategory(category));
-    dispatch(addNewListItem());
-    dispatch(addNewListItemDatabase());
-    dispatch(toggleShow())
-  }
-}
-
-// updates the global state with the selected category
-//REMOVE? <= andrew says 'ok'
-export const updateUserInputCategory = (category) => {
-  return {
-    type: types.UPDATE_USER_INPUT_CATEGORY,
-    userInput: {
-      category: category
-    }
-  }
-}
-
-// updates the global state allItems from the userInput
-//REMOVE?
-export const addNewListItem = () => {
-  return {
-    type: types.ADD_NEW_LIST_ITEM
-  }
-}
 
 export const mainButtonPressed = (buttonCategory) => {
   return (dispatch, getState) => {
@@ -214,6 +185,51 @@ export const deleteListItemDatabaseSuccess = () => {
     type: types.DELETE_LIST_ITEM_DATABASE_SUCCESS
   }
 }
+
+export const toggleItem = (item) => {
+  return (dispatch) => {
+    var updatedItem = _.assign({}, item);
+    updatedItem.completed = !updatedItem.completed;
+    dispatch(toggleItemRequest());
+    return fetch('http://localhost:3000/api/items/' + updatedItem.id, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedItem)
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      dispatch(toggleItemSuccess(updatedItem.id));
+    })
+    .catch((error) => {
+      console.log("error from item toggle: ", error);
+      dispatch(toggleItemFailure());
+    })
+  }
+};
+
+const toggleItemRequest = () => {
+  return {
+    type: types.TOGGLE_ITEM_REQUEST
+  }
+};
+
+const toggleItemSuccess = (id) => {
+  return {
+    type: types.TOGGLE_ITEM_SUCCESS,
+    payload: id
+  }
+};
+
+const toggleItemFailure = () => {
+  return {
+    type: types.TOGGLE_ITEM_FAILURE
+  }
+};
 
 
 // ******* FETCH ITEMS SECTION ******
