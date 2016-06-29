@@ -326,7 +326,6 @@ export const fetchUserSingleList = ( listName, category ) => {
     let data = getState().lists.lists.allItems
 
     let updatedSelectedItems = filterAllItems( data, filter );
-    console.log('****** CHECK THIS OUT ******* ', updatedSelectedItems);
     dispatch( updateSingleListState( updatedSelectedItems ) );
   };
 };

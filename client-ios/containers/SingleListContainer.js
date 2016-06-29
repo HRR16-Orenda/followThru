@@ -7,7 +7,6 @@ import { ListView } from 'react-native';
 
 const generateDataSource = (list) => {
   let inputList = [];
-  console.log('***** this is the list that is causing problems ****** ',list)
   list.map((item)=>{
     inputList.push(item)
   });
@@ -40,9 +39,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('selectedItems ****', state.lists.selectedItems)
-  console.log('allItems ****', state.lists.lists.allItems)
-
   return {
     user: state.auth.user.username,
     lists: state.lists.lists.allItems,
