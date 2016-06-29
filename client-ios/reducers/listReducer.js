@@ -150,7 +150,7 @@ export default (state = {
       toggleShow: true
     }
 
-    case types.SIGNUP_FAILURE:
+    case types.SIGNUP_SUCCESS:
     return {
       ...state,
       ui: {
@@ -166,6 +166,25 @@ export default (state = {
         ...state.ui,
         signupError: action.signupError,
         signupErrorMsg: action.message
+      }
+    }
+
+    case types.LOGIN_SUCCESS:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        loginError: action.loginError,
+      }
+    }
+
+    case types.LOGIN_FAILURE:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        loginError: action.loginError,
+        loginErrorMsg: action.message
       }
     }
 

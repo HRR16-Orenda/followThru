@@ -408,6 +408,7 @@ const loginSuccess = function(user) {
     type: types.LOGIN_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
+    loginError: false,
     id_token: user.id_token
   }
 }
@@ -417,7 +418,8 @@ const loginError = function(message) {
     type: types.LOGIN_FAILURE,
     isFetching: false,
     isAuthenticated: false,
-    message
+    loginError: true,
+    message: message
   }
 }
 
