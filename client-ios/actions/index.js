@@ -65,7 +65,7 @@ export const mainButtonPressed = (buttonCategory) => {
 export const addItemToDatabase = (item) => {
   return (dispatch, getState) => {
     dispatch(addNewListItemDatabaseRequest());
-    let user = getState().lists.user;
+    let user = getState().auth.user;
     let newInput = {
       title: item.title,
       content: 'Add something here',

@@ -29,29 +29,7 @@ export default (state = {
   //REMOVE?
   toggleShow: true,
   suggestions: [],
-  userInput: '',
-  buttons: [
-    [
-      {icon: 'ios-list-box-outline',
-      category: 'To-Dos'},
-
-      {icon: 'ios-cart-outline',
-      category: 'Groceries'},
-
-      {icon: 'ios-musical-notes-outline',
-      category: 'Music'}
-    ],
-    [
-      {icon: 'ios-headset-outline',
-      category: 'Movies/TV'},
-
-      {icon: 'ios-restaurant-outline',
-      category: 'Restaurants'},
-
-      {icon: 'ios-star-outline',
-      category: 'Custom'}
-    ]
-  ]
+  userInput: ''
 }, action) => {
   switch (action.type) {
 
