@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    user: state.lists.user.username,
+    user: state.auth.user.username,
     lists: state.lists.lists.allItems,
     listItems: state.lists.selectedItems,
     dataSource: generateDataSource(state.lists.lists.allItems),
