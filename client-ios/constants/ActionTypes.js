@@ -36,6 +36,7 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAILURE = "SIGNUP_FAILURE";
+export const RESET_UI_DISPLAY = "RESET_UI_DISPLAY";
 
 // ******* LIST SCREEN SECTION ******
 export const MODAL_OPEN = "MODAL_OPEN";
