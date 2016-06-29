@@ -6,9 +6,12 @@ import { update } from "react";
  */
 export default (state = {
   ui: {
-//there will only be "isLoading" in final store, not a version for "allLists" and "singleLists"
-    isLoading: true,
     buttonStyle: 'mainButton'
+    isLoading: false,
+    loginError: false,
+    loginErrorMsg: '',
+    signupError: false,
+    signupErrorMsg: ''
   },
   lists: {
     category: ['default'],
@@ -147,6 +150,54 @@ export default (state = {
     return {
       ...state,
       toggleShow: true
+    }
+
+    case types.SIGNUP_SUCCESS:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        signupError: action.signupError,
+      }
+    }
+
+    case types.SIGNUP_FAILURE:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        signupError: action.signupError,
+        signupErrorMsg: action.message
+      }
+    }
+
+    case types.LOGIN_SUCCESS:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        loginError: action.loginError,
+      }
+    }
+
+    case types.LOGIN_FAILURE:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        loginError: action.loginError,
+        loginErrorMsg: action.message
+      }
+    }
+
+    case types.RESET_UI_DISPLAY:
+    return {
+      ...state,
+      ui: {
+        isLoading: false,
+        loginError: false,
+        signupError: false,
+      }
     }
 
     default:

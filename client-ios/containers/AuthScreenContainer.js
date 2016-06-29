@@ -8,7 +8,7 @@ import {
   AsyncStorage
 } from 'react-native';
 
-const mapDispatchToProps = ( dispatch ) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     /*
      * @params - creds: Object {username: string, password: string}
@@ -21,13 +21,24 @@ const mapDispatchToProps = ( dispatch ) => {
      */
     signupUser: (creds) => {
       dispatch(actions.signupUser(creds));
-    }
+    },
+    /*
+     * @params - no params required
+     */
+     resetDisplay: () => {
+       dispatch(actions.resetDisplay());
+     }
   }
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isFetching: state.auth.isFetching,
+    isAuthenticated: state.auth.isAuthenticated,
+    loginError: state.lists.ui.loginError,
+    loginErrorMsg: state.lists.ui.loginErrorMsg,
+    signupError: state.lists.ui.signupError,
+    signupErrorMsg: state.lists.ui.signupErrorMsg
   };
 }
 

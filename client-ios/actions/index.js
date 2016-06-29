@@ -123,11 +123,12 @@ export const toggleShow = () => {
   }
 }
 
-export const toggle = () => {
-  return function (dispatch) {
-    dispatch(toggleShow());
+export const resetDisplay = () => {
+  return {
+    type: types.RESET_UI_DISPLAY
   }
 }
+
 // ******* EDIT ITEMS SECTION ******
 
 // listItemEdited
@@ -343,6 +344,7 @@ const updateFilterState = ( updatedState ) => {
 // ******* LOGIN/SIGNUP/LOGOUT SECTION ******
 export const loginUser = function(creds) {
   return function (dispatch, getState){
+    dispatch(resetDisplay());
     dispatch(requestLogin());
     let creds = getState().form.auth;
     let loginCreds = {
@@ -374,6 +376,10 @@ export const loginUser = function(creds) {
         };
       });
     })
+    .catch((error) => {
+      console.log("error from user fetch call: ", error);
+      dispatch(loginError("Wrong username or password"))
+    })
   }
 }
 
@@ -391,6 +397,7 @@ const loginSuccess = function(user) {
     type: types.LOGIN_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
+    loginError: false,
     id_token: user.id_token
   }
 }
@@ -400,13 +407,15 @@ const loginError = function(message) {
     type: types.LOGIN_FAILURE,
     isFetching: false,
     isAuthenticated: false,
-    message
+    loginError: true,
+    message: message
   }
 }
 
 // makeSignupRequest
 export const signupUser = function(creds) {
   return function (dispatch, getState) {
+    dispatch(resetDisplay());
     dispatch(requestSignup());
     let creds = getState().form.auth;
     let newUser = {
@@ -443,7 +452,7 @@ export const signupUser = function(creds) {
     })
     .catch((error) => {
       console.log("error from user fetch call: ", error);
-      dispatch(signupError(error))
+      dispatch(signupError("Username/email already taken"))
     })
   }
 }
@@ -462,6 +471,7 @@ const signupSuccess = function( user ) {
     type: types.SIGNUP_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
+    signupError: false,
     user
   }
 }
@@ -471,7 +481,8 @@ const signupError = function( message ) {
     type: types.SIGNUP_FAILURE,
     isFetching: false,
     isAuthenticated: false,
-    message
+    signupError: true,
+    message: message
   }
 }
 
@@ -486,7 +497,7 @@ export const logoutUser = function() {
       if(err){
         console.log('error with removing JWT from AsyncStorage: ', err);
       } else {
-        AlertIOS.alert("Sorry to see you go!!");
+        AlertIOS.alert("Come back soon!");
         Actions.loginScreen();
         dispatch(logoutSuccess());
       }
