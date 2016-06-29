@@ -17,7 +17,7 @@ function mapStateToProps(state, ownProps) {
     lists: state.lists.allItems,
     toggleShow: state.lists.toggleShow,
     buttonStyle: state.lists.ui.buttonStyle,
-    userInput: state.lists.userInput
+    userInput: state.lists.userInput,
     buttons: [
       [
         {icon: 'ios-list-box-outline',
