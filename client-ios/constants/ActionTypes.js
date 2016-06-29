@@ -6,7 +6,7 @@ export const TOGGLE_SHOW = 'TOGGLE_SHOW';
 export const TOGGLE = 'TOGGLE';
 
 // ******* ADD ITEM SECTION ****** REFACTORED
-export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS';
+export const ADD_ITEM_LOCALLY = 'ADD_ITEM_LOCALLY';
 
 
 // server/database interactions

@@ -134,14 +134,14 @@ export default (state = {
     }
 
     // REFACTORED version
-    case types.ADD_ITEM_SUCCESS:
+    case types.ADD_ITEM_LOCALLY:
     var allItemsCopy = state.lists.allItems.slice();
     allItemsCopy.push(action.payload);
     return {
       ...state,
       toggleShow: false,
       lists: {
-        category: determineLists(allItemsCopy),
+        //category: determineLists(allItemsCopy),
         allItems: allItemsCopy
       }
     }

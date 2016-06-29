@@ -36,7 +36,7 @@ export default (state = {
       ...state,
       users: newUserList
     }
-    case types.ADD_ITEM_SUCCESS:
+    case types.ADD_ITEM_LOCALLY:
     let newItemList = state.items.slice();
     newItemList.push(action.payload);
     return {

@@ -18,21 +18,6 @@ export default class mainButtons extends Component {
     super(props);
   }
 
-  pressHandler(data) {
-    const { fields, addItem, resetForm } = this.props;
-
-    // manually set category form field with given argument
-    fields.item.category.onChange(data);
-    let item = {
-      title: fields.item.title.value,
-      category: data
-    };
-    addItem(item);
-    // userCategorySelected(data);
-    // manually resetForm value of form field
-    resetForm('general');
-
-  }
   //1. create submit functionality button during 'add' state
   //2. move pressHandler functionality that assigns category inside new submit function
   //3. places where buttonStyle state change needs to happen:

@@ -16,7 +16,6 @@ import AddItemContainer from './containers/AddItemContainer.js';
 import AllListsContainer from './containers/AllListsContainer.js';
 import SingleListContainer from './containers/SingleListContainer.js';
 import MainButtonsContainer from './containers/MainButtonsContainer.js';
-import CategoryPickerContainer from './containers/CategoryPickerContainer.js'
 import SettingsContainer from './containers/SettingsContainer.js'
 import AuthScreenContainer from './containers/AuthScreenContainer.js'
 import TabIcon from './components/icons.js';

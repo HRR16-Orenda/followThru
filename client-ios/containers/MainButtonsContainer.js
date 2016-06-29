@@ -5,10 +5,6 @@ import { reduxForm, getValues } from 'redux-form';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addItem: (item) => {
-      console.log('addItem called', item);
-      dispatch(actions.addItem(item));
-    },
     mainButtonPressed: (buttonCategory) => {
       dispatch(actions.mainButtonPressed(buttonCategory));
     }
