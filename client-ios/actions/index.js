@@ -28,7 +28,9 @@ export const mainButtonPressed = (buttonCategory) => {
     }
     else {
       dispatch(updateFilter(buttonCategory));
-      Actions.singleListScreen();
+
+      // Set title of the list screen according to selected category
+      Actions.singleListScreen({title: buttonCategory});
     }
   }
 }

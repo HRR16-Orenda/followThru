@@ -36,7 +36,6 @@ class Orenda extends Component {
           <Scene
             key="singleListScreen"
             component={SingleListContainer}
-            title="One single list"
             type="push"
             rightButtonImage={require('./assets/settings-256.png')}
             rightButtonIconStyle={styles.icon}
