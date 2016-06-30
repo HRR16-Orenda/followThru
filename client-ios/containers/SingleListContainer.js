@@ -43,7 +43,7 @@ const mapStateToProps = (state, ownProps) => {
     user: state.auth.user.username,
     lists: state.lists.lists.allItems,
     listItems: state.lists.selectedItems,
-    dataSource: generateDataSource(state.lists.lists.allItems),
+    dataSource: generateDataSource(state.lists.selectedItems),
     modal: state.lists.modal
   };
 }
