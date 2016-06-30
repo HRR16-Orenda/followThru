@@ -66,7 +66,7 @@ export const addItemToDatabase = (item) => {
           dispatch(addNewListItemDatabaseFailure());
         })
       }
-    }
+    })
   }
 }
 
