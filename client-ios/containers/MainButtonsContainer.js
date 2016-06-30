@@ -23,23 +23,23 @@ function mapStateToProps(state, ownProps) {
     buttons: [
       [
         {icon: 'ios-list-box-outline',
-        category: 'Do'},
+        category: 'DO'},
 
         {icon: 'ios-cart-outline',
-        category: 'Buy'},
+        category: 'BUY'},
 
         {icon: 'ios-book-outline',
-        category: 'Read'}
+        category: 'READ'}
       ],
       [
         {icon: 'ios-headset-outline',
-        category:'Listen'},
+        category:'LISTEN'},
 
         {icon: 'ios-restaurant-outline',
-        category: 'Eat'},
+        category: 'EAT'},
 
         {icon: 'ios-star-outline',
-        category: 'Watch'}
+        category: 'WATCH'}
       ]
     ]
   };
