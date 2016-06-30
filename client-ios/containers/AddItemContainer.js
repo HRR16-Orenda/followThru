@@ -6,9 +6,7 @@ import { Actions } from 'react-native-router-flux';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchInitialDatabase: () => {
-      dispatch(actions.fetchInitialDatabase());
-    }
+
   };
 };
 
