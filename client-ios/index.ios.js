@@ -52,9 +52,8 @@ class Orenda extends Component {
             component={AuthScreenContainer}
             initial={true}
             formType="login"
-            title="Welcome!"
             type="reset"
-            rightTitle="Signup"
+          
             onRight={() => Actions.signupScreen()}
           />
           <Scene

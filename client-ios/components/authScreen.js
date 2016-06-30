@@ -58,7 +58,7 @@ export default class AuthScreen extends Component {
     return (
       <View style={ styles.container } >
         <View>
-          <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >{formType[0].toUpperCase() + formType.substr(1)}</Text>
+          <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>
         </View>
         { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
         { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
