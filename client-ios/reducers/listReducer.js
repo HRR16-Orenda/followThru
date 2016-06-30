@@ -53,12 +53,6 @@ export default (state = {
       userInput: ''
     }
 
-    case types.TOGGLE_SHOW:
-    return {
-      ...state,
-        toggleShow: !state.toggleShow
-    }
-
     case types.FETCH_DATABASE_LISTS_SUCCESS:
     return {
       ...state,

@@ -20,9 +20,6 @@ export const mainButtonPressed = (buttonCategory) => {
         title: userInput,
         category: buttonCategory
       }
-      console.log('category', buttonCategory);
-
-
       dispatch(addItemLocally(newItem));
       dispatch(addItemToDatabase(newItem));
       dispatch(clearInputAfterSubmit())
@@ -34,11 +31,6 @@ export const mainButtonPressed = (buttonCategory) => {
   }
 }
 
-export const changeButtonToCheck = () => {
-  return {
-    type: types.CHANGE_BUTTON_TO_CHECK
-  }
-}
 // REFACTORED version
 export const addItemToDatabase = (item) => {
   return (dispatch, getState) => {
