@@ -126,13 +126,16 @@ export default (state = {
     }
 
     case types.ADD_NEW_LIST_ITEM_DATABASE_SUCCESS:
-    var allItemsCopy = state.lists.allItems.slice();
-    allItemsCopy.push(action.payload);
+    var allItemsCopy = state.lists.allItems.slice().map(item => {
+      if(item.title === action.payload.title) {
+        item = action.payload
+      };
+      return item;
+    });
     return {
       ...state,
       toggleShow: false,
       lists: {
-        //category: determineLists(allItemsCopy),
         allItems: allItemsCopy
       }
     }
