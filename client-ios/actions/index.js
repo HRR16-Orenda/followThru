@@ -20,14 +20,32 @@ export const mainButtonPressed = (buttonCategory) => {
         title: userInput,
         category: buttonCategory
       }
+      dispatch(updateFilter(buttonCategory));
       dispatch(addItemLocally(newItem));
       dispatch(addItemToDatabase(newItem));
-      dispatch(clearInputAfterSubmit())
+      dispatch(clearInputAfterSubmit());
+      dispatch(changeTextToAdded(buttonCategory));
     }
     else {
       dispatch(updateFilter(buttonCategory));
       Actions.singleListScreen();
     }
+  }
+}
+export const changeTextToAdded = (buttonCategory) => {
+  return (dispatch) => {
+    dispatch(toggleCheck());
+
+    _.delay(() => {
+      console.log('were in here, brah');
+      dispatch(toggleCheck())
+    }, 1000);
+  }
+}
+
+export const toggleCheck = () => {
+  return {
+    type: types.TOGGLE_CHECK
   }
 }
 
@@ -93,7 +111,7 @@ export const addNewListItemDatabaseSuccess = () => {
     type: types.ADD_NEW_LIST_ITEM_DATABASE_SUCCESS
   }
 }
-
+//REMOVE?
 export const toggleShow = () => {
   return {
     type: types.TOGGLE_SHOW

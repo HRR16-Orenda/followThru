@@ -29,21 +29,21 @@ export default class mainButtons extends Component {
   render() {
 
     const adding = !(this.props.userInput.length === 0);
-    const fashion = this.props.buttonStyle;
     const buttons = this.props.buttons.map((threeButtons, index) => {
       return (
         <View style={styles.buttonContainer} key={threeButtons[index].category}>
           {threeButtons.map((button, index) => {
-
+            console.log('filter', this.props.filter);
+            console.log('category', button.category);
             return (
 
-              // {adding ? <Text>{button.category}</Text> : null}
               <View>
-                {adding? <Text>{button.category}</Text> : null}
+                {(this.props.filter === button.category && this.props.saved) ? <Text>Added!</Text> : null}
+                {adding ? <Text>{button.category}</Text> : null}
                 <TouchableHighlight style={styles.mainButton} key={button.icon}>
                   <Icon
                     name={adding ? 'ios-add-outline' : button.icon}
-                    style={styles.icon}
+                    size={60}
                     onPress={() => {this.props.mainButtonPressed(button.category)}}
                   />
                 </TouchableHighlight>

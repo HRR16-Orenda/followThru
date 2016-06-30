@@ -25,7 +25,8 @@ export default (state = {
   //REMOVE?
   toggleShow: true,
   suggestions: [],
-  userInput: ''
+  userInput: '',
+  checked: false
 }, action) => {
   switch (action.type) {
 
@@ -51,6 +52,12 @@ export default (state = {
     return {
       ...state,
       userInput: ''
+    }
+
+    case types.TOGGLE_CHECK:
+    return {
+      ...state,
+      checked: !state.checked
     }
 
     case types.FETCH_DATABASE_LISTS_SUCCESS:

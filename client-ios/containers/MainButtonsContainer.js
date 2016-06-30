@@ -18,6 +18,8 @@ function mapStateToProps(state, ownProps) {
     toggleShow: state.lists.toggleShow,
     buttonStyle: state.lists.buttonStyle,
     userInput: state.lists.userInput,
+    saved: state.lists.checked,
+    filter: state.lists.filter,
     buttons: [
       [
         {icon: 'ios-list-box-outline',

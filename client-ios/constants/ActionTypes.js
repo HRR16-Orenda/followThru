@@ -8,6 +8,7 @@ export const TOGGLE = 'TOGGLE';
 // ******* ADD ITEM SECTION ****** REFACTORED
 export const ADD_ITEM_LOCALLY = 'ADD_ITEM_LOCALLY';
 export const CLEAR_INPUT_AFTER_SUBMIT = 'CLEAR_INPUT_AFTER_SUBMIT';
+export const TOGGLE_CHECK = 'TOGGLE_CHECK';
 
 // server/database interactions
 export const ADD_NEW_LIST_ITEM_DATABASE_REQUEST = 'ADD_NEW_LIST_ITEM_DATABASE_REQUEST';
