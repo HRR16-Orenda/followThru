@@ -47,7 +47,7 @@ const mapStateToProps = (state, ownProps) => {
     lists: state.lists.lists.allItems,
     filter: state.lists.filter,
     listItems: state.lists.selectedItems,
-    dataSource: generateDataSource(state.lists.lists.allItems),
+    dataSource: generateDataSource(filteredItems),
     modal: state.lists.modal
   };
 }

@@ -70,7 +70,9 @@ export default StyleSheet.create({
     marginRight: 5,
     marginLeft: 5,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingLeft: 5,
+    paddingRight: 5
   },
 
   mainButton_add: {
@@ -105,7 +107,9 @@ export default StyleSheet.create({
 
   icon: {
     // fontSize: 160,
-    color: '#48BBEC'
+    color: '#48BBEC',
+    marginRight: 5,
+    marginLeft: 5
   },
   /**********************************
   Icon Swipe Description Feature
