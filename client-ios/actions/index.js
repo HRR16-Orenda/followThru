@@ -28,7 +28,9 @@ export const mainButtonPressed = (buttonCategory) => {
     }
     else {
       dispatch(updateFilter(buttonCategory));
-      Actions.singleListScreen();
+
+      // Set title of the list screen according to selected category
+      Actions.singleListScreen({title: buttonCategory});
     }
   }
 }
@@ -73,9 +75,17 @@ export const addItemToDatabase = (item) => {
           },
           body: JSON.stringify(newInput)
         }).then((response) => {
+          console.log(response);
           return response.json();
         }).then((data) => {
-          dispatch(addNewListItemDatabaseSuccess(data));
+          // update current allItems list with returned data from server
+          var allItemsCopy = getState().lists.lists.allItems.slice().map(item => {
+            if(item.title === data.title && item.category === data.category) {
+              item = data
+            };
+            return item;
+          });
+          dispatch(addNewListItemDatabaseSuccess(allItemsCopy));
         }).catch((error) => {
           console.log(error);
           dispatch(addNewListItemDatabaseFailure());

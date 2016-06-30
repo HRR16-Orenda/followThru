@@ -1,10 +1,13 @@
 var amazon = require('amazon-product-api');
 var _ = require('lodash');
+require('../../env.js');
+
+console.log(process.env['AWS_API_KEY']);
 
 var client = amazon.createClient({
-  awsId: "AKIAIBOPOFKRSZJ47XUA",
-  awsSecret: "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",
-  awsTag: "echo304-20"
+  awsId: process.env['AWS_API_KEY'],
+  awsSecret: process.env['AWS_API_SECRET'],
+  awsTag: process.env['AWS_API_TAG']
 });
 
 module.exports.amazon = function(newItem) {

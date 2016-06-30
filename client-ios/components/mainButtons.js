@@ -33,8 +33,6 @@ export default class mainButtons extends Component {
       return (
         <View style={styles.buttonContainer} key={threeButtons[index].category}>
           {threeButtons.map((button, index) => {
-            console.log('filter', this.props.filter);
-            console.log('category', button.category);
             return (
 
               <View key={button.icon}>
