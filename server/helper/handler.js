@@ -56,6 +56,7 @@ module.exports = {
 
   getAllUsers: function (req, res) {
     user.getAll(function (err, users) {
+      console.log('error!!', err);
       if(err) {return res.sendStatus(400);}
       var returnedUsers = users.map(function (user) {
         return helper.cleanUser(user);

@@ -6,7 +6,6 @@ import { update } from "react";
  */
 export default (state = {
   ui: {
-    buttonStyle: 'mainButton',
     isLoading: false,
     loginError: false,
     loginErrorMsg: '',

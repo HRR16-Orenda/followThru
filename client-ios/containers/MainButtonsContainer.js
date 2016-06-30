@@ -16,28 +16,28 @@ function mapStateToProps(state, ownProps) {
   return {
     lists: state.lists.allItems,
     toggleShow: state.lists.toggleShow,
-    buttonStyle: state.lists.ui.buttonStyle,
+    buttonStyle: state.lists.buttonStyle,
     userInput: state.lists.userInput,
     buttons: [
       [
         {icon: 'ios-list-box-outline',
-        category: 'To-Dos'},
+        category: 'Do'},
 
         {icon: 'ios-cart-outline',
-        category: 'Groceries'},
+        category: 'Buy'},
 
-        {icon: 'ios-musical-notes-outline',
-        category: 'Music'}
+        {icon: 'ios-book-outline',
+        category: 'Read'}
       ],
       [
         {icon: 'ios-headset-outline',
-        category: 'Movies/TV'},
+        category:'Listen'},
 
         {icon: 'ios-restaurant-outline',
-        category: 'Restaurants'},
+        category: 'Eat'},
 
         {icon: 'ios-star-outline',
-        category: 'Custom'}
+        category: 'Watch'}
       ]
     ]
   };

@@ -22,6 +22,7 @@ export const mainButtonPressed = (buttonCategory) => {
       }
       console.log('category', buttonCategory);
 
+
       dispatch(addItemLocally(newItem));
       dispatch(addItemToDatabase(newItem));
       dispatch(clearInputAfterSubmit())
@@ -30,6 +31,12 @@ export const mainButtonPressed = (buttonCategory) => {
       dispatch(updateFilter(buttonCategory));
       Actions.singleListScreen();
     }
+  }
+}
+
+export const changeButtonToCheck = () => {
+  return {
+    type: types.CHANGE_BUTTON_TO_CHECK
   }
 }
 // REFACTORED version

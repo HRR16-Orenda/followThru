@@ -38,13 +38,16 @@ export default class mainButtons extends Component {
             return (
 
               // {adding ? <Text>{button.category}</Text> : null}
-              <TouchableHighlight style={styles.mainButton} key={button.icon}>
-              <Icon
-                name={adding ? 'ios-add-outline' : button.icon}
-                style={styles.icon}
-                onPress={() => {this.props.mainButtonPressed(button.category)}}
-              />
-              </TouchableHighlight>
+              <View>
+                {adding? <Text>{button.category}</Text> : null}
+                <TouchableHighlight style={styles.mainButton} key={button.icon}>
+                  <Icon
+                    name={adding ? 'ios-add-outline' : button.icon}
+                    style={styles.icon}
+                    onPress={() => {this.props.mainButtonPressed(button.category)}}
+                  />
+                </TouchableHighlight>
+              </View>
             );
           })}
 
