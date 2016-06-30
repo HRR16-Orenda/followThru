@@ -59,13 +59,14 @@ export const addItemToDatabase = (item) => {
     let newInput = {
       title: item.title,
       category: item.category,
+      subcategory: 'favorite',
+      url: null,
       user_id: user.id
     };
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        console.log('userToken', userToken);
         fetch('http://localhost:3000/api/items/', {
           method: 'POST',
           headers: {
