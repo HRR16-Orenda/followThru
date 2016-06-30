@@ -8,10 +8,10 @@ import {
   ListView,
   Text,
   View,
-  Modal,
   Button
 } from 'react-native';
 
+import Modal from './modal.js';
 import { Actions } from 'react-native-router-flux';
 import ListItem from './listItem.js';
 import styles from '../styles/styles.js'
@@ -48,38 +48,14 @@ export default class SingleListScreen extends Component {
     }
 
   render() {
-    const { lists, dataSource, modal, deleteListItem } = this.props
+    const { lists, dataSource, modal, deleteListItem, filter } = this.props
       return (
         <View>
           <Modal
-            animationType="fade"
-            transparent={true}
-            visible={modal.isOpen}
-            onRequestClose={() => {this._setModalVisible(false)}}
-          >
-            <View style={[styles.container, styles.modalBackground]}>
-              <View style={styles.innerContainer}>
-                <Text style={styles.innerContainerText}>
-                  This modal was presented
-                </Text>
-                <Text style={styles.innerContainerText} onPress={deleteListItem.bind(null, modal.item)}>
-                  Delete it!!!
-                </Text>
-                <Text style={styles.innerContainerText}>
-                  {modal.item.content}
-                </Text>
-                <TouchableHighlight
-                  style={styles.modalButton}
-                  onPress={this._setModalVisible.bind(this, false)}
-                  underlayColor='black'
-                >
-                  <Text style={styles.buttonText}>
-                    Close
-                  </Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-          </Modal>
+            modal={modal}
+            toggler={this._setModalVisible.bind(this)}
+            pressHandler={deleteListItem}
+          />
           <View style={styles.container}>
             <ListView
               dataSource={dataSource}

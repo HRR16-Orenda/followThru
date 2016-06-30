@@ -39,11 +39,15 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  let filteredItems = state.lists.lists.allItems.filter(item => {
+    return item.category === state.lists.filter;
+  });
   return {
     user: state.auth.user.username,
     lists: state.lists.lists.allItems,
+    filter: state.lists.filter,
     listItems: state.lists.selectedItems,
-    dataSource: generateDataSource(state.lists.selectedItems),
+    dataSource: generateDataSource(state.lists.lists.allItems),
     modal: state.lists.modal
   };
 }

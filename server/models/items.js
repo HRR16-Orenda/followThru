@@ -12,10 +12,6 @@ var Item = sequelize.define('item', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  content: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   completed: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
@@ -24,13 +20,17 @@ var Item = sequelize.define('item', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  subcategory: {
+  content: {
     type: Sequelize.STRING,
-    defaultValue: 'To do'
+    allowNull: true
   },
   url: {
     type: Sequelize.STRING,
-    defaultValue: 'null'
+    allowNull: true
+  },
+  img: {
+    type: Sequelize.STRING,
+    allowNull: true
   }
 }, {underscored: true});
 //sequelize automatically creates created_at and updated_at
