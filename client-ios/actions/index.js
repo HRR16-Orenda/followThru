@@ -233,26 +233,31 @@ const toggleItemFailure = () => {
 
 // ******* FETCH ITEMS SECTION ******
 
-// This should only be called once when a user logs in
-// Currently this is called whenever the add screen is chosen
-// Which overwrites the allLists
-export const fetchInitialDatabase = () => {
+const fetchInitialDatabase = () => {
   return function(dispatch) {
     dispatch(fetchDatabaseListsRequest());
-
-    fetch('http://localhost:3000/api/items/', {
-      method: 'GET'
+    AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
+      if(err){
+        console.log("error accessing JWT_TOKEN in local storage: ", err);
+        dispatch(fetchDatabaseListsFailure());
+      } else {
+        fetch('http://localhost:3000/api/items/', {
+          method: 'GET',
+          headers: {
+            'Authorization': JSON.parse(userToken).jwt
+          },
+        })
+        .then((response) => {
+          return response.json();
+        })
+        .then((responseData) => {
+          dispatch(fetchDatabaseListsSuccess(responseData))
+        })
+        .catch((error) => {
+          dispatch(fetchDatabaseListsFailure())
+        })
+      }
     })
-    .then((response) => {
-      return response.json();
-    })
-    .then((responseData) => {
-      dispatch(fetchDatabaseListsSuccess(responseData))
-    })
-    .catch((error) => {
-      dispatch(fetchDatabaseListsFailure())
-    })
-
   }
 }
 
@@ -385,8 +390,9 @@ export const loginUser = function(creds) {
       }
       storeLocally('JWT_TOKEN', jwtObj, function(err, result){
         if(err){
-          console.log("Error with storing JWT to AsynchStorage: ", err);
+          console.log("Error with storing JWT to AsyncStorage: ", err);
         } else {
+          dispatch(fetchInitialDatabase());
           AlertIOS.alert('Welcome back!');
           Actions.addScreen();
           dispatch(loginSuccess(data))
@@ -459,8 +465,9 @@ export const signupUser = function(creds) {
       }
       storeLocally('JWT_TOKEN', jwtObj, function(err, result){
         if(err){
-          console.log("Error with storing JWT to AsynchStorage: ", err);
+          console.log("Error with storing JWT to AsyncStorage: ", err);
         } else {
+          dispatch(fetchInitialDatabase());
           Actions.addScreen();
           AlertIOS.alert(data.username + ", thank you for joining!")
           dispatch(signupSuccess(data))

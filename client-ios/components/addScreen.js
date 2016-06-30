@@ -19,7 +19,7 @@ export default class AddScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchInitialDatabase();
+    // this.props.fetchInitialDatabase();
   }
 
   render() {
