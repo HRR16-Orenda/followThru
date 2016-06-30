@@ -24,6 +24,7 @@ export const mainButtonPressed = (buttonCategory) => {
 
       dispatch(addItemLocally(newItem));
       dispatch(addItemToDatabase(newItem));
+      dispatch(clearInputAfterSubmit())
     }
     else {
       dispatch(updateFilter(buttonCategory));
@@ -96,6 +97,12 @@ export const toggleShow = () => {
 export const resetDisplay = () => {
   return {
     type: types.RESET_UI_DISPLAY
+  }
+}
+
+export const clearInputAfterSubmit = () => {
+  return {
+    type: types.CLEAR_INPUT_AFTER_SUBMIT
   }
 }
 
