@@ -57,11 +57,14 @@ export default class SingleListScreen extends Component {
             pressHandler={deleteListItem}
           />
           <View style={styles.container}>
-            <ListView
-              dataSource={dataSource}
-              renderRow={this.renderItem.bind(this)}
-              style={styles.listView}
-            />
+            {/* Default Text */}
+            {dataSource.rowIdentities[0].length === 0 ? <Text>No Items</Text>
+              :  <ListView
+                dataSource={dataSource}
+                renderRow={this.renderItem.bind(this)}
+                style={styles.listView}
+                 />
+            }
           </View>
         </View>
       );

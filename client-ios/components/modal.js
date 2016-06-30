@@ -7,6 +7,7 @@ import {
   Text,
   View,
   Modal,
+  Image
 } from 'react-native';
 
 import styles from '../styles/styles.js'
@@ -27,22 +28,32 @@ export default class SingleListScreen extends Component {
           >
             <View style={[styles.container, styles.modalBackground]}>
               <View style={styles.innerContainer}>
+                <Image
+                  style={styles.modalImage}
+                  source={{uri: modal.item.img}}
+                />
                 <Text style={styles.innerContainerText}>
                   This modal was presented
-                </Text>
-                <Text style={styles.innerContainerText} onPress={pressHandler.bind(null, modal.item)}>
-                  Delete it!!!
                 </Text>
                 <Text style={styles.innerContainerText}>
                   {modal.item.content}
                 </Text>
                 <TouchableHighlight
                   style={styles.modalButton}
+                  onPress={pressHandler.bind(null, modal.item)}
+                  underlayColor='black'
+                >
+                  <Text style={styles.buttonText}>
+                    Delete item from the list
+                  </Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  style={styles.modalButton}
                   onPress={toggler.bind(null, false)}
                   underlayColor='black'
                 >
                   <Text style={styles.buttonText}>
-                    Close
+                    Close Modal Screen
                   </Text>
                 </TouchableHighlight>
               </View>

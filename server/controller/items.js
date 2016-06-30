@@ -21,6 +21,7 @@ module.exports = {
       category: item.category,
       subcategory: item.subcategory,
       url: item.url,
+      img: item.img,
       completed: false,
       recommendedBy_id: item.recommendedBy_id
     })

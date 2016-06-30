@@ -356,5 +356,9 @@ export default StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
+  },
+  modalImage: {
+    width: 100,
+    height: 140
   }
 });

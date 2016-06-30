@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteListItem: (item) => {
       dispatch(actions.deleteListItem(item));
+      dispatch(modalClose());
     },
     toggleItem: (item) => {
       dispatch(actions.toggleItem(item));
