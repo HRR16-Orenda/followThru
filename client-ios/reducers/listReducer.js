@@ -125,6 +125,18 @@ export default (state = {
       }
     }
 
+    case types.ADD_NEW_LIST_ITEM_DATABASE_SUCCESS:
+    var allItemsCopy = state.lists.allItems.slice();
+    allItemsCopy.push(action.payload);
+    return {
+      ...state,
+      toggleShow: false,
+      lists: {
+        //category: determineLists(allItemsCopy),
+        allItems: allItemsCopy
+      }
+    }
+
     case types.MODAL_OPEN:
     return {
       ...state,

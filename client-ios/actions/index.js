@@ -56,22 +56,20 @@ export const addItemToDatabase = (item) => {
     let user = getState().auth.user;
     let newInput = {
       title: item.title,
-      content: 'Add something here',
       category: item.category,
-      subcategory: 'favorite',
-      url: null,
-      user_id: user.user_id
+      user_id: user.id
     };
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
+        console.log('userToken', userToken);
         fetch('http://localhost:3000/api/items/', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': userToken
+            'Authorization': JSON.parse(userToken).jwt
           },
           body: JSON.stringify(newInput)
         }).then((response) => {
@@ -106,9 +104,10 @@ export const addNewListItemDatabaseFailure = () => {
   }
 }
 
-export const addNewListItemDatabaseSuccess = () => {
+export const addNewListItemDatabaseSuccess = (data) => {
   return {
-    type: types.ADD_NEW_LIST_ITEM_DATABASE_SUCCESS
+    type: types.ADD_NEW_LIST_ITEM_DATABASE_SUCCESS,
+    payload: data
   }
 }
 //REMOVE?
