@@ -128,11 +128,10 @@ module.exports = {
       // Configuration for returned data
       responseGroup: 'Small,Images,BrowseNodes'
     }).then(function(results){
-      console.log(results);
       res.send(results[0]);
     }).catch(function(err){
       console.log(err);
-      res.end();
+      res.sendStatus(400);
     });
   }
 }
