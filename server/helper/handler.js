@@ -3,6 +3,9 @@ var user = require('../controller/users.js');
 var helper = require('./helpers.js');
 var bcrypt = require('bcrypt');
 var User = require('../models/users.js');
+var amazon = require('amazon-product-api');
+var _ = require('lodash');
+var apis = require('./apis.js');
 
 module.exports = {
   getAllItems: function (req, res) {
@@ -22,10 +25,16 @@ module.exports = {
 
   addOneItem: function(req, res) {
     var newItem = req.body;
-    item.addOne(newItem, function(err, newItem) {
-      if(err) {return res.sendStatus(400);}
-      res.status(201).send(newItem);
-    })
+    apis.amazon(newItem)
+      .then(function(refinedItem) {
+        item.addOne(refinedItem, function(err, newItem) {
+          if(err) {return res.sendStatus(400);}
+          res.status(201).send(newItem);
+        });
+      })
+      .catch(function(err) {
+        res.sendStatus(400);
+      });
   },
 
   removeOneItem: function(req, res) {

@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
 var sequelize = require('./db/config.js');
-var index = require('./routes/index.js');
 var users = require('./routes/users.js');
 var items = require('./routes/items.js');
 var path = require('path');
@@ -30,7 +29,6 @@ require('./helper/passport.js')(passport);
 
 
 // Router
-// app.use('/', index); // nothing here for now
 app.use('/api/users', users);
 app.use('/api/items', items);
 

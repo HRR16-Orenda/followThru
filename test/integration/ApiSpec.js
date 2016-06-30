@@ -11,12 +11,9 @@ describe('API Test', function () {
   var server;
   var itemToBeAdded = {
     user_id: 1,
-    content: 'this is the best novel',
     category: 'Books',
-    subcategory: 'favorite',
     title: 'The Lord of the Ring',
     completed: false,
-    url: null,
     recommendedBy_id: 2
   };
   var userToBeAdded1 = {
@@ -35,6 +32,7 @@ describe('API Test', function () {
     password: 'test'
   };
   var id;
+  var token;
 
   before(function (done) {
     server = app.listen(port, function () {
@@ -50,12 +48,12 @@ describe('API Test', function () {
 
     before(function (done) {
       sequelize.sync({force: true}).then(function () {
-        user.addOne(userToBeAdded1, function () {
-          user.addOne(userToBeAdded2, function () {
+        user.signupOne(userToBeAdded1, function (err, data) {
+          token = data.jwt;
+          user.signupOne(userToBeAdded2, function () {
             item.addOne(itemToBeAdded, function (err, returnedItem) {
               if(err) {return done(err);}
               id = returnedItem.get('id');
-              console.log(id);
               done();
             });
           });
@@ -66,6 +64,7 @@ describe('API Test', function () {
     describe('GET request', function () {
       it('should return status code 200', function (done) {
         supertest.get('/api/items')
+        .set('Authorization', token)
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res.status).to.equal(200);
@@ -76,16 +75,15 @@ describe('API Test', function () {
       it('should return array with json type', function (done) {
         supertest.get('/api/items')
         .set('Accept', 'application/json')
+        .set('Authorization', token)
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res.body).to.be.an('array');
           expect(res.body[0]).to.have.property('id');
           expect(res.body[0]).to.have.property('user_id');
           expect(res.body[0]).to.have.property('category');
-          expect(res.body[0]).to.have.property('subcategory');
           expect(res.body[0]).to.have.property('title');
           expect(res.body[0]).to.have.property('completed');
-          expect(res.body[0]).to.have.property('url');
           expect(res.body[0]).to.have.property('created_at');
           expect(res.body[0]).to.have.property('updated_at');
           expect(res.body[0]).to.have.property('recommended_by_id');
@@ -97,6 +95,8 @@ describe('API Test', function () {
     describe('POST request', function () {
       it('should return status code 400 if invalid data send', function (done) {
         supertest.post('/api/items')
+        .set('Accept', 'application/json')
+        .set('Authorization', token)
         .send({user: 'fake'})
         .expect(400)
         .end(done);
