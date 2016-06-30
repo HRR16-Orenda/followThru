@@ -37,11 +37,11 @@ export default class mainButtons extends Component {
             console.log('category', button.category);
             return (
 
-              <View>
+              <View key={button.icon}>
                 {(this.props.filter === button.category && this.props.saved) ? <Text>Added!</Text> : null}
                 {adding ? <Text>{button.category}</Text> : null}
-                <TouchableHighlight style={styles.mainButton} key={button.icon}>
-                  
+                <TouchableHighlight style={styles.mainButton} >
+
                   <Icon
                     name={adding ? 'ios-add-outline' : button.icon}
                     size={60}

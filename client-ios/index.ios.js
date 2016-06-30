@@ -32,8 +32,6 @@ class Orenda extends Component {
             rightButtonImage={require('./assets/settings-256.png')}
             rightButtonIconStyle={styles.icon}
             onRight={() => Actions.settingsScreen()}
-            leftTitle="ListScreen"
-            onLeft={() => Actions.singleListScreen()}
           />
           <Scene
             key="singleListScreen"

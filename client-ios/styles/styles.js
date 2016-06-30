@@ -39,7 +39,8 @@ export default StyleSheet.create({
     left: 0,
     position: 'absolute',
     right: 0,
-    top: 200
+    bottom: 70,
+    top: -150
   },
 //hold
   buttonContainer: {
@@ -48,9 +49,11 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     backgroundColor: '#F5FCFF',
     paddingTop: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 0
+    position: 'relative',
+    // paddingLeft: 20,
+    // paddingRight: 20,
+    paddingBottom: 0,
+    top: 150
   },
 
   mainButton: {
@@ -67,7 +70,9 @@ export default StyleSheet.create({
     marginRight: 5,
     marginLeft: 5,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingLeft: 5,
+    paddingRight: 5
   },
 
   mainButton_add: {
@@ -101,8 +106,10 @@ export default StyleSheet.create({
   },
 
   icon: {
-    fontSize: 60,
-    color: '#48BBEC'
+    // fontSize: 160,
+    color: '#48BBEC',
+    marginRight: 5,
+    marginLeft: 5
   },
   /**********************************
   Icon Swipe Description Feature
