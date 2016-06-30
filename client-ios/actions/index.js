@@ -79,6 +79,7 @@ export const addItemToDatabase = (item) => {
           dispatch(addNewListItemDatabaseSuccess(data));
         }).catch((error) => {
           console.log(error);
+          Actions.loginScreen();
           dispatch(addNewListItemDatabaseFailure());
         })
       }
