@@ -11,12 +11,9 @@ describe('API Test', function () {
   var server;
   var itemToBeAdded = {
     user_id: 1,
-    content: 'this is the best novel',
     category: 'Books',
-    subcategory: 'favorite',
     title: 'The Lord of the Ring',
     completed: false,
-    url: null,
     recommendedBy_id: 2
   };
   var userToBeAdded1 = {
@@ -85,10 +82,8 @@ describe('API Test', function () {
           expect(res.body[0]).to.have.property('id');
           expect(res.body[0]).to.have.property('user_id');
           expect(res.body[0]).to.have.property('category');
-          expect(res.body[0]).to.have.property('subcategory');
           expect(res.body[0]).to.have.property('title');
           expect(res.body[0]).to.have.property('completed');
-          expect(res.body[0]).to.have.property('url');
           expect(res.body[0]).to.have.property('created_at');
           expect(res.body[0]).to.have.property('updated_at');
           expect(res.body[0]).to.have.property('recommended_by_id');

@@ -4,12 +4,8 @@ var helper = require('./helpers.js');
 var bcrypt = require('bcrypt');
 var User = require('../models/users.js');
 var amazon = require('amazon-product-api');
-
-var client = amazon.createClient({
-  awsId: "AKIAIBOPOFKRSZJ47XUA",
-  awsSecret: "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",
-  awsTag: "echo304-20"
-});
+var _ = require('lodash');
+var apis = require('./apis.js');
 
 module.exports = {
   getAllItems: function (req, res) {
@@ -29,10 +25,16 @@ module.exports = {
 
   addOneItem: function(req, res) {
     var newItem = req.body;
-    item.addOne(newItem, function(err, newItem) {
-      if(err) {return res.sendStatus(400);}
-      res.status(201).send(newItem);
-    })
+    apis.amazon(newItem)
+      .then(function(refinedItem) {
+        item.addOne(refinedItem, function(err, newItem) {
+          if(err) {return res.sendStatus(400);}
+          res.status(201).send(newItem);
+        });
+      })
+      .catch(function(err) {
+        res.sendStatus(400);
+      });
   },
 
   removeOneItem: function(req, res) {
@@ -115,23 +117,6 @@ module.exports = {
       if(err) {return res.sendStatus(400);}
       var updatedUser = helper.cleanUser(user);
       res.send(updatedUser);
-    });
-  },
-
-  getAmazonItem: function (req, res) {
-    var query = req.params.query;
-
-    client.itemSearch({
-      // Amazon product API configuration
-      keywords: query,
-      searchIndex: 'Books',
-      // Configuration for returned data
-      responseGroup: 'Small,Images,BrowseNodes'
-    }).then(function(results){
-      res.send(results[0]);
-    }).catch(function(err){
-      console.log(err);
-      res.sendStatus(400);
     });
   }
 }

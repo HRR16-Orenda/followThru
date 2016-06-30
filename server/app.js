@@ -6,7 +6,6 @@ var jwt = require('jsonwebtoken');
 var sequelize = require('./db/config.js');
 var users = require('./routes/users.js');
 var items = require('./routes/items.js');
-var amazon = require('./routes/amazon.js');
 var path = require('path');
 
 var app = express();
@@ -32,7 +31,6 @@ require('./helper/passport.js')(passport);
 // Router
 app.use('/api/users', users);
 app.use('/api/items', items);
-app.use('/api/amazon', amazon);
 
 // default route
 app.use('/*', function (req, res) {
