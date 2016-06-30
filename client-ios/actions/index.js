@@ -45,24 +45,31 @@ export const addItemToDatabase = (item) => {
       url: null,
       user_id: user.user_id
     };
-
-    fetch('http://localhost:3000/api/items/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newInput)
-    }).then((response) => {
-      return response.json();
-    }).then((data) => {
-      dispatch(addNewListItemDatabaseSuccess(data));
-    }).catch((error) => {
-      console.log(error);
-      dispatch(addNewListItemDatabaseFailure());
-    })
+    AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
+      if(err) {
+        console.log("error accessing JWT_TOKEN in local storage: ", err);
+      } else {
+        fetch('http://localhost:3000/api/items/', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': userToken
+          },
+          body: JSON.stringify(newInput)
+        }).then((response) => {
+          return response.json();
+        }).then((data) => {
+          dispatch(addNewListItemDatabaseSuccess(data));
+        }).catch((error) => {
+          console.log(error);
+          dispatch(addNewListItemDatabaseFailure());
+        })
+      }
+    }
   }
 }
+
 const addItemLocally = (data) => {
   return {
     type: types.ADD_ITEM_LOCALLY,
