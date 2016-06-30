@@ -490,7 +490,6 @@ export const signupUser = function(creds) {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       var jwtObj = {
         jwt: data.jwt
       }
@@ -579,7 +578,6 @@ const logoutSuccess = function() {
 const storeLocally = function( key, object, callback ) {
   AsyncStorage.setItem(key, JSON.stringify(object), () => {
     AsyncStorage.getItem(key, (err, result) => {
-      // console.log("this is coming from local storage!!", JSON.parse(result));
       if(err){
         return callback(err);
       }
