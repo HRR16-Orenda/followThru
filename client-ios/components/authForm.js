@@ -38,7 +38,7 @@ class AuthFormComponent extends Component {
             style={styles.inputField}
             autoCapitalize='none'
             {...fields.username}
-            placeholder='Username'
+            placeholder='username'
           />
         </View>
         {fields.username.touched && fields.username.error &&
@@ -50,7 +50,7 @@ class AuthFormComponent extends Component {
             {...fields.password}
             secureTextEntry={true}
             autoCapitalize='none'
-            placeholder='Password'
+            placeholder='password'
           />
         </View>
         {fields.password.touched && fields.password.error &&
