@@ -48,7 +48,7 @@ export default class SingleListScreen extends Component {
     }
 
   render() {
-    const { lists, dataSource, modal, deleteListItem } = this.props
+    const { lists, dataSource, modal, deleteListItem, filter } = this.props
       return (
         <View>
           <Modal

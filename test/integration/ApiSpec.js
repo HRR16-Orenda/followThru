@@ -53,7 +53,6 @@ describe('API Test', function () {
       sequelize.sync({force: true}).then(function () {
         user.signupOne(userToBeAdded1, function (err, data) {
           token = data.jwt;
-          console.log(token);
           user.signupOne(userToBeAdded2, function () {
             item.addOne(itemToBeAdded, function (err, returnedItem) {
               if(err) {return done(err);}
