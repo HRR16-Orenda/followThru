@@ -21,10 +21,12 @@ module.exports.amazon = function(newItem) {
       img: results[0]['MediumImage'][0]['URL'][0],
       content: results[0]['ItemAttributes'][0]['Title'] + ' : ' + results[0]['ItemAttributes'][0]['Author']
     }
+
     // Add refined data to newItem obj
     _.assign(newItem, refinedData);
 
     return newItem;
+    console.log(newItem);
   }).catch(function(err){
     console.log(err);
   });
