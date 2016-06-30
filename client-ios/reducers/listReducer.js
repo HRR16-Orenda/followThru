@@ -41,10 +41,17 @@ export default (state = {
       ...state,
       userInput: action.inputData
     }
+
     case types.UPDATE_SEARCH_SUGGESTIONS_SUCCESS:
     return {
       ...state,
       suggestions: action.suggestions
+    }
+
+    case types.CLEAR_INPUT_AFTER_SUBMIT:
+    return {
+      ...state,
+      userInput: ''
     }
 
     case types.TOGGLE_SHOW:
