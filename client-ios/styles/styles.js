@@ -39,7 +39,8 @@ export default StyleSheet.create({
     left: 0,
     position: 'absolute',
     right: 0,
-    // top: 10
+    bottom: 70,
+    top: -150
   },
 //hold
   buttonContainer: {
@@ -48,6 +49,7 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     backgroundColor: '#F5FCFF',
     paddingTop: 10,
+    position: 'relative',
     // paddingLeft: 20,
     // paddingRight: 20,
     paddingBottom: 0,

@@ -21,8 +21,8 @@ export default class AddScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Form />
         <MainButtons />
+        <Form />
       </View>
     );
   }
