@@ -385,7 +385,7 @@ export const loginUser = function(creds) {
     })
     .then((data) => {
       var jwtObj = {
-        jwt: data.message
+        jwt: data.jwt
       }
       storeLocally('JWT_TOKEN', jwtObj, function(err, result){
         if(err){
@@ -420,7 +420,7 @@ const loginSuccess = function(user) {
     isFetching: false,
     isAuthenticated: true,
     loginError: false,
-    id_token: user.id_token
+    user: user
   }
 }
 
