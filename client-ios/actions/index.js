@@ -75,7 +75,14 @@ export const addItemToDatabase = (item) => {
         }).then((response) => {
           return response.json();
         }).then((data) => {
-          dispatch(addNewListItemDatabaseSuccess(data));
+          // update current allItems list with returned data from server
+          var allItemsCopy = getState().lists.lists.allItems.slice().map(item => {
+            if(item.title === data.title && item.category === data.category) {
+              item = data
+            };
+            return item;
+          });
+          dispatch(addNewListItemDatabaseSuccess(allItemsCopy));
         }).catch((error) => {
           console.log(error);
           dispatch(addNewListItemDatabaseFailure());
