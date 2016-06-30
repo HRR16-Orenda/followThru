@@ -6,7 +6,6 @@ import { update } from "react";
  */
 export default (state = {
   ui: {
-    buttonStyle: 'mainButton',
     isLoading: false,
     loginError: false,
     loginErrorMsg: '',
@@ -26,7 +25,8 @@ export default (state = {
   //REMOVE?
   toggleShow: true,
   suggestions: [],
-  userInput: ''
+  userInput: '',
+  checked: false
 }, action) => {
   switch (action.type) {
 
@@ -54,10 +54,10 @@ export default (state = {
       userInput: ''
     }
 
-    case types.TOGGLE_SHOW:
+    case types.TOGGLE_CHECK:
     return {
       ...state,
-        toggleShow: !state.toggleShow
+      checked: !state.checked
     }
 
     case types.FETCH_DATABASE_LISTS_SUCCESS:
