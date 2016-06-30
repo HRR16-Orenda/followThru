@@ -35,6 +35,7 @@ describe('API Test', function () {
     password: 'test'
   };
   var id;
+  var token;
 
   before(function (done) {
     server = app.listen(port, function () {
@@ -50,12 +51,13 @@ describe('API Test', function () {
 
     before(function (done) {
       sequelize.sync({force: true}).then(function () {
-        user.addOne(userToBeAdded1, function () {
-          user.addOne(userToBeAdded2, function () {
+        user.signupOne(userToBeAdded1, function (err, data) {
+          token = data.jwt;
+          console.log(token);
+          user.signupOne(userToBeAdded2, function () {
             item.addOne(itemToBeAdded, function (err, returnedItem) {
               if(err) {return done(err);}
               id = returnedItem.get('id');
-              console.log(id);
               done();
             });
           });
@@ -66,6 +68,7 @@ describe('API Test', function () {
     describe('GET request', function () {
       it('should return status code 200', function (done) {
         supertest.get('/api/items')
+        .set('Authorization', token)
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res.status).to.equal(200);
@@ -76,6 +79,7 @@ describe('API Test', function () {
       it('should return array with json type', function (done) {
         supertest.get('/api/items')
         .set('Accept', 'application/json')
+        .set('Authorization', token)
         .end(function (err, res) {
           if(err) {return done(err)}
           expect(res.body).to.be.an('array');
