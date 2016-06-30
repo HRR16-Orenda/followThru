@@ -88,6 +88,7 @@ export const addItemToDatabase = (item) => {
           dispatch(addNewListItemDatabaseSuccess(allItemsCopy));
         }).catch((error) => {
           console.log(error);
+          Actions.loginScreen();
           dispatch(addNewListItemDatabaseFailure());
         })
       }
