@@ -47,7 +47,6 @@ module.exports = {
       var token = jwt.sign(helpers.cleanUser(addedUser), secret, {
         expiresIn: 60 * 60 * 24 * 7 // a week in seconds
       });
-      console.log("token from new user: ", token);
       var userWithJwt = {
         addedUser: addedUser,
         jwt: 'JWT ' + token
@@ -67,7 +66,11 @@ module.exports = {
         var token = jwt.sign(helpers.cleanUser(foundUser), secret, {
           expiresIn: 60 * 60 * 24 * 7 // a week in seconds
         });
-        callback( null, { success: true, message: 'JWT ' + token });
+        var userWithJwt = {
+          loggedInUser: foundUser,
+          jwt: 'JWT ' + token
+        }
+        callback(null, userWithJwt);
       }
       else {
         callback(error)

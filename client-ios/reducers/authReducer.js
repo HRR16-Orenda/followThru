@@ -20,6 +20,7 @@ export default (state = {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: action.isAuthenticated,
+        user: action.user,
         errorMessage: ''
     };
 

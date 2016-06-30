@@ -18,10 +18,6 @@ export default class AddScreen extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    // this.props.fetchInitialDatabase();
-  }
-
   render() {
     return (
       <View style={styles.container}>

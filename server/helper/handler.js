@@ -4,7 +4,6 @@ var helper = require('./helpers.js');
 var bcrypt = require('bcrypt');
 var User = require('../models/users.js');
 
-
 module.exports = {
   getAllItems: function (req, res) {
     item.getAll(function (err, items) {
@@ -86,9 +85,11 @@ module.exports = {
 
   loginUser: function (req, res) {
     var data = req.body;
-    user.loginOne(data, function (err, token) {
+    user.loginOne(data, function (err, userWithJwt) {
       if(err) {return res.sendStatus(400);}
-      res.send(token);
+      var loggedInUser = helper.cleanUser(userWithJwt.loggedInUser);
+      loggedInUser.jwt = userWithJwt.jwt;
+      res.send(loggedInUser);
     })
   },
 
