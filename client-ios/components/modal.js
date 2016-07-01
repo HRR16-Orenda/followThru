@@ -8,7 +8,9 @@ import {
   Text,
   View,
   Modal,
-  Image
+  Image,
+  Linking,
+  TouchableOpacity
 } from 'react-native';
 
 import styles from '../styles/styles.js'
@@ -18,8 +20,27 @@ export default class SingleListScreen extends Component {
     super(props);
   }
 
+  handleClick() {
+  Linking.canOpenURL(this.props.modal.item.url)
+    .then(supported => {
+      if (supported) {
+        Linking.openURL(this.props.modal.item.url);
+      } else {
+        console.log('Don\'t know how to open URI: ' + this.props.modal.item.url);
+      }
+    });
+  }
+
   render() {
-    const { modal, pressHandler, toggler, deleteConfirm, deleteConfirmOn, deleteConfirmOff } = this.props
+    const {
+      modal,
+      pressHandler,
+      toggler,
+      deleteConfirm,
+      deleteConfirmOn,
+      deleteConfirmOff
+    } = this.props;
+
       return (
         <Modal
           animationType="fade"
@@ -37,11 +58,14 @@ export default class SingleListScreen extends Component {
                   source={{uri: modal.item.img}}
                 />
                 <Text style={styles.innerContainerText}>
-                  This modal was presented
-                </Text>
-                <Text style={styles.innerContainerText}>
                   {modal.item.content}
                 </Text>
+                <TouchableOpacity
+                  onPress={this.handleClick.bind(this)}>
+                  <View style={styles.modalButton}>
+                    <Text style={styles.buttonText}>Open in browser</Text>
+                  </View>
+                </TouchableOpacity>
                 {deleteConfirm ?
                   <TouchableHighlight
                     style={styles.modalButton}
