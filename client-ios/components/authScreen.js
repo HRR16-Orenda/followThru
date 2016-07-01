@@ -6,11 +6,13 @@ import {
   View,
   TouchableHighlight,
   AlertIOS,
-  ActivityIndicatorIOS
+  ActivityIndicatorIOS,
+  Image
 } from 'react-native';
 
 import styles from '../styles/styles.js';
 import AuthForm from '../containers/AuthFormContainer.js';
+import background from '../assets/gradient-login3.jpg';
 
 export default class AuthScreen extends Component {
 
@@ -56,17 +58,19 @@ export default class AuthScreen extends Component {
       ( <View/> );
 
     return (
-      <Image source={require('./assets/gradient-login.jpg')} style={ styles.container }>
-        <View  >
+        <View style={ styles.footer }>
+          <Image source={require('../assets/gradient-login.jpg')} style={styles.image}>
+
           <View>
             <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>
+            { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
+            { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
+            { spinner }
+            <AuthForm formType={formType} onSubmit={handler}/>
           </View>
-          { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
-          { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
-          { spinner }
-          <AuthForm formType={formType} onSubmit={handler}/>
+          </Image>
         </View>
-      </Image>
+
     );
   }
 };

@@ -30,6 +30,13 @@ export default StyleSheet.create({
     paddingBottom: 20
   },
 
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'cover'
+  },
+
   /*********************************
   Add Screen Specific Styles
   *********************************/

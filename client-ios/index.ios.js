@@ -18,7 +18,6 @@ import configureStore from './store/configureStore.js';
 const store = configureStore()
 const RouterWithRedux = connect()(Router);
 
-
 class Orenda extends Component {
   render() {
     return (
@@ -53,7 +52,7 @@ class Orenda extends Component {
             initial={true}
             formType="login"
             type="reset"
-          
+
             onRight={() => Actions.signupScreen()}
           />
           <Scene
