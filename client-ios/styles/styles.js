@@ -39,78 +39,70 @@ export default StyleSheet.create({
     left: 0,
     position: 'absolute',
     right: 0,
-    bottom: 70,
-    top: -150
+    top: 20
   },
-//hold
+
   buttonContainer: {
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: '#F5FCFF',
-    paddingTop: 10,
-    position: 'relative',
-    // paddingLeft: 20,
-    // paddingRight: 20,
-    paddingBottom: 0,
-    top: 150
+    // backgroundColor: '#F5FCFF',
+    top: 190
   },
 
   mainButton: {
     height: 60,
-    flex: 1,
-    flexDirection: 'row',
-    //REMOVE?
+    width: 80,
     position: 'relative',
     backgroundColor: '#ffffff',
     borderColor: '#48BBEC',
     borderWidth: 1,
     borderRadius: 0,
-    marginBottom: 10,
-    marginRight: 5,
-    marginLeft: 5,
-    alignSelf: 'stretch',
+    marginBottom: 20,
+    marginRight: 15,
+    marginLeft: 15,
     justifyContent: 'center',
+    alignItems: 'center',
     paddingLeft: 5,
     paddingRight: 5
   },
 
-  mainButton_add: {
-    height: 60,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#ffffff',
-    borderColor: '#ff1a75',
-    borderWidth: 1,
-    borderRadius: 0,
-    marginBottom: 10,
-    marginRight: 10,
-    marginLeft: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
+  // icon: {
+  //   fontSize: 160,
+  //   color: '#48BBEC',
+  //   justifyContent: 'center'
+  // },
 
-  mainButton_check: {
-    height: 60,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#ff1fff',
-    borderColor: '#ff1a75',
-    borderWidth: 1,
-    borderRadius: 0,
-    marginBottom: 10,
-    marginRight: 10,
-    marginLeft: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
+  // mainButton_add: {
+  //   height: 60,
+  //   flex: 1,
+  //   flexDirection: 'row',
+  //   backgroundColor: '#ffffff',
+  //   borderColor: '#ff1a75',
+  //   borderWidth: 1,
+  //   borderRadius: 0,
+  //   marginBottom: 10,
+  //   marginRight: 10,
+  //   marginLeft: 10,
+  //   alignSelf: 'stretch',
+  //   justifyContent: 'center'
+  // },
+  //
+  // mainButton_check: {
+  //   height: 60,
+  //   flex: 1,
+  //   flexDirection: 'row',
+  //   backgroundColor: '#ff1fff',
+  //   borderColor: '#ff1a75',
+  //   borderWidth: 1,
+  //   borderRadius: 0,
+  //   marginBottom: 10,
+  //   marginRight: 10,
+  //   marginLeft: 10,
+  //   alignSelf: 'stretch',
+  //   justifyContent: 'center'
+  // },
 
-  icon: {
-    // fontSize: 160,
-    color: '#48BBEC',
-    marginRight: 5,
-    marginLeft: 5
-  },
+
   /**********************************
   Icon Swipe Description Feature
   **********************************/
