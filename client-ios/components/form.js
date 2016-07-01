@@ -42,6 +42,7 @@ class FormComponent extends Component {
             this.props.queryWikipedia(text);
             this.props.updateUserInput(text);
           }}
+          clearButtonMode={'while-editing'}
         />
       </View>
     )
