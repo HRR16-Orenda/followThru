@@ -36,6 +36,7 @@ class AuthFormComponent extends Component {
         <View style={styles.flowRight}>
           <TextInput
             style={styles.inputField}
+            autoCapitalize='none'
             {...fields.username}
             placeholder='Username'
           />
@@ -48,6 +49,7 @@ class AuthFormComponent extends Component {
             style={styles.inputField}
             {...fields.password}
             secureTextEntry={true}
+            autoCapitalize='none'
             placeholder='Password'
           />
         </View>
@@ -80,6 +82,7 @@ class AuthFormComponent extends Component {
         <View style={styles.flowRight}>
           <TextInput
             style={styles.inputField}
+            autoCapitalize='none'
             {...fields.username}
             placeholder='Username'
           />
@@ -90,6 +93,7 @@ class AuthFormComponent extends Component {
         <View style={styles.flowRight}>
           <TextInput
             style={styles.inputField}
+            autoCapitalize='none'
             {...fields.email}
             placeholder='Email'
           />
@@ -101,6 +105,7 @@ class AuthFormComponent extends Component {
           <TextInput
             style={styles.inputField}
             {...fields.password}
+            autoCapitalize='none'
             secureTextEntry={true}
             placeholder='Password'
           />
@@ -112,6 +117,7 @@ class AuthFormComponent extends Component {
           <TextInput
             style={styles.inputField}
             {...fields.confirm}
+            autoCapitalize='none'
             secureTextEntry={true}
             placeholder='Confirm your Password'
           />
