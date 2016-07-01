@@ -66,6 +66,13 @@ export default StyleSheet.create({
     paddingRight: 5
   },
 
+  buttonCategoryText: {
+    // justifyContent: 'center',
+    // alignItems: 'flex-end',
+    // position: 'relative',
+    // marginBottom: 20
+  },
+
   // icon: {
   //   fontSize: 160,
   //   color: '#48BBEC',
