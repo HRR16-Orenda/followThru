@@ -27,6 +27,7 @@ module.exports = {
     var newItem = req.body;
     apis.amazon(newItem)
       .then(function(refinedItem) {
+        console.log("REFINED ITEM!!: ", refinedItem)
         item.addOne(refinedItem, function(err, newItem) {
           if(err) {return res.sendStatus(400);}
           res.status(201).send(newItem);

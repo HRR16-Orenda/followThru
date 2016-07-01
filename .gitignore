@@ -49,3 +49,6 @@ android/keystores/debug.keystore
 
 # test coverage
 /coverage
+
+# env
+env.js

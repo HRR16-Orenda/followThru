@@ -74,13 +74,15 @@ export const addItemToDatabase = (item) => {
           },
           body: JSON.stringify(newInput)
         }).then((response) => {
-          if(response.status !== 200){
+          console.log("response from add item: ", response)
+          if(response.status !== 200 || 201){
             if(response.status === 401) {
               dispatch(deauthorizeUser())
               Actions.loginScreen();
             } throw error;
           } else {
-            return response.json();
+            // return response.json();
+            return;
           }
         }).then((data) => {
           // update current allItems list with returned data from server
@@ -199,15 +201,33 @@ const findAndRemoveItem = (itemToDelete, array) => {
 const deleteListItemDatabase = (item) => {
   return function(dispatch, getState) {
     dispatch(deleteListItemDatabaseRequest());
-
-    fetch('http://localhost:3000/api/items/' + item.id, {
-      method: 'DELETE'
-    }).then((response) => {
-      dispatch(deleteListItemDatabaseSuccess());
-    })
-    .catch((error) => {
-      console.log('error error');
-      dispatch(deleteListItemDatabaseFailure());
+    AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
+      if(err) {
+        console.log("error accessing JWT_TOKEN in local storage: ", err);
+      } else {
+        fetch('http://localhost:3000/api/items/' + item.id, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': JSON.parse(userToken).jwt
+          },
+        }).then((response) => {
+          if(response.status !== 200){
+            if(response.status === 401) {
+              dispatch(deauthorizeUser())
+              Actions.loginScreen();
+            } throw error;
+          } else {
+            return;
+          }
+        })
+        .then((data) => {
+          dispatch(deleteListItemDatabaseSuccess());
+        })
+        .catch((error) => {
+          console.log('Deletion error');
+          dispatch(deleteListItemDatabaseFailure());
+        })
+      }
     })
   }
 }
@@ -235,23 +255,30 @@ export const toggleItem = (item) => {
     var updatedItem = _.assign({}, item);
     updatedItem.completed = !updatedItem.completed;
     dispatch(toggleItemRequest());
-    return fetch('http://localhost:3000/api/items/' + updatedItem.id, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedItem)
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      dispatch(toggleItemSuccess(updatedItem.id));
-    })
-    .catch((error) => {
-      console.log("error from item toggle: ", error);
-      dispatch(toggleItemFailure());
+    AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
+      if(err) {
+        console.log("error accessing JWT_TOKEN in local storage: ", err);
+      } else {
+        fetch('http://localhost:3000/api/items/' + updatedItem.id, {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': JSON.parse(userToken).jwt
+        },
+        body: JSON.stringify(updatedItem)
+        })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          dispatch(toggleItemSuccess(updatedItem.id));
+        })
+        .catch((error) => {
+          console.log("error from item toggle: ", error);
+          dispatch(toggleItemFailure());
+        })
+      }
     })
   }
 };
