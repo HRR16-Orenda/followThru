@@ -19,7 +19,7 @@ module.exports = {
       title: item.title,
       content: item.content,
       category: item.category,
-      subcategory: item.subcategory,
+      // subcategory: item.subcategory,
       url: item.url,
       img: item.img,
       completed: false,

@@ -74,13 +74,15 @@ export const addItemToDatabase = (item) => {
           },
           body: JSON.stringify(newInput)
         }).then((response) => {
-          if(response.status !== 200){
+          console.log("response from add item: ", response)
+          if(response.status !== 200 || 201){
             if(response.status === 401) {
               dispatch(deauthorizeUser())
               Actions.loginScreen();
             } throw error;
           } else {
-            return response.json();
+            // return response.json();
+            return;
           }
         }).then((data) => {
           // update current allItems list with returned data from server
@@ -215,7 +217,7 @@ const deleteListItemDatabase = (item) => {
               Actions.loginScreen();
             } throw error;
           } else {
-            return response.json();
+            return;
           }
         })
         .then((data) => {
