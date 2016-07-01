@@ -12,7 +12,6 @@ import {
 
 import styles from '../styles/styles.js';
 import AuthForm from '../containers/AuthFormContainer.js';
-import background from '../assets/gradient-login3.jpg';
 
 export default class AuthScreen extends Component {
 
@@ -59,7 +58,7 @@ export default class AuthScreen extends Component {
 
     return (
         <View style={ styles.footer }>
-          <Image source={require('../assets/gradient-login.jpg')} style={styles.image}>
+          <Image source={require('../assets/gradient-login4.jpg')} style={styles.image}>
 
           <View>
             <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>
