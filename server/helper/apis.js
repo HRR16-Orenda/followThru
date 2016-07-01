@@ -1,6 +1,8 @@
 var amazon = require('amazon-product-api');
 var _ = require('lodash');
-require('../../env.js');
+if(!process.env.CIRCLECI) {
+  require('../../env.js');
+}
 
 console.log(process.env['AWS_API_KEY']);
 
