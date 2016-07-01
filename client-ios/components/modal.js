@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import {
   TouchableHighlight,
+  TouchableWithoutFeedback,
   ActivityIndicatorIOS,
   Text,
   View,
@@ -20,11 +21,14 @@ export default class SingleListScreen extends Component {
   render() {
     const { modal, pressHandler, toggler } = this.props
       return (
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={modal.isOpen}
-            onRequestClose={() => {toggler(false)}}
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modal.isOpen}
+          onRequestClose={() => {toggler(false)}}
+        >
+          <TouchableWithoutFeedback
+            onPress={() => console.log('pressed!!!')}
           >
             <View style={[styles.container, styles.modalBackground]}>
               <View style={styles.innerContainer}>
@@ -58,8 +62,9 @@ export default class SingleListScreen extends Component {
                 </TouchableHighlight>
               </View>
             </View>
-          </Modal>
-          );
+          </TouchableWithoutFeedback>
+        </Modal>
+        );
     // }
   }
 }
