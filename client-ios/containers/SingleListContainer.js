@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
-import { modalOpen, modalClose } from '../actions/listScreenAction.js';
+import { modalOpen, modalClose, deleteConfirmOn, deleteConfirmOff } from '../actions/listScreenAction.js';
 import SingleListScreen from '../components/singleListScreen.js';
 import { ListView } from 'react-native';
 
@@ -35,6 +35,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     modalClose: () => {
       dispatch(modalClose());
+    },
+    deleteConfirmOn: () => {
+      dispatch(deleteConfirmOn());
+    },
+    deleteConfirmOff: () => {
+      dispatch(deleteConfirmOff());
     }
   };
 };
@@ -49,7 +55,8 @@ const mapStateToProps = (state, ownProps) => {
     filter: state.lists.filter,
     listItems: state.lists.selectedItems,
     dataSource: generateDataSource(filteredItems),
-    modal: state.lists.modal
+    modal: state.lists.modal,
+    deleteConfirm: state.lists.ui.deleteConfirm
   };
 }
 

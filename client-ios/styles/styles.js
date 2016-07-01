@@ -322,6 +322,11 @@ export default StyleSheet.create({
     color: 'white',
     alignSelf: 'center'
   },
+  buttonErrorText: {
+    fontSize: 18,
+    color: 'red',
+    alignSelf: 'center'
+  },
   icon: {
     height: 25,
     width: 25

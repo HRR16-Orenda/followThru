@@ -3,7 +3,7 @@ import * as types from '../constants/ActionTypes';
 import helper from '../services/helper';
 import { reset } from 'redux-form';
 import {
-  AsyncStorage
+  Vibration
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -17,5 +17,18 @@ export const modalOpen = (item: Object) => {
 export const modalClose = () => {
   return {
     type: types.MODAL_CLOSE
+  }
+};
+
+export const deleteConfirmOn = () => {
+  Vibration.vibrate(200);
+  return {
+    type: types.DELETE_CONFIRM_ON
+  }
+};
+
+export const deleteConfirmOff = () => {
+  return {
+    type: types.DELETE_CONFIRM_OFF
   }
 };

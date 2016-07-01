@@ -10,7 +10,8 @@ export default (state = {
     loginError: false,
     loginErrorMsg: '',
     signupError: false,
-    signupErrorMsg: ''
+    signupErrorMsg: '',
+    deleteConfirm: false
   },
   lists: {
     category: ['default'],
@@ -22,8 +23,6 @@ export default (state = {
     isOpen: false,
     item: {}
   },
-  //REMOVE?
-  toggleShow: true,
   suggestions: [],
   userInput: '',
   checked: false
@@ -118,7 +117,6 @@ export default (state = {
     allItemsCopy.push(action.payload);
     return {
       ...state,
-      toggleShow: false,
       lists: {
         //category: determineLists(allItemsCopy),
         allItems: allItemsCopy
@@ -128,7 +126,6 @@ export default (state = {
     case types.ADD_NEW_LIST_ITEM_DATABASE_SUCCESS:
     return {
       ...state,
-      toggleShow: false,
       lists: {
         allItems: action.payload
       }
@@ -146,17 +143,14 @@ export default (state = {
     case types.MODAL_CLOSE:
     return {
       ...state,
+      ui: {
+        ...state.ui,
+        deleteConfirm: false
+      },
       modal: {
         isOpen: false,
         item: {}
       }
-    }
-
-    // Reducer for resetting toggleShow
-    case 'jump':
-    return {
-      ...state,
-      toggleShow: true
     }
 
     case types.SIGNUP_SUCCESS:
@@ -201,6 +195,7 @@ export default (state = {
     return {
       ...state,
       ui: {
+        ...state.ui,
         isLoading: false,
         loginError: false,
         signupError: false,
@@ -211,6 +206,7 @@ export default (state = {
     return {
       ...state,
       ui: {
+        ...state.ui,
         isLoading: true
       }
     }
@@ -230,6 +226,7 @@ export default (state = {
         allItems: updatedItems
       },
       ui: {
+        ...state.ui,
         isLoading: false
       }
     }
@@ -238,7 +235,26 @@ export default (state = {
     return {
       ...state,
       ui: {
+        ...state.ui,
         isLoading: false
+      }
+    }
+
+    case types.DELETE_CONFIRM_ON:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        deleteConfirm: true
+      }
+    }
+
+    case types.DELETE_CONFIRM_OFF:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        deleteConfirm: false
       }
     }
 

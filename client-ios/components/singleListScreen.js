@@ -48,12 +48,15 @@ export default class SingleListScreen extends Component {
     }
 
   render() {
-    const { lists, dataSource, modal, deleteListItem, filter } = this.props
+    const { lists, dataSource, modal, deleteListItem, filter, deleteConfirm, deleteConfirmOn, deleteConfirmOff } = this.props
       return (
         <View>
           <Modal
             modal={modal}
             toggler={this._setModalVisible.bind(this)}
+            deleteConfirm={deleteConfirm}
+            deleteConfirmOn={deleteConfirmOn}
+            deleteConfirmOff={deleteConfirmOff}
             pressHandler={deleteListItem}
           />
           <View style={styles.container}>
