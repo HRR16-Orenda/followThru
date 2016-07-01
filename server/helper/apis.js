@@ -4,7 +4,7 @@ if(!process.env.CIRCLECI) {
   require('../../env.js');
 }
 
-console.log(process.env['AWS_API_KEY']);
+console.log(process.env);
 
 var client = amazon.createClient({
   awsId: process.env['AWS_API_KEY'],
