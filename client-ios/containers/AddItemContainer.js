@@ -6,12 +6,12 @@ import { Actions } from 'react-native-router-flux';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
   };
 };
 
 function mapStateToProps(state, ownProps) {
   return {
+    isAuthorized: state.auth.isAuthorized
   };
 }
 

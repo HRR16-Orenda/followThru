@@ -18,6 +18,12 @@ export default class AddScreen extends Component {
     super(props);
   }
 
+  // componentWillMount = () => {
+  //   if(!this.props.isAuthorized){
+  //     Actions.loginScreen()
+  //   }
+  // }
+
   render() {
     return (
       <View style={styles.container}>
