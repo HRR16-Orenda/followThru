@@ -1,5 +1,10 @@
 var amazon = require('amazon-product-api');
 var _ = require('lodash');
+var SpotifyWebApi = require('spotify-web-api-node');
+
+var spotifyApi = new SpotifyWebApi();
+
+
 if(!process.env.CIRCLECI && process.env.NODE_ENV !== 'production') {
   require('../../env.js');
 }
@@ -34,3 +39,11 @@ module.exports.amazon = function(newItem) {
     console.log(err);
   });
 }
+
+// Search tracks whose artist's name contains 'Love'
+spotifyApi.searchTracks('track:Love', { limit : 5 })
+  .then(function(data) {
+    console.log('Search tracks by "Love" in the artist name', data.body);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
