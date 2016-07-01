@@ -56,15 +56,17 @@ export default class AuthScreen extends Component {
       ( <View/> );
 
     return (
-      <View style={ styles.container } >
-        <View>
-          <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>
+      <Image source={require('./assets/gradient-login.jpg')} style={ styles.container }>
+        <View  >
+          <View>
+            <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>
+          </View>
+          { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
+          { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
+          { spinner }
+          <AuthForm formType={formType} onSubmit={handler}/>
         </View>
-        { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
-        { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
-        { spinner }
-        <AuthForm formType={formType} onSubmit={handler}/>
-      </View>
+      </Image>
     );
   }
 };
