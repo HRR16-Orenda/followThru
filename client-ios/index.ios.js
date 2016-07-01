@@ -56,7 +56,7 @@ class Orenda extends Component {
             formType="login"
             hideNavBar={true}
             type="reset"
-            rightTitle="Spaghetti"
+            rightTitle="Sign Up"
             onRight={() => Actions.signupScreen()}
           />
           <Scene
@@ -64,9 +64,8 @@ class Orenda extends Component {
             component={AuthScreenContainer}
             formType="signup"
             hideNavBar={true}
-            title="Welcome!"
             type="reset"
-            leftTitle="Login"
+            leftTitle="Sign In"
             onLeft={() => Actions.loginScreen()}
           />
         </RouterWithRedux>

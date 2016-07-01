@@ -343,9 +343,10 @@ export default StyleSheet.create({
   },
   error: {
     marginBottom: 20,
-    fontSize: 18,
+    fontSize: 14,
     textAlign: 'center',
-    color: 'red'
+    color: 'white',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
 
   /*********************************
