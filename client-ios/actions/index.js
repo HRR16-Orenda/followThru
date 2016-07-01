@@ -58,7 +58,6 @@ export const addItemToDatabase = (item) => {
     let newInput = {
       title: item.title,
       category: item.category,
-      subcategory: 'favorite',
       url: null,
       user_id: user.id
     };
