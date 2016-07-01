@@ -67,9 +67,16 @@ export default class AuthScreen extends Component {
             { spinner }
             <AuthForm formType={formType} onSubmit={handler}/>
           </View>
-          <View>
-            <Text style={styles.signUpPrompt}>Don't have an account? <Text style={{fontWeight: 'bold'}}>Sign Up.</Text></Text>
-          </View>
+
+          {formType === 'login' ?
+            <View>
+              <Text style={styles.signUpPrompt}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignup()}>Sign Up.</Text></Text>
+            </View>
+          :
+            <View>
+              <Text style={styles.signUpPrompt}>Already have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignin()}>Sign In.</Text></Text>
+            </View>
+          }
           </Image>
         </View>
 

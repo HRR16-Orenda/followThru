@@ -84,7 +84,7 @@ class AuthFormComponent extends Component {
             style={styles.inputField}
             autoCapitalize='none'
             {...fields.username}
-            placeholder='Username'
+            placeholder='username'
           />
         </View>
         {fields.username.touched && fields.username.error &&
@@ -95,7 +95,7 @@ class AuthFormComponent extends Component {
             style={styles.inputField}
             autoCapitalize='none'
             {...fields.email}
-            placeholder='Email'
+            placeholder='email'
           />
         </View>
         {fields.email.touched && fields.email.error &&
@@ -107,7 +107,7 @@ class AuthFormComponent extends Component {
             {...fields.password}
             autoCapitalize='none'
             secureTextEntry={true}
-            placeholder='Password'
+            placeholder='password'
           />
         </View>
         {fields.password.touched && fields.password.error &&
@@ -119,18 +119,18 @@ class AuthFormComponent extends Component {
             {...fields.confirm}
             autoCapitalize='none'
             secureTextEntry={true}
-            placeholder='Confirm your Password'
+            placeholder='confirm password'
           />
         </View>
         {fields.confirm.touched && fields.confirm.error &&
           <Error error={fields.confirm.error} />
         }
         <TouchableHighlight
-          style={styles.button}
+          style={styles.loginButton}
           onPress={handleSubmit}
           underlayColor='#99d9f4'
         >
-          <Text style={styles.buttonText}>
+          <Text style={styles.loginText}>
             Signup
           </Text>
         </TouchableHighlight>

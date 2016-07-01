@@ -52,7 +52,7 @@ class Orenda extends Component {
             initial={true}
             formType="login"
             type="reset"
-            rightTitle="Signup"
+            rightTitle="Spaghetti"
             onRight={() => Actions.signupScreen()}
           />
           <Scene

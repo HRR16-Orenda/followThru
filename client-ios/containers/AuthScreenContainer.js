@@ -27,6 +27,12 @@ const mapDispatchToProps = (dispatch) => {
      */
      resetDisplay: () => {
        dispatch(actions.resetDisplay());
+     },
+     goToSignup: () => {
+       Actions.signupScreen();
+     },
+     goToSignin: () => {
+       Actions.loginScreen();
      }
   }
 };
