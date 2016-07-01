@@ -1,6 +1,6 @@
 var amazon = require('amazon-product-api');
 var _ = require('lodash');
-if(!process.env.CIRCLECI) {
+if(!process.env.CIRCLECI && process.env.NODE_ENV !== 'production') {
   require('../../env.js');
 }
 

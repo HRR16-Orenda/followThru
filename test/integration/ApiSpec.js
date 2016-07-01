@@ -11,7 +11,7 @@ describe('API Test', function () {
   var server;
   var itemToBeAdded = {
     user_id: 1,
-    category: 'Books',
+    category: 'READ',
     title: 'The Lord of the Ring',
     completed: false,
     recommendedBy_id: 2

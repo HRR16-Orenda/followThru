@@ -75,16 +75,16 @@ export const addItemToDatabase = (item) => {
           body: JSON.stringify(newInput)
         }).then((response) => {
           console.log("response from add item: ", response)
-          if(response.status !== 200 || 201){
-            if(response.status === 401) {
-              dispatch(deauthorizeUser())
-              Actions.loginScreen();
-            } throw error;
+          if(response.status === 401) {
+            dispatch(deauthorizeUser())
+            Actions.loginScreen();
+            throw new Error('Unauthorized User');
           } else {
             // return response.json();
-            return;
+            return response.json();
           }
         }).then((data) => {
+          console.log('tata', data);
           // update current allItems list with returned data from server
           var allItemsCopy = getState().lists.lists.allItems.slice().map(item => {
             if(item.title === data.title && item.category === data.category) {
@@ -211,13 +211,13 @@ const deleteListItemDatabase = (item) => {
             'Authorization': JSON.parse(userToken).jwt
           },
         }).then((response) => {
-          if(response.status !== 200){
-            if(response.status === 401) {
-              dispatch(deauthorizeUser())
-              Actions.loginScreen();
-            } throw error;
+          if(response.status === 401) {
+            dispatch(deauthorizeUser())
+            Actions.loginScreen();
+            throw new Error('Unauthorized User');
           } else {
-            return;
+            // return response.json();
+            return response.json();
           }
         })
         .then((data) => {

@@ -31,7 +31,6 @@ export default class mainButtons extends Component {
     const adding = !(this.props.userInput.length === 0);
     const buttons = this.props.buttons.map((button, index) => {
       return (
-
         <View key={button.icon}>
           <TouchableHighlight style={styles.mainButton}>
             <Icon
@@ -43,7 +42,6 @@ export default class mainButtons extends Component {
           {(this.props.filter === button.category && this.props.saved) ? <Text>Added!</Text> : null}
           {adding ? <Text>{button.category}</Text> : null}
         </View>
-
       )
     });
 
