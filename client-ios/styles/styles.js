@@ -94,48 +94,37 @@ export default StyleSheet.create({
     }
   },
 
+  mainButtonItemAdded: {
+    height: 60,
+    width: 80,
+    position: 'relative',
+    backgroundColor: '#00d9a3',
+    // borderColor: '#000000',
+    // borderWidth: 1,
+    borderRadius: 2,
+    marginBottom: 20,
+    marginRight: 15,
+    marginLeft: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 5,
+    paddingRight: 5,
+
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    }
+  },
+
   buttonCategoryText: {
     // justifyContent: 'center',
     // alignItems: 'flex-end',
     // position: 'relative',
     // marginBottom: 20
   },
-
-  // icon: {
-  //   fontSize: 160,
-  //   color: '#48BBEC',
-  //   justifyContent: 'center'
-  // },
-
-  // mainButton_add: {
-  //   height: 60,
-  //   flex: 1,
-  //   flexDirection: 'row',
-  //   backgroundColor: '#ffffff',
-  //   borderColor: '#ff1a75',
-  //   borderWidth: 1,
-  //   borderRadius: 0,
-  //   marginBottom: 10,
-  //   marginRight: 10,
-  //   marginLeft: 10,
-  //   alignSelf: 'stretch',
-  //   justifyContent: 'center'
-  // },
-  //
-  // mainButton_check: {
-  //   height: 60,
-  //   flex: 1,
-  //   flexDirection: 'row',
-  //   backgroundColor: '#ff1fff',
-  //   borderColor: '#ff1a75',
-  //   borderWidth: 1,
-  //   borderRadius: 0,
-  //   marginBottom: 10,
-  //   marginRight: 10,
-  //   marginLeft: 10,
-  //   alignSelf: 'stretch',
-  //   justifyContent: 'center'
-  // },
 
 
   /**********************************

@@ -32,8 +32,8 @@ export default class mainButtons extends Component {
     const buttons = this.props.buttons.map((button, index) => {
       return (
         <View key={button.icon}>
-          <TouchableOpacity 
-            style={styles.mainButton}
+          <TouchableOpacity
+            style={(this.props.filter === button.category && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
             onPress={() => {this.props.mainButtonPressed(button.category)}}
           >
             <Icon
