@@ -39,7 +39,6 @@ export const changeTextToAdded = (buttonCategory) => {
     dispatch(toggleCheck());
 
     _.delay(() => {
-      console.log('were in here, brah');
       dispatch(toggleCheck())
     }, 1000);
   }
@@ -59,13 +58,13 @@ export const addItemToDatabase = (item) => {
     let newInput = {
       title: item.title,
       category: item.category,
+      url: null,
       user_id: user.id
     };
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        console.log('userToken', userToken);
         fetch('http://localhost:3000/api/items/', {
           method: 'POST',
           headers: {
@@ -75,8 +74,14 @@ export const addItemToDatabase = (item) => {
           },
           body: JSON.stringify(newInput)
         }).then((response) => {
-          console.log(response);
-          return response.json();
+          if(response.status !== 200){
+            if(response.status === 401) {
+              dispatch(deauthorizeUser())
+              Actions.loginScreen();
+            } throw error;
+          } else {
+            return response.json();
+          }
         }).then((data) => {
           // update current allItems list with returned data from server
           var allItemsCopy = getState().lists.lists.allItems.slice().map(item => {
@@ -288,7 +293,14 @@ const fetchInitialDatabase = () => {
           },
         })
         .then((response) => {
-          return response.json();
+          if(response.status !== 200){
+            if(response.status === 401) {
+              dispatch(deauthorizeUser())
+              Actions.loginScreen();
+            } throw error;
+          } else {
+            return response.json();
+          }
         })
         .then((responseData) => {
           dispatch(fetchDatabaseListsSuccess(responseData))
@@ -433,7 +445,7 @@ export const loginUser = function(creds) {
           console.log("Error with storing JWT to AsyncStorage: ", err);
         } else {
           dispatch(fetchInitialDatabase());
-          AlertIOS.alert('Welcome back!');
+          // AlertIOS.alert('Welcome back!');
           Actions.addScreen();
           dispatch(loginSuccess(data))
         };
@@ -496,10 +508,10 @@ export const signupUser = function(creds) {
       body: JSON.stringify(newUser)
     })
     .then((response) => {
+      Actions.addScreen();
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       var jwtObj = {
         jwt: data.jwt
       }
@@ -508,8 +520,7 @@ export const signupUser = function(creds) {
           console.log("Error with storing JWT to AsyncStorage: ", err);
         } else {
           dispatch(fetchInitialDatabase());
-          Actions.addScreen();
-          AlertIOS.alert(data.username + ", thank you for joining!")
+          // AlertIOS.alert(data.username + ", thank you for joining!")
           dispatch(signupSuccess(data))
         };
       });
@@ -561,7 +572,7 @@ export const logoutUser = function() {
       if(err){
         console.log('error with removing JWT from AsyncStorage: ', err);
       } else {
-        AlertIOS.alert("Come back soon!");
+        // AlertIOS.alert("Come back soon!");
         Actions.loginScreen();
         dispatch(logoutSuccess());
       }
@@ -588,7 +599,6 @@ const logoutSuccess = function() {
 const storeLocally = function( key, object, callback ) {
   AsyncStorage.setItem(key, JSON.stringify(object), () => {
     AsyncStorage.getItem(key, (err, result) => {
-      // console.log("this is coming from local storage!!", JSON.parse(result));
       if(err){
         return callback(err);
       }
@@ -597,11 +607,17 @@ const storeLocally = function( key, object, callback ) {
   });
 }
 
-// verifyUser
+export const authorizationUser = () => {
+  return {
+    type: types.AUTHORIZE_USER
+  }
+}
 
-// verifySuccess
-
-// verifyFailure
+export const deauthorizeUser = () => {
+  return {
+    type: types.DEAUTHORIZE_USER
+  }
+}
 
 // ******* AUTOCOMPLETE SECTION ******
 export const queryWikipedia = (input) => {
