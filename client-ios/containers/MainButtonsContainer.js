@@ -21,7 +21,6 @@ function mapStateToProps(state, ownProps) {
     saved: state.lists.checked,
     filter: state.lists.filter,
     buttons: [
-      [
         {icon: 'ios-list-box-outline',
         category: 'DO'},
 
@@ -29,9 +28,8 @@ function mapStateToProps(state, ownProps) {
         category: 'BUY'},
 
         {icon: 'ios-book-outline',
-        category: 'READ'}
-      ],
-      [
+        category: 'READ'},
+
         {icon: 'ios-headset-outline',
         category:'LISTEN'},
 
@@ -40,8 +38,29 @@ function mapStateToProps(state, ownProps) {
 
         {icon: 'ios-star-outline',
         category: 'WATCH'}
-      ]
     ]
+    // buttons: [
+    //   [
+    //     {icon: 'ios-list-box-outline',
+    //     category: 'DO'},
+    //
+    //     {icon: 'ios-cart-outline',
+    //     category: 'BUY'},
+    //
+    //     {icon: 'ios-book-outline',
+    //     category: 'READ'}
+    //   ],
+    //   [
+    //     {icon: 'ios-headset-outline',
+    //     category:'LISTEN'},
+    //
+    //     {icon: 'ios-restaurant-outline',
+    //     category: 'EAT'},
+    //
+    //     {icon: 'ios-star-outline',
+    //     category: 'WATCH'}
+    //   ]
+    // ]
   };
 }
 
