@@ -75,6 +75,7 @@ export const addItemToDatabase = (item) => {
           },
           body: JSON.stringify(newInput)
         }).then((response) => {
+          console.log(response);
           return response.json();
         }).then((data) => {
           // update current allItems list with returned data from server
