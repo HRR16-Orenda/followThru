@@ -31,6 +31,7 @@ export default class mainButtons extends Component {
     const adding = !(this.props.userInput.length === 0);
     const buttons = this.props.buttons.map((button, index) => {
       return (
+
               <View key={button.icon}>
                 <TouchableHighlight style={styles.mainButton}>
 
@@ -47,7 +48,7 @@ export default class mainButtons extends Component {
     });
 
     return (
-      <View style={styles.buttonBigContainer} >
+      <View style={styles.buttonContainer} >
         {buttons}
       </View>
     );

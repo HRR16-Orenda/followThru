@@ -39,43 +39,19 @@ export default StyleSheet.create({
     left: 0,
     position: 'absolute',
     right: 0,
-    bottom: 70,
-    top: -150
+    top: 20
   },
-//hold
-  buttonBigContainer: {
-    // flex: 1,
+
+  buttonContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
-    // paddingTop: 10,
-    // position: 'absolute',
-    // paddingLeft: 20,
-    // // paddingRight: 20,
-    // paddingBottom: 0,
-    top: 250
+    top: 190
   },
-
-  // buttonContainer: {
-  //   flex: 3,
-  //   flexDirection: 'row',
-  //   // flexWrap: 'wrap',
-  //   backgroundColor: '#F5FCFF',
-  //   // paddingTop: 10,
-  //   // position: 'relative',
-  //   // paddingLeft: 20,
-  //   // paddingRight: 20,
-  //   // paddingBottom: 10,
-  //   // top: 75,
-  //   justifyContent: 'center'
-  // },
 
   mainButton: {
     height: 60,
     width: 80,
-    // flex: 3,
-    // flexDirection: 'row',
-    //REMOVE?
     position: 'relative',
     backgroundColor: '#ffffff',
     borderColor: '#48BBEC',
@@ -84,18 +60,17 @@ export default StyleSheet.create({
     marginBottom: 20,
     marginRight: 15,
     marginLeft: 15,
-    // alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
     paddingLeft: 5,
     paddingRight: 5
   },
 
-  icon: {
-    // fontSize: 160,
-    // color: '#48BBEC',
-    // justifyContent: 'center'
-  },
+  // icon: {
+  //   fontSize: 160,
+  //   color: '#48BBEC',
+  //   justifyContent: 'center'
+  // },
 
   // mainButton_add: {
   //   height: 60,
