@@ -33,15 +33,13 @@ export default class mainButtons extends Component {
       return (
         <View style={styles.buttonContainer} key={threeButtons[index].category}>
           {threeButtons.map((button, index) => {
-            console.log('filter', this.props.filter);
-            console.log('category', button.category);
             return (
 
               <View>
                 {(this.props.filter === button.category && this.props.saved) ? <Text>Added!</Text> : null}
                 {adding ? <Text>{button.category}</Text> : null}
                 <TouchableHighlight style={styles.mainButton} key={button.icon}>
-                  
+
                   <Icon
                     name={adding ? 'ios-add-outline' : button.icon}
                     size={60}

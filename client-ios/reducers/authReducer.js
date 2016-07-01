@@ -80,6 +80,18 @@ export default (state = {
         errorMessage: action.message
     };
 
+    case types.AUTHORIZE_USER:
+      return {
+        ...state,
+        isAuthenticated: true,
+    };
+
+    case types.DEAUTHORIZE_USER:
+      return {
+        ...state,
+        isAuthenticated: false,
+    };
+
     default:
       return state;
   };

@@ -37,7 +37,6 @@ export const changeTextToAdded = (buttonCategory) => {
     dispatch(toggleCheck());
 
     _.delay(() => {
-      console.log('were in here, brah');
       dispatch(toggleCheck())
     }, 1000);
   }
@@ -74,12 +73,18 @@ export const addItemToDatabase = (item) => {
           },
           body: JSON.stringify(newInput)
         }).then((response) => {
-          return response.json();
+          if(response.status !== 200){
+            if(response.status === 401) {
+              dispatch(deauthorizeUser())
+              Actions.loginScreen();
+            } throw error;
+          } else {
+            return response.json();
+          }
         }).then((data) => {
           dispatch(addNewListItemDatabaseSuccess(data));
         }).catch((error) => {
           console.log(error);
-          Actions.loginScreen();
           dispatch(addNewListItemDatabaseFailure());
         })
       }
@@ -280,7 +285,14 @@ const fetchInitialDatabase = () => {
           },
         })
         .then((response) => {
-          return response.json();
+          if(response.status !== 200){
+            if(response.status === 401) {
+              dispatch(deauthorizeUser())
+              Actions.loginScreen();
+            } throw error;
+          } else {
+            return response.json();
+          }
         })
         .then((responseData) => {
           dispatch(fetchDatabaseListsSuccess(responseData))
@@ -488,6 +500,7 @@ export const signupUser = function(creds) {
       body: JSON.stringify(newUser)
     })
     .then((response) => {
+      Actions.addScreen();
       return response.json();
     })
     .then((data) => {
@@ -499,7 +512,6 @@ export const signupUser = function(creds) {
           console.log("Error with storing JWT to AsyncStorage: ", err);
         } else {
           dispatch(fetchInitialDatabase());
-          Actions.addScreen();
           AlertIOS.alert(data.username + ", thank you for joining!")
           dispatch(signupSuccess(data))
         };
@@ -587,11 +599,17 @@ const storeLocally = function( key, object, callback ) {
   });
 }
 
-// verifyUser
+export const authorizationUser = () => {
+  return {
+    type: types.AUTHORIZE_USER
+  }
+}
 
-// verifySuccess
-
-// verifyFailure
+export const deauthorizeUser = () => {
+  return {
+    type: types.DEAUTHORIZE_USER
+  }
+}
 
 // ******* AUTOCOMPLETE SECTION ******
 export const queryWikipedia = (input) => {
