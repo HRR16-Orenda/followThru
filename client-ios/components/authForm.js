@@ -57,7 +57,7 @@ class AuthFormComponent extends Component {
           <Error error={fields.password.error} />
         }
         <TouchableHighlight
-          style={styles.button}
+          style={styles.inputField}
           onPress={handleSubmit}
           underlayColor='#99d9f4'
         >

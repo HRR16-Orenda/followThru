@@ -34,7 +34,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: 'cover'
+    resizeMode: 'stretch'
   },
 
   /*********************************
@@ -247,7 +247,9 @@ export default StyleSheet.create({
     fontSize: 30,
     alignSelf: 'center',
     marginTop: 80,
-    marginBottom: 30
+    marginBottom: 30,
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: '#ffffff'
   },
   signUpButtonText: {
     fontSize: 16,
@@ -274,7 +276,8 @@ export default StyleSheet.create({
     alignItems: 'flex-start'
   },
   inputField: {
-    height: 36,
+    height: 30,
+    width: 200,
     padding: 4,
     flex: 4,
     fontSize: 18,
@@ -282,9 +285,10 @@ export default StyleSheet.create({
     marginRight: 5,
     marginLeft: 5,
     borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC'
+    borderColor: 'rgba(0,0,0,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(0,0,0,.2)',
+    color: '#ffffff'
   },
   flowRight: {
     flexDirection: 'row',
