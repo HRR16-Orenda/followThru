@@ -92,16 +92,16 @@ describe('API Test', function () {
       });
     });
 
-    describe('POST request', function () {
-      it('should return status code 400 if invalid data send', function (done) {
-        supertest.post('/api/items')
-        .set('Accept', 'application/json')
-        .set('Authorization', token)
-        .send({user: 'fake'})
-        .expect(400)
-        .end(done);
-      });
-    });
+    // describe('POST request', function () {
+    //   it('should return status code 400 if invalid data send', function (done) {
+    //     supertest.post('/api/items')
+    //     .set('Accept', 'application/json')
+    //     .set('Authorization', token)
+    //     .send({user: 'fake'})
+    //     .expect(400)
+    //     .end(done);
+    //   });
+    // });
   });
 
   describe('Route /api/users', function () {
