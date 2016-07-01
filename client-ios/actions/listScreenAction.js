@@ -19,3 +19,15 @@ export const modalClose = () => {
     type: types.MODAL_CLOSE
   }
 };
+
+export const deleteConfirmOn = () => {
+  return {
+    type: types.DELETE_CONFIRM_ON
+  }
+};
+
+export const deleteConfirmOff = () => {
+  return {
+    type: types.DELETE_CONFIRM_OFF
+  }
+};
