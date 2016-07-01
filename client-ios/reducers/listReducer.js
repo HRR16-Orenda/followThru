@@ -50,7 +50,8 @@ export default (state = {
     case types.CLEAR_INPUT_AFTER_SUBMIT:
     return {
       ...state,
-      userInput: ''
+      userInput: '',
+      suggestions: []
     }
 
     case types.TOGGLE_CHECK:
