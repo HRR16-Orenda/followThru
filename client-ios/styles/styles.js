@@ -20,6 +20,15 @@ export default StyleSheet.create({
   wrapper: {
     flex: 1
   },
+  listContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    // backgroundColor: '#F5FCFF',
+    paddingTop: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20
+  },
 
   /*********************************
   Add Screen Specific Styles
@@ -221,7 +230,7 @@ export default StyleSheet.create({
   },
   listView: {
     backgroundColor: '#F5FCFF',
-    marginTop: 60,
+    // marginTop: 60,
   },
   loading: {
     flex: 1,
