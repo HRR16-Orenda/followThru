@@ -32,11 +32,13 @@ export default class mainButtons extends Component {
     const buttons = this.props.buttons.map((button, index) => {
       return (
         <View key={button.icon}>
-          <TouchableOpacity style={styles.mainButton}>
+          <TouchableOpacity 
+            style={styles.mainButton}
+            onPress={() => {this.props.mainButtonPressed(button.category)}}
+          >
             <Icon
               name={adding ? 'ios-add-outline' : button.icon}
               size={30}
-              onPress={() => {this.props.mainButtonPressed(button.category)}}
             />
             {(this.props.filter === button.category && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>{button.category}</Text>}
           </TouchableOpacity>
