@@ -248,7 +248,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     marginTop: 80,
     marginBottom: 30,
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: 'rgba(255,255,255,0)',
     color: '#ffffff'
   },
   signUpButtonText: {
@@ -266,6 +266,14 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+  signUpPrompt: {
+    fontSize: 14,
+    alignSelf: 'center',
+    marginTop: 80,
+    marginBottom: 30,
+    backgroundColor: 'rgba(255,255,255,0)',
+    color: '#ffffff'
+  },
 
   /*********************************
   Form Specific Styles
@@ -280,15 +288,34 @@ export default StyleSheet.create({
     width: 200,
     padding: 4,
     flex: 4,
-    fontSize: 18,
+    fontSize: 14,
     marginBottom: 10,
     marginRight: 5,
     marginLeft: 5,
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0)',
+    borderColor: 'rgba(255,255,255,0)',
     borderRadius: 6,
-    backgroundColor: 'rgba(0,0,0,.2)',
+    backgroundColor: 'rgba(255,255,255,.2)',
     color: '#ffffff'
+  },
+  loginButton: {
+    height: 30,
+    width: 200,
+    padding: 4,
+    flex: 4,
+    marginBottom: 10,
+    marginRight: 5,
+    marginLeft: 5,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,.5)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0)',
+  },
+  loginText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+    alignSelf: 'center'
   },
   flowRight: {
     flexDirection: 'row',
@@ -353,7 +380,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 14,
     color: 'white',
     alignSelf: 'center'
   },

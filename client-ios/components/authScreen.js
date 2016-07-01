@@ -67,6 +67,9 @@ export default class AuthScreen extends Component {
             { spinner }
             <AuthForm formType={formType} onSubmit={handler}/>
           </View>
+          <View>
+            <Text style={styles.signUpPrompt}>Don't have an account? <Text style={{fontWeight: 'bold'}}>Sign Up.</Text></Text>
+          </View>
           </Image>
         </View>
 

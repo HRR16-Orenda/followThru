@@ -57,11 +57,11 @@ class AuthFormComponent extends Component {
           <Error error={fields.password.error} />
         }
         <TouchableHighlight
-          style={styles.inputField}
+          style={styles.loginButton}
           onPress={handleSubmit}
           underlayColor='#99d9f4'
         >
-          <Text style={styles.buttonText}>
+          <Text style={styles.loginText}>
             Login
           </Text>
         </TouchableHighlight>
