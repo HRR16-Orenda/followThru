@@ -446,7 +446,7 @@ export const loginUser = function(creds) {
           console.log("Error with storing JWT to AsyncStorage: ", err);
         } else {
           dispatch(fetchInitialDatabase());
-          AlertIOS.alert('Welcome back!');
+          // AlertIOS.alert('Welcome back!');
           Actions.addScreen();
           dispatch(loginSuccess(data))
         };
@@ -521,7 +521,7 @@ export const signupUser = function(creds) {
           console.log("Error with storing JWT to AsyncStorage: ", err);
         } else {
           dispatch(fetchInitialDatabase());
-          AlertIOS.alert(data.username + ", thank you for joining!")
+          // AlertIOS.alert(data.username + ", thank you for joining!")
           dispatch(signupSuccess(data))
         };
       });
@@ -573,7 +573,7 @@ export const logoutUser = function() {
       if(err){
         console.log('error with removing JWT from AsyncStorage: ', err);
       } else {
-        AlertIOS.alert("Come back soon!");
+        // AlertIOS.alert("Come back soon!");
         Actions.loginScreen();
         dispatch(logoutSuccess());
       }
