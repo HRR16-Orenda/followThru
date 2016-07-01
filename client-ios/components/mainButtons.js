@@ -6,7 +6,7 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight
+  TouchableOpacity
 } from 'react-native';
 import styles from '../styles/styles.js';
 import { Actions } from 'react-native-router-flux';
@@ -32,15 +32,17 @@ export default class mainButtons extends Component {
     const buttons = this.props.buttons.map((button, index) => {
       return (
         <View key={button.icon}>
-          <TouchableHighlight style={styles.mainButton}>
+          <TouchableOpacity
+            style={(this.props.filter === button.category && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
+            onPress={() => {this.props.mainButtonPressed(button.category)}}
+          >
             <Icon
               name={adding ? 'ios-add-outline' : button.icon}
-              size={50}
-              onPress={() => {this.props.mainButtonPressed(button.category)}}
+              size={30}
             />
-          </TouchableHighlight>
-          {(this.props.filter === button.category && this.props.saved) ? <Text>Added!</Text> : null}
-          {adding ? <Text>{button.category}</Text> : null}
+            {(this.props.filter === button.category && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>{button.category}</Text>}
+          </TouchableOpacity>
+
         </View>
       )
     });

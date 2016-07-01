@@ -27,7 +27,7 @@ class Orenda extends Component {
           <Scene
             key="addScreen"
             component={AddItemContainer}
-            title="Add Screen"
+            title="followthru"
             type="reset"
             rightButtonImage={require('./assets/settings-256.png')}
             rightButtonIconStyle={styles.icon}

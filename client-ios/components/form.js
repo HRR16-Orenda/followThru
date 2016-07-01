@@ -29,6 +29,7 @@ class FormComponent extends Component {
       <View style={styles.formContainer}>
         <Autocomplete
           containerStyle={styles.autocompleteContainer}
+          inputContainerStyle={styles.autocompleteInputContainer}
           value={this.props.userInput}
           placeholder={"What would you like to add?"}
           data = {this.props.suggestions}
@@ -41,6 +42,7 @@ class FormComponent extends Component {
             this.props.queryWikipedia(text);
             this.props.updateUserInput(text);
           }}
+          clearButtonMode={'while-editing'}
         />
       </View>
     )
