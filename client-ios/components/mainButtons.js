@@ -34,7 +34,6 @@ export default class mainButtons extends Component {
             />
             {(this.props.filter === button.category && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>{button.category}</Text>}
           </TouchableOpacity>
-
         </View>
       )
     });

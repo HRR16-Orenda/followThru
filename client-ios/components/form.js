@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import _ from 'lodash';
 import {
   TextInput,
-  TouchableHighlight,
   Text,
   View,
   TouchableOpacity

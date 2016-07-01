@@ -4,7 +4,7 @@ import {
   AsyncStorage,
   Text,
   View,
-  TouchableHighlight,
+  TouchableOpacity,
   AlertIOS,
   ActivityIndicatorIOS,
   Image

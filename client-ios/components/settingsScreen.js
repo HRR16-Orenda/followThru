@@ -3,7 +3,7 @@ import {
   AsyncStorage,
   Text,
   View,
-  TouchableHighlight,
+  TouchableOpacity,
   Image
 } from 'react-native';
 
@@ -24,7 +24,7 @@ export default class SettingsScreen extends Component {
     return (
       <View style={ styles.container } >
         <View style={ styles.formContainer }>
-          <TouchableHighlight
+          <TouchableOpacity
             style={styles.button}
             onPress={this._userLogout}
             underlayColor='#99d9f4'
@@ -32,7 +32,7 @@ export default class SettingsScreen extends Component {
             <Text style={styles.buttonText}>
               Logout
             </Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
     );

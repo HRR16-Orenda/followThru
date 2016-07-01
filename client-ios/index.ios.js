@@ -27,6 +27,7 @@ class Orenda extends Component {
             key="addScreen"
             component={AddItemContainer}
             title="followthru"
+            hideNavBar={false}
             type="reset"
             rightButtonImage={require('./assets/settings-256.png')}
             rightButtonIconStyle={styles.icon}
@@ -34,6 +35,7 @@ class Orenda extends Component {
           />
           <Scene
             key="singleListScreen"
+            hideNavBar={false}
             component={SingleListContainer}
             type="push"
             rightButtonImage={require('./assets/settings-256.png')}
@@ -42,6 +44,7 @@ class Orenda extends Component {
           />
           <Scene
             key="settingsScreen"
+            hideNavBar={false}
             component={SettingsContainer}
             title="Settings"
             type="push"
@@ -51,6 +54,7 @@ class Orenda extends Component {
             component={AuthScreenContainer}
             initial={true}
             formType="login"
+            hideNavBar={true}
             type="reset"
             rightTitle="Spaghetti"
             onRight={() => Actions.signupScreen()}
@@ -59,6 +63,7 @@ class Orenda extends Component {
             key="signupScreen"
             component={AuthScreenContainer}
             formType="signup"
+            hideNavBar={true}
             title="Welcome!"
             type="reset"
             leftTitle="Login"

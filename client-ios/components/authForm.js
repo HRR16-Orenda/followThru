@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import {
   TextInput,
-  TouchableHighlight,
+  TouchableOpacity,
   Text,
   View
 } from 'react-native';
@@ -56,7 +56,7 @@ class AuthFormComponent extends Component {
         {fields.password.touched && fields.password.error &&
           <Error error={fields.password.error} />
         }
-        <TouchableHighlight
+        <TouchableOpacity
           style={styles.loginButton}
           onPress={handleSubmit}
           underlayColor='#99d9f4'
@@ -64,7 +64,7 @@ class AuthFormComponent extends Component {
           <Text style={styles.loginText}>
             Login
           </Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -125,7 +125,7 @@ class AuthFormComponent extends Component {
         {fields.confirm.touched && fields.confirm.error &&
           <Error error={fields.confirm.error} />
         }
-        <TouchableHighlight
+        <TouchableOpacity
           style={styles.loginButton}
           onPress={handleSubmit}
           underlayColor='#99d9f4'
@@ -133,7 +133,7 @@ class AuthFormComponent extends Component {
           <Text style={styles.loginText}>
             Signup
           </Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     )
   }

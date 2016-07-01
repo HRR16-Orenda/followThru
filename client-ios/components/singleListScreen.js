@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import {
-  TouchableHighlight,
+  TouchableOpacity,
   ActivityIndicatorIOS,
   StyleSheet,
   ListView,
@@ -31,7 +31,7 @@ export default class SingleListScreen extends Component {
 
   renderItem(item) {
     return (
-      <TouchableHighlight
+      <TouchableOpacity
         onLongPress={this._setModalVisible.bind(this, true, item)}
         onPress = {() => {this.props.toggleItem(item)}}
       >
@@ -43,7 +43,7 @@ export default class SingleListScreen extends Component {
           />
           <View style={ styles.separator } />
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     );
     }
 
