@@ -7,6 +7,11 @@ var amazon = require('amazon-product-api');
 var _ = require('lodash');
 var apis = require('./apis.js');
 
+var category = {
+  'READ': 'amazon',
+  'LISTEN': 'spotify'
+};
+
 module.exports = {
   getAllItems: function (req, res) {
     item.getAll(function (err, items) {
@@ -25,7 +30,7 @@ module.exports = {
 
   addOneItem: function(req, res) {
     var newItem = req.body;
-    apis.amazon(newItem)
+    apis[category[newItem.category]](newItem)
       .then(function(refinedItem) {
         console.log("REFINED ITEM!!: ", refinedItem)
         item.addOne(refinedItem, function(err, newItem) {

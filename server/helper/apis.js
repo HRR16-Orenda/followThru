@@ -30,20 +30,29 @@ module.exports.amazon = function(newItem) {
       content: results[0]['ItemAttributes'][0]['Title'] + ' : ' + results[0]['ItemAttributes'][0]['Author']
     }
 
-    // Add refined data to newItem obj
     _.assign(newItem, refinedData);
-
-    return newItem;
     console.log(newItem);
+    return newItem;
   }).catch(function(err){
     console.log(err);
   });
 }
 
-// Search tracks whose artist's name contains 'Love'
-spotifyApi.searchTracks('track:Love', { limit : 5 })
+module.exports.spotify = function(newItem) {
+  // Search tracks whose artist's name contains 'Love'
+  return spotifyApi.searchTracks('track:' + newItem.title, { limit : 1 })
   .then(function(data) {
-    console.log('Search tracks by "Love" in the artist name', data.body);
-  }, function(err) {
+    var data = data.body.tracks.items;
+    var refinedData = {
+      url: data[0].album.external_urls.spotify,
+      img: data[0].album.images[1].url,
+      content: data[0].name + data[0].artists[0].name
+    }
+
+    _.assign(newItem, refinedData);
+    console.log(newItem);
+    return newItem;
+  }).catch(function(err) {
     console.log('Something went wrong!', err);
   });
+}
