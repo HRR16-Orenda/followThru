@@ -29,6 +29,7 @@ class FormComponent extends Component {
       <View style={styles.formContainer}>
         <Autocomplete
           containerStyle={styles.autocompleteContainer}
+          inputContainerStyle={styles.autocompleteInputContainer}
           value={this.props.userInput}
           placeholder={"What would you like to add?"}
           data = {this.props.suggestions}

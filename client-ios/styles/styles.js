@@ -42,11 +42,22 @@ export default StyleSheet.create({
     top: 20
   },
 
+  autocompleteInputContainer: {
+    // shadowColor: "#000000",
+    // shadowOpacity: 0.8,
+    // shadowRadius: 2,
+    // shadowOffset: {
+    //   height: 1,
+    //   width: 0
+    // }
+    borderRadius:2
+  },
+
   buttonContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
-    top: 190
+    top: 190,
   },
 
   mainButton: {
@@ -54,16 +65,24 @@ export default StyleSheet.create({
     width: 80,
     position: 'relative',
     backgroundColor: '#ffffff',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 0,
+    // borderColor: '#000000',
+    // borderWidth: 1,
+    borderRadius: 2,
     marginBottom: 20,
     marginRight: 15,
     marginLeft: 15,
     justifyContent: 'center',
     alignItems: 'center',
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
+
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    }
   },
 
   buttonCategoryText: {
