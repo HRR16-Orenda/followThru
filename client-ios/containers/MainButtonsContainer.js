@@ -39,28 +39,6 @@ function mapStateToProps(state, ownProps) {
         {icon: 'ios-star-outline',
         category: 'WATCH'}
     ]
-    // buttons: [
-    //   [
-    //     {icon: 'ios-list-box-outline',
-    //     category: 'DO'},
-    //
-    //     {icon: 'ios-cart-outline',
-    //     category: 'BUY'},
-    //
-    //     {icon: 'ios-book-outline',
-    //     category: 'READ'}
-    //   ],
-    //   [
-    //     {icon: 'ios-headset-outline',
-    //     category:'LISTEN'},
-    //
-    //     {icon: 'ios-restaurant-outline',
-    //     category: 'EAT'},
-    //
-    //     {icon: 'ios-star-outline',
-    //     category: 'WATCH'}
-    //   ]
-    // ]
   };
 }
 
