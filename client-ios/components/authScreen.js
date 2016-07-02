@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   AlertIOS,
   ActivityIndicatorIOS,
-  Image
+  Image,
+  StatusBar
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -64,6 +65,7 @@ export default class AuthScreen extends Component {
     if(!isFetching && !isAuthenticated){
       return (
         <View style={ styles.footer }>
+        <StatusBar hidden={true}/>
           <Image source={require('../assets/gradient-login2.jpg')} style={styles.image}>
 
           <View>

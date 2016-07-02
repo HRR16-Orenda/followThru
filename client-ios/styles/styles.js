@@ -3,6 +3,12 @@ import {
 } from 'react-native';
 
 export default StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5
+  },
   container: {
     flex: 1,
     flexDirection: 'column',
