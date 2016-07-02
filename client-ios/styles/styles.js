@@ -386,8 +386,8 @@ export default StyleSheet.create({
     overflow: 'hidden',
   },
   modalImage: {
-    width: 140,
-    height: 180,
+    width: 200,
+    height: 280,
     marginBottom: 20
   }
 });

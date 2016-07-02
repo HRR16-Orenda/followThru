@@ -9,7 +9,8 @@ var apis = require('./apis.js');
 
 var category = {
   'READ': 'amazon',
-  'LISTEN': 'spotify'
+  'LISTEN': 'spotify',
+  'WATCH': 'amazonMovie'
 };
 
 module.exports = {

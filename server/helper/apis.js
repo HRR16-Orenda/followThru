@@ -21,13 +21,36 @@ module.exports.amazon = function(newItem) {
     keywords: newItem.title,
     searchIndex: 'Books',
     // Configuration for returned data
-    responseGroup: 'Small,Images,BrowseNodes'
+    responseGroup: 'Small,Images'
   }).then(function(results){
     // Refine returned data
     var refinedData = {
       url: results[0]['DetailPageURL'][0],
-      img: results[0]['MediumImage'][0]['URL'][0],
+      img: results[0]['LargeImage'][0]['URL'][0],
       content: results[0]['ItemAttributes'][0]['Title'] + ' : ' + results[0]['ItemAttributes'][0]['Author']
+    }
+
+    _.assign(newItem, refinedData);
+    console.log(newItem);
+    return newItem;
+  }).catch(function(err){
+    console.log(err);
+  });
+};
+
+module.exports.amazonMovie = function(newItem) {
+  return client.itemSearch({
+    // Amazon product API configuration
+    keywords: newItem.title,
+    searchIndex: 'UnboxVideo',
+    // Configuration for returned data
+    responseGroup: 'Small,Images'
+  }).then(function(results){
+    // Refine returned data
+    var refinedData = {
+      url: 'https://www.rottentomatoes.com/search/?search=' + newItem.title,
+      img: results[0]['LargeImage'][0]['URL'][0],
+      content: results[0]['ItemAttributes'][0]['Title'] + ' : ' + results[0]['ItemAttributes'][0]['Director']
     }
 
     _.assign(newItem, refinedData);
@@ -55,4 +78,4 @@ module.exports.spotify = function(newItem) {
   }).catch(function(err) {
     console.log('Something went wrong!', err);
   });
-}
+};
