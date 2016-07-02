@@ -25,15 +25,27 @@ const mapDispatchToProps = (dispatch) => {
     /*
      * @params - no params required
      */
-     resetDisplay: () => {
-       dispatch(actions.resetDisplay());
-     },
-     goToSignup: () => {
-       Actions.signupScreen();
-     },
-     goToSignin: () => {
-       Actions.loginScreen();
-     }
+    resetDisplay: () => {
+     dispatch(actions.resetDisplay());
+    },
+    /*
+     * @params - no params required
+     */
+    goToSignup: () => {
+     Actions.signupScreen();
+    },
+    /*
+     * @params - no params required
+     */
+    goToSignin: () => {
+     Actions.loginScreen();
+    },
+    /*
+     * @params - no params required
+     */
+    verifyUserToken: () => {
+    dispatch(actions.verifyUserToken());
+    }
   }
 };
 
@@ -45,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
     loginErrorMsg: state.lists.ui.loginErrorMsg,
     signupError: state.lists.ui.signupError,
     signupErrorMsg: state.lists.ui.signupErrorMsg
-  };
+  }
 }
 
 
