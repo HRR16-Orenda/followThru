@@ -428,5 +428,9 @@ export default StyleSheet.create({
     width: 200,
     height: 280,
     marginBottom: 20
+  },
+  datePicker: {
+    backgroundColor: 'white',
+    borderRadius:15
   }
 });

@@ -11,7 +11,8 @@ export default (state = {
     loginErrorMsg: '',
     signupError: false,
     signupErrorMsg: '',
-    deleteConfirm: false
+    deleteConfirm: false,
+    date: new Date()
   },
   lists: {
     category: ['default'],
@@ -119,7 +120,6 @@ export default (state = {
     return {
       ...state,
       lists: {
-        //category: determineLists(allItemsCopy),
         allItems: allItemsCopy
       }
     }
@@ -141,6 +141,15 @@ export default (state = {
       }
     }
 
+    case types.DATE_CHANGE:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        date: action.payload
+      }
+    }
+
     case types.MODAL_CLOSE:
     return {
       ...state,
@@ -153,6 +162,7 @@ export default (state = {
         item: {}
       }
     }
+
 
     case types.SIGNUP_SUCCESS:
     return {

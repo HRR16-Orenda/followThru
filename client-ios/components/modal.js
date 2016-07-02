@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import {
-  DatePickerIOS,
   TouchableWithoutFeedback,
   ActivityIndicatorIOS,
   Text,
@@ -14,6 +13,7 @@ import {
   NativeAppEventEmitter
 } from 'react-native';
 import RNCalendarReminders from 'react-native-calendar-reminders';
+import DatePicker from './datePicker.js';
 import styles from '../styles/styles.js'
 
 export default class SingleListScreen extends Component {
@@ -38,21 +38,18 @@ export default class SingleListScreen extends Component {
     });
   }
 
-  renderDatePicker() {
-    console.log('rendered');
-    var date = new Date();
-    var offset = (-1) * (new Date()).getTimezoneOffset();
-    return (
-      <View>
-        <DatePickerIOS
-          date={new Date()}
-          mode="time"
-          timeZoneOffsetInMinutes={offset}
-          onDateChange={() => console.log('date changed')}
-          minuteInterval={10}
-        />
-      </View>
-    )
+  addToReminders() {
+    var date = this.props.date;
+    var item = this.props.modal.item.title;
+
+    RNCalendarReminders.saveReminder('title', {
+      title: item,
+      dueDate: date.toString(),
+      alarms: [{
+        date: -1 // or absolute date
+      }],
+      recurrence: 'daily'
+    });
   }
 
   render() {
@@ -62,7 +59,9 @@ export default class SingleListScreen extends Component {
       toggler,
       deleteConfirm,
       deleteConfirmOn,
-      deleteConfirmOff
+      deleteConfirmOff,
+      dateChange,
+      date
     } = this.props;
 
     return (
@@ -77,16 +76,26 @@ export default class SingleListScreen extends Component {
         >
           <View style={[styles.container, styles.modalBackground]}>
             <View style={styles.innerContainer}>
-              {modal.item.category === 'DO' ? this.renderDatePicker()
-                : <Image
-                  style={styles.modalImage}
-                  source={{uri: modal.item.img}}
-                  />
+              {modal.item.category === 'DO' ?
+                <DatePicker
+                  date={date}
+                  dateChange={dateChange}
+                />
+                  : <Image
+                    style={styles.modalImage}
+                    source={{uri: modal.item.img}}
+                    />
               }
               <Text style={styles.innerContainerText}>
                 {modal.item.content}
               </Text>
-              {modal.item.category === 'DO' ? null
+              {modal.item.category === 'DO' ?
+                <TouchableOpacity
+                  onPress={this.addToReminders.bind(this)}>
+                  <View style={styles.modalButton}>
+                    <Text style={styles.buttonText}>Add to Reminders</Text>
+                  </View>
+                </TouchableOpacity>
                 : <TouchableOpacity
                   onPress={this.handleClick.bind(this)}>
                   <View style={styles.modalButton}>
