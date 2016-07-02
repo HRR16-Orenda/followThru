@@ -11,12 +11,18 @@ import {
   Linking,
   TouchableOpacity
 } from 'react-native';
-
+import RNCalendarReminders from 'react-native-calendar-reminders';
 import styles from '../styles/styles.js'
 
 export default class SingleListScreen extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    RNCalendarReminders.authorizeEventStore((error, auth) => {
+        console.log('authorizing EventStore...');
+    });
   }
 
   handleClick() {
