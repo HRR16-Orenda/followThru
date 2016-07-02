@@ -89,8 +89,8 @@ export default (state = {
     case types.AUTHORIZE_SUCCESS:
       return {
         ...state,
+        isFetching: action.isFetching,
         isAuthenticated: true,
-        isFetching: action.isFetching
     };
 
     case types.AUTHORIZE_FAILURE:

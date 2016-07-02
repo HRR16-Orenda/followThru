@@ -36,8 +36,6 @@ export default class AuthScreen extends Component {
   }
 
   componentWillMount = () => {
-    console.log("Verifying user")
-    console.log("isFetching: ", this.props.isFetching)
     this.props.verifyUserToken();
   }
 
@@ -62,14 +60,9 @@ export default class AuthScreen extends Component {
         size='large'/> ) :
       ( <View/> );
 
-    // if(isAuthenticated){
-    //   console.log("i am authenticated!")
-    //   Actions.addScreen();
-    // }
-    if(!isFetching){
+    if(!isFetching && !isAuthenticated){
       return (
         <View style={ styles.container } >
-          {/*{ isAuthenticated ? Actions.addScreen() : null }*/}
           <View>
             <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >{formType[0].toUpperCase() + formType.substr(1)}</Text>
           </View>
@@ -77,6 +70,12 @@ export default class AuthScreen extends Component {
           { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
           { spinner }
           <AuthForm formType={formType} onSubmit={handler}/>
+        </View>
+      );
+    } else if(!isFetching && isAuthenticated){
+      return (
+        <View>
+          { Actions.addScreen() }
         </View>
       );
     } else {
