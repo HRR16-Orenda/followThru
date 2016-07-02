@@ -9,6 +9,7 @@ import {
   ActivityIndicatorIOS,
   Image
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import styles from '../styles/styles.js';
 import AuthForm from '../containers/AuthFormContainer.js';
@@ -35,6 +36,10 @@ export default class AuthScreen extends Component {
     )
   }
 
+  componentWillMount = () => {
+    this.props.verifyUserToken();
+  }
+
   componentWillUnmount = () => {
     this.props.resetDisplay();
   }
@@ -56,7 +61,8 @@ export default class AuthScreen extends Component {
         size='large'/> ) :
       ( <View/> );
 
-    return (
+    if(!isFetching && !isAuthenticated){
+      return (
         <View style={ styles.footer }>
           <Image source={require('../assets/gradient-login2.jpg')} style={styles.image}>
 
@@ -79,7 +85,17 @@ export default class AuthScreen extends Component {
           }
           </Image>
         </View>
-
-    );
+      );
+    } else if(!isFetching && isAuthenticated){
+      return (
+        <View>
+          { Actions.addScreen() }
+        </View>
+      );
+    } else {
+      return (
+        <View />
+      )
+    }
   }
 };
