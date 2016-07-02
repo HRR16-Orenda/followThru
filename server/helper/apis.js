@@ -4,7 +4,6 @@ var SpotifyWebApi = require('spotify-web-api-node');
 var spotifyApi = new SpotifyWebApi();
 var Yelp = require('yelp');
 
-
 if(!process.env.CIRCLECI && process.env.NODE_ENV !== 'production') {
   require('../../env.js');
 }

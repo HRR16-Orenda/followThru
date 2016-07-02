@@ -9,14 +9,23 @@ import {
   Modal,
   Image,
   Linking,
-  TouchableOpacity
+  TouchableOpacity,
+  NativeAppEventEmitter,
+  AlertIOS
 } from 'react-native';
-
+import RNCalendarReminders from 'react-native-calendar-reminders';
+import DatePicker from './datePicker.js';
 import styles from '../styles/styles.js'
 
 export default class SingleListScreen extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    RNCalendarReminders.authorizeEventStore((error, auth) => {
+        console.log('authorizing EventStore...');
+    });
   }
 
   handleClick() {
@@ -30,6 +39,20 @@ export default class SingleListScreen extends Component {
     });
   }
 
+  addToReminders() {
+    var date = this.props.date;
+    var item = this.props.modal.item.title;
+
+    RNCalendarReminders.saveReminder(item, {
+      dueDate: date.toISOString(),
+      alarms: [{
+        date: -1 // or absolute date
+      }],
+      recurrence: 'daily'
+    });
+    AlertIOS.alert(item + ' is added to Reminders');
+  }
+
   render() {
     const {
       modal,
@@ -37,68 +60,83 @@ export default class SingleListScreen extends Component {
       toggler,
       deleteConfirm,
       deleteConfirmOn,
-      deleteConfirmOff
+      deleteConfirmOff,
+      dateChange,
+      date
     } = this.props;
 
-      return (
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modal.isOpen}
-          onRequestClose={() => {toggler(false)}}
+    return (
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modal.isOpen}
+        onRequestClose={() => {toggler(false)}}
+      >
+        <TouchableWithoutFeedback
+          onPress={deleteConfirmOff}
         >
-          <TouchableWithoutFeedback
-            onPress={deleteConfirmOff}
-          >
-            <View style={[styles.container, styles.modalBackground]}>
-              <View style={styles.innerContainer}>
-                <Image
-                  style={styles.modalImage}
-                  source={{uri: modal.item.img}}
+          <View style={[styles.container, styles.modalBackground]}>
+            <View style={styles.innerContainer}>
+              {modal.item.category === 'DO' ?
+                <DatePicker
+                  date={date}
+                  dateChange={dateChange}
                 />
-                <Text style={styles.innerContainerText}>
-                  {modal.item.content}
-                </Text>
+                  : <Image
+                    style={styles.modalImage}
+                    source={{uri: modal.item.img}}
+                    />
+              }
+              <Text style={styles.innerContainerText}>
+                {modal.item.content}
+              </Text>
+              {modal.item.category === 'DO' ?
                 <TouchableOpacity
+                  onPress={this.addToReminders.bind(this)}>
+                  <View style={styles.modalButton}>
+                    <Text style={styles.buttonText}>Add to Reminders</Text>
+                  </View>
+                </TouchableOpacity>
+                : <TouchableOpacity
                   onPress={this.handleClick.bind(this)}>
                   <View style={styles.modalButton}>
                     <Text style={styles.buttonText}>Open in browser</Text>
                   </View>
                 </TouchableOpacity>
-                {deleteConfirm ?
+              }
+              {deleteConfirm ?
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={pressHandler.bind(null, modal.item)}
+                  underlayColor='black'
+                >
+                  <Text style={styles.buttonErrorText}>
+                    Are you sure?
+                  </Text>
+                </TouchableOpacity> :
                   <TouchableOpacity
                     style={styles.modalButton}
-                    onPress={pressHandler.bind(null, modal.item)}
-                    underlayColor='black'
-                  >
-                    <Text style={styles.buttonErrorText}>
-                      Are you sure?
-                    </Text>
-                  </TouchableOpacity> :
-                    <TouchableOpacity
-                      style={styles.modalButton}
-                      onPress={deleteConfirmOn}
-                      underlayColor='black'
-                    >
-                      <Text style={styles.buttonText}>
-                        Delete item from the list
-                      </Text>
-                    </TouchableOpacity>
-                  }
-                  <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={toggler.bind(null, false)}
+                    onPress={deleteConfirmOn}
                     underlayColor='black'
                   >
                     <Text style={styles.buttonText}>
-                      Close Modal Screen
+                      Delete item from the list
                     </Text>
                   </TouchableOpacity>
-              </View>
+                }
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={toggler.bind(null, false)}
+                  underlayColor='black'
+                >
+                  <Text style={styles.buttonText}>
+                    Close Modal Screen
+                  </Text>
+                </TouchableOpacity>
             </View>
-          </TouchableWithoutFeedback>
-        </Modal>
-        );
-    // }
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    );
   }
 }

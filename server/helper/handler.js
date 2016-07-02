@@ -33,7 +33,15 @@ module.exports = {
 
   addOneItem: function(req, res) {
     var newItem = req.body;
-    apis[category[newItem.category]](newItem)
+    if(newItem.category === 'DO') {
+      var refinedItem = newItem;
+      refinedItem.content = '';
+      item.addOne(refinedItem, function(err, newItem) {
+        if(err) {return res.sendStatus(400);}
+        res.status(201).send(newItem);
+      });
+    } else {
+      apis[category[newItem.category]](newItem)
       .then(function(refinedItem) {
         console.log("REFINED ITEM!!: ", refinedItem)
         item.addOne(refinedItem, function(err, newItem) {
@@ -44,6 +52,7 @@ module.exports = {
       .catch(function(err) {
         res.sendStatus(400);
       });
+    }
   },
 
   removeOneItem: function(req, res) {

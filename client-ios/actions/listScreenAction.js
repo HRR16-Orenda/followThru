@@ -32,3 +32,10 @@ export const deleteConfirmOff = () => {
     type: types.DELETE_CONFIRM_OFF
   }
 };
+
+export const dateChange = (date) => {
+  return {
+    type: types.DATE_CHANGE,
+    payload: date
+  }
+};

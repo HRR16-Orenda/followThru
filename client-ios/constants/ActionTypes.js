@@ -58,6 +58,8 @@ export const MODAL_CLOSE = "MODAL_CLOSE";
 // Where is this being called??
 export const FETCH_USER_LISTS = 'FETCH_USER_LISTS';
 
+// ******* LIST SCREEN SECTION ******
+export const DATE_CHANGE = "DATE_CHANGE";
 
 
 // ******* AUTOCOMPLETE SECTION ******
