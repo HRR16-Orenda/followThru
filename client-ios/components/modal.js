@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import {
-  TouchableHighlight,
   TouchableWithoutFeedback,
   ActivityIndicatorIOS,
   Text,
@@ -67,7 +66,7 @@ export default class SingleListScreen extends Component {
                   </View>
                 </TouchableOpacity>
                 {deleteConfirm ?
-                  <TouchableHighlight
+                  <TouchableOpacity
                     style={styles.modalButton}
                     onPress={pressHandler.bind(null, modal.item)}
                     underlayColor='black'
@@ -75,8 +74,8 @@ export default class SingleListScreen extends Component {
                     <Text style={styles.buttonErrorText}>
                       Are you sure?
                     </Text>
-                  </TouchableHighlight> :
-                    <TouchableHighlight
+                  </TouchableOpacity> :
+                    <TouchableOpacity
                       style={styles.modalButton}
                       onPress={deleteConfirmOn}
                       underlayColor='black'
@@ -84,9 +83,9 @@ export default class SingleListScreen extends Component {
                       <Text style={styles.buttonText}>
                         Delete item from the list
                       </Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                   }
-                  <TouchableHighlight
+                  <TouchableOpacity
                     style={styles.modalButton}
                     onPress={toggler.bind(null, false)}
                     underlayColor='black'
@@ -94,7 +93,7 @@ export default class SingleListScreen extends Component {
                     <Text style={styles.buttonText}>
                       Close Modal Screen
                     </Text>
-                  </TouchableHighlight>
+                  </TouchableOpacity>
               </View>
             </View>
           </TouchableWithoutFeedback>

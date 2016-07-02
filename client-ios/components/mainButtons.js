@@ -18,14 +18,6 @@ export default class mainButtons extends Component {
     super(props);
   }
 
-  //1. create submit functionality button during 'add' state
-  //2. move pressHandler functionality that assigns category inside new submit function
-  //3. places where buttonStyle state change needs to happen:
-    //  - default state set to 'mainButton' style
-    //  - checking length of user input in input box (change to 'add' style)
-    //  - onPress of add (change to 'checked' style for specific button)
-    //  - within the delay function inside onPress function (changes back to regular)
-
   render() {
 
     const adding = !(this.props.userInput.length === 0);
@@ -42,7 +34,6 @@ export default class mainButtons extends Component {
             />
             {(this.props.filter === button.category && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>{button.category}</Text>}
           </TouchableOpacity>
-
         </View>
       )
     });

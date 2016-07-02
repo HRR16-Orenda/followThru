@@ -30,6 +30,13 @@ export default StyleSheet.create({
     paddingBottom: 20
   },
 
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'stretch'
+  },
+
   /*********************************
   Add Screen Specific Styles
   *********************************/
@@ -240,7 +247,9 @@ export default StyleSheet.create({
     fontSize: 30,
     alignSelf: 'center',
     marginTop: 80,
-    marginBottom: 30
+    marginBottom: 30,
+    backgroundColor: 'rgba(255,255,255,0)',
+    color: '#ffffff'
   },
   signUpButtonText: {
     fontSize: 16,
@@ -257,6 +266,14 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+  signUpPrompt: {
+    fontSize: 14,
+    alignSelf: 'center',
+    marginTop: 80,
+    marginBottom: 30,
+    backgroundColor: 'rgba(255,255,255,0)',
+    color: '#ffffff'
+  },
 
   /*********************************
   Form Specific Styles
@@ -267,17 +284,38 @@ export default StyleSheet.create({
     alignItems: 'flex-start'
   },
   inputField: {
-    height: 36,
+    height: 30,
+    width: 200,
     padding: 4,
     flex: 4,
-    fontSize: 18,
+    fontSize: 14,
     marginBottom: 10,
     marginRight: 5,
     marginLeft: 5,
     borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC'
+    borderColor: 'rgba(255,255,255,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,.2)',
+    color: '#ffffff'
+  },
+  loginButton: {
+    height: 30,
+    width: 200,
+    padding: 4,
+    flex: 4,
+    marginBottom: 10,
+    marginRight: 5,
+    marginLeft: 5,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,.5)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0)',
+  },
+  loginText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+    alignSelf: 'center'
   },
   flowRight: {
     flexDirection: 'row',
@@ -305,9 +343,10 @@ export default StyleSheet.create({
   },
   error: {
     marginBottom: 20,
-    fontSize: 18,
+    fontSize: 14,
     textAlign: 'center',
-    color: 'red'
+    color: 'white',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
 
   /*********************************
@@ -342,7 +381,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 14,
     color: 'white',
     alignSelf: 'center'
   },
