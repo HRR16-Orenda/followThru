@@ -11,7 +11,8 @@ var category = {
   'READ': 'amazonBook',
   'LISTEN': 'spotify',
   'WATCH': 'amazonMovie',
-  'BUY': 'amazonBuy'
+  'BUY': 'amazonBuy',
+  'EAT': 'yelp'
 };
 
 module.exports = {
