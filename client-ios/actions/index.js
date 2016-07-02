@@ -525,7 +525,6 @@ export const signupUser = function(creds) {
       "username": creds.username.value,
       "password": creds.password.value
     }
-//refactor to use AXIOS (don't need to include localhost or the server address)
     return fetch('http://localhost:3000/api/users/signup/', {
       method: 'POST',
       headers: {
@@ -535,6 +534,11 @@ export const signupUser = function(creds) {
       body: JSON.stringify(newUser)
     })
     .then((response) => {
+      console.log("RESPONSE FROM SIGNUP SERVER REQUEST!!", response)
+      if(response.ok === false){
+        dispatch(signupError("Username/email already taken"))
+        throw new Error('Unauthorized User');
+      }
       Actions.addScreen();
       return response.json();
     })
