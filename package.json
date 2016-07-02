@@ -8,6 +8,7 @@
     "postinstall": "webpack",
     "unittest:server": "./node_modules/.bin/mocha --reporter nyan test/server/index.js",
     "unittest:web": "./node_modules/.bin/mocha test/.setup.js test/client-web/WebSpec.js",
+    "unittest:mobile": "./node_modules/.bin/mocha test/.setup.js --require react-native-mock/mock test/client-ios/MobileSpec.js",
     "integrationtest": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
     "test": "npm run unittest:server && npm run unittest:web && npm run integrationtest",
     "coverage": "istanbul cover --root server/ _mocha -- test/server/ -R spec"
@@ -83,6 +84,7 @@
     "pre-commit": "^1.1.3",
     "react-addons-test-utils": "^15.1.0",
     "react-hot-loader": "^1.3.0",
+    "react-native-mock": "^0.2.4",
     "redux-logger": "^2.6.1",
     "sinon": "^1.17.4",
     "sinon-as-promised": "^4.0.0",
