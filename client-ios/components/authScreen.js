@@ -65,7 +65,7 @@ export default class AuthScreen extends Component {
     if(!isFetching && !isAuthenticated){
       return (
         <View style={ styles.footer }>
-        <StatusBar hidden={true}/>
+          <StatusBar hidden={true}/>
           <Image source={require('../assets/gradient-login2.jpg')} style={styles.image}>
 
           <View>
