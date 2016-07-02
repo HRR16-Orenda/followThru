@@ -10,7 +10,8 @@ import {
   Image,
   Linking,
   TouchableOpacity,
-  NativeAppEventEmitter
+  NativeAppEventEmitter,
+  AlertIOS
 } from 'react-native';
 import RNCalendarReminders from 'react-native-calendar-reminders';
 import DatePicker from './datePicker.js';
@@ -42,14 +43,14 @@ export default class SingleListScreen extends Component {
     var date = this.props.date;
     var item = this.props.modal.item.title;
 
-    RNCalendarReminders.saveReminder('title', {
-      title: item,
-      dueDate: date.toString(),
+    RNCalendarReminders.saveReminder(item, {
+      dueDate: date.toISOString(),
       alarms: [{
         date: -1 // or absolute date
       }],
       recurrence: 'daily'
     });
+    AlertIOS.alert(item + ' is added to Reminders');
   }
 
   render() {
