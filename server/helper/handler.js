@@ -8,8 +8,10 @@ var _ = require('lodash');
 var apis = require('./apis.js');
 
 var category = {
-  'READ': 'amazon',
-  'LISTEN': 'spotify'
+  'READ': 'amazonBook',
+  'LISTEN': 'spotify',
+  'WATCH': 'amazonMovie',
+  'BUY': 'amazonBuy'
 };
 
 module.exports = {
