@@ -31,7 +31,6 @@ module.exports.amazonBook = function(newItem) {
     }
 
     _.assign(newItem, refinedData);
-    console.log(newItem);
     return newItem;
   }).catch(function(err){
     console.log(err);
@@ -54,7 +53,6 @@ module.exports.amazonMovie = function(newItem) {
     }
 
     _.assign(newItem, refinedData);
-    console.log(newItem);
     return newItem;
   }).catch(function(err){
     console.log(err);
@@ -77,7 +75,6 @@ module.exports.amazonBuy = function(newItem) {
     }
 
     _.assign(newItem, refinedData);
-    console.log(newItem);
     return newItem;
   }).catch(function(err){
     console.log(err);
@@ -96,7 +93,6 @@ module.exports.spotify = function(newItem) {
     }
 
     _.assign(newItem, refinedData);
-    console.log(newItem);
     return newItem;
   }).catch(function(err) {
     console.log('Something went wrong!', err);
@@ -110,11 +106,18 @@ module.exports.yelp = function(newItem) {
       token: process.env['YELP_API_TOKEN'],
       token_secret: process.env['YELP_API_TOKEN_SECRET']
   });
-  yelp.search({ term: newItem.title, location: 'SF', limit: 1 })
+  // location is hard coded
+  // should be refactored after testing Geolocation feature
+  return yelp.search({ term: newItem.title, location: 'SF', limit: 1 })
     .then(function(data) {
-      var results = data.businesses;
-      console.log(results);
-      return results;
+      var result = data.businesses[0];
+      var refinedData = {
+        url: result.mobile_url,
+        img: result.image_url,
+        content: result.name
+      }
+      _.assign(newItem, refinedData);
+      return newItem;
     })
     .catch(function(err) {
       console.error(err);
