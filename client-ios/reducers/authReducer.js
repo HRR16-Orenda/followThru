@@ -4,7 +4,7 @@ import { update } from "react";
 export default (state = {
   user: {},
   isFetching: false,
-  isAuthenticated: true,
+  isAuthenticated: false,
 }, action) => {
   switch (action.type) {
     case types.LOGIN_REQUEST:
@@ -80,17 +80,32 @@ export default (state = {
         errorMessage: action.message
     };
 
-    case types.AUTHORIZE_USER:
+    case types.AUTHORIZE_REQUEST:
+      return {
+        ...state,
+        isFetching: action.isFetching
+    };
+
+    case types.AUTHORIZE_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
+        isFetching: action.isFetching
     };
 
-    case types.DEAUTHORIZE_USER:
+    case types.AUTHORIZE_FAILURE:
       return {
         ...state,
         isAuthenticated: false,
+        isFetching: action.isFetching,
+
     };
+
+    // case types.AUTHORIZING_USER:
+    //   return {
+    //     ...state,
+    //     isAuthenticated: false,
+    // };
 
     default:
       return state;

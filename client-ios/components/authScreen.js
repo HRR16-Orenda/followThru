@@ -8,6 +8,7 @@ import {
   AlertIOS,
   ActivityIndicatorIOS
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import styles from '../styles/styles.js';
 import AuthForm from '../containers/AuthFormContainer.js';
@@ -34,6 +35,12 @@ export default class AuthScreen extends Component {
     )
   }
 
+  componentWillMount = () => {
+    console.log("Verifying user")
+    console.log("isFetching: ", this.props.isFetching)
+    this.props.verifyUserToken();
+  }
+
   componentWillUnmount = () => {
     this.props.resetDisplay();
   }
@@ -55,16 +62,27 @@ export default class AuthScreen extends Component {
         size='large'/> ) :
       ( <View/> );
 
-    return (
-      <View style={ styles.container } >
-        <View>
-          <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >{formType[0].toUpperCase() + formType.substr(1)}</Text>
+    // if(isAuthenticated){
+    //   console.log("i am authenticated!")
+    //   Actions.addScreen();
+    // }
+    if(!isFetching){
+      return (
+        <View style={ styles.container } >
+          {/*{ isAuthenticated ? Actions.addScreen() : null }*/}
+          <View>
+            <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >{formType[0].toUpperCase() + formType.substr(1)}</Text>
+          </View>
+          { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
+          { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
+          { spinner }
+          <AuthForm formType={formType} onSubmit={handler}/>
         </View>
-        { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
-        { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
-        { spinner }
-        <AuthForm formType={formType} onSubmit={handler}/>
-      </View>
-    );
+      );
+    } else {
+      return (
+        <View />
+      )
+    }
   }
 };

@@ -25,13 +25,52 @@ const mapDispatchToProps = (dispatch) => {
     /*
      * @params - no params required
      */
-     resetDisplay: () => {
-       dispatch(actions.resetDisplay());
-     }
+   resetDisplay: () => {
+     dispatch(actions.resetDisplay());
+   },
+   /*
+    * @params - no params required
+    */
+    verifyUserToken: () => {
+      dispatch(actions.verifyUserToken());
+    }
   }
 };
 
 const mapStateToProps = (state, ownProps) => {
+  // var state;
+  // AsyncStorage.getItem('JWT_TOKEN', function(err, tokenObj){
+  //   if(err) {
+  //     console.log("error accessing JWT_TOKEN in local storage: ", err);
+  //   } else {
+  //     if(!JSON.parse(tokenObj).jwt){
+  //       console.log("hi!")
+  //       return false;
+  //     } else {
+  //       return Promise.resolve(JSON.parse(tokenObj).jwt)
+  //       .then((parsedToken) => {
+  //         console.log("userToken from Aysnc: ", parsedToken);
+  //         state = {
+  //           isFetching: state.auth.isFetching,
+  //           isAuthenticated: state.auth.isAuthenticated,
+  //           loginError: state.lists.ui.loginError,
+  //           loginErrorMsg: state.lists.ui.loginErrorMsg,
+  //           signupError: state.lists.ui.signupError,
+  //           signupErrorMsg: state.lists.ui.signupErrorMsg,
+  //           hasJWTToken: parsedToken
+  //         }
+  //       })
+  //     }
+  //   }
+  // })
+  // AsyncStorage.getItem('JWT_TOKEN', function(err, tokenObj){
+  //   if(err || !JSON.parse(tokenObj).jwt) {
+  //     return console.log("error accessing JWT_TOKEN in local storage or token does not exist: ", err);
+  //   } else {
+  //     console.log("ownProps: ", ownProps)
+  //     return dispatch(actions.authorizeUser());
+  //   }
+  // });
   return {
     isFetching: state.auth.isFetching,
     isAuthenticated: state.auth.isAuthenticated,
@@ -39,7 +78,8 @@ const mapStateToProps = (state, ownProps) => {
     loginErrorMsg: state.lists.ui.loginErrorMsg,
     signupError: state.lists.ui.signupError,
     signupErrorMsg: state.lists.ui.signupErrorMsg
-  };
+  }
+  // return state
 }
 
 

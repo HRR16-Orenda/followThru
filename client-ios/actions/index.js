@@ -592,17 +592,10 @@ const signupError = function( message ) {
 export const logoutUser = function() {
   return function ( dispatch ) {
     dispatch(requestLogout());
-    jwtObj = {
-      jwt: undefined
-    }
-    storeLocally('JWT_TOKEN', jwtObj, function(err, result){
-      if(err){
-        console.log('error with removing JWT from AsyncStorage: ', err);
-      } else {
-        // AlertIOS.alert("Come back soon!");
-        Actions.loginScreen();
+    removeLocally('JWT_TOKEN', function(){
         dispatch(logoutSuccess());
-      }
+        Actions.loginScreen();
+        // AlertIOS.alert("Come back soon!");
     })
   }
 }
@@ -634,15 +627,48 @@ const storeLocally = function( key, object, callback ) {
   });
 }
 
-export const authorizationUser = () => {
-  return {
-    type: types.AUTHORIZE_USER
+const removeLocally = function( key, callback ){
+  AsyncStorage.removeItem(key, () => {
+    callback();
+  })
+}
+
+export const verifyUserToken = () => {
+  return (dispatch, getState) => {
+    dispatch(authorizeRequest());
+    AsyncStorage.getItem('JWT_TOKEN', function(err, tokenObj){
+      if(err) {
+        console.log("error accessing JWT_TOKEN in local storage: ", err);
+        dispatch(authorizeFailure())
+      } else {
+        if(tokenObj){
+          dispatch(authorizeSuccess());
+        } else {
+          dispatch(authorizeFailure())
+        }
+      }
+    })
   }
 }
 
-export const deauthorizeUser = () => {
+export const authorizeRequest = () => {
   return {
-    type: types.DEAUTHORIZE_USER
+    type: types.AUTHORIZE_REQUEST,
+    isFetching: true
+  }
+}
+
+export const authorizeSuccess = () => {
+  return {
+    type: types.AUTHORIZE_SUCCESS,
+    isFetching: false
+  }
+}
+
+export const authorizeFailure = () => {
+  return {
+    type: types.AUTHORIZE_FAILURE,
+    isFetching: false
   }
 }
 
