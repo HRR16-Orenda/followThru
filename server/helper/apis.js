@@ -1,8 +1,8 @@
 var amazon = require('amazon-product-api');
 var _ = require('lodash');
 var SpotifyWebApi = require('spotify-web-api-node');
-
 var spotifyApi = new SpotifyWebApi();
+var Yelp = require('yelp');
 
 
 if(!process.env.CIRCLECI && process.env.NODE_ENV !== 'production') {
@@ -73,7 +73,7 @@ module.exports.amazonBuy = function(newItem) {
     var refinedData = {
       url: 'https://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=' + newItem.title,
       img: results[0]['LargeImage'][0]['URL'][0],
-      content: results[0]['ItemAttributes'][0]['Title']
+      content: results[0]['ItemAttributes'][0]['Title'][0]
     }
 
     _.assign(newItem, refinedData);
@@ -102,3 +102,21 @@ module.exports.spotify = function(newItem) {
     console.log('Something went wrong!', err);
   });
 };
+
+module.exports.yelp = function(newItem) {
+  var yelp = new Yelp({
+      consumer_key: process.env['YELP_API_KEY'],
+      consumer_secret: process.env['YELP_API_SECRET'],
+      token: process.env['YELP_API_TOKEN'],
+      token_secret: process.env['YELP_API_TOKEN_SECRET']
+  });
+  yelp.search({ term: newItem.title, location: 'SF', limit: 1 })
+    .then(function(data) {
+      var results = data.businesses;
+      console.log(results);
+      return results;
+    })
+    .catch(function(err) {
+      console.error(err);
+    });
+}

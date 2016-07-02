@@ -61,7 +61,8 @@
     "tcomb-form-native": "^0.5.1",
     "underscore": "^1.8.3",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "yelp": "^1.0.1"
   },
   "devDependencies": {
     "babel-register": "^6.9.0",
