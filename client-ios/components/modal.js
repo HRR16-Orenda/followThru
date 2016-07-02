@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import {
-  TouchableOpacity,
   TouchableWithoutFeedback,
   ActivityIndicatorIOS,
   Text,
