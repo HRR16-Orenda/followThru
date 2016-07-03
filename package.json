@@ -8,7 +8,7 @@
     "postinstall": "webpack",
     "unittest:server": "./node_modules/.bin/mocha --reporter nyan test/server/index.js",
     "unittest:web": "./node_modules/.bin/mocha test/.setup.js test/client-web/WebSpec.js",
-    "unittest:mobile": "./node_modules/.bin/mocha test/.setup.js --require react-native-mock/mock test/client-ios/MobileSpec.js",
+    "unittest:mobile": "./node_modules/.bin/mocha --compilers js:babel-core/register --recursive test/client-ios/actions/ActionsSpec.js",
     "integrationtest": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
     "test": "npm run unittest:server && npm run unittest:web && npm run integrationtest",
     "coverage": "istanbul cover --root server/ _mocha -- test/server/ -R spec"

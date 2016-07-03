@@ -1,11 +1,11 @@
 import React, { View, Text, StyleSheet } from 'react-native';
 import { shallow } from 'enzyme';
-import ErrorMsgComponent from '../../client-ios/components/errorMsg';
 import { expect } from 'chai';
 
 import * as actions from '../../client-ios/actions/index';
 import * as types from '../../client-ios/constants/ActionTypes';
 
+import ErrorMsgComponent from '../../client-ios/components/errorMsg';
 // import FormComponent from '../../client-ios/components/form';
 
 describe('<ErrorMsgComponent />', () => {
