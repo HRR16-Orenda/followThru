@@ -8,49 +8,49 @@ import routeReducer from '../../../client-ios/reducers/routeReducer';
 import * as types from '../../../client-ios/constants/ActionTypes';
 
 describe('Reducers', () => {
-it ('should', () => {
-  expect(true).to.eql(true);
-})
-  // describe('listReducer', () => {
-  //   it('should return the initial state', () => {
-  //     expect(
-  //       listReducer(undefined, {})
-  //     ).to.eql(
-  //       {
-  //         ui: {
-  //           isLoading: false,
-  //           loginError: false,
-  //           loginErrorMsg: '',
-  //           signupError: false,
-  //           signupErrorMsg: '',
-  //           deleteConfirm: false
-  //         },
-  //         lists: {
-  //           category: ['default'],
-  //           allItems: []
-  //         },
-  //         filter: '',
-  //         selectedItems: [],
-  //         modal: {
-  //           isOpen: false,
-  //           item: {}
-  //         },
-  //         suggestions: [],
-  //         userInput: '',
-  //         checked: false
-  //       }
-  //     )
-  //   })
-  //
-  //   it('should update the user input', () => {
-  //     const action = {
-  //       type: 'UPDATE_USER_INPUT',
-  //       userInput: 'Mad Max'
-  //     };
-  //
-  //     const state = listReducer({userInput: ''}, action);
-  //     expect(state.userInput).to.eql(action.userInput);
-  //   });
-  // });
+
+  describe('authReducer', () => {
+    it('should handle an login success', () => {
+      const action = {
+        type: 'LOGIN_SUCCESS',
+        isFetching: true,
+        isAuthenticated: true,
+        user: {
+          username: 'Max'
+        }
+      };
+
+      const state = authReducer({
+        user: {},
+        isFetching: false,
+        isAuthenticated: false,
+      }, action);
+      expect(state.isAuthenticated).to.eql(action.isAuthenticated);
+    });
+  });
+
+  describe('listReducer', () => {
+    it('should update the user input', () => {
+      const action = {
+        type: 'UPDATE_USER_INPUT',
+        inputData: 'Mad Max'
+      };
+
+      const state = listReducer({userInput: ''}, action);
+      expect(state.userInput).to.eql(action.inputData);
+    });
+  });
+
+  describe('routeReducer', () => {
+    it('should update the scene', () => {
+      const action = {
+        type: 'focus',
+        scene: 'addScreen'
+      };
+
+      const state = routeReducer({scene: {}}, action);
+      expect(state.scene).to.eql(action.scene);
+    });
+  });
 
 })
