@@ -31,6 +31,13 @@ router.post('/', handler.addOneUser);
 router.post('/signup/', handler.signupUser);
 
 /**
+ * handler for following one user
+ * @input: user is as req.headers & target username as req.body
+ * @return: <Object> - empty object
+**/
+router.post('/following', handler.followUser);
+
+/**
  * handler for logging in a user
  * @input: userdata(email, username, password) as req.body
  * @return: <Object> - object of added user with JWT and without password info
@@ -51,5 +58,14 @@ router.put('/:id', handler.updateOneUser);
  * @return: <Object> - empty object
 **/
 router.delete('/:id', handler.removeOneUser);
+
+/**
+ * handler for unfollowing one user
+ * @input: user id as req.headers & target id as req.body
+ * @return: <Object> - empty object
+**/
+router.delete('/following', handler.unfollowUser);
+
+
 
 module.exports = router;
