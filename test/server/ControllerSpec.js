@@ -43,11 +43,11 @@ describe('Server-side Unit test', function () {
     describe('getAll() method', function () {
       it('should be a function that takes 1 argument', function(){
         expect(item.getAll).to.be.a('function');
-        expect(item.getAll.length).to.equal(1);
+        expect(item.getAll.length).to.equal(2);
       });
       it('should invoke the callback with items upon success', function(done) {
         findAllStub2.resolves(expectedArray)
-        item.getAll(function(err, items) {
+        item.getAll(undefined, function(err, items) {
           expect(items).to.deep.equal(expectedArray);
           expect(err).to.equal(null);
           done();
@@ -55,7 +55,7 @@ describe('Server-side Unit test', function () {
       });
       it('should invoke the callback with error upon failure', function(done) {
         findAllStub2.returns(Promise.reject(expectedError));
-        item.getAll(function(err, items) {
+        item.getAll(undefined, function(err, items) {
           expect(err).to.deep.equal(expectedError);
           done();
         });

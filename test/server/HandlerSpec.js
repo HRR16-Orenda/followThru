@@ -20,6 +20,7 @@ describe('Server-side Unit test', function () {
     req = res = {};
     req.body = {};
     req.params = {};
+    req.headers = {};
     spyOnSend = res.send = this.sandbox.spy(function(){return this;});
     spyOnEnd = res.end = this.sandbox.spy(function(){return this;});
     spyOnStatus = res.status = this.sandbox.spy(function(){return this;});
@@ -158,20 +159,22 @@ describe('Server-side Unit test', function () {
 
     describe('/items Route', function () {
       describe('getAllItems()', function(){
-        it('should call items.getAll() method and send items back', function () {
-          var stub = this.sandbox.stub(item, 'getAll');
-          stub.callsArgWith(0, null, expectedArray);
-          handler.getAllItems(req, res);
-          expect(spyOnSend.calledWith(expectedArray)).to.equal(true);
-          expect(stub.calledOnce).to.equal(true);
-        });
-        it('should send status code of 400 when item.getAll() throws an error', function() {
-          var stub = this.sandbox.stub(item, 'getAll');
-          stub.callsArgWith(0, expectedError);
+        describe('without user header', function() {
+          it('should call items.getAll() method and send items back', function () {
+            var stub = this.sandbox.stub(item, 'getAll');
+            stub.callsArgWith(1, null, expectedArray);
+            handler.getAllItems(req, res);
+            expect(spyOnSend.calledWith(expectedArray)).to.equal(true);
+            expect(stub.calledOnce).to.equal(true);
+          });
+          it('should send status code of 400 when item.getAll() throws an error', function() {
+            var stub = this.sandbox.stub(item, 'getAll');
+            stub.callsArgWith(1, expectedError);
 
-          handler.getAllItems(req,res);
-          expect(spyOnSendStatus.calledWith(400)).to.equal(true);
-        });
+            handler.getAllItems(req,res);
+            expect(spyOnSendStatus.calledWith(400)).to.equal(true);
+          });
+        })
       });
 
       // describe('addOneItem()', function(){

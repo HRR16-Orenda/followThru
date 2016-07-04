@@ -15,8 +15,10 @@ import { Actions } from 'react-native-router-flux';
 export const mainButtonPressed = (buttonCategory) => {
   return (dispatch, getState) => {
     let userInput = getState().lists.userInput;
+    let user = getState().auth.user;
     if (userInput) {
       let newItem = {
+        user_id: user.id,
         title: userInput,
         category: buttonCategory
       }
@@ -306,8 +308,9 @@ const toggleItemFailure = () => {
 // ******* FETCH ITEMS SECTION ******
 
 const fetchInitialDatabase = () => {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     dispatch(fetchDatabaseListsRequest());
+    var id = getState().auth.user.id;
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
       if(err){
         console.log("error accessing JWT_TOKEN in local storage: ", err);
@@ -316,6 +319,8 @@ const fetchInitialDatabase = () => {
         fetch('http://localhost:3000/api/items/', {
           method: 'GET',
           headers: {
+            // send user id as header
+            'User': id.toString(),
             'Authorization': JSON.parse(userToken).jwt
           },
         })
@@ -647,6 +652,7 @@ export const verifyUserToken = () => {
       } else {
         if(tokenObj){
           dispatch(authorizeSuccess(JSON.parse(tokenObj)));
+          dispatch(fetchInitialDatabase())
         } else {
           dispatch(authorizeFailure())
         }
