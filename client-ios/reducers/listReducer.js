@@ -48,6 +48,12 @@ export default (state = {
       suggestions: action.suggestions
     }
 
+    case types.CLEAR_SUGGESTION:
+    return {
+      ...state,
+      suggestions: []
+    }
+
     case types.CLEAR_INPUT_AFTER_SUBMIT:
     return {
       ...state,
