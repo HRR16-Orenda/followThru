@@ -138,5 +138,33 @@ module.exports = {
       var updatedUser = helper.cleanUser(user);
       res.send(updatedUser);
     });
+  },
+
+  /**
+   * handler for following user
+   * @input: user is as req.headers & target username as req.body
+   * @return: null
+  **/
+  followUser: function (req, res) {
+    var id = req.headers.user;
+    var following = req.body;
+    user.follow(id, following, function (err, user) {
+      if(err) {return res.sendStatus(400);}
+      res.sendStatus(201);
+    })
+  },
+
+  /**
+   * handler for unfollowing user
+   * @input: user is as req.headers & target username as req.body
+   * @return: null
+  **/
+  unfollowUser: function (req, res) {
+    var id = req.headers.user;
+    var unfollowing = req.body;
+    user.unfollow(id, following, function (err, user) {
+      if(err) {return res.sendStatus(400);}
+      res.sendStatus(201);
+    })
   }
 }

@@ -1,4 +1,5 @@
 var User = require('../models/users.js');
+var Follower = require('../models/followers.js');
 var _ = require('underscore');
 var bcrypt = require('bcrypt');
 var secret = require('../helper/config.js');
@@ -113,6 +114,49 @@ module.exports = {
       })
       .catch(function(error) {
         callback(error);
+      });
+  },
+
+  /**
+   * controller for following user
+   * @param id: <String> - user_id of current user
+   * @param following: <String> - name of target user
+   * @param callback: <Function> - callback function
+   * @return: null
+  **/
+  follow: function(id, following, callback) {
+    User.findById(id)
+      .then(function(user) {
+        return User.findOne({where: {username: following}});
+      })
+      .then(function(data) {
+        return user.addFollowing(data);
+      })
+      .then(function(relationShip) {
+        callback(null, relationShip);
+      })
+      .catch(function(err) {
+        callback(err);
+      });
+  },
+
+  /**
+   * controller for unfollowing user
+   * @param id: <String> - user_id of current user
+   * @param following: <String> - user_id of target user
+   * @param callback: <Function> - callback function
+   * @return: null
+  **/
+  unfollow: function(id, following, callback) {
+    Follower.destroy({where : {
+      followedById: +id,
+      followingId: +following
+    }})
+      .then(function() {
+        callback(null);
+      })
+      .catch(function(err) {
+        callback(err);
       });
   }
 };

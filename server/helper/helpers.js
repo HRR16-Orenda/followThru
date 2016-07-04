@@ -4,6 +4,7 @@ module.exports.cleanUser = function(user) {
     username: user.get('username'),
     id: user.get('id'),
     isAdmin: user.get('isAdmin'),
+    following: user.get('followings'),
     created_at: user.get('created_at')
   };
   return result;
