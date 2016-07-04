@@ -58,42 +58,12 @@ module.exports = {
     });
   },
 
-  getAll: function(callback) {
-    Item.findAll()
+  getAll: function(id, callback) {
+    // check to see if id is passed or not
+    var action = id === undefined ? Item.findAll() : Item.findAll({where : {id: id}});
+    action
     .then(function(items) {
       callback(null, items)
-    })
-    .catch(function(error) {
-      callback(error);
-    })
-  },
-
-  getCategories: function(callback) {
-    this.getAll(function(items) {
-      var categories = [];
-      _.each(items, function(item) {
-        categories.push(item.category);
-      })
-      return categories;
-    })
-    .then(function(categories) {
-      callback(null, categories);
-    })
-    .catch(function(error) {
-      callback(error);
-    })
-  },
-
-  getSubcategories: function(callback) {
-    this.getAll(function(items) {
-      var subcategories = [];
-      _.each(items, function(item) {
-        subcategories.push(item.subcategory);
-      })
-      return subcategories;
-    })
-    .then(function(subcategories) {
-      callback(null, subcategories);
     })
     .catch(function(error) {
       callback(error);

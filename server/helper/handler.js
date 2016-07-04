@@ -17,7 +17,8 @@ var category = {
 
 module.exports = {
   getAllItems: function (req, res) {
-    item.getAll(function (err, items) {
+    var id = req.headers.user;
+    item.getAll(id, function (err, items) {
       if(err) {return res.sendStatus(400);}
       res.send(items);
     });

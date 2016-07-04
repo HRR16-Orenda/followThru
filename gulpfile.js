@@ -90,6 +90,11 @@ gulp.task('default', ['nodemon', 'server-test', 'webpack'], function () {
   gulp.watch('./client-web/**/*.js', {debounceDelay: 500}, ['webpack']);
 });
 
+gulp.task('test', ['nodemon', 'server-test'], function () {
+  gulp.watch('./server/**/*.js', {debounceDelay: 500}, ['server-test']);
+  gulp.watch('./test/server/*.js', {debounceDelay: 500}, ['server-test']);
+});
+
 // our gulp-nodemon task
 gulp.task('nodemon', function (cb) {
   var started = false;
