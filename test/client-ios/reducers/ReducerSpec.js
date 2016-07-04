@@ -1,6 +1,7 @@
+import React from 'react';
 import { expect } from 'chai';
 
-import authReducer from '../../../client-ios/reducers/authReducers';
+import authReducer from '../../../client-ios/reducers/authReducer';
 import listReducer from '../../../client-ios/reducers/listReducer';
 import routeReducer from '../../../client-ios/reducers/routeReducer';
 
@@ -12,7 +13,7 @@ describe('Reducers', () => {
     it('should return the initial state', () => {
       expect(
         listReducer(undefined, {})
-      ).toEqual(
+      ).to.eql(
         {
           ui: {
             isLoading: false,
@@ -46,7 +47,7 @@ describe('Reducers', () => {
       };
 
       const state = listReducer({userInput: ''}, action);
-      expect(state.userInput).toEqual(action.userInput);
+      expect(state.userInput).to.eql(action.userInput);
     });
   });
 
