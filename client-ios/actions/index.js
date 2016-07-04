@@ -464,17 +464,17 @@ export const loginUser = function(creds) {
       return response.json();
     })
     .then((data) => {
+      console.log('this is returned data from server', data);
       var jwtObj = {
         jwt: data.jwt
       }
-      storeLocally('JWT_TOKEN', jwtObj, function(err, result){
+      storeLocally('JWT_TOKEN', data, function(err, result){
         if(err){
           console.log("Error with storing JWT to AsyncStorage: ", err);
         } else {
-          dispatch(fetchInitialDatabase());
-          // AlertIOS.alert('Welcome back!');
           Actions.addScreen();
           dispatch(loginSuccess(data))
+          dispatch(fetchInitialDatabase());
         };
       });
     })
@@ -546,13 +546,13 @@ export const signupUser = function(creds) {
       var jwtObj = {
         jwt: data.jwt
       }
-      storeLocally('JWT_TOKEN', jwtObj, function(err, result){
+      storeLocally('JWT_TOKEN', data, function(err, result){
         if(err){
           console.log("Error with storing JWT to AsyncStorage: ", err);
         } else {
+          dispatch(signupSuccess(data))
           dispatch(fetchInitialDatabase());
           // AlertIOS.alert(data.username + ", thank you for joining!")
-          dispatch(signupSuccess(data))
         };
       });
     })
@@ -646,7 +646,7 @@ export const verifyUserToken = () => {
         dispatch(authorizeFailure())
       } else {
         if(tokenObj){
-          dispatch(authorizeSuccess());
+          dispatch(authorizeSuccess(JSON.parse(tokenObj)));
         } else {
           dispatch(authorizeFailure())
         }
@@ -662,10 +662,11 @@ export const authorizeRequest = () => {
   }
 }
 
-export const authorizeSuccess = () => {
+export const authorizeSuccess = (user) => {
   return {
     type: types.AUTHORIZE_SUCCESS,
-    isFetching: false
+    isFetching: false,
+    user: user
   }
 }
 
