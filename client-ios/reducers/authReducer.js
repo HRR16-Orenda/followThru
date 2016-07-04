@@ -91,6 +91,7 @@ export default (state = {
         ...state,
         isFetching: action.isFetching,
         isAuthenticated: true,
+        user: action.user
     };
 
     case types.AUTHORIZE_FAILURE:
