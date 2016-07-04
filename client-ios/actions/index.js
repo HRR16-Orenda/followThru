@@ -15,8 +15,10 @@ import { Actions } from 'react-native-router-flux';
 export const mainButtonPressed = (buttonCategory) => {
   return (dispatch, getState) => {
     let userInput = getState().lists.userInput;
+    let user = getState().auth.user;
     if (userInput) {
       let newItem = {
+        user_id: user.id,
         title: userInput,
         category: buttonCategory
       }
