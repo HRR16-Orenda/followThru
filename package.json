@@ -10,7 +10,7 @@
     "unittest:web": "./node_modules/.bin/mocha test/.setup.js test/client-web/WebSpec.js",
     "unittest:mobile": "./node_modules/.bin/mocha --require test/client-ios/init.js test/client-ios/**/*.js",
     "integrationtest": "./node_modules/.bin/mocha --reporter nyan test/integration/ApiSpec.js",
-    "test": "npm run unittest:server && npm run unittest:web && npm run integrationtest",
+    "test": "npm run unittest:server && npm run unittest:web && npm run unittest:mobile && npm run integrationtest",
     "coverage": "istanbul cover --root server/ _mocha -- test/server/ -R spec"
   },
   "pre-commit": [
