@@ -4,6 +4,9 @@ require("babel-register")({
     only: [
         "/node_modules/react-native-router-flux/*.js",
         "/node_modules/react-native-router-flux/src/*.js",
+        "/node_modules/react-native-autocomplete-input/*.js",
+        "/node_modules/react-native-vector-icons/*.js",
+        "/node_modules/react-native-vector-icons/lib/*.js",
         "/client-ios/**/*",
         "/test/**/*",
     ]
