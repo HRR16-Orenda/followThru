@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import {
+  TouchableWithoutFeedback,
   StyleSheet,
   Text,
   View,
@@ -25,11 +26,16 @@ export default class AddScreen extends Component {
   // }
 
   render() {
+    const { clearSuggestion } = this.props;
     return (
-      <View style={styles.container}>
-        <Form />
-        <MainButtons />
-      </View>
+      <TouchableWithoutFeedback
+        onPress={clearSuggestion}
+      >
+        <View style={styles.container}>
+          <Form />
+          <MainButtons />
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

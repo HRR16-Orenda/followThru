@@ -714,6 +714,12 @@ export const updateSearchSuggestionsSuccess = (inputSuggestions) => {
   }
 }
 
+export const clearSuggestion = () => {
+  return {
+    type: types.CLEAR_SUGGESTION
+  }
+}
+
 export const updateInputWithSuggestion = (inputData) => {
   return function ( dispatch ) {
     // clears out the search suggestions
