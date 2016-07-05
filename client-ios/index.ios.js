@@ -42,9 +42,6 @@ class Orenda extends Component {
             hideNavBar={false}
             component={SingleListContainer}
             type="push"
-            leftButtonImage={require('./assets/group-480.png')}
-            leftButtonIconStyle={styles.icon}
-            onLeft={() => Actions.followScreen()}
             rightButtonImage={require('./assets/settings-256.png')}
             rightButtonIconStyle={styles.icon}
             onRight={() => Actions.settingsScreen()}

@@ -60,7 +60,7 @@ module.exports = {
 
   getAll: function(id, callback) {
     // check to see if id is passed or not
-    var action = id === undefined ? Item.findAll() : Item.findAll({where : {id: id}});
+    var action = id === undefined ? Item.findAll() : Item.findAll({where : {user_id: +id}});
     action
     .then(function(items) {
       callback(null, items)

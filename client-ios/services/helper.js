@@ -30,7 +30,7 @@ export function loginUser( creds ) {
 
 }
 
-export const generateDataSource = (list) => {
+export const generateDataSource = (list = []) => {
   let inputList = list.slice();
 
   let dataSource = new ListView.DataSource({
