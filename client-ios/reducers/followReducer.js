@@ -3,13 +3,13 @@ import { update } from "react";
 
 export default (state = {
   searchResult: [],
-  selection: 'search'
+  selection: 'inbox'
 }, action) => {
   switch (action.type) {
-    case types.SELECT_SEARCH:
+    case types.SELECT_INBOX:
       return {
         ...state,
-        selection: 'search'
+        selection: 'inbox'
     };
 
     case types.SELECT_FOLLOWERS:

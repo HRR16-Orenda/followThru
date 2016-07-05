@@ -6,9 +6,9 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-export const selectSearch = () => {
+export const selectInbox = () => {
   return {
-    type: types.SELECT_SEARCH
+    type: types.SELECT_INBOX
   }
 };
 

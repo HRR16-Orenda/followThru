@@ -43,12 +43,15 @@ export default class FollowScreen extends Component {
 
   _renderList(data) {
     return (
-      <ListView
-        dataSource={data}
-        renderRow={this._renderItem.bind(this)}
-        style={styles.listView}
-        enableEmptySections={true}
-      />
+      <View>
+        {this.props.follow.selection === 'followings' && this._renderSearch()}
+        <ListView
+          dataSource={data}
+          renderRow={this._renderItem.bind(this)}
+          style={styles.listView}
+          enableEmptySections={true}
+        />
+      </View>
     )
   }
 
@@ -65,9 +68,10 @@ export default class FollowScreen extends Component {
     const {
       followings,
       followers,
+      inbox,
       user,
       lists,
-      selectSearch,
+      selectInbox,
       selectFollowers,
       selectFollowings,
       follow
@@ -77,10 +81,10 @@ export default class FollowScreen extends Component {
           <View style={styles.categoryContainer}>
             <TouchableOpacity
               style={styles.categoryButton}
-              onPress={selectSearch}
+              onPress={selectInbox}
             >
               <Text style={styles.signUpButtonText}>
-                Search
+                Inbox
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -102,7 +106,7 @@ export default class FollowScreen extends Component {
           </View>
           <View>
             {/* Default Text */}
-            {follow.selection === 'search' && this._renderSearch()}
+            {follow.selection === 'inbox' && this._renderList(inbox)}
             {follow.selection === 'followers' && this._renderList(followers)}
             {follow.selection === 'followings' && this._renderList(followings)}
           </View>
