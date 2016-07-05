@@ -153,27 +153,6 @@ export default StyleSheet.create({
   },
 
   /*********************************
-  Action confirmation Specific Styles
-  *********************************/
-  actionConfirm: {
-    flex: 1,
-    backgroundColor: '#F5FCFF'
-  },
-  checkmark: {
-    marginTop: 100,
-    marginBottom: 20,
-    width: 160,
-    height: 160,
-    alignSelf: "center",
-    backgroundColor: 'transparent'
-  },
-  categoryPicker: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-
-  /*********************************
   ListView Specific Styles
   *********************************/
 
@@ -433,4 +412,18 @@ export default StyleSheet.create({
     color: 'white',
     alignSelf: 'center'
   },
+  searchInput: {
+    height: 36,
+    padding: 4,
+    marginLeft: 2,
+    marginRight: 2,
+    marginTop: 10,
+    marginBottom: 10,
+    flex: 4,
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: '#48BBEC',
+    borderRadius: 8,
+    color: '#48BBEC'
+  }
 });

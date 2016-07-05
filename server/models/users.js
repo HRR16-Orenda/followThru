@@ -39,13 +39,7 @@ var User = sequelize.define('user', {
 
 User.belongsToMany(User, {as: 'followings', through: Follower, foreignKey: 'followedById'});
 User.belongsToMany(User, {as: 'followers', through: Follower, foreignKey: 'followingId'});
-// User.create({
-//   email: 'df',
-//   username: 'df',
-//   password: 'df'
-// }).then(function(data) {
-//   console.log(data);
-// })
+
 
 // it worked!
 User.findById(1).then(function(user){
@@ -71,8 +65,4 @@ User.findById(1).then(function(user){
 //   console.log(data.get('followings'));
 // })
 
-
-//sequelize automatically creates createdAt and updatedAt
-// User.hasMany(Item); circular referencing occured (Item already belongsTo User)
-// User.sync();
 module.exports = User;

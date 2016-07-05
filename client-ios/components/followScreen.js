@@ -15,19 +15,19 @@ import Form from '../containers/FormContainer.js';
 import styles from '../styles/styles.js';
 
 
-export default class AddScreen extends Component {
+export default class FollowScreen extends Component {
   constructor(props) {
     super(props);
   }
 
-  renderItem(item) {
+  _renderItem(item) {
     return (
       <TouchableOpacity
         onPress = {() => {console.log('yay')}}
       >
         <View>
           <Text>
-            {item.get('username')}
+            {item.username}
           </Text>
           <View style={ styles.separator } />
         </View>
@@ -35,13 +35,51 @@ export default class AddScreen extends Component {
     );
   }
 
+  _renderList(data) {
+    return (
+      <ListView
+        dataSource={data}
+        renderRow={this._renderItem.bind(this)}
+        style={styles.listView}
+        enableEmptySections={true}
+      />
+    )
+  }
+
+  _renderSearch() {
+    return (
+      <TextInput
+        style={styles.searchInput}
+        onChangeText={(text) => console.log('you', text)}
+      />
+    )
+  }
+
   render() {
-    const { clearSuggestion, dataSource } = this.props;
+    const {
+      followings,
+      followers,
+      user,
+      lists,
+      selectSearch,
+      selectFollowers,
+      selectFollowings,
+      follow
+    } = this.props;
     return (
         <View style={styles.container}>
           <View style={styles.categoryContainer}>
             <TouchableOpacity
               style={styles.categoryButton}
+              onPress={selectSearch}
+            >
+              <Text style={styles.signUpButtonText}>
+                Search
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.categoryButton}
+              onPress={selectFollowers}
             >
               <Text style={styles.signUpButtonText}>
                 Followers
@@ -49,28 +87,18 @@ export default class AddScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.categoryButton}
+              onPress={selectFollowings}
             >
               <Text style={styles.signUpButtonText}>
                 Followings
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.categoryButton}
-            >
-              <Text style={styles.signUpButtonText}>
-                Inbox
-              </Text>
-            </TouchableOpacity>
           </View>
           <View>
             {/* Default Text */}
-            {dataSource.rowIdentities[0].length === 0 ? <Text>No Items</Text>
-              :  <ListView
-                dataSource={dataSource}
-                renderRow={this.renderItem.bind(this)}
-                style={styles.listView}
-                 />
-            }
+            {follow.selection === 'search' && this._renderSearch()}
+            {follow.selection === 'followers' && this._renderList(followers)}
+            {follow.selection === 'followings' && this._renderList(followings)}
           </View>
         </View>
     );

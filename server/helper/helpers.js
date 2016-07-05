@@ -5,6 +5,7 @@ module.exports.cleanUser = function(user) {
     id: user.get('id'),
     isAdmin: user.get('isAdmin'),
     followings: user.get('followings'),
+    followers: user.get('followers'),
     created_at: user.get('created_at')
   };
   // If user data contains follower data, clean them up
