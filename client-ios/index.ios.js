@@ -30,7 +30,8 @@ class Orenda extends Component {
             title="followthru"
             hideNavBar={false}
             type="reset"
-            leftTitle={'Following'}
+            leftButtonImage={require('./assets/group-480.png')}
+            leftButtonIconStyle={styles.icon}
             onLeft={() => Actions.followScreen()}
             rightButtonImage={require('./assets/settings-256.png')}
             rightButtonIconStyle={styles.icon}
@@ -41,7 +42,8 @@ class Orenda extends Component {
             hideNavBar={false}
             component={SingleListContainer}
             type="push"
-            leftTitle={'Following'}
+            leftButtonImage={require('./assets/group-480.png')}
+            leftButtonIconStyle={styles.icon}
             onLeft={() => Actions.followScreen()}
             rightButtonImage={require('./assets/settings-256.png')}
             rightButtonIconStyle={styles.icon}
