@@ -10,6 +10,7 @@ import AddItemContainer from './containers/AddItemContainer.js';
 import SingleListContainer from './containers/SingleListContainer.js';
 import SettingsContainer from './containers/SettingsContainer.js'
 import AuthScreenContainer from './containers/AuthScreenContainer.js'
+import FollowScreenContainer from './containers/followScreenContainer.js'
 import styles from './styles/styles.js';
 
 // Import additional functionality
@@ -29,6 +30,9 @@ class Orenda extends Component {
             title="followthru"
             hideNavBar={false}
             type="reset"
+            leftButtonImage={require('./assets/group-480.png')}
+            leftButtonIconStyle={styles.icon}
+            onLeft={() => Actions.followScreen()}
             rightButtonImage={require('./assets/settings-256.png')}
             rightButtonIconStyle={styles.icon}
             onRight={() => Actions.settingsScreen()}
@@ -38,9 +42,19 @@ class Orenda extends Component {
             hideNavBar={false}
             component={SingleListContainer}
             type="push"
+            leftButtonImage={require('./assets/group-480.png')}
+            leftButtonIconStyle={styles.icon}
+            onLeft={() => Actions.followScreen()}
             rightButtonImage={require('./assets/settings-256.png')}
             rightButtonIconStyle={styles.icon}
             onRight={() => Actions.settingsScreen()}
+          />
+          <Scene
+            key="followScreen"
+            hideNavBar={false}
+            component={FollowScreenContainer}
+            title="Follow"
+            type="push"
           />
           <Scene
             key="settingsScreen"

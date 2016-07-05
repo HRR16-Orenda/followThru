@@ -1,7 +1,5 @@
 // @flow
 import * as types from '../constants/ActionTypes';
-import helper from '../services/helper';
-import { reset } from 'redux-form';
 import {
   Vibration
 } from 'react-native';

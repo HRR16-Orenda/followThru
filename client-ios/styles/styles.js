@@ -45,11 +45,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start'
   },
-  categoryContainer: {
-    flex: 3,
-    flexDirection: 'row',
-    alignItems: 'flex-start'
-  },
+
   autocompleteContainer: {
     flex: 1,
     left: 0,
@@ -59,13 +55,6 @@ export default StyleSheet.create({
   },
 
   autocompleteInputContainer: {
-    // shadowColor: "#000000",
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // shadowOffset: {
-    //   height: 1,
-    //   width: 0
-    // }
     borderRadius:2
   },
 
@@ -164,27 +153,6 @@ export default StyleSheet.create({
   },
 
   /*********************************
-  Action confirmation Specific Styles
-  *********************************/
-  actionConfirm: {
-    flex: 1,
-    backgroundColor: '#F5FCFF'
-  },
-  checkmark: {
-    marginTop: 100,
-    marginBottom: 20,
-    width: 160,
-    height: 160,
-    alignSelf: "center",
-    backgroundColor: 'transparent'
-  },
-  categoryPicker: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-
-  /*********************************
   ListView Specific Styles
   *********************************/
 
@@ -251,21 +219,7 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
     color: '#ffffff'
   },
-  signUpButtonText: {
-    fontSize: 16,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  signUpButton: {
-    height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
+
   signUpPrompt: {
     fontSize: 14,
     alignSelf: 'center',
@@ -432,5 +386,54 @@ export default StyleSheet.create({
   datePicker: {
     backgroundColor: 'white',
     borderRadius:15
+  },
+
+  /*********************************
+  follower Screen Specific Styles
+  *********************************/
+  categoryContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  categoryButton: {
+    flex: 1,
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginLeft: 2,
+    marginRight: 2,
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  signUpButtonText: {
+    fontSize: 16,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  searchInput: {
+    height: 36,
+    padding: 4,
+    marginLeft: 2,
+    marginRight: 2,
+    marginTop: 10,
+    marginBottom: 10,
+    flex: 4,
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: '#48BBEC',
+    borderRadius: 8,
+    color: '#48BBEC'
+  },
+  followContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start'
+  },
+  followIcon: {
+    flex:1
+  },
+  followInfo: {
+    flex: 4
   }
 });
