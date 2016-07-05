@@ -22,16 +22,22 @@ export default class FollowScreen extends Component {
 
   _renderItem(item) {
     return (
-      <TouchableOpacity
-        onPress = {() => {console.log('yay')}}
+      <View
+        style={styles.followContainer}
       >
-        <View>
+        <Text style={styles.followInfo}>
+          {item.username}
+        </Text>
+        <TouchableOpacity
+          onPress = {() => {console.log('unfollow!!!')}}
+          style={styles.followIcon}
+        >
           <Text>
-            {item.username}
+            Unfollow
           </Text>
-          <View style={ styles.separator } />
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+        <View style={ styles.separator } />
+      </View>
     );
   }
 

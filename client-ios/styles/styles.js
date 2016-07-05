@@ -425,5 +425,15 @@ export default StyleSheet.create({
     borderColor: '#48BBEC',
     borderRadius: 8,
     color: '#48BBEC'
+  },
+  followContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start'
+  },
+  followIcon: {
+    flex:1
+  },
+  followInfo: {
+    flex: 4
   }
 });
