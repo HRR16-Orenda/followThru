@@ -9,7 +9,7 @@ export function loginUser( creds ) {
   }
 
   return dispatch => {
-    dispatch( requestLogin( creds,  ))
+    dispatch( requestLogin( creds  ))
 //need to create this API endpoint in the server.  Also, is this
 //how you make a REST call on a native device? refer to the Auth0
 //example for reference

@@ -104,7 +104,7 @@ export const addItemToDatabase = (item) => {
   }
 }
 
-const addItemLocally = (data) => {
+export const addItemLocally = (data) => {
   return {
     type: types.ADD_ITEM_LOCALLY,
     payload: data
