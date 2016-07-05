@@ -32,6 +32,7 @@
 		951F6AB574644409B629897A /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F805B022A87345739D383E80 /* Zocial.ttf */; };
 		9F6C7E19C8AF4EDFA9F5FD5B /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3326CE9DD934BC6B6CB8AB5 /* libRNVectorIcons.a */; };
 		AFE66EF826D44111A3398BC3 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F71DE1F45B64D7F9E956E92 /* Foundation.ttf */; };
+		BC06A35B1D2C283D00D77651 /* Launch Screen-followThru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC06A35A1D2C283D00D77651 /* Launch Screen-followThru.storyboard */; };
 		DBE370CD473248659D6E0917 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCC7BD3398D49A69EAF3A5C /* Octicons.ttf */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +168,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8E53CD463714433CA2DD22A9 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		A3326CE9DD934BC6B6CB8AB5 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		BC06A35A1D2C283D00D77651 /* Launch Screen-followThru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen-followThru.storyboard"; sourceTree = "<group>"; };
 		D22046901EDA4E0FAFE995AA /* RCTMaterialKit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTMaterialKit.xcodeproj; path = "../node_modules/react-native-material-kit/iOS/RCTMaterialKit.xcodeproj"; sourceTree = "<group>"; };
 		E0945D68121C4D52945C65E3 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		ECCC7BD3398D49A69EAF3A5C /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				BC06A35A1D2C283D00D77651 /* Launch Screen-followThru.storyboard */,
 			);
 			name = Orenda;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				8CCF47169644447FB0ACA8B6 /* Entypo.ttf in Resources */,
 				221CE26610E944F8B66AA1FF /* EvilIcons.ttf in Resources */,
+				BC06A35B1D2C283D00D77651 /* Launch Screen-followThru.storyboard in Resources */,
 				72D30010DC0F4F3C8EFD06D7 /* FontAwesome.ttf in Resources */,
 				AFE66EF826D44111A3398BC3 /* Foundation.ttf in Resources */,
 				23CDAF2C133047B39E8C78E8 /* Ionicons.ttf in Resources */,
@@ -758,6 +762,7 @@
 					"$(SRCROOT)/../node_modules/react-native-calendar-reminders",
 				);
 				INFOPLIST_FILE = Orenda/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -780,6 +785,7 @@
 					"$(SRCROOT)/../node_modules/react-native-calendar-reminders",
 				);
 				INFOPLIST_FILE = Orenda/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -806,8 +812,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dev Account (9NDYKA55H2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dev Account (9NDYKA55H2)";
+				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -835,6 +842,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
