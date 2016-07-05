@@ -1,3 +1,5 @@
+import { ListView } from 'react-native';
+
 export function loginUser( creds ) {
 
   let config = {
@@ -26,4 +28,14 @@ export function loginUser( creds ) {
         }).catch(err => console.log("Error: ", err))
   }
 
+}
+
+export const generateDataSource = (list) => {
+  let inputList = list.slice();
+
+  let dataSource = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2
+  }).cloneWithRows(inputList);
+
+  return dataSource;
 }

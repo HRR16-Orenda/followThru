@@ -45,11 +45,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start'
   },
-  categoryContainer: {
-    flex: 3,
-    flexDirection: 'row',
-    alignItems: 'flex-start'
-  },
+
   autocompleteContainer: {
     flex: 1,
     left: 0,
@@ -59,13 +55,6 @@ export default StyleSheet.create({
   },
 
   autocompleteInputContainer: {
-    // shadowColor: "#000000",
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // shadowOffset: {
-    //   height: 1,
-    //   width: 0
-    // }
     borderRadius:2
   },
 
@@ -251,21 +240,7 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
     color: '#ffffff'
   },
-  signUpButtonText: {
-    fontSize: 16,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  signUpButton: {
-    height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
+
   signUpPrompt: {
     fontSize: 14,
     alignSelf: 'center',
@@ -432,5 +407,30 @@ export default StyleSheet.create({
   datePicker: {
     backgroundColor: 'white',
     borderRadius:15
-  }
+  },
+
+  /*********************************
+  follower Screen Specific Styles
+  *********************************/
+  categoryContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  categoryButton: {
+    flex: 1,
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginLeft: 2,
+    marginRight: 2,
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  signUpButtonText: {
+    fontSize: 16,
+    color: 'white',
+    alignSelf: 'center'
+  },
 });

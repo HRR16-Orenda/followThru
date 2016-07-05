@@ -48,13 +48,13 @@ User.belongsToMany(User, {as: 'followers', through: Follower, foreignKey: 'follo
 // })
 
 // it worked!
-// User.findById(1).then(function(user){
-//   User.findById(2).then(function(data) {
-//     user.addFollowing(data).then(function(data) {
-//       console.log(data[0]);
-//     });
-//   })
-// })
+User.findById(1).then(function(user){
+  User.findById(2).then(function(data) {
+    user.addFollowing(data).then(function(data) {
+      console.log(data[0]);
+    });
+  })
+})
 
 // it worked
 // User.findOne({
