@@ -67,7 +67,7 @@ export const addItemToDatabase = (item) => {
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        fetch('http://localhost:3000/api/items/', {
+        fetch('https://orenda-smartlist.herokuapp.com/api/items/', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -207,7 +207,7 @@ const deleteListItemDatabase = (item) => {
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        fetch('http://localhost:3000/api/items/' + item.id, {
+        fetch('https://orenda-smartlist.herokuapp.com/api/items/' + item.id, {
           method: 'DELETE',
           headers: {
             'Authorization': JSON.parse(userToken).jwt
@@ -261,7 +261,7 @@ export const toggleItem = (item) => {
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        fetch('http://localhost:3000/api/items/' + updatedItem.id, {
+        fetch('https://orenda-smartlist.herokuapp.com/api/items/' + updatedItem.id, {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
@@ -316,7 +316,7 @@ const fetchInitialDatabase = () => {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
         dispatch(fetchDatabaseListsFailure());
       } else {
-        fetch('http://localhost:3000/api/items/', {
+        fetch('https://orenda-smartlist.herokuapp.com/api/items/', {
           method: 'GET',
           headers: {
             // send user id as header
@@ -457,7 +457,7 @@ export const loginUser = function(creds) {
       username: creds.username.value,
       password: creds.password.value
     }
-    return fetch('http://localhost:3000/api/users/login/', {
+    return fetch('https://orenda-smartlist.herokuapp.com/api/users/login/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -530,7 +530,7 @@ export const signupUser = function(creds) {
       "username": creds.username.value,
       "password": creds.password.value
     }
-    return fetch('http://localhost:3000/api/users/signup/', {
+    return fetch('https://orenda-smartlist.herokuapp.com/api/users/signup/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
