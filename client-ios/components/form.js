@@ -34,7 +34,7 @@ class FormComponent extends Component {
           data = {this.props.suggestions}
           renderItem={(itemData) => (
             <TouchableOpacity onPress={() => this.props.updateInputWithSuggestion(itemData)}>
-              <Text>{itemData}</Text>
+              <Text style={styles.autocompleteSuggestionText}>{itemData}</Text>
             </TouchableOpacity>
           )}
           onChangeText={(text) => {

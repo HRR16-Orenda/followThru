@@ -59,6 +59,10 @@ export default StyleSheet.create({
     borderRadius:2
   },
 
+  autocompleteSuggestionText: {
+    fontSize: 18
+  },
+
   buttonContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
