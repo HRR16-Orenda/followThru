@@ -11,7 +11,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Form from '../containers/FormContainer.js';
+import Form from '../containers/followFormContainer.js';
 import styles from '../styles/styles.js';
 
 
@@ -44,7 +44,15 @@ export default class FollowScreen extends Component {
   _renderList(data) {
     return (
       <View>
-        {this.props.follow.selection === 'followings' && this._renderSearch()}
+        {this.props.follow.selection === 'followings' && (
+          <Form onSubmit={this.props.submitHandler}/>
+          <ListView
+            dataSource={this.props.searchResult}
+            renderRow={this._renderItem.bind(this)}
+            style={styles.listView}
+            enableEmptySections={true}
+          />
+        )}
         <ListView
           dataSource={data}
           renderRow={this._renderItem.bind(this)}
@@ -52,15 +60,6 @@ export default class FollowScreen extends Component {
           enableEmptySections={true}
         />
       </View>
-    )
-  }
-
-  _renderSearch() {
-    return (
-      <TextInput
-        style={styles.searchInput}
-        onChangeText={(text) => console.log('you', text)}
-      />
     )
   }
 
@@ -83,7 +82,7 @@ export default class FollowScreen extends Component {
               style={styles.categoryButton}
               onPress={selectInbox}
             >
-              <Text style={styles.signUpButtonText}>
+              <Text style={styles.buttonText}>
                 Inbox
               </Text>
             </TouchableOpacity>
@@ -91,7 +90,7 @@ export default class FollowScreen extends Component {
               style={styles.categoryButton}
               onPress={selectFollowers}
             >
-              <Text style={styles.signUpButtonText}>
+              <Text style={styles.buttonText}>
                 Followers
               </Text>
             </TouchableOpacity>
@@ -99,7 +98,7 @@ export default class FollowScreen extends Component {
               style={styles.categoryButton}
               onPress={selectFollowings}
             >
-              <Text style={styles.signUpButtonText}>
+              <Text style={styles.buttonText}>
                 Followings
               </Text>
             </TouchableOpacity>

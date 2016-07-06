@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
-import { selectInbox, selectFollowers, selectFollowings } from '../actions/followScreenAction.js';
+import { selectInbox, selectFollowers, selectFollowings, searchUser } from '../actions/followScreenAction.js';
 import FollowScreen from '../components/followScreen.js';
 import { generateDataSource } from '../services/helper.js';
 
@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     selectFollowings: () => {
       dispatch(selectFollowings());
+    },
+    submitHandler: (data: Object) => {
+      dispatch(searchUser(data.username));
     }
   };
 };
@@ -30,7 +33,8 @@ function mapStateToProps(state, ownProps) {
     followers: generateDataSource(state.auth.user.followers),
     inbox: generateDataSource(inbox),
     lists: state.lists.lists.allItems,
-    follow: state.follow
+    follow: state.follow,
+    searchResult: generateDataSource(state.follow.searchResult)
   };
 }
 

@@ -399,6 +399,7 @@ export default StyleSheet.create({
   },
   categoryButton: {
     flex: 1,
+    flexDirection: 'row',
     height: 36,
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
@@ -415,13 +416,13 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   searchInput: {
+    flex:5,
     height: 36,
     padding: 4,
     marginLeft: 2,
     marginRight: 2,
     marginTop: 10,
     marginBottom: 10,
-    flex: 4,
     fontSize: 18,
     borderWidth: 1,
     borderColor: '#48BBEC',

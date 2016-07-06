@@ -24,6 +24,12 @@ export default (state = {
         selection: 'followings'
     };
 
+    case types.SEARCH_USER_SUCCESS:
+      return {
+        ...state,
+        searchResult: action.payload
+    };
+
     default:
       return state;
   };
