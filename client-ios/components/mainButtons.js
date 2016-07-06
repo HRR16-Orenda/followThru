@@ -30,7 +30,7 @@ export default class mainButtons extends Component {
           >
             <Icon
               name={adding ? 'ios-add-outline' : button.icon}
-              size={30}
+              size={45}
             />
             {(this.props.filter === button.category && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>{button.category}</Text>}
           </TouchableOpacity>
