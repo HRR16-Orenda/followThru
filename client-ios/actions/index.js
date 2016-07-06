@@ -9,6 +9,9 @@ import {
   AlertIOS
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { NativeModules } from 'react-native';
+var Location = NativeModules.RNLocation;
+Location.setDistanceFilter(15.0);
 
 // ******* ADD ITEM SECTION ******
 
@@ -17,11 +20,21 @@ export const mainButtonPressed = (buttonCategory) => {
   return (dispatch, getState) => {
     let userInput = getState().lists.userInput;
     let user = getState().auth.user;
+    // let locationAuthStatus = Location.getAuthorizationStatus();
     if (userInput) {
       let newItem = {
         user_id: user.id,
         title: userInput,
         category: buttonCategory
+      }
+      if(buttonCategory.toUpperCase() === "EAT"){
+        Location.getAuthorizationStatus(function(authorization) {
+          if(authorization !== "authorizedWhenInUse"){
+            console.log("Authorization!: ", authorization);
+          }
+          Location.requestWhenInUseAuthorization()
+        });
+        Location.startUpdatingLocation();
       }
       dispatch(updateFilter(buttonCategory));
       dispatch(addItemLocally(newItem));

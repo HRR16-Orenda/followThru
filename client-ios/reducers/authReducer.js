@@ -113,6 +113,14 @@ export default (state = {
         user: action.payload
     };
 
+    case types.LOCATION_UPDATE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          location: action.location
+        }
+    };
     // case types.AUTHORIZING_USER:
     //   return {
     //     ...state,
