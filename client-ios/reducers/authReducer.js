@@ -107,6 +107,12 @@ export default (state = {
         user: action.payload
     };
 
+    case types.UNFOLLOW_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload
+    };
+
     // case types.AUTHORIZING_USER:
     //   return {
     //     ...state,

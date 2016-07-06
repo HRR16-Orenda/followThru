@@ -163,9 +163,9 @@ module.exports = {
   unfollowUser: function (req, res) {
     var id = req.headers.user;
     var unfollowing = req.body.id;
-    user.unfollow(id, unfollowing, function (err, user) {
+    user.unfollow(id, unfollowing, function (err, relation) {
       if(err) {return res.sendStatus(400);}
-      res.sendStatus(201);
+      res.send(relation);
     })
   }
 }

@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
-import { selectInbox, selectFollowers, selectFollowings, searchUser, followUser } from '../actions/followScreenAction.js';
+import { selectInbox, selectFollowers, selectFollowings, searchUser, followUser, unfollowUser } from '../actions/followScreenAction.js';
 import FollowScreen from '../components/followScreen.js';
 import { generateDataSource } from '../services/helper.js';
 import _ from 'lodash';
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(followUser(user))
     },
     unfollowUser: (user) => {
-      console.log('unfollow ', user);
+      dispatch(unfollowUser(user))
     }
   };
 };

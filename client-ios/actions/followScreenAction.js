@@ -55,11 +55,11 @@ const followUserRequest = () => {
   }
 };
 
-const followUserSuccess = (users, updatedSearchResult) => {
+const followUserSuccess = (user, updatedSearchResult) => {
   console.log('action creator')
   return {
     type: types.FOLLOW_USER_SUCCESS,
-    payload: users,
+    payload: user,
     updatedSearchResult: updatedSearchResult
   }
 };
@@ -76,10 +76,10 @@ const unfollowUserRequest = () => {
   }
 };
 
-const unfollowUserSuccess = (users: Array<Object>) => {
+const unfollowUserSuccess = (user) => {
   return {
     type: types.UNFOLLOW_USER_SUCCESS,
-    payload: users
+    payload: user
   }
 };
 
@@ -170,6 +170,50 @@ export const followUser = (user: Object) => {
         }).catch((error) => {
           console.log(error);
           dispatch(followUserFailure());
+        })
+      }
+    })
+  }
+}
+
+export const unfollowUser = (user: Object) => {
+  return (dispatch, getState) => {
+    dispatch(unfollowUserRequest());
+    var id = getState().auth.user.id;
+    AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
+      if(err) {
+        console.log("error accessing JWT_TOKEN in local storage: ", err);
+      } else {
+        fetch('http://localhost:3000/api/users/following', {
+          method: 'DELETE',
+          headers: {
+            'User': id.toString(),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': JSON.parse(userToken).jwt
+          },
+          body: JSON.stringify({id: user.id})
+        }).then((response) => {
+          if(response.status === 401) {
+            throw new Error('Unauthorized User');
+          }
+          return response.json();
+        }).then((data) => {
+          console.log('pleaseplse', data);
+          // check to see if data is empty, which means
+          if(data.removedRow > 0) {
+            var updatedUser = _.assign({}, getState().auth.user);
+            updatedUser.followings = updatedUser.followings.filter(item => {
+              return item.id !== user.id;
+            })
+
+            dispatch(unfollowUserSuccess(updatedUser));
+          } else {
+            dispatch(unfollowUserFailure());
+          }
+        }).catch((error) => {
+          console.log(error);
+          dispatch(unfollowUserFailure());
         })
       }
     })

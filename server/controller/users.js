@@ -181,8 +181,8 @@ module.exports = {
       followedById: +id,
       followingId: +unfollowing
     }})
-      .then(function() {
-        callback(null);
+      .then(function(data) {
+        callback(null, {removedRow : data});
       })
       .catch(function(err) {
         callback(err);

@@ -54,18 +54,19 @@ router.post('/login', handler.loginUser);
 router.put('/:id', handler.updateOneUser);
 
 /**
+* handler for unfollowing one user
+* @input: user id as req.headers & target id as req.body
+* @return: <Object> - empty object
+**/
+router.delete('/following', passport.authenticate('jwt', { session: false }), handler.unfollowUser);
+
+/**
  * handler for deleting one user data
  * @input: user id as parameter(req.params.id)
  * @return: <Object> - empty object
 **/
 router.delete('/:id', handler.removeOneUser);
 
-/**
- * handler for unfollowing one user
- * @input: user id as req.headers & target id as req.body
- * @return: <Object> - empty object
-**/
-router.delete('/following', passport.authenticate('jwt', { session: false }), handler.unfollowUser);
 
 
 

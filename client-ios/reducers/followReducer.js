@@ -36,6 +36,11 @@ export default (state = {
         searchResult: action.updatedSearchResult
     };
 
+    case types.UNFOLLOW_USER_SUCCESS:
+      return {
+        ...state
+    };
+
     default:
       return state;
   };
