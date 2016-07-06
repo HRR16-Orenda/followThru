@@ -12,7 +12,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
     paddingTop: 100,
     paddingLeft: 20,
     paddingRight: 20,
@@ -29,7 +29,7 @@ export default StyleSheet.create({
   listContainer: {
     flex: 1,
     flexDirection: 'column',
-    // backgroundColor: '#F5FCFF',
+    // backgroundColor: '#FFFFFF',
     paddingTop: 30,
     paddingLeft: 20,
     paddingRight: 20,
@@ -80,7 +80,7 @@ export default StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // backgroundColor: '#F5FCFF',
+    // backgroundColor: '#FFFFFF',
     top: 190,
     marginTop: -30,
     justifyContent: 'center',
@@ -168,12 +168,13 @@ export default StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF',
+      backgroundColor: '#FFFFFF',
       padding: 10
   },
   listTitle: {
       fontSize: 20,
-      marginBottom: 8
+      marginBottom: 8,
+      fontWeight: 'bold'
   },
   listTitleCrossedOff: {
     fontSize: 20,
@@ -192,6 +193,7 @@ export default StyleSheet.create({
     backgroundColor: '#dddddd'
   },
   listView: {
+    backgroundColor: '#FFFFFF',
     // marginTop: 60,
   },
   loading: {
