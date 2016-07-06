@@ -31,7 +31,6 @@ export default class SingleListScreen extends Component {
   }
 
   renderItem(item) {
-    console.log('**** show it all to me ', item);
     let swipeBtns = [{
       text: 'Delete',
       backgroundColor: 'red',
