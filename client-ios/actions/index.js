@@ -6,12 +6,35 @@ import { reset } from 'redux-form';
 import _ from 'lodash';
 import {
   AsyncStorage,
-  AlertIOS
+  AlertIOS,
+  NativeModules,
+  DeviceEventEmitter
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { NativeModules } from 'react-native';
+
+//Device location module/methods
 var Location = NativeModules.RNLocation;
-Location.setDistanceFilter(15.0);
+Location.setDistanceFilter(5.0);
+let subscription = DeviceEventEmitter.addListener(
+    'locationUpdated',
+    (location) => {
+      AlertIOS("Location from device!: ", location);
+        /* Example location returned
+        {
+          coords: {
+            speed: -1,
+            longitude: -0.1337,
+            latitude: 51.50998,
+            accuracy: 5,
+            heading: -1,
+            altitude: 0,
+            altitudeAccuracy: -1
+          },
+          timestamp: 1446007304457.029
+        }
+        */
+    }
+);
 
 // ******* ADD ITEM SECTION ******
 
@@ -30,11 +53,11 @@ export const mainButtonPressed = (buttonCategory) => {
       if(buttonCategory.toUpperCase() === "EAT"){
         Location.getAuthorizationStatus(function(authorization) {
           if(authorization !== "authorizedWhenInUse"){
-            console.log("Authorization!: ", authorization);
-            Location.requestWhenInUseAuthorization()
+            Location.requestWhenInUseAuthorization();
           }
         });
         Location.startUpdatingLocation();
+
       }
       dispatch(updateFilter(buttonCategory));
       dispatch(addItemLocally(newItem));
@@ -65,6 +88,8 @@ export const toggleCheck = () => {
     type: types.TOGGLE_CHECK
   }
 }
+
+
 
 // REFACTORED version
 export const addItemToDatabase = (item) => {
