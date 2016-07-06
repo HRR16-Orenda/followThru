@@ -74,7 +74,8 @@ module.exports = {
   },
 
   getAllUsers: function (req, res) {
-    user.getAll(function (err, users) {
+    var id = req.headers.user;
+    user.getAll(id, function (err, users) {
       console.log('error!!', err);
       if(err) {return res.sendStatus(400);}
       var returnedUsers = users.map(function (user) {

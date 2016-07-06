@@ -191,11 +191,10 @@ export default StyleSheet.create({
     textDecorationLine: 'line-through'
   },
   separator: {
-       height: 1,
-       backgroundColor: '#dddddd'
+    height: 1,
+    backgroundColor: '#dddddd'
   },
   listView: {
-    backgroundColor: '#F5FCFF',
     // marginTop: 60,
   },
   loading: {
@@ -292,8 +291,8 @@ export default StyleSheet.create({
     fontFamily: 'Helvetica'
   },
   description: {
-    marginBottom: 20,
-    fontSize: 18,
+    marginBottom: 7,
+    fontSize: 14,
     textAlign: 'center',
     color: '#656565'
   },
@@ -394,6 +393,7 @@ export default StyleSheet.create({
   follower Screen Specific Styles
   *********************************/
   categoryContainer: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
   },
@@ -406,6 +406,9 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginLeft: 2,
+    marginTop: 5,
+    marginBottom: 5,
+    padding: 4,
     marginRight: 2,
     justifyContent: 'center',
     alignSelf: 'center'
@@ -421,13 +424,15 @@ export default StyleSheet.create({
     padding: 4,
     marginLeft: 2,
     marginRight: 2,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 5,
+    marginBottom: 5,
     fontSize: 18,
     borderWidth: 1,
     borderColor: '#48BBEC',
     borderRadius: 8,
-    color: '#48BBEC'
+    color: '#48BBEC',
+    justifyContent: 'center',
+    alignSelf: 'center'
   },
   followContainer: {
     flexDirection: 'row',
@@ -438,5 +443,27 @@ export default StyleSheet.create({
   },
   followInfo: {
     flex: 4
+  },
+  columnContainer: {
+    flex: 9,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    alignSelf: 'stretch'
+  },
+  followResultContainer: {
+    flex: 2,
+    marginTop: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#656565',
+    borderRadius: 8
+  },
+  followingListContainer: {
+    flex: 3,
+    marginTop: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#656565',
+    borderRadius: 8
   }
 });

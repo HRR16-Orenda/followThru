@@ -119,10 +119,26 @@ module.exports = {
     });
   },
 
-  getAll: function(callback) {
-    User.findAll()
+  getAll: function(id, callback) {
+    User.findAll({
+      include: [
+        {
+          model: User,
+          as: 'followings'
+        },
+        {
+          model: User,
+          as: 'followers'
+        }
+      ]
+    })
       .then(function(users) {
-        callback(null, users);
+        var refinedUser = users.filter(function(user) {
+          return user.followers.every(function(follower) {
+            return follower.id !== +id;
+          });
+        });
+        callback(null, refinedUser);
       })
       .catch(function(error) {
         callback(error);

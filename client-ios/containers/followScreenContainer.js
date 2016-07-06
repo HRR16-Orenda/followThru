@@ -3,7 +3,7 @@ import * as actions from '../actions/index.js';
 import { selectInbox, selectFollowers, selectFollowings, searchUser } from '../actions/followScreenAction.js';
 import FollowScreen from '../components/followScreen.js';
 import { generateDataSource } from '../services/helper.js';
-
+import _ from 'lodash';
 import { Actions } from 'react-native-router-flux';
 
 const mapDispatchToProps = (dispatch) => {
@@ -17,9 +17,9 @@ const mapDispatchToProps = (dispatch) => {
     selectFollowings: () => {
       dispatch(selectFollowings());
     },
-    submitHandler: (data: Object) => {
-      dispatch(searchUser(data.username));
-    }
+    submitHandler: _.debounce((data: string) => {
+      dispatch(searchUser(data));
+    }, 200)
   };
 };
 

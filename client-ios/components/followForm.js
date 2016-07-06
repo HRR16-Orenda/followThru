@@ -22,24 +22,25 @@ export default class followForm extends Component {
     const {
       fields,
       handleSubmit,
-      resetForm
+      resetForm,
+      onChange
     } = this.props;
-
     return (
         <View style={styles.flowRight}>
           <TextInput
             style={styles.searchInput}
+            onChangeText={onChange}
             {...fields.username}
             autoCapitalize="none"
           />
-          <TouchableHighlight
+          {/*<TouchableHighlight
             style={styles.categoryButton}
             onPress={handleSubmit}
-          >
+            >
             <Text style={styles.buttonText}>
-              Find
+            Find
             </Text>
-          </TouchableHighlight>
+          </TouchableHighlight>*/}
         </View>
     );
   }

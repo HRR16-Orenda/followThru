@@ -143,8 +143,8 @@ describe('API Test', function () {
           expect(res).to.be.ok;
           expect(res.body).to.be.a('array');
           expect(res.body.length).to.equal(2);
-          expect(res.body[0].username).to.equal('test');
-          expect(res.body[1].id).to.equal(2);
+          expect(res.body[0].username).to.equal('test2');
+          expect(res.body[0].id).to.equal(2);
           expect(res.body[0]).to.not.have.property('password');
           done();
         });
@@ -230,8 +230,8 @@ describe('API Test', function () {
           expect(res).to.be.ok;
           expect(res.body).to.be.a('array');
           expect(res.body.length).to.equal(2);
-          expect(res.body[0].username).to.equal('test');
-          expect(res.body[1].id).to.equal(2);
+          expect(res.body[0].username).to.equal('test2');
+          expect(res.body[0].id).to.equal(2);
           expect(res.body[0]).to.not.have.property('password');
           done();
         });

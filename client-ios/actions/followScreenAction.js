@@ -47,6 +47,7 @@ const searchUserFailure = () => {
 export const searchUser = (username: string) => {
   return (dispatch, getState) => {
     dispatch(searchUserRequest());
+    var id = getState().auth.user.id;
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
@@ -54,6 +55,7 @@ export const searchUser = (username: string) => {
         fetch('http://localhost:3000/api/users/', {
           method: 'GET',
           headers: {
+            'User': id.toString(),
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': JSON.parse(userToken).jwt

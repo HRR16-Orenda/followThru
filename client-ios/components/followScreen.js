@@ -22,20 +22,45 @@ export default class FollowScreen extends Component {
 
   _renderItem(item) {
     return (
-      <View
-        style={styles.followContainer}
-      >
-        <Text style={styles.followInfo}>
-          {item.username}
-        </Text>
-        <TouchableOpacity
-          onPress = {() => {console.log('unfollow!!!')}}
-          style={styles.followIcon}
+      <View>
+        <View
+          style={styles.followContainer}
         >
-          <Text>
-            Unfollow
+          <Text style={styles.followInfo}>
+            {item.username}
           </Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress = {() => {console.log('unfollow!!!')}}
+            style={styles.followIcon}
+          >
+            <Text>
+              Unfollow
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={ styles.separator } />
+      </View>
+    );
+  }
+
+  _renderSearchItem(item) {
+    return (
+      <View>
+        <View
+          style={styles.followContainer}
+        >
+          <Text style={styles.followInfo}>
+            {item.username}
+          </Text>
+          <TouchableOpacity
+            onPress = {() => {console.log('follow!!!')}}
+            style={styles.followIcon}
+          >
+            <Text>
+              Follow
+            </Text>
+          </TouchableOpacity>
+        </View>
         <View style={ styles.separator } />
       </View>
     );
@@ -43,22 +68,32 @@ export default class FollowScreen extends Component {
 
   _renderList(data) {
     return (
-      <View>
+      <View style={styles.columnContainer}>
         {this.props.follow.selection === 'followings' && (
-          <Form onSubmit={this.props.submitHandler}/>
+          <View style={styles.followResultContainer}>
+            <Form onChange={this.props.submitHandler}/>
+            <Text style={styles.description}>
+              Search Results
+            </Text>
+            <ListView
+              dataSource={this.props.searchResult}
+              renderRow={this._renderSearchItem.bind(this)}
+              style={styles.listView}
+              enableEmptySections={true}
+            />
+          </View>
+        )}
+        <View style={styles.followingListContainer}>
+          <Text style={styles.description}>
+            List
+          </Text>
           <ListView
-            dataSource={this.props.searchResult}
+            dataSource={data}
             renderRow={this._renderItem.bind(this)}
             style={styles.listView}
             enableEmptySections={true}
           />
-        )}
-        <ListView
-          dataSource={data}
-          renderRow={this._renderItem.bind(this)}
-          style={styles.listView}
-          enableEmptySections={true}
-        />
+        </View>
       </View>
     )
   }
@@ -103,7 +138,7 @@ export default class FollowScreen extends Component {
               </Text>
             </TouchableOpacity>
           </View>
-          <View>
+          <View style={styles.columnContainer}>
             {/* Default Text */}
             {follow.selection === 'inbox' && this._renderList(inbox)}
             {follow.selection === 'followers' && this._renderList(followers)}
