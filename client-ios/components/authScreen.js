@@ -9,7 +9,8 @@ import {
   ActivityIndicatorIOS,
   Image,
   StatusBar,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
@@ -41,6 +42,8 @@ export default class AuthScreen extends Component {
 
   componentWillMount = () => {
     this.props.verifyUserToken();
+    Keyboard.addListener('keyboardWillShow', this.props.keyboardIsShowing)
+    Keyboard.addListener('keyboardWillHide', this.props.keyboardIsNotShowing)
   }
 
   componentWillUnmount = () => {
@@ -69,28 +72,28 @@ export default class AuthScreen extends Component {
         <TouchableWithoutFeedback
           onPress={dismissKeyboard}
         >
-        <View style={ styles.footer }>
-          <Image source={require('../assets/gradient-login2.jpg')} style={styles.image}>
+          <View style={ styles.footer }>
+            <Image source={require('../assets/gradient-login2.jpg')} style={styles.image}>
 
-          <View>
-            <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>
-            { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
-            { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
-            { spinner }
-            <AuthForm formType={formType} onSubmit={handler}/>
+            <View style = {this.props.isKeyboardShowing ? styles.signUpContainerWithKeyboard : styles.signUpContainerWithoutKeyboard}>
+              <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>
+              { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
+              { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
+              { spinner }
+              <AuthForm formType={formType} onSubmit={handler}/>
+            </View>
+
+            {formType === 'login' ?
+              <View>
+                <Text style={styles.signUpPrompt}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignup()}>Sign Up.</Text></Text>
+              </View>
+            :
+              <View>
+                <Text style={styles.signUpPrompt}>Already have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignin()}>Sign In.</Text></Text>
+              </View>
+            }
+            </Image>
           </View>
-
-          {formType === 'login' ?
-            <View>
-              <Text style={styles.signUpPrompt}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignup()}>Sign Up.</Text></Text>
-            </View>
-          :
-            <View>
-              <Text style={styles.signUpPrompt}>Already have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignin()}>Sign In.</Text></Text>
-            </View>
-          }
-          </Image>
-        </View>
         </TouchableWithoutFeedback>
       );
     } else if(!isFetching && isAuthenticated){

@@ -45,6 +45,12 @@ const mapDispatchToProps = (dispatch) => {
      */
     verifyUserToken: () => {
     dispatch(actions.verifyUserToken());
+    },
+    keyboardIsShowing: () => {
+      dispatch(actions.keyboardIsShowing());
+    },
+    keyboardIsNotShowing: () => {
+      dispatch(actions.keyboardIsNotShowing());
     }
   }
 };
@@ -56,7 +62,8 @@ const mapStateToProps = (state, ownProps) => {
     loginError: state.lists.ui.loginError,
     loginErrorMsg: state.lists.ui.loginErrorMsg,
     signupError: state.lists.ui.signupError,
-    signupErrorMsg: state.lists.ui.signupErrorMsg
+    signupErrorMsg: state.lists.ui.signupErrorMsg,
+    isKeyboardShowing: state.lists.ui.isKeyboardShowing
   }
 }
 

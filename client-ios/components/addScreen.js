@@ -7,8 +7,7 @@ import {
   Text,
   View,
   TextInput,
-  Keyboard,
-  DeviceEventEmitter
+  Keyboard
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import dismissKeyboard from 'react-native-dismiss-keyboard';

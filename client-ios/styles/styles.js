@@ -216,11 +216,17 @@ export default StyleSheet.create({
   /*********************************
   Signup Screen Specific Styles
   *********************************/
-  signUpContainer: {
+  signUpContainerWithKeyboard: {
+    justifyContent: 'center',
+    marginTop: -80,
+    padding: 20,
+    // backgroundColor: '#ffffff',
+  },
+  signUpContainerWithoutKeyboard: {
     justifyContent: 'center',
     marginTop: 50,
     padding: 20,
-    backgroundColor: '#ffffff',
+    // backgroundColor: '#ffffff',
   },
   signUpTitle: {
     fontSize: 30,
