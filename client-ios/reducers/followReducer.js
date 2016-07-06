@@ -30,6 +30,12 @@ export default (state = {
         searchResult: action.payload
     };
 
+    case types.FOLLOW_USER_SUCCESS:
+      return {
+        ...state,
+        searchResult: action.updatedSearchResult
+    };
+
     default:
       return state;
   };

@@ -21,6 +21,7 @@ export default class FollowScreen extends Component {
   }
 
   _renderItem(item) {
+    const { unfollowUser } = this.props;
     return (
       <View>
         <View
@@ -30,7 +31,7 @@ export default class FollowScreen extends Component {
             {item.username}
           </Text>
           <TouchableOpacity
-            onPress = {() => {console.log('unfollow!!!')}}
+            onPress = {unfollowUser.bind(null, item)}
             style={styles.followIcon}
           >
             <Text>
@@ -44,6 +45,7 @@ export default class FollowScreen extends Component {
   }
 
   _renderSearchItem(item) {
+    const { followUser } = this.props;
     return (
       <View>
         <View
@@ -53,7 +55,7 @@ export default class FollowScreen extends Component {
             {item.username}
           </Text>
           <TouchableOpacity
-            onPress = {() => {console.log('follow!!!')}}
+            onPress = {followUser.bind(null, item)}
             style={styles.followIcon}
           >
             <Text>

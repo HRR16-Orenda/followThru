@@ -99,7 +99,12 @@ export default (state = {
         ...state,
         isAuthenticated: false,
         isFetching: action.isFetching,
+    };
 
+    case types.FOLLOW_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload
     };
 
     // case types.AUTHORIZING_USER:

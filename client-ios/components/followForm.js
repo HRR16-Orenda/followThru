@@ -33,14 +33,6 @@ export default class followForm extends Component {
             {...fields.username}
             autoCapitalize="none"
           />
-          {/*<TouchableHighlight
-            style={styles.categoryButton}
-            onPress={handleSubmit}
-            >
-            <Text style={styles.buttonText}>
-            Find
-            </Text>
-          </TouchableHighlight>*/}
         </View>
     );
   }

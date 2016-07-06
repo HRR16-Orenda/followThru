@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var handler = require('../helper/handler.js');
+var passport = require('passport')
 
 /**
  * handler for getting all users data
@@ -35,7 +36,7 @@ router.post('/signup/', handler.signupUser);
  * @input: user is as req.headers & target username as req.body
  * @return: <Object> - empty object
 **/
-router.post('/following', handler.followUser);
+router.post('/following', passport.authenticate('jwt', { session: false }), handler.followUser);
 
 /**
  * handler for logging in a user
@@ -64,7 +65,7 @@ router.delete('/:id', handler.removeOneUser);
  * @input: user id as req.headers & target id as req.body
  * @return: <Object> - empty object
 **/
-router.delete('/following', handler.unfollowUser);
+router.delete('/following', passport.authenticate('jwt', { session: false }), handler.unfollowUser);
 
 
 

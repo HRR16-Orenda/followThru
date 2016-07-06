@@ -1,6 +1,7 @@
+// @flow
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
-import { selectInbox, selectFollowers, selectFollowings, searchUser } from '../actions/followScreenAction.js';
+import { selectInbox, selectFollowers, selectFollowings, searchUser, followUser } from '../actions/followScreenAction.js';
 import FollowScreen from '../components/followScreen.js';
 import { generateDataSource } from '../services/helper.js';
 import _ from 'lodash';
@@ -19,7 +20,13 @@ const mapDispatchToProps = (dispatch) => {
     },
     submitHandler: _.debounce((data: string) => {
       dispatch(searchUser(data));
-    }, 200)
+    }, 200),
+    followUser: (user: Object) => {
+      dispatch(followUser(user))
+    },
+    unfollowUser: (user) => {
+      console.log('unfollow ', user);
+    }
   };
 };
 

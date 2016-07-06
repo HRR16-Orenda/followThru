@@ -148,19 +148,20 @@ module.exports = {
   /**
    * controller for following user
    * @param id: <String> - user_id of current user
-   * @param following: <String> - name of target user
+   * @param following: <String> - id of target user
    * @param callback: <Function> - callback function
    * @return: null
   **/
   follow: function(id, following, callback) {
     User.findById(id)
+      // .then(function(user) {
+      //   return User.findById(+following);
+      // })
       .then(function(user) {
-        return User.findOne({where: {username: following}});
-      })
-      .then(function(data) {
-        return user.addFollowing(data);
+        return user.addFollowing(following);
       })
       .then(function(relationShip) {
+        console.log(id, following, relationShip);
         callback(null, relationShip);
       })
       .catch(function(err) {
@@ -171,14 +172,14 @@ module.exports = {
   /**
    * controller for unfollowing user
    * @param id: <String> - user_id of current user
-   * @param following: <String> - user_id of target user
+   * @param unfollowing: <String> - id of target user
    * @param callback: <Function> - callback function
    * @return: null
   **/
-  unfollow: function(id, following, callback) {
+  unfollow: function(id, unfollowing, callback) {
     Follower.destroy({where : {
       followedById: +id,
-      followingId: +following
+      followingId: +unfollowing
     }})
       .then(function() {
         callback(null);
