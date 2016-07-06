@@ -21,21 +21,32 @@ export default class FollowScreen extends Component {
   }
 
   _renderItem(item) {
-    const { unfollowUser } = this.props;
+    console.log(item);
+    const { unfollowUser, acceptRecommend, selection } = this.props;
+    let handler;
+    if(selection === 'followings') {
+      handler = unfollowUser.bind(null, item);
+    } else if(selection === 'followers') {
+      handler = null;
+    } else {
+      handler = acceptRecommend.bind(null, item);
+    }
     return (
       <View>
         <View
           style={styles.followContainer}
         >
           <Text style={styles.followInfo}>
-            {item.username}
+            {item.username || item.title + '(' + item.category + ')'}
           </Text>
           <TouchableOpacity
-            onPress = {unfollowUser.bind(null, item)}
+            onPress = {handler}
             style={styles.followIcon}
           >
             <Text>
-              Unfollow
+              {selection === 'followings' && 'Unfollow'}
+              {selection === 'followers' && null}
+              {selection === 'inbox' && 'Add'}
             </Text>
           </TouchableOpacity>
         </View>

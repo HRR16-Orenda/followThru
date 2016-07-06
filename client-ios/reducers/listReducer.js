@@ -275,6 +275,15 @@ export default (state = {
       }
     }
 
+    case types.ACCEPT_RECOMMEND_SUCCESS:
+    return {
+      ...state,
+      lists: {
+        category: state.lists.category,
+        allItems: action.payload
+      }
+    }
+
     default:
     return state;
   };

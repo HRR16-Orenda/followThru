@@ -335,9 +335,7 @@ const fetchInitialDatabase = () => {
           }
         })
         .then((responseData) => {
-          var responseData = responseData.filter(item => {
-            return item.recommended_by_id === null;
-          });
+
           dispatch(fetchDatabaseListsSuccess(responseData))
         })
         .catch((error) => {

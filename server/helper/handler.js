@@ -64,6 +64,11 @@ module.exports = {
     } )
   },
 
+  /**
+   * handler for updating item
+   * @input: user id as req.params.id & new data as req.body
+   * @return: updated item
+  **/
   updateOneItem: function(req, res) {
     var id = req.params.id;
     var newProps = req.body;
@@ -167,5 +172,22 @@ module.exports = {
       if(err) {return res.sendStatus(400);}
       res.send(relation);
     })
-  }
+  },
+
+  /**
+   * handler for sharing item
+   * @input: item to be shared as req.body.item & id of users who get recommendation as req.body.users
+   * @return: null
+  **/
+  shareItem: function(req, res) {
+    var itemToBeShared = req.body.item;
+    var users = req.body.users;
+    delete itemToBeShared.id;
+    delete itemToBeShared.created_at;
+    delete itemToBeShared.updated_at;
+    item.shareItem(itemToBeShared, users, function (err, data) {
+      if(err) {return res.sendStatus(400);}
+      res.send(data);
+    });
+  },
 }

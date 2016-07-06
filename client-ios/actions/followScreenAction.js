@@ -89,6 +89,25 @@ const unfollowUserFailure = () => {
   }
 };
 
+const acceptRecommendRequest = () => {
+  return {
+    type: types.ACCEPT_RECOMMEND_REQUEST
+  }
+};
+
+const acceptRecommendSuccess = (updatedList) => {
+  return {
+    type: types.ACCEPT_RECOMMEND_SUCCESS,
+    payload: updatedList
+  }
+};
+
+const acceptRecommendFailure = () => {
+  return {
+    type: types.ACCEPT_RECOMMEND_FAILURE
+  }
+};
+
 /************************************************************
   Thunk Action Creator
 *************************************************************/
@@ -156,6 +175,7 @@ export const followUser = (user: Object) => {
           // check to see if data is empty, which means
           if(data.length > 0) {
             var updatedUser = _.assign({}, getState().auth.user);
+            updatedUser.followings = updatedUser.followings ? updatedUser.followings : [];
             updatedUser.followings.push(user);
 
             var updatedSearchResult = getState().follow.searchResult.slice();
@@ -214,6 +234,54 @@ export const unfollowUser = (user: Object) => {
         }).catch((error) => {
           console.log(error);
           dispatch(unfollowUserFailure());
+        })
+      }
+    })
+  }
+}
+
+export const acceptRecommend = (item: Object) => {
+  return (dispatch, getState) => {
+    dispatch(acceptRecommendRequest());
+    var id = item.id;
+    item.recommended_by_id = null;
+    delete item.created_at;
+    delete item.updated_at;
+    AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
+      if(err) {
+        console.log("error accessing JWT_TOKEN in local storage: ", err);
+      } else {
+        fetch('http://localhost:3000/api/items/' + id, {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': JSON.parse(userToken).jwt
+          },
+          body: JSON.stringify(item)
+        }).then((response) => {
+          if(response.status === 401) {
+            throw new Error('Unauthorized User');
+          }
+          return response.json();
+        }).then((data) => {
+          console.log('wowwowwow', data);
+          // check to see if data is empty, which means
+          if(data.recommended_by_id === null) {
+            var lists = getState().lists.lists.allItems.slice();
+            lists = lists.map(item => {
+              if(+item.id === +id) {
+                item.recommended_by_id = null;
+              }
+              return item;
+            });
+            dispatch(acceptRecommendSuccess(lists));
+          } else {
+            dispatch(acceptRecommendFailure());
+          }
+        }).catch((error) => {
+          console.log(error);
+          dispatch(acceptRecommendFailure());
         })
       }
     })
