@@ -24,10 +24,15 @@ export default class AddScreen extends Component {
   }
 
   render() {
-
+    const { clearSuggestion } = this.props;
     return (
       <TouchableWithoutFeedback
-        onPress={dismissKeyboard}
+        onPress={() => {
+            dismissKeyboard();
+            clearSuggestion();
+          }
+        }
+
       >
         <View style={styles.container}>
           <Form />
