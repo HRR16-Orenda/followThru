@@ -17,8 +17,8 @@ export default class ListItem extends Component {
   render() {
     return (
       <View style={ styles.listContainer }>
-        {/*<Image source={{uri: this.props.thumbnail}}
-        style={styles.thumbnail} />*/}
+        <Image source={{uri: this.props.itemImage}}
+        style={styles.thumbnail} />
         <View style={ styles.rightContainer }>
           {this.props.completed ?
             <Text style={ styles.listTitleCrossedOff }>{ this.props.itemTitle }</Text>

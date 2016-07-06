@@ -38,8 +38,9 @@ export default StyleSheet.create({
   },
 
   buttonImage: {
-    height: 50,
-    width: 50,
+    height: 45,
+    width: 45,
+    marginBottom: 3,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -31,6 +31,7 @@ export default class SingleListScreen extends Component {
   }
 
   renderItem(item) {
+    console.log('**** show it all to me ', item);
     let swipeBtns = [{
       text: 'Delete',
       backgroundColor: 'red',
@@ -49,6 +50,7 @@ export default class SingleListScreen extends Component {
               itemTitle={ item.title }
             itemContent={ item.content }
               completed={ item.completed }
+              itemImage={ item.img }
             />
             <View style={ styles.separator } />
           </View>
