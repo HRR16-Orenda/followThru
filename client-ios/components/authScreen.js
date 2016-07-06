@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   AlertIOS,
   ActivityIndicatorIOS,
-  Image
+  Image,
+  StatusBar
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -64,6 +65,7 @@ export default class AuthScreen extends Component {
     if(!isFetching && !isAuthenticated){
       return (
         <View style={ styles.footer }>
+          <StatusBar hidden={true}/>
           <Image source={require('../assets/gradient-login2.jpg')} style={styles.image}>
 
           <View>
@@ -76,11 +78,11 @@ export default class AuthScreen extends Component {
 
           {formType === 'login' ?
             <View>
-              <Text style={styles.signUpPrompt}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignup()}>Sign Up.</Text></Text>
+              <Text style={styles.signUpPrompt} onPress={() => this.props.goToSignup()}>Don't have an account? <Text style={{fontWeight: 'bold'}} >Sign Up.</Text></Text>
             </View>
           :
             <View>
-              <Text style={styles.signUpPrompt}>Already have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignin()}>Sign In.</Text></Text>
+              <Text style={styles.signUpPrompt} onPress={() => this.props.goToSignin()}>Already have an account? <Text style={{fontWeight: 'bold'}} >Sign In.</Text></Text>
             </View>
           }
           </Image>
