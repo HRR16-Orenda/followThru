@@ -11,14 +11,11 @@ import {
   Button
 } from 'react-native';
 
+import Swipeout from 'react-native-swipeout';
 import Modal from './modal.js';
 import { Actions } from 'react-native-router-flux';
 import ListItem from './listItem.js';
 import styles from '../styles/styles.js'
-
-import Swipeout from 'react-native-swipeout';
-
-
 
 export default class SingleListScreen extends Component {
   constructor(props) {
@@ -43,21 +40,19 @@ export default class SingleListScreen extends Component {
     }];
     return (
       <Swipeout right={swipeBtns}>
-      <TouchableOpacity
-        onLongPress={this._setModalVisible.bind(this, true, item)}
-        onPress = {() => {this.props.toggleItem(item)}}
-      >
-        <View>
-          <ListItem
-            itemTitle={ item.title }
+        <TouchableOpacity
+          onLongPress={this._setModalVisible.bind(this, true, item)}
+          onPress = {() => {this.props.toggleItem(item)}}
+        >
+          <View>
+            <ListItem
+              itemTitle={ item.title }
             itemContent={ item.content }
-            completed={ item.completed }
-            deleteListItem = { this.props.deleteListItem }
-            itemObject = { item }
-          />
-          <View style={ styles.separator } />
-        </View>
-      </TouchableOpacity>
+              completed={ item.completed }
+            />
+            <View style={ styles.separator } />
+          </View>
+        </TouchableOpacity>
       </Swipeout>
     );
     }
