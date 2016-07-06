@@ -7,11 +7,15 @@ import {
   Text,
   View,
   TextInput,
+  Keyboard,
+  DeviceEventEmitter
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import dismissKeyboard from 'react-native-dismiss-keyboard';
 import Form from '../containers/FormContainer.js';
 import styles from '../styles/styles.js';
 import MainButtons from '../containers/MainButtonsContainer.js'
+
 
 
 export default class AddScreen extends Component {
@@ -19,17 +23,11 @@ export default class AddScreen extends Component {
     super(props);
   }
 
-  // componentWillMount = () => {
-  //   if(!this.props.isAuthorized){
-  //     Actions.loginScreen()
-  //   }
-  // }
-
   render() {
-    const { clearSuggestion } = this.props;
+
     return (
       <TouchableWithoutFeedback
-        onPress={clearSuggestion}
+        onPress={dismissKeyboard}
       >
         <View style={styles.container}>
           <Form />
