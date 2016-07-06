@@ -7,9 +7,12 @@ import {
   TouchableOpacity,
   AlertIOS,
   ActivityIndicatorIOS,
-  Image
+  Image,
+  StatusBar,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import dismissKeyboard from 'react-native-dismiss-keyboard';
 
 import styles from '../styles/styles.js';
 import AuthForm from '../containers/AuthFormContainer.js';
@@ -63,6 +66,9 @@ export default class AuthScreen extends Component {
 
     if(!isFetching && !isAuthenticated){
       return (
+        <TouchableWithoutFeedback
+          onPress={dismissKeyboard}
+        >
         <View style={ styles.footer }>
           <Image source={require('../assets/gradient-login2.jpg')} style={styles.image}>
 
@@ -85,6 +91,7 @@ export default class AuthScreen extends Component {
           }
           </Image>
         </View>
+        </TouchableWithoutFeedback>
       );
     } else if(!isFetching && isAuthenticated){
       return (
