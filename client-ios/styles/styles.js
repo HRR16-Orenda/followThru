@@ -37,6 +37,13 @@ export default StyleSheet.create({
     resizeMode: 'stretch'
   },
 
+  buttonImage: {
+    height: 50,
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   /*********************************
   Add Screen Specific Styles
   *********************************/
