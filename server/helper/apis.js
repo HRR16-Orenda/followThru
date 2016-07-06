@@ -134,7 +134,7 @@ module.exports.spotify = function(newItem) {
     var refinedData = {
       url: data[0].album.external_urls.spotify,
       img: data[0].album.images[1].url,
-      content: data[0].name + data[0].artists[0].name
+      content: data[0].artists[0].name
     }
 
     _.assign(newItem, refinedData);
