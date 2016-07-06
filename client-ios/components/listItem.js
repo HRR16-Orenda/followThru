@@ -18,7 +18,7 @@ export default class ListItem extends Component {
   render() {
     return (
       <View style={ styles.listContainer }>
-        {this.props.itemImage ?
+        {this.props.itemImage  && !this.props.completed ?
           <Image source={{uri: this.props.itemImage}}
           style={styles.thumbnail} />
           :
