@@ -104,26 +104,6 @@ export default class SingleListScreen extends Component {
                   </View>
                 </TouchableOpacity>
               }
-              {deleteConfirm ?
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={pressHandler.bind(null, modal.item)}
-                  underlayColor='black'
-                >
-                  <Text style={styles.buttonErrorText}>
-                    Are you sure?
-                  </Text>
-                </TouchableOpacity> :
-                  <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={deleteConfirmOn}
-                    underlayColor='black'
-                  >
-                    <Text style={styles.buttonText}>
-                      Delete item from the list
-                    </Text>
-                  </TouchableOpacity>
-                }
                 <TouchableOpacity
                   style={styles.modalButton}
                   onPress={toggler.bind(null, false)}

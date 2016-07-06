@@ -12,7 +12,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteListItem: (item) => {
       dispatch(actions.deleteListItem(item));
-      dispatch(modalClose());
     },
     toggleItem: (item) => {
       dispatch(actions.toggleItem(item));
@@ -22,12 +21,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     modalClose: () => {
       dispatch(modalClose());
-    },
-    deleteConfirmOn: () => {
-      dispatch(deleteConfirmOn());
-    },
-    deleteConfirmOff: () => {
-      dispatch(deleteConfirmOff());
     },
     dateChange: (date) => {
       dispatch(dateChange(date));
