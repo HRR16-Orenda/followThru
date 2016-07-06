@@ -50,6 +50,7 @@
     "react-native-calendar-reminders": "0.0.6",
     "react-native-material-kit": "^0.3.2",
     "react-native-router-flux": "^3.30.0",
+    "react-native-swipeout": "git+https://github.com/magrinj/react-native-swipeout",
     "react-native-vector-icons": "^2.0.3",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",

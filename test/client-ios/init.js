@@ -8,6 +8,7 @@ require("babel-register")({
         "/node_modules/react-native-vector-icons/*.js",
         "/node_modules/react-native-vector-icons/lib/*.js",
         "/node_modules/react-native-calendar-reminders/*.js",
+        "/node_modules/react-native-swipeout/*.js",
         "/client-ios/**/*",
         "/test/**/*",
     ]

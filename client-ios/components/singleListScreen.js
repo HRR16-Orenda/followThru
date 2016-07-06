@@ -11,6 +11,7 @@ import {
   Button
 } from 'react-native';
 
+import Swipeout from 'react-native-swipeout';
 import Modal from './modal.js';
 import { Actions } from 'react-native-router-flux';
 import ListItem from './listItem.js';
@@ -30,20 +31,29 @@ export default class SingleListScreen extends Component {
   }
 
   renderItem(item) {
+    let swipeBtns = [{
+      text: 'Delete',
+      backgroundColor: 'red',
+      // update this underlayColor
+      // underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
+      onPress: () => { this.props.deleteListItem(item) }
+    }];
     return (
-      <TouchableOpacity
-        onLongPress={this._setModalVisible.bind(this, true, item)}
-        onPress = {() => {this.props.toggleItem(item)}}
-      >
-        <View>
-          <ListItem
-            itemTitle={ item.title }
+      <Swipeout right={swipeBtns}>
+        <TouchableOpacity
+          onLongPress={this._setModalVisible.bind(this, true, item)}
+          onPress = {() => {this.props.toggleItem(item)}}
+        >
+          <View>
+            <ListItem
+              itemTitle={ item.title }
             itemContent={ item.content }
-            completed={ item.completed}
-          />
-          <View style={ styles.separator } />
-        </View>
-      </TouchableOpacity>
+              completed={ item.completed }
+            />
+            <View style={ styles.separator } />
+          </View>
+        </TouchableOpacity>
+      </Swipeout>
     );
     }
 
