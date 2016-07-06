@@ -97,22 +97,22 @@ export default class SingleListScreen extends Component {
                     <Text style={styles.buttonText}>Add to Reminders</Text>
                   </View>
                 </TouchableOpacity>
-                : <TouchableOpacity
-                  onPress={this.handleClick.bind(this)}>
-                  <View style={styles.modalButton}>
-                    <Text style={styles.buttonText}>Open in browser</Text>
-                  </View>
-                </TouchableOpacity>
+                  : <TouchableOpacity
+                    onPress={this.handleClick.bind(this)}>
+                    <View style={styles.modalButton}>
+                      <Text style={styles.buttonText}>Open in browser</Text>
+                    </View>
+                  </TouchableOpacity>
               }
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={toggler.bind(null, false)}
-                  underlayColor='black'
-                >
-                  <Text style={styles.buttonText}>
-                    Close Modal Screen
-                  </Text>
-                </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={toggler.bind(null, false)}
+                underlayColor='black'
+              >
+                <Text style={styles.buttonText}>
+                  Close Modal Screen
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </TouchableWithoutFeedback>

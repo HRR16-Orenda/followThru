@@ -68,5 +68,18 @@ module.exports = {
     .catch(function(error) {
       callback(error);
     })
+  },
+
+  shareItem: function(item, users, callback) {
+    var itemsToBeUpdated = users.map(function(user) {
+      return _.assign({}, item, {user_id: user})
+    });
+    Item.bulkCreate(itemsToBeUpdated)
+      .then(function(items) {
+        callback(null, items);
+      })
+      .catch(function(err) {
+        callback(error);
+      })
   }
 };

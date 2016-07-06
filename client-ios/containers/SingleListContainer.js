@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
-import { modalOpen, modalClose, deleteConfirmOn, deleteConfirmOff, dateChange } from '../actions/listScreenAction.js';
+import { modalOpen, modalClose, deleteConfirmOn, deleteConfirmOff, dateChange, shareItem } from '../actions/listScreenAction.js';
 import SingleListScreen from '../components/singleListScreen.js';
 import { generateDataSource } from '../services/helper.js';
 
@@ -24,13 +24,17 @@ const mapDispatchToProps = (dispatch) => {
     },
     dateChange: (date) => {
       dispatch(dateChange(date));
+    },
+    shareItem: (item) => {
+      console.log(item);
+      dispatch(shareItem(item));
     }
   };
 };
 
 const mapStateToProps = (state, ownProps) => {
   let filteredItems = state.lists.lists.allItems.filter(item => {
-    return item.category === state.lists.filter;
+    return item.category === state.lists.filter && item.recommended_by_id === null;
   });
   return {
     user: state.auth.user.username,

@@ -31,13 +31,20 @@ export default class SingleListScreen extends Component {
   }
 
   renderItem(item) {
-    let swipeBtns = [{
-      text: 'Delete',
-      backgroundColor: 'red',
-      // update this underlayColor
-      // underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
-      onPress: () => { this.props.deleteListItem(item) }
-    }];
+    let swipeBtns = [
+      {
+        text: 'Delete',
+        backgroundColor: 'red',
+        // update this underlayColor
+        // underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
+        onPress: () => { this.props.deleteListItem(item) }
+      },
+      {
+        text: 'Share',
+        backgroundColor: 'blue',
+        onPress: () => { this.props.shareItem(item) }
+      }
+    ];
     return (
       <Swipeout right={swipeBtns}>
         <TouchableOpacity

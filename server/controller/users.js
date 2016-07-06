@@ -119,10 +119,26 @@ module.exports = {
     });
   },
 
-  getAll: function(callback) {
-    User.findAll()
+  getAll: function(id, callback) {
+    User.findAll({
+      include: [
+        {
+          model: User,
+          as: 'followings'
+        },
+        {
+          model: User,
+          as: 'followers'
+        }
+      ]
+    })
       .then(function(users) {
-        callback(null, users);
+        var refinedUser = users.filter(function(user) {
+          return user.followers.every(function(follower) {
+            return follower.id !== +id;
+          });
+        });
+        callback(null, refinedUser);
       })
       .catch(function(error) {
         callback(error);
@@ -132,19 +148,20 @@ module.exports = {
   /**
    * controller for following user
    * @param id: <String> - user_id of current user
-   * @param following: <String> - name of target user
+   * @param following: <String> - id of target user
    * @param callback: <Function> - callback function
    * @return: null
   **/
   follow: function(id, following, callback) {
     User.findById(id)
+      // .then(function(user) {
+      //   return User.findById(+following);
+      // })
       .then(function(user) {
-        return User.findOne({where: {username: following}});
-      })
-      .then(function(data) {
-        return user.addFollowing(data);
+        return user.addFollowing(following);
       })
       .then(function(relationShip) {
+        console.log(id, following, relationShip);
         callback(null, relationShip);
       })
       .catch(function(err) {
@@ -155,17 +172,17 @@ module.exports = {
   /**
    * controller for unfollowing user
    * @param id: <String> - user_id of current user
-   * @param following: <String> - user_id of target user
+   * @param unfollowing: <String> - id of target user
    * @param callback: <Function> - callback function
    * @return: null
   **/
-  unfollow: function(id, following, callback) {
+  unfollow: function(id, unfollowing, callback) {
     Follower.destroy({where : {
       followedById: +id,
-      followingId: +following
+      followingId: +unfollowing
     }})
-      .then(function() {
-        callback(null);
+      .then(function(data) {
+        callback(null, {removedRow : data});
       })
       .catch(function(err) {
         callback(err);

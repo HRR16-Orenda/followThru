@@ -64,6 +64,11 @@ module.exports = {
     } )
   },
 
+  /**
+   * handler for updating item
+   * @input: user id as req.params.id & new data as req.body
+   * @return: updated item
+  **/
   updateOneItem: function(req, res) {
     var id = req.params.id;
     var newProps = req.body;
@@ -74,7 +79,8 @@ module.exports = {
   },
 
   getAllUsers: function (req, res) {
-    user.getAll(function (err, users) {
+    var id = req.headers.user;
+    user.getAll(id, function (err, users) {
       console.log('error!!', err);
       if(err) {return res.sendStatus(400);}
       var returnedUsers = users.map(function (user) {
@@ -142,29 +148,46 @@ module.exports = {
 
   /**
    * handler for following user
-   * @input: user is as req.headers & target username as req.body
+   * @input: user id as req.headers & target user id as req.body.id
    * @return: null
   **/
   followUser: function (req, res) {
     var id = req.headers.user;
-    var following = req.body;
-    user.follow(id, following, function (err, user) {
+    var following = req.body.id;
+    user.follow(id, following, function (err, relation) {
       if(err) {return res.sendStatus(400);}
-      res.sendStatus(201);
+      res.send(relation);
     })
   },
 
   /**
    * handler for unfollowing user
-   * @input: user is as req.headers & target username as req.body
+   * @input: user id as req.headers & target user id as req.body.id
    * @return: null
   **/
   unfollowUser: function (req, res) {
     var id = req.headers.user;
-    var unfollowing = req.body;
-    user.unfollow(id, following, function (err, user) {
+    var unfollowing = req.body.id;
+    user.unfollow(id, unfollowing, function (err, relation) {
       if(err) {return res.sendStatus(400);}
-      res.sendStatus(201);
+      res.send(relation);
     })
-  }
+  },
+
+  /**
+   * handler for sharing item
+   * @input: item to be shared as req.body.item & id of users who get recommendation as req.body.users
+   * @return: null
+  **/
+  shareItem: function(req, res) {
+    var itemToBeShared = req.body.item;
+    var users = req.body.users;
+    delete itemToBeShared.id;
+    delete itemToBeShared.created_at;
+    delete itemToBeShared.updated_at;
+    item.shareItem(itemToBeShared, users, function (err, data) {
+      if(err) {return res.sendStatus(400);}
+      res.send(data);
+    });
+  },
 }

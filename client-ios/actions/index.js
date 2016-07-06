@@ -335,6 +335,7 @@ const fetchInitialDatabase = () => {
           }
         })
         .then((responseData) => {
+
           dispatch(fetchDatabaseListsSuccess(responseData))
         })
         .catch((error) => {

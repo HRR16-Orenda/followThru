@@ -58,7 +58,7 @@ describe('Server-side Unit test', function () {
         it('should call user.getAll() method and send users data back', function () {
           var stub = this.sandbox.stub(user, 'getAll');
           var stub2 = this.sandbox.stub(helper, 'cleanUser');
-          stub.callsArgWith(0, null, expectedArray);
+          stub.callsArgWith(1, null, expectedArray);
           stub2.returns({});
 
           handler.getAllUsers(req, res);
@@ -68,7 +68,7 @@ describe('Server-side Unit test', function () {
         });
         it('should send 400 status code when user.getAll() throw error', function () {
           var stub = this.sandbox.stub(user, 'getAll');
-          stub.callsArgWith(0, expectedError);
+          stub.callsArgWith(1, expectedError);
 
           handler.getAllUsers(req, res);
           expect(spyOnSendStatus.calledWith(400)).to.equal(true);
