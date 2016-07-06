@@ -47,6 +47,7 @@ export default StyleSheet.create({
   },
 
   autocompleteContainer: {
+    marginTop: -30,
     flex: 1,
     left: 0,
     position: 'absolute',
@@ -63,6 +64,7 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
     top: 190,
+    marginTop: -30,
   },
 
   mainButton: {
