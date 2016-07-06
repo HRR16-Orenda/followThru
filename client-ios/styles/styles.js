@@ -55,16 +55,15 @@ export default StyleSheet.create({
   },
 
   autocompleteContainerWithKeyboard: {
-    marginTop: -30,
+    marginTop: -50,
     flex: 1,
-    left: 50,
+    left: 0,
     position: 'absolute',
-    right: 50,
+    right: 0,
     top: 20
   },
 
   autocompleteContainerWithoutKeyboard: {
-    marginTop: -30,
     flex: 1,
     left: 0,
     position: 'absolute',
@@ -84,8 +83,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
-    top: 90,
-    marginTop: -30,
+    top: 190,
+    marginTop: -65,
     justifyContent: 'center',
     alignItems: 'center',
     // borderColor: '#000000',
@@ -97,7 +96,6 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
     top: 190,
-    marginTop: -30,
     justifyContent: 'center',
     alignItems: 'center',
     // borderColor: '#000000',
