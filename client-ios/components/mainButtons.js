@@ -21,6 +21,7 @@ export default class mainButtons extends Component {
   render() {
     const adding = !(this.props.userInput.length === 0);
 
+
     return (
       <View style={styles.buttonContainer} >
         <View>
