@@ -19,26 +19,7 @@ function mapStateToProps(state, ownProps) {
     buttonStyle: state.lists.buttonStyle,
     userInput: state.lists.userInput,
     saved: state.lists.checked,
-    filter: state.lists.filter,
-    buttons: [
-        {icon: 'ios-list-box-outline',
-        category: 'DO'},
-
-        {icon: 'ios-cart-outline',
-        category: 'BUY'},
-
-        {icon: 'ios-book-outline',
-        category: 'READ'},
-
-        {icon: 'ios-headset-outline',
-        category:'LISTEN'},
-
-        {icon: 'ios-restaurant-outline',
-        category: 'EAT'},
-
-        {icon: 'ios-star-outline',
-        category: 'WATCH'}
-    ]
+    filter: state.lists.filter
   };
 }
 

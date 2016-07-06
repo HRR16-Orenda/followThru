@@ -49,6 +49,7 @@ export default class SingleListScreen extends Component {
               itemTitle={ item.title }
             itemContent={ item.content }
               completed={ item.completed }
+              itemImage={ item.img }
             />
             <View style={ styles.separator } />
           </View>

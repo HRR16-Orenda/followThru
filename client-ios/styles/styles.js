@@ -37,6 +37,14 @@ export default StyleSheet.create({
     resizeMode: 'stretch'
   },
 
+  buttonImage: {
+    height: 45,
+    width: 45,
+    marginBottom: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   /*********************************
   Add Screen Specific Styles
   *********************************/
@@ -59,62 +67,45 @@ export default StyleSheet.create({
     borderRadius:2
   },
 
+  autocompleteSuggestionText: {
+    fontSize: 18
+  },
+
   buttonContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
     top: 190,
     marginTop: -30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // borderColor: '#000000',
+    // borderWidth: 1
   },
 
   mainButton: {
-    height: 60,
-    width: 80,
+    height: 85,
+    width: 105,
     position: 'relative',
     backgroundColor: '#ffffff',
     // borderColor: '#000000',
     // borderWidth: 1,
     borderRadius: 2,
-    marginBottom: 20,
-    marginRight: 15,
-    marginLeft: 15,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 5,
-    paddingRight: 5,
-
-    shadowColor: "#000000",
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0
-    }
+    margin: 2
   },
 
   mainButtonItemAdded: {
-    height: 60,
-    width: 80,
+    height: 90,
+    width: 110,
     position: 'relative',
     backgroundColor: '#00d9a3',
     // borderColor: '#000000',
     // borderWidth: 1,
     borderRadius: 2,
-    marginBottom: 20,
-    marginRight: 15,
-    marginLeft: 15,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 5,
-    paddingRight: 5,
-
-    shadowColor: "#000000",
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0
-    }
   },
 
   buttonCategoryText: {

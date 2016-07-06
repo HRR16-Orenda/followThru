@@ -26,7 +26,7 @@ module.exports.amazonBook = function(newItem) {
     var refinedData = {
       url: results[0]['DetailPageURL'][0],
       img: results[0]['LargeImage'][0]['URL'][0],
-      content: results[0]['ItemAttributes'][0]['Title'] + ' : ' + results[0]['ItemAttributes'][0]['Author']
+      content: '' + results[0]['ItemAttributes'][0]['Author']
     }
 
     _.assign(newItem, refinedData);
@@ -48,7 +48,7 @@ module.exports.amazonMovie = function(newItem) {
     var refinedData = {
       url: 'https://www.rottentomatoes.com/search/?search=' + newItem.title,
       img: results[0]['LargeImage'][0]['URL'][0],
-      content: results[0]['ItemAttributes'][0]['Title'] + ' : ' + results[0]['ItemAttributes'][0]['Director']
+      content: '' + results[0]['ItemAttributes'][0]['Director']
     }
 
     _.assign(newItem, refinedData);
@@ -92,7 +92,7 @@ module.exports.amazonMovie = function(newItem) {
     var refinedData = {
       url: 'https://www.rottentomatoes.com/search/?search=' + newItem.title,
       img: results[0]['LargeImage'][0]['URL'][0],
-      content: results[0]['ItemAttributes'][0]['Title'] + ' : ' + results[0]['ItemAttributes'][0]['Director']
+      content: '' + results[0]['ItemAttributes'][0]['Director']
     }
 
     _.assign(newItem, refinedData);
@@ -134,7 +134,7 @@ module.exports.spotify = function(newItem) {
     var refinedData = {
       url: data[0].album.external_urls.spotify,
       img: data[0].album.images[1].url,
-      content: data[0].name + data[0].artists[0].name
+      content: data[0].artists[0].name
     }
 
     _.assign(newItem, refinedData);
