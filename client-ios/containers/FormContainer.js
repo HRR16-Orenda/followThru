@@ -7,7 +7,8 @@ import * as actions from '../actions/index.js';
 function mapStateToProps(state, ownProps) {
   return {
     suggestions: state.lists.suggestions,
-    userInput: state.lists.userInput
+    userInput: state.lists.userInput,
+    isKeyboardShowing: state.lists.ui.isKeyboardShowing
   };
 }
 

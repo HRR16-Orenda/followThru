@@ -54,7 +54,16 @@ export default StyleSheet.create({
     alignItems: 'flex-start'
   },
 
-  autocompleteContainer: {
+  autocompleteContainerWithKeyboard: {
+    marginTop: -30,
+    flex: 1,
+    left: 50,
+    position: 'absolute',
+    right: 50,
+    top: 20
+  },
+
+  autocompleteContainerWithoutKeyboard: {
     marginTop: -30,
     flex: 1,
     left: 0,
@@ -71,7 +80,19 @@ export default StyleSheet.create({
     fontSize: 18
   },
 
-  buttonContainer: {
+  buttonContainerWithKeyboard: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    // backgroundColor: '#F5FCFF',
+    top: 90,
+    marginTop: -30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // borderColor: '#000000',
+    // borderWidth: 1
+  },
+
+  buttonContainerWithoutKeyboard: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',

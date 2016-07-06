@@ -19,7 +19,8 @@ function mapStateToProps(state, ownProps) {
     buttonStyle: state.lists.buttonStyle,
     userInput: state.lists.userInput,
     saved: state.lists.checked,
-    filter: state.lists.filter
+    filter: state.lists.filter,
+    isKeyboardShowing: state.lists.ui.isKeyboardShowing
   };
 }
 
