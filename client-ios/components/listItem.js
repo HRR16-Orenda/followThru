@@ -32,7 +32,7 @@ export default class ListItem extends Component {
           {/*{
           if(this.props.subTitle){*/}
           {this.props.completed ?
-              <Text style={ styles.listAuthorCrossedOff }>{ this.props.itemContent }</Text>
+              null
               :
               <Text style={ styles.listAuthor }>{ this.props.itemContent }</Text>
             }
