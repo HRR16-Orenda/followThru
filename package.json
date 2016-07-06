@@ -49,6 +49,7 @@
     "react-native-autocomplete-input": "^1.1.0",
     "react-native-calendar-reminders": "0.0.6",
     "react-native-dismiss-keyboard": "^1.0.0",
+    "react-native-location": "^0.27.0",
     "react-native-material-kit": "^0.3.2",
     "react-native-router-flux": "^3.30.0",
     "react-native-swipeout": "git+https://github.com/magrinj/react-native-swipeout",
@@ -97,6 +98,8 @@
     "webpack-stream": "^3.2.0"
   },
   "babel": {
-    "presets": ["react-native"]
+    "presets": [
+      "react-native"
+    ]
   }
 }
