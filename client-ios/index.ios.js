@@ -30,10 +30,10 @@ class Orenda extends Component {
             title="followthru"
             hideNavBar={false}
             type="reset"
-            leftButtonImage={require('./assets/group-480.png')}
+            leftButtonImage={require('./assets/UserGroup-50.png')}
             leftButtonIconStyle={styles.icon}
             onLeft={() => Actions.followScreen()}
-            rightButtonImage={require('./assets/settings-256.png')}
+            rightButtonImage={require('./assets/Settings-50.png')}
             rightButtonIconStyle={styles.icon}
             onRight={() => Actions.settingsScreen()}
           />
@@ -42,9 +42,10 @@ class Orenda extends Component {
             hideNavBar={false}
             component={SingleListContainer}
             type="push"
-            rightButtonImage={require('./assets/settings-256.png')}
+            rightButtonImage={require('./assets/Settings-50.png')}
             rightButtonIconStyle={styles.icon}
             onRight={() => Actions.settingsScreen()}
+            backButtonImage={require('./assets/Back-50.png')}
           />
           <Scene
             key="followScreen"
@@ -52,6 +53,7 @@ class Orenda extends Component {
             component={FollowScreenContainer}
             title="Follow"
             type="push"
+            backButtonImage={require('./assets/Back-50.png')}
           />
           <Scene
             key="settingsScreen"
@@ -59,6 +61,7 @@ class Orenda extends Component {
             component={SettingsContainer}
             title="Settings"
             type="push"
+            backButtonImage={require('./assets/Back-50.png')}
           />
           <Scene
             key="loginScreen"
