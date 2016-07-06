@@ -3,16 +3,10 @@ import {
 } from 'react-native';
 
 export default StyleSheet.create({
-  linearGradient: {
-    flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5
-  },
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F5FCFF',
     paddingTop: 100,
     paddingLeft: 20,
     paddingRight: 20,
@@ -29,7 +23,7 @@ export default StyleSheet.create({
   listContainer: {
     flex: 1,
     flexDirection: 'column',
-    // backgroundColor: '#FFFFFF',
+    // backgroundColor: '#F5FCFF',
     paddingTop: 30,
     paddingLeft: 20,
     paddingRight: 20,
@@ -80,7 +74,7 @@ export default StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // backgroundColor: '#FFFFFF',
+    // backgroundColor: '#F5FCFF',
     top: 190,
     marginTop: -30,
     justifyContent: 'center',
@@ -168,13 +162,12 @@ export default StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#F5FCFF',
       padding: 10
   },
   listTitle: {
       fontSize: 20,
-      marginBottom: 8,
-      fontWeight: 'bold'
+      marginBottom: 8
   },
   listTitleCrossedOff: {
     fontSize: 20,
@@ -193,7 +186,6 @@ export default StyleSheet.create({
     backgroundColor: '#dddddd'
   },
   listView: {
-    backgroundColor: '#FFFFFF',
     // marginTop: 60,
   },
   loading: {
