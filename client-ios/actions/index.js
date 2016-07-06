@@ -31,8 +31,8 @@ export const mainButtonPressed = (buttonCategory) => {
         Location.getAuthorizationStatus(function(authorization) {
           if(authorization !== "authorizedWhenInUse"){
             console.log("Authorization!: ", authorization);
+            Location.requestWhenInUseAuthorization()
           }
-          Location.requestWhenInUseAuthorization()
         });
         Location.startUpdatingLocation();
       }

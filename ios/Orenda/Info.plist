@@ -22,10 +22,8 @@
     <string>1</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
-
-
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Location needed to find restaurants nearby</string>
+    <string>We use your location to give you reviews to restaurants you add nearby</string>
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>
