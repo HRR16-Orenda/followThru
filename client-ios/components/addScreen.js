@@ -23,6 +23,15 @@ export default class AddScreen extends Component {
     super(props);
   }
 
+  componentWillMount () {
+    Keyboard.addListener('keyboardWillShow', this.props.keyboardIsShowing)
+    Keyboard.addListener('keyboardWillHide', this.props.keyboardIsNotShowing)
+  }
+
+  componentWillUnmount () {
+    this.keyboardDidShowListener.remove()
+    this.keyboardDidHideListener.remove()
+  }
   render() {
     const { clearSuggestion } = this.props;
     return (

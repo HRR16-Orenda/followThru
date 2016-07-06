@@ -12,7 +12,8 @@ export default (state = {
     signupError: false,
     signupErrorMsg: '',
     deleteConfirm: false,
-    date: new Date()
+    date: new Date(),
+    isKeyboardShowing: false
   },
   lists: {
     category: ['default'],
@@ -281,6 +282,24 @@ export default (state = {
       lists: {
         category: state.lists.category,
         allItems: action.payload
+      }
+    }
+
+    case types.KEYBOARD_IS_SHOWING:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        isKeyboardShowing: true
+      }
+    }
+
+    case types.KEYBOARD_IS_NOT_SHOWING:
+    return {
+      ...state,
+      ui: {
+        ...state.ui,
+        isKeyboardShowing: false
       }
     }
 

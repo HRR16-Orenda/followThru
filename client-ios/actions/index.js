@@ -148,6 +148,18 @@ export const clearInputAfterSubmit = () => {
   }
 }
 
+export const keyboardIsShowing = () => {
+  return {
+    type: types.KEYBOARD_IS_SHOWING
+  }
+}
+
+export const keyboardIsNotShowing = () => {
+  return {
+    type: types.KEYBOARD_IS_NOT_SHOWING
+  }
+}
+
 // ******* EDIT ITEMS SECTION ******
 
 // listItemEdited
