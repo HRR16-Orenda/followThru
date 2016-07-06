@@ -47,16 +47,16 @@ export default class SingleListScreen extends Component {
     ];
     return (
       <Swipeout right={swipeBtns}>
-        <TouchableOpacity
-          onLongPress={this._setModalVisible.bind(this, true, item)}
-          onPress = {() => {this.props.toggleItem(item)}}
-        >
-          <View>
-            <ListItem
-              itemTitle={ item.title }
+      <TouchableOpacity
+        onPress={this._setModalVisible.bind(this, true, item)}
+        onLongPress = {() => {this.props.toggleItem(item)}}
+      >
+        <View>
+          <ListItem
+            itemTitle={ item.title }
             itemContent={ item.content }
-              completed={ item.completed }
-              itemImage={ item.img }
+            completed={ item.completed }
+            itemImage={ item.img }
             />
             <View style={ styles.separator } />
           </View>

@@ -43,6 +43,7 @@ export default StyleSheet.create({
     marginBottom: 3,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
 
   /*********************************
@@ -87,7 +88,7 @@ export default StyleSheet.create({
     height: 85,
     width: 105,
     position: 'relative',
-    backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(255,255,255,0)',
     // borderColor: '#000000',
     // borderWidth: 1,
     borderRadius: 2,
@@ -113,8 +114,15 @@ export default StyleSheet.create({
     // alignItems: 'flex-end',
     // position: 'relative',
     // marginBottom: 20
+    color: 'white'
   },
 
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 0,
+    paddingRight:0,
+    borderRadius: 5
+  },
 
   /**********************************
   Icon Swipe Description Feature
