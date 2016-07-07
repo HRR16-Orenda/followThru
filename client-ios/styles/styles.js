@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#ffffff',
     paddingTop: 100,
     paddingLeft: 20,
     paddingRight: 20,
@@ -97,7 +97,8 @@ export default StyleSheet.create({
   },
 
   autocompleteInputContainer: {
-    borderRadius:2
+    borderRadius:2,
+    borderColor: '#f3398e'
   },
 
   autocompleteSuggestionText: {
@@ -157,6 +158,8 @@ export default StyleSheet.create({
     // alignItems: 'flex-end',
     // position: 'relative',
     // marginBottom: 20
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: '#ffffff'
   },
 
 
