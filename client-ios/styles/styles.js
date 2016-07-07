@@ -95,6 +95,9 @@ export default StyleSheet.create({
 
   },
 
+  navigationBarText: {
+    color: 'white'
+  },
   /*********************************
   Add Screen Specific Styles
   *********************************/
