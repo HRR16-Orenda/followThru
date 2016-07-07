@@ -103,8 +103,8 @@ export default StyleSheet.create({
   },
 
   rightArrow: {
-    height: 25,
-    width: 25
+    height: 20,
+    width: 20
   },
 
   followButtonImage: {
@@ -316,7 +316,9 @@ export default StyleSheet.create({
   },
   listTitle: {
       fontSize: 20,
-      marginBottom: 8
+      marginBottom: 8,
+      color: '#ffffff',
+      fontWeight: 'bold'
   },
   listTitleCrossedOff: {
     fontSize: 20,
@@ -324,7 +326,7 @@ export default StyleSheet.create({
     textDecorationLine: 'line-through'
   },
   listAuthor: {
-      color: '#656565'
+      color: '#ffffff'
   },
   listAuthorCrossedOff: {
     color: '#656565',
@@ -332,7 +334,7 @@ export default StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: '#dddddd'
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   listView: {
     // marginTop: 60,
