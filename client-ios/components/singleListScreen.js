@@ -8,7 +8,8 @@ import {
   ListView,
   Text,
   View,
-  Button
+  Button,
+  Image
 } from 'react-native';
 
 import Swipeout from 'react-native-swipeout';
@@ -34,7 +35,7 @@ export default class SingleListScreen extends Component {
     let swipeBtns = [
       {
         text: 'Delete',
-        backgroundColor: 'red',
+        backgroundColor: '#f3398e',
         // update this underlayColor
         // underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
         onPress: () => { this.props.deleteListItem(item) }
@@ -80,30 +81,31 @@ export default class SingleListScreen extends Component {
       dateChange
     } = this.props
       return (
-        <View>
-          <Modal
-            modal={modal}
-            toggler={this._setModalVisible.bind(this)}
-            deleteConfirm={deleteConfirm}
-            deleteConfirmOn={deleteConfirmOn}
-            deleteConfirmOff={deleteConfirmOff}
-            pressHandler={deleteListItem}
-            dateChange={dateChange}
-            date={date}
-            filter = { this.props.filter }
-          />
-          <View style={styles.container}>
-            {/* Default Text */}
-            {dataSource.rowIdentities[0].length === 0 ? <Text>No Items</Text>
-              :  <ListView
-                dataSource={dataSource}
-                renderRow={this.renderItem.bind(this)}
-                style={styles.listView}
-                 />
-            }
+        <Image source={require('../assets/final2.jpg')} style={styles.backgroundImage}>
+          <View>
+            <Modal
+              modal={modal}
+              toggler={this._setModalVisible.bind(this)}
+              deleteConfirm={deleteConfirm}
+              deleteConfirmOn={deleteConfirmOn}
+              deleteConfirmOff={deleteConfirmOff}
+              pressHandler={deleteListItem}
+              dateChange={dateChange}
+              date={date}
+              filter = { this.props.filter }
+            />
+            <View style={styles.container}>
+              {/* Default Text */}
+              {dataSource.rowIdentities[0].length === 0 ? <Text>No Items</Text>
+                :  <ListView
+                  dataSource={dataSource}
+                  renderRow={this.renderItem.bind(this)}
+                  style={styles.listView}
+                   />
+              }
+            </View>
           </View>
-        </View>
+        </Image>
       );
-    // }
   }
 }

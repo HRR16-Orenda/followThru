@@ -3,10 +3,29 @@ import {
 } from 'react-native';
 
 export default StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'contain'
+  },
+
   container: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#ffffff',
+    paddingTop: 100,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20,
+    backgroundColor: 'rgba(0,0,0,0)'
+  },
+  containerTest: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'rgba(0,0,0,0)',
     paddingTop: 100,
     paddingLeft: 20,
     paddingRight: 20,
@@ -34,7 +53,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: 'stretch'
+    resizeMode: 'contain'
   },
 
   buttonImage: {
@@ -67,7 +86,8 @@ export default StyleSheet.create({
   },
 
   navigationBar: {
-    backgroundColor: 'rgba(255,255,255,.5)'
+    backgroundColor: 'rgba(255,255,255,.5)',
+
   },
 
   /*********************************
