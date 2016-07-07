@@ -64,7 +64,13 @@ export default class SingleListScreen extends Component {
       dateChange,
       date
     } = this.props;
-
+    let categoryOption = {
+      "WATCH" : 'Rotten Tomatoes',
+      "LISTEN" : 'Spotify',
+      "READ" : 'Amazon',
+      "EAT" : 'Yelp',
+      "BUY" : 'Amazon'
+    }
     return (
       <Modal
         animationType="fade"
@@ -100,7 +106,7 @@ export default class SingleListScreen extends Component {
                   : <TouchableOpacity
                     onPress={this.handleClick.bind(this)}>
                     <View style={styles.modalButton}>
-                      <Text style={styles.buttonText}>Open in browser</Text>
+                      <Text style={styles.buttonText}>Open in {categoryOption[modal.item.category]}</Text>
                     </View>
                   </TouchableOpacity>
               }
@@ -110,7 +116,7 @@ export default class SingleListScreen extends Component {
                 underlayColor='black'
               >
                 <Text style={styles.buttonText}>
-                  Close Modal Screen
+                  Close
                 </Text>
               </TouchableOpacity>
             </View>

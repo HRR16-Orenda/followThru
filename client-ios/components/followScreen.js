@@ -8,7 +8,8 @@ import {
   View,
   ListView,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Form from '../containers/followFormContainer.js';
@@ -20,39 +21,28 @@ export default class FollowScreen extends Component {
     super(props);
   }
 
-  _renderItem(item) {
-    console.log(item);
+  _renderFollowerItem(item) {
     const { unfollowUser, acceptRecommend, selection } = this.props;
-    let handler;
-    if(selection === 'followings') {
-      handler = unfollowUser.bind(null, item);
-    } else if(selection === 'followers') {
-      handler = null;
-    } else {
-      handler = acceptRecommend.bind(null, item);
-    }
+    let handler = unfollowUser.bind(null, item);
     return (
       <View>
         <View
           style={styles.followContainer}
         >
           <View style={styles.followInfo}>
-            <Text>
-              {item.username || item.title + '(' + item.category + ')'}
-            </Text>
-            <Text>
-              {item.username || `Recommended By : ${item.recommendedBy.username}`}
+            <Text style={styles.listTitle}>
+              { item.username }
             </Text>
           </View>
           <TouchableOpacity
-            onPress = {handler}
-            style={styles.followIcon}
+            style={styles.mainButton}
+            onPress={handler}
           >
-            <Text>
-              {selection === 'followings' && 'Unfollow'}
-              {selection === 'followers' && null}
-              {selection === 'inbox' && 'Add'}
-            </Text>
+            <Image
+              style={styles.buttonImage}
+              source={require('../assets/Unfriend-50.png')}
+            />
+            <Text style={styles.buttonCategoryText}>{selection === 'followings' && 'Unfollow'}</Text>
           </TouchableOpacity>
         </View>
         <View style={ styles.separator } />
@@ -67,16 +57,20 @@ export default class FollowScreen extends Component {
         <View
           style={styles.followContainer}
         >
-          <Text style={styles.followInfo}>
-            {item.username}
-          </Text>
-          <TouchableOpacity
-            onPress = {followUser.bind(null, item)}
-            style={styles.followIcon}
-          >
-            <Text>
-              Follow
+          <View style={styles.followInfo}>
+            <Text style={styles.listTitle}>
+              {item.username}
             </Text>
+          </View>
+          <TouchableOpacity
+            style={styles.mainButton}
+            onPress={followUser.bind(null, item)}
+          >
+            <Image
+              style={styles.buttonImage}
+              source={require('../assets/AddUserMale-50.png')}
+            />
+            <Text style={styles.buttonCategoryText}>Follow</Text>
           </TouchableOpacity>
         </View>
         <View style={ styles.separator } />
@@ -84,30 +78,73 @@ export default class FollowScreen extends Component {
     );
   }
 
-  _renderList(data) {
+  _renderFollowersList(data) {
     return (
       <View style={styles.columnContainer}>
-        {this.props.follow.selection === 'followings' && (
-          <View style={styles.followResultContainer}>
-            <Form onChange={this.props.submitHandler}/>
-            <Text style={styles.description}>
-              Search Results
-            </Text>
-            <ListView
-              dataSource={this.props.searchResult}
-              renderRow={this._renderSearchItem.bind(this)}
-              style={styles.listView}
-              enableEmptySections={true}
-            />
-          </View>
-        )}
         <View style={styles.followingListContainer}>
-          <Text style={styles.description}>
-            List
-          </Text>
           <ListView
             dataSource={data}
-            renderRow={this._renderItem.bind(this)}
+            renderRow={this._renderFollowerItem.bind(this)}
+            style={styles.listView}
+            enableEmptySections={true}
+          />
+        </View>
+      </View>
+    )
+  }
+
+  _renderSearchList(data) {
+    return (
+      <View style={styles.columnContainer}>
+      <View style={styles.followResultContainer}>
+        <Form onChange={this.props.submitHandler}/>
+        <ListView
+          dataSource={this.props.searchResult}
+          renderRow={this._renderSearchItem.bind(this)}
+          style={styles.listView}
+          enableEmptySections={true}
+        />
+      </View>
+      </View>
+    )
+  }
+
+  _renderRecommendationsItem(item) {
+    const { unfollowUser, acceptRecommend, selection } = this.props;
+    let handler = acceptRecommend.bind(null, item);
+    return (
+      <View
+        style={styles.followContainer}
+      >
+        <Image source={{uri: item.img}}
+          style={item.category === "LISTEN" ? styles.musicThumbnail : styles.thumbnail}
+        />
+        <View style={styles.recommendationTextContainer}>
+          <Text style={styles.listTitle}>{item.title} </Text>
+          <Text style={styles.listAuthor}>from {item.recommendedBy.username}</Text>
+        </View>
+
+        <TouchableOpacity
+          style={styles.mainButton}
+          onPress={handler}
+        >
+          <Image
+            style={styles.buttonImage}
+            source={require('../assets/PlusMath-50.png')}
+          />
+          <Text style={styles.buttonCategoryText}>{item.category}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  _renderRecommendationsList(data) {
+    return (
+      <View style={styles.columnContainer}>
+        <View style={styles.followingListContainer}>
+          <ListView
+            dataSource={data}
+            renderRow={this._renderRecommendationsItem.bind(this)}
             style={styles.listView}
             enableEmptySections={true}
           />
@@ -132,35 +169,42 @@ export default class FollowScreen extends Component {
         <View style={styles.container}>
           <View style={styles.categoryContainer}>
             <TouchableOpacity
-              style={styles.categoryButton}
+              style={styles.mainButton}
               onPress={selectInbox}
             >
-              <Text style={styles.buttonText}>
-                Inbox
-              </Text>
+              <Image
+                style={styles.buttonImage}
+                source={require('../assets/Inbox-50.png')}
+              />
+              <Text style={styles.buttonCategoryText}>INBOX</Text>
             </TouchableOpacity>
+
             <TouchableOpacity
-              style={styles.categoryButton}
-              onPress={selectFollowers}
-            >
-              <Text style={styles.buttonText}>
-                Followers
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.categoryButton}
+              style={styles.mainButton}
               onPress={selectFollowings}
             >
-              <Text style={styles.buttonText}>
-                Followings
-              </Text>
+              <Image
+                style={styles.buttonImage}
+                source={require('../assets/UserGroup-50.png')}
+              />
+              <Text style={styles.buttonCategoryText}>FRIENDS</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.mainButton}
+              onPress={selectFollowers}
+            >
+              <Image
+                style={styles.buttonImage}
+                source={require('../assets/Search-50.png')}
+              />
+              <Text style={styles.buttonCategoryText}>SEARCH</Text>
+           </TouchableOpacity>
           </View>
           <View style={styles.columnContainer}>
             {/* Default Text */}
-            {follow.selection === 'inbox' && this._renderList(inbox)}
-            {follow.selection === 'followers' && this._renderList(followers)}
-            {follow.selection === 'followings' && this._renderList(followings)}
+            {follow.selection === 'inbox' && this._renderRecommendationsList(inbox)}
+            {follow.selection === 'followings' && this._renderFollowersList(followings)}
+            {follow.selection === 'followers' && this._renderSearchList(followers)}
           </View>
         </View>
     );

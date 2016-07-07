@@ -54,7 +54,7 @@ class Orenda extends Component {
             hideNavBar={false}
             navigationBarStyle={styles.navigationBar}
             component={FollowScreenContainer}
-            title="Follow"
+            title="SOCIAL"
             type="push"
             backButtonImage={require('./assets/Back-50.png')}
           />
@@ -63,7 +63,7 @@ class Orenda extends Component {
             hideNavBar={false}
             navigationBarStyle={styles.navigationBar}
             component={SettingsContainer}
-            title="Settings"
+            title="SETTINGS"
             type="push"
             backButtonImage={require('./assets/Back-50.png')}
           />

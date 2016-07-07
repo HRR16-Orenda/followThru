@@ -65,7 +65,7 @@ export const shareItem = (item: Object) => {
   return (dispatch, getState) => {
     dispatch(shareItemRequest());
     var id = getState().auth.user.id;
-    var users = getState().auth.user.followers.map(user => user.id);
+    var users = getState().auth.user.followings.map(user => user.id);
     item.recommended_by_id = id;
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
       if(err) {

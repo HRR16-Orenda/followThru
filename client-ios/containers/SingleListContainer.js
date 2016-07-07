@@ -26,7 +26,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(dateChange(date));
     },
     shareItem: (item) => {
-      console.log(item);
       dispatch(shareItem(item));
     }
   };
