@@ -22,13 +22,15 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)'
   },
   containerTest: {
-    flex: 1,
-    flexDirection: 'column',
+    // flex: 1,
+    // flexDirection: 'column',
     backgroundColor: 'rgba(0,0,0,0)',
-    paddingTop: 100,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 20
+    paddingTop: 10,
+    paddingBottom: 20,
+    marginTop: -250,
+    marginLeft: 200,
+    marginRight: 20,
+    position: 'absolute'
   },
   footer: {
     flex: 1,
@@ -128,7 +130,7 @@ export default StyleSheet.create({
 
   autocompleteContainerWithKeyboard: {
     marginTop: -50,
-    flex: 1,
+    // flex: 1,
     left: 0,
     position: 'absolute',
     right: 0,
@@ -136,10 +138,10 @@ export default StyleSheet.create({
   },
 
   autocompleteContainerWithoutKeyboard: {
-    flex: 1,
-    left: 0,
+    // flex: 1,
+    left: 180,
     position: 'absolute',
-    right: 0,
+    right: 170,
     top: 20
   },
 
