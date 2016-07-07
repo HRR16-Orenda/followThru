@@ -180,6 +180,11 @@ export default StyleSheet.create({
       height: 81,
       marginRight: 10
   },
+  musicThumbnail: {
+      width: 81,
+      height: 81,
+      marginRight: 10
+  },
   listContainer: {
       flex: 1,
       flexDirection: 'row',
@@ -401,6 +406,11 @@ export default StyleSheet.create({
   },
   modalImage: {
     width: 200,
+    height: 280,
+    marginBottom: 20
+  },
+  modalMuiscImage: {
+    width: 280,
     height: 280,
     marginBottom: 20
   },
