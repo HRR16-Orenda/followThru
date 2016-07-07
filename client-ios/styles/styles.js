@@ -159,7 +159,7 @@ export default StyleSheet.create({
     // position: 'relative',
     // marginBottom: 20
     backgroundColor: 'rgba(0,0,0,0)',
-    color: 'white'
+    color: '#ffffff'
   },
 
 
