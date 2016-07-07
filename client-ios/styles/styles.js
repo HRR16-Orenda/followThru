@@ -15,7 +15,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'blue',
     paddingTop: 100,
     paddingLeft: 20,
     paddingRight: 20,
@@ -23,13 +22,15 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)'
   },
   containerTest: {
-    flex: 1,
-    flexDirection: 'column',
+    // flex: 1,
+    // flexDirection: 'column',
     backgroundColor: 'rgba(0,0,0,0)',
-    paddingTop: 100,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 20
+    paddingTop: 10,
+    paddingBottom: 20,
+    marginTop: -250,
+    marginLeft: 200,
+    marginRight: 20,
+    position: 'absolute'
   },
   footer: {
     flex: 1,
@@ -44,13 +45,23 @@ export default StyleSheet.create({
     flexDirection: 'column',
     // backgroundColor: '#F5FCFF',
     paddingTop: 30,
-    paddingLeft: 20,
-    paddingRight: 20,
     paddingBottom: 20,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0)',
     borderRadius: 6,
-    backgroundColor: 'rgba(255,255,255,.2)',
+    // backgroundColor: 'rgba(255,255,255,.2)',
+    color: '#ffffff'
+  },
+
+// Background of the listView (aka when scrolling)
+  singleListContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    // backgroundColor: '#F5FCFF',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0)',
     color: '#ffffff'
   },
 
@@ -119,18 +130,20 @@ export default StyleSheet.create({
 
   autocompleteContainerWithKeyboard: {
     marginTop: -50,
-    flex: 1,
-    left: 0,
+    // flex: 1,
+    left: -10,
+    marginLeft: 200,
     position: 'absolute',
-    right: 0,
+    right: -150,
     top: 20
   },
 
   autocompleteContainerWithoutKeyboard: {
-    flex: 1,
-    left: 0,
+    // flex: 1,
+    left: -10,
+    marginLeft: 200,
     position: 'absolute',
-    right: 0,
+    right: -150,
     top: 20
   },
 
@@ -155,13 +168,17 @@ export default StyleSheet.create({
   },
 
   buttonContainerWithKeyboard: {
+    marginTop: -65,
+    marginBottom: 70,
     flexDirection: 'row',
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
     top: 190,
-    marginTop: -65,
+    left: 180,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingLeft: -100,
+    paddingRight: -100
     // borderColor: '#000000',
     // borderWidth: 1
   },
@@ -171,8 +188,11 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
     top: 190,
+    left: 180,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingLeft: -100,
+    paddingRight: -100
     // borderColor: '#000000',
     // borderWidth: 1
   },
@@ -266,7 +286,6 @@ export default StyleSheet.create({
       alignItems: 'center',
       backgroundColor: 'rgba(255,255,255,.25)',
       padding: 10,
-
   },
   listTitle: {
       fontSize: 20,

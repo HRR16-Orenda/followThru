@@ -22,6 +22,7 @@ export default class mainButtons extends Component {
     const adding = !(this.props.userInput.length === 0);
 
     return (
+      <View>
       <View style={this.props.isKeyboardShowing ? styles.buttonContainerWithKeyboard : styles.buttonContainerWithoutKeyboard} >
         <View>
           <TouchableOpacity
@@ -60,7 +61,8 @@ export default class mainButtons extends Component {
               {(this.props.filter === 'READ' && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>READ</Text>}
           </TouchableOpacity>
         </View>
-
+     </View>
+     <View style={this.props.isKeyboardShowing ? styles.buttonContainerWithKeyboard : styles.buttonContainerWithoutKeyboard} >
         <View>
           <TouchableOpacity
             style={(this.props.filter === 'LISTEN' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
@@ -98,6 +100,7 @@ export default class mainButtons extends Component {
             {(this.props.filter === 'WATCH' && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>WATCH</Text>}
           </TouchableOpacity>
         </View>
+      </View>
       </View>
     );
   }

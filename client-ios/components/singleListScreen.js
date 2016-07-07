@@ -47,7 +47,7 @@ export default class SingleListScreen extends Component {
       }
     ];
     return (
-      <Swipeout right={swipeBtns} autoClose={true}>
+      <Swipeout right={swipeBtns} autoClose={true} backgroundColor={'rgba(255,255,255,.1)'}>
         <TouchableOpacity
           onPress={this._setModalVisible.bind(this, true, item)}
           onLongPress = {() => {this.props.toggleItem(item)}}
@@ -94,7 +94,7 @@ export default class SingleListScreen extends Component {
               date={date}
               filter = { this.props.filter }
             />
-            <View style={styles.container}>
+            <View style={styles.singleListContainer}>
               {/* Default Text */}
               {dataSource.rowIdentities[0].length === 0 ? <Text>No Items</Text>
                 :  <ListView
