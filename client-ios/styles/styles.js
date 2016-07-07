@@ -131,9 +131,9 @@ export default StyleSheet.create({
   autocompleteContainerWithKeyboard: {
     marginTop: -50,
     // flex: 1,
-    left: 0,
+    left: 180,
     position: 'absolute',
-    right: 0,
+    right: 170,
     top: 20
   },
 
@@ -182,8 +182,11 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
     top: 190,
+    left: 180,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingLeft: -100,
+    paddingRight: -100
     // borderColor: '#000000',
     // borderWidth: 1
   },
