@@ -46,7 +46,7 @@ export default class SingleListScreen extends Component {
       }
     ];
     return (
-      <Swipeout right={swipeBtns}>
+      <Swipeout right={swipeBtns} autoClose={true}>
         <TouchableOpacity
           onLongPress={this._setModalVisible.bind(this, true, item)}
           onPress = {() => {this.props.toggleItem(item)}}
