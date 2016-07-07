@@ -22,19 +22,21 @@ export default class SettingsScreen extends Component {
 
   render() {
     return (
-      <View style={ styles.container } >
-        <View style={ styles.formContainer }>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={this._userLogout}
-            underlayColor='#99d9f4'
-          >
-            <Text style={styles.buttonText}>
-              Logout
-            </Text>
-          </TouchableOpacity>
+      <Image source={require('../assets/final2.jpg')} style={styles.backgroundImage}>
+        <View style={ styles.container } >
+          <View style={ styles.formContainer }>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={this._userLogout}
+              underlayColor='#99d9f4'
+            >
+              <Text style={styles.buttonText}>
+                Logout
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </Image>
     );
   }
 };

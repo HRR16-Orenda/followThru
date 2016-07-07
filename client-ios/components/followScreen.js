@@ -166,6 +166,7 @@ export default class FollowScreen extends Component {
       follow
     } = this.props;
     return (
+      <Image source={require('../assets/final2.jpg')} style={styles.backgroundImage}>
         <View style={styles.container}>
           <View style={styles.categoryContainer}>
             <TouchableOpacity
@@ -196,7 +197,8 @@ export default class FollowScreen extends Component {
               <Image
                 style={styles.buttonImage}
                 source={require('../assets/Search-50.png')}
-              />
+              >
+              </Image>
               <Text style={styles.buttonCategoryText}>SEARCH</Text>
            </TouchableOpacity>
           </View>
@@ -207,6 +209,7 @@ export default class FollowScreen extends Component {
             {follow.selection === 'followers' && this._renderSearchList(followers)}
           </View>
         </View>
+      </Image>
     );
   }
 }

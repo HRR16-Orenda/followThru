@@ -72,7 +72,7 @@ export default class AuthScreen extends Component {
           onPress={dismissKeyboard}
         >
           <View style={ styles.footer }>
-            <Image source={require('../assets/gradient-login2.jpg')} style={styles.image}>
+            <Image source={require('../assets/Final.jpg')} style={styles.image}>
 
               <View style = {this.props.isKeyboardShowing ? styles.signUpContainerWithKeyboard : styles.signUpContainerWithoutKeyboard}>
                 <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>

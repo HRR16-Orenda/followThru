@@ -7,13 +7,15 @@ import {
   Text,
   View,
   TextInput,
-  Keyboard
+  Keyboard,
+  Image
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import Form from '../containers/FormContainer.js';
 import styles from '../styles/styles.js';
 import MainButtons from '../containers/MainButtonsContainer.js'
+
 
 
 
@@ -36,11 +38,14 @@ export default class AddScreen extends Component {
             clearSuggestion();
           }
         }
-
       >
-        <View style={styles.container}>
+      <View style={styles.footer}>
+        <Image source={require('../assets/final2.jpg')} style={styles.image}>
+        <View style={styles.containerTest}>
           <Form />
           <MainButtons />
+        </View>
+        </Image>
         </View>
       </TouchableWithoutFeedback>
     );
