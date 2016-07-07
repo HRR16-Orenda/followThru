@@ -45,6 +45,10 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
+  navigationBar: {
+    backgroundColor: 'rgba(255,255,255,.5)'
+  },
+
   /*********************************
   Add Screen Specific Styles
   *********************************/

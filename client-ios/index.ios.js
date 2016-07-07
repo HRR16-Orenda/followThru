@@ -29,6 +29,7 @@ class Orenda extends Component {
             component={AddItemContainer}
             title="followthru"
             hideNavBar={false}
+            navigationBarStyle={styles.navigationBar}
             type="reset"
             leftButtonImage={require('./assets/UserGroup-50.png')}
             leftButtonIconStyle={styles.icon}
@@ -40,6 +41,7 @@ class Orenda extends Component {
           <Scene
             key="singleListScreen"
             hideNavBar={false}
+            navigationBarStyle={styles.navigationBar}
             component={SingleListContainer}
             type="push"
             rightButtonImage={require('./assets/Settings-50.png')}
@@ -50,6 +52,7 @@ class Orenda extends Component {
           <Scene
             key="followScreen"
             hideNavBar={false}
+            navigationBarStyle={styles.navigationBar}
             component={FollowScreenContainer}
             title="Follow"
             type="push"
@@ -58,6 +61,7 @@ class Orenda extends Component {
           <Scene
             key="settingsScreen"
             hideNavBar={false}
+            navigationBarStyle={styles.navigationBar}
             component={SettingsContainer}
             title="Settings"
             type="push"
