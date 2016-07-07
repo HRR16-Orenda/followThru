@@ -8,7 +8,8 @@ import {
   View,
   ListView,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Form from '../containers/followFormContainer.js';
@@ -20,7 +21,7 @@ export default class FollowScreen extends Component {
     super(props);
   }
 
-  _renderItem(item) {
+  _renderFollowerItem(item) {
     console.log(item);
     const { unfollowUser, acceptRecommend, selection } = this.props;
     let handler;
@@ -74,6 +75,10 @@ export default class FollowScreen extends Component {
             onPress = {followUser.bind(null, item)}
             style={styles.followIcon}
           >
+          <Image
+            style={styles.buttonImage}
+            source={false ? require('../assets/Contacts-50.png') : require('../assets/AddUserMale-50.png')}
+          />
             <Text>
               Follow
             </Text>
@@ -84,15 +89,12 @@ export default class FollowScreen extends Component {
     );
   }
 
-  _renderList(data) {
+  _renderFollowersList(data) {
     return (
       <View style={styles.columnContainer}>
         {this.props.follow.selection === 'followings' && (
           <View style={styles.followResultContainer}>
             <Form onChange={this.props.submitHandler}/>
-            <Text style={styles.description}>
-              Search Results
-            </Text>
             <ListView
               dataSource={this.props.searchResult}
               renderRow={this._renderSearchItem.bind(this)}
@@ -107,7 +109,47 @@ export default class FollowScreen extends Component {
           </Text>
           <ListView
             dataSource={data}
-            renderRow={this._renderItem.bind(this)}
+            renderRow={this._renderFollowerItem.bind(this)}
+            style={styles.listView}
+            enableEmptySections={true}
+          />
+        </View>
+      </View>
+    )
+  }
+
+  _renderRecommendationsItem(item) {
+    const { unfollowUser, acceptRecommend, selection } = this.props;
+    let handler = acceptRecommend.bind(null, item);
+    return (
+      <View
+        style={styles.followContainer}
+      >
+        <Image source={{uri: item.img}}
+          style={item.category === "LISTEN" ? styles.musicThumbnail : styles.thumbnail}
+        />
+        <Text style={styles.followInfo}>
+          {item.username + ' recommends ' + item.title}
+        </Text>
+        <TouchableOpacity
+          onPress = {handler}
+          style={styles.followIcon}
+        >
+          <Text>
+            {selection === 'inbox' && 'Add to ' + item.category.toLowerCase() + ' list'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  _renderRecommendationsList(data) {
+    return (
+      <View style={styles.columnContainer}>
+        <View style={styles.followingListContainer}>
+          <ListView
+            dataSource={data}
+            renderRow={this._renderRecommendationsItem.bind(this)}
             style={styles.listView}
             enableEmptySections={true}
           />
@@ -136,7 +178,7 @@ export default class FollowScreen extends Component {
               onPress={selectInbox}
             >
               <Text style={styles.buttonText}>
-                Inbox
+                Recommendations
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -158,9 +200,9 @@ export default class FollowScreen extends Component {
           </View>
           <View style={styles.columnContainer}>
             {/* Default Text */}
-            {follow.selection === 'inbox' && this._renderList(inbox)}
-            {follow.selection === 'followers' && this._renderList(followers)}
-            {follow.selection === 'followings' && this._renderList(followings)}
+            {follow.selection === 'inbox' && this._renderRecommendationsList(inbox)}
+            {follow.selection === 'followers' && this._renderFollowersList(followers)}
+            {follow.selection === 'followings' && this._renderFollowersList(followings)}
           </View>
         </View>
     );

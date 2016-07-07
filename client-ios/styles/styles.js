@@ -484,16 +484,16 @@ export default StyleSheet.create({
     flex: 2,
     marginTop: 10,
     marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#656565',
+    // borderWidth: 1,
+    // borderColor: '#656565',
     borderRadius: 8
   },
   followingListContainer: {
     flex: 3,
     marginTop: 10,
     marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#656565',
+    // borderWidth: 1,
+    // borderColor: '#656565',
     borderRadius: 8
   }
 });

@@ -30,6 +30,7 @@ export default class followForm extends Component {
           <TextInput
             style={styles.searchInput}
             onChangeText={onChange}
+            placeholder={"Search for friends"}
             {...fields.username}
             autoCapitalize="none"
           />

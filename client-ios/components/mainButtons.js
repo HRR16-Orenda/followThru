@@ -29,7 +29,6 @@ export default class mainButtons extends Component {
             onPress={() => {this.props.mainButtonPressed('DO')}}
           >
             <Image
-              style={adding ? 'ios-add-outline' : styles.buttonImage}
               style={styles.buttonImage}
               source={adding ? require('../assets/PlusMath-50.png') :require('../assets/Clipboard-50.png')}
             />
@@ -43,7 +42,6 @@ export default class mainButtons extends Component {
             onPress={() => {this.props.mainButtonPressed('BUY')}}
           >
             <Image
-              style={adding ? 'ios-add-outline' : styles.buttonImage}
               style={styles.buttonImage}
               source={adding ? require('../assets/PlusMath-50.png') :require('../assets/ShoppingCart-50.png')}
             />
@@ -57,7 +55,6 @@ export default class mainButtons extends Component {
             onPress={() => {this.props.mainButtonPressed('READ')}}
           >
             <Image
-              style={adding ? 'ios-add-outline' : styles.buttonImage}
               style={styles.buttonImage}
               source={adding ? require('../assets/PlusMath-50.png') :require('../assets/Literature-50.png')}
             />
@@ -71,7 +68,6 @@ export default class mainButtons extends Component {
             onPress={() => {this.props.mainButtonPressed('LISTEN')}}
           >
             <Image
-              style={adding ? 'ios-add-outline' : styles.buttonImage}
               style={styles.buttonImage}
               source={adding ? require('../assets/PlusMath-50.png') :require('../assets/Headphones-50.png')}
             />
@@ -85,7 +81,6 @@ export default class mainButtons extends Component {
             onPress={() => {this.props.mainButtonPressed('EAT')}}
           >
             <Image
-              style={adding ? 'ios-add-outline' : styles.buttonImage}
               style={styles.buttonImage}
               source={adding ? require('../assets/PlusMath-50.png') :require('../assets/Restaurant-50.png')}
             />
@@ -99,7 +94,6 @@ export default class mainButtons extends Component {
             onPress={() => {this.props.mainButtonPressed('WATCH')}}
           >
             <Image
-              style={adding ? 'ios-add-outline' : styles.buttonImage}
               style={styles.buttonImage}
               source={adding ? require('../assets/PlusMath-50.png') :require('../assets/Documentary-50.png')}
             />
