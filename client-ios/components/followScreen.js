@@ -36,9 +36,14 @@ export default class FollowScreen extends Component {
         <View
           style={styles.followContainer}
         >
-          <Text style={styles.followInfo}>
-            {item.username || item.title + '(' + item.category + ')'}
-          </Text>
+          <View style={styles.followInfo}>
+            <Text>
+              {item.username || item.title + '(' + item.category + ')'}
+            </Text>
+            <Text>
+              {item.username || `Recommended By : ${item.recommendedBy.username}`}
+            </Text>
+          </View>
           <TouchableOpacity
             onPress = {handler}
             style={styles.followIcon}
