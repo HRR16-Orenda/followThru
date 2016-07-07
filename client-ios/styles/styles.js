@@ -45,6 +45,27 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
+  followButtonImage: {
+    height: 35,
+    width: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  followButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 55,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginLeft: 2,
+    marginRight: 2,
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+
   navigationBar: {
     backgroundColor: 'rgba(255,255,255,.5)'
   },
@@ -423,10 +444,13 @@ export default StyleSheet.create({
   follower Screen Specific Styles
   *********************************/
   categoryContainer: {
-    flex: 1,
     flexDirection: 'row',
-    alignItems: 'center'
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10
   },
+  
   categoryButton: {
     flex: 1,
     flexDirection: 'row',
