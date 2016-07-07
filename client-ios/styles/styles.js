@@ -102,6 +102,11 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
+  rightArrow: {
+    height: 25,
+    width: 25
+  },
+
   followButtonImage: {
     height: 35,
     width: 35,

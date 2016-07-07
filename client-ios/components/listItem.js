@@ -39,6 +39,12 @@ export default class ListItem extends Component {
             {/*}
           }*/}
         </View>
+        {this.props.itemTitle ?
+          <Image source={require('../assets/Forward-50.png')}
+          style={styles.rightArrow} />
+          :
+          null
+        }
       </View>
     );
   }
