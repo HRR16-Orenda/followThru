@@ -496,7 +496,10 @@ export default StyleSheet.create({
     flex:1
   },
   followInfo: {
-    flex: 4
+    flex: 4,
+    paddingLeft: 30,
+    alignSelf: 'center',
+    justifyContent: 'center'
   },
   columnContainer: {
     flex: 9,

@@ -30,21 +30,19 @@ export default class FollowScreen extends Component {
           style={styles.followContainer}
         >
           <View style={styles.followInfo}>
-            <Text>
+            <Text style={styles.listTitle}>
               { item.username }
             </Text>
           </View>
           <TouchableOpacity
-            onPress = {handler}
-            style={styles.followIcon}
+            style={styles.mainButton}
+            onPress={handler}
           >
             <Image
               style={styles.buttonImage}
               source={require('../assets/Unfriend-50.png')}
             />
-            <Text>
-              {selection === 'followings' && 'Unfollow'}
-            </Text>
+            <Text style={styles.buttonCategoryText}>{selection === 'followings' && 'Unfollow'}</Text>
           </TouchableOpacity>
         </View>
         <View style={ styles.separator } />
@@ -59,20 +57,20 @@ export default class FollowScreen extends Component {
         <View
           style={styles.followContainer}
         >
-          <Text style={styles.followInfo}>
-            {item.username}
-          </Text>
-          <TouchableOpacity
-            onPress = {followUser.bind(null, item)}
-            style={styles.followIcon}
-          >
-          <Image
-            style={styles.buttonImage}
-            source={require('../assets/AddUserMale-50.png')}
-          />
-            <Text>
-              Follow
+          <View style={styles.followInfo}>
+            <Text style={styles.listTitle}>
+              {item.username}
             </Text>
+          </View>
+          <TouchableOpacity
+            style={styles.mainButton}
+            onPress={followUser.bind(null, item)}
+          >
+            <Image
+              style={styles.buttonImage}
+              source={require('../assets/AddUserMale-50.png')}
+            />
+            <Text style={styles.buttonCategoryText}>Follow</Text>
           </TouchableOpacity>
         </View>
         <View style={ styles.separator } />
