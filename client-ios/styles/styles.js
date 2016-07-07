@@ -234,8 +234,9 @@ export default StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF',
-      padding: 10
+      backgroundColor: 'rgba(255,255,255,.25)',
+      padding: 10,
+
   },
   listTitle: {
       fontSize: 20,
