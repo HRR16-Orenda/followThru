@@ -32,13 +32,13 @@ const mapDispatchToProps = (dispatch) => {
      * @params - no params required
      */
     goToSignup: () => {
-     Actions.signupScreen();
+     Actions.signupScreen({type: 'push'});
     },
     /*
      * @params - no params required
      */
     goToSignin: () => {
-     Actions.loginScreen();
+     Actions.loginScreen({type: 'push'});
     },
     /*
      * @params - no params required
