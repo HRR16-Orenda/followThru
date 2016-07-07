@@ -450,7 +450,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 10
   },
-  
+
   categoryButton: {
     flex: 1,
     flexDirection: 'row',
@@ -519,5 +519,14 @@ export default StyleSheet.create({
     // borderWidth: 1,
     // borderColor: '#656565',
     borderRadius: 8
+  },
+  recommendationTextContainer: {
+    width: 100,
+    flex: 3,
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  recommendationText: {
+    width: 100,
   }
 });

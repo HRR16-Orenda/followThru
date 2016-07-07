@@ -40,7 +40,7 @@ export default class FollowScreen extends Component {
           >
             <Image
               style={styles.buttonImage}
-              source={false ? require('../assets/Contacts-50.png') : require('../assets/Unfriend-50.png')}
+              source={require('../assets/Unfriend-50.png')}
             />
             <Text>
               {selection === 'followings' && 'Unfollow'}
@@ -68,7 +68,7 @@ export default class FollowScreen extends Component {
           >
           <Image
             style={styles.buttonImage}
-            source={false ? require('../assets/Contacts-50.png') : require('../assets/AddUserMale-50.png')}
+            source={require('../assets/AddUserMale-50.png')}
           />
             <Text>
               Follow
@@ -112,7 +112,6 @@ export default class FollowScreen extends Component {
   }
 
   _renderRecommendationsItem(item) {
-    console.log('show dat item ', item)
     const { unfollowUser, acceptRecommend, selection } = this.props;
     let handler = acceptRecommend.bind(null, item);
     return (
@@ -122,16 +121,20 @@ export default class FollowScreen extends Component {
         <Image source={{uri: item.img}}
           style={item.category === "LISTEN" ? styles.musicThumbnail : styles.thumbnail}
         />
-        <Text style={styles.followInfo}>
-          {item.recommendedBy.username + ' recommends ' + item.title}
-        </Text>
+        <View style={styles.recommendationTextContainer}>
+          <Text style={styles.listTitle}>{item.title} </Text>
+          <Text style={styles.listAuthor}>from {item.recommendedBy.username}</Text>
+        </View>
+
         <TouchableOpacity
-          onPress = {handler}
-          style={styles.followIcon}
+          style={styles.mainButton}
+          onPress={handler}
         >
-          <Text>
-            {selection === 'inbox' && 'Add to ' + item.category.toLowerCase() + ' list'}
-          </Text>
+          <Image
+            style={styles.buttonImage}
+            source={require('../assets/PlusMath-50.png')}
+          />
+          <Text style={styles.buttonCategoryText}>{item.category}</Text>
         </TouchableOpacity>
       </View>
     );
