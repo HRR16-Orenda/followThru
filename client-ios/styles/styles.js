@@ -331,6 +331,7 @@ export default StyleSheet.create({
   },
   listView: {
     // marginTop: 60,
+    width: 340
   },
   loading: {
     flex: 1,
