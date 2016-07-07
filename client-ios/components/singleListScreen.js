@@ -35,14 +35,14 @@ export default class SingleListScreen extends Component {
     let swipeBtns = [
       {
         text: 'Delete',
-        backgroundColor: '#f3398e',
+        backgroundColor: '#f2398e',
         // update this underlayColor
         // underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
         onPress: () => { this.props.deleteListItem(item) }
       },
       {
         text: 'Share',
-        backgroundColor: 'blue',
+        backgroundColor: '#4ed9d5',
         onPress: () => { this.props.shareItem(item) }
       }
     ];

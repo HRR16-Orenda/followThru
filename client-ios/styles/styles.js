@@ -504,7 +504,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   modalBackground: {
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -514,9 +514,10 @@ export default StyleSheet.create({
   },
   innerContainerText: {
     marginBottom: 20,
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: 'bold',
     textAlign: 'center',
-    color: 'gray'
+    color: 'white'
   },
   modalButton: {
     borderRadius: 5,
