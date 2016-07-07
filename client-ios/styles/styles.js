@@ -323,6 +323,7 @@ export default StyleSheet.create({
   listTitleCrossedOff: {
     fontSize: 20,
     marginBottom: 8,
+    color: '#ffffff',
     textDecorationLine: 'line-through'
   },
   listAuthor: {
