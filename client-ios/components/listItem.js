@@ -17,7 +17,7 @@ export default class ListItem extends Component {
   render() {
     return (
       <View style={ styles.listContainer }>
-        {this.props.itemImage ?
+        {this.props.itemImage && !this.props.completed ?
           <Image source={{uri: this.props.itemImage}}
           style={this.props.filter === "LISTEN" ? styles.musicThumbnail : styles.thumbnail} />
           :
@@ -29,15 +29,11 @@ export default class ListItem extends Component {
             :
               <Text style={ styles.listTitle }>{ this.props.itemTitle }</Text>
           }
-          {/*{
-          if(this.props.subTitle){*/}
           {this.props.completed ?
-              <Text style={ styles.listAuthorCrossedOff }>{ this.props.itemContent }</Text>
-              :
-              <Text style={ styles.listAuthor }>{ this.props.itemContent }</Text>
+            null
+            :
+            <Text style={ styles.listAuthor }>{ this.props.itemContent }</Text>
             }
-            {/*}
-          }*/}
         </View>
       </View>
     );
