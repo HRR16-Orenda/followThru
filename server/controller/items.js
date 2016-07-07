@@ -1,4 +1,5 @@
 var Item = require('../models/items.js');
+var User = require('../models/users.js');
 var _ = require('lodash');
 
 module.exports = {
@@ -60,9 +61,10 @@ module.exports = {
 
   getAll: function(id, callback) {
     // check to see if id is passed or not
-    var action = id === undefined ? Item.findAll() : Item.findAll({where : {user_id: +id}});
+    var action = id === undefined ? Item.findAll({include: [{model: User, as: 'recommendedBy'}]}) : Item.findAll({where : {user_id: +id}, include: [{model: User, as: 'recommendedBy'}]});
     action
     .then(function(items) {
+      console.log(items);
       callback(null, items)
     })
     .catch(function(error) {
@@ -79,7 +81,7 @@ module.exports = {
         callback(null, items);
       })
       .catch(function(err) {
-        callback(error);
+        callback(err);
       })
   }
 };
