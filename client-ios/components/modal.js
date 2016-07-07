@@ -22,11 +22,11 @@ export default class SingleListScreen extends Component {
     super(props);
   }
 
-  // componentWillMount() {
-  //   RNCalendarReminders.authorizeEventStore((error, auth) => {
-  //       console.log('authorizing EventStore...');
-  //   });
-  // }
+  componentWillMount() {
+    RNCalendarReminders.authorizeEventStore((error, auth) => {
+        console.log('authorizing EventStore...');
+    });
+  }
 
   handleClick() {
   Linking.canOpenURL(this.props.modal.item.url)

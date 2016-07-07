@@ -11,8 +11,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Form from '../containers/FormContainer.js';
 import styles from '../styles/styles.js';
-import MainButtons from '../containers/MainButtonsContainer.js';
-import LinearGradient from 'react-native-linear-gradient';
+import MainButtons from '../containers/MainButtonsContainer.js'
 
 
 export default class AddScreen extends Component {
@@ -29,7 +28,6 @@ export default class AddScreen extends Component {
   render() {
     const { clearSuggestion } = this.props;
     return (
-      <LinearGradient colors={['#eb1d95', '#ad1496', '#5e0997']} style={styles.linearGradient}>
       <TouchableWithoutFeedback
         onPress={clearSuggestion}
       >
@@ -38,7 +36,6 @@ export default class AddScreen extends Component {
           <MainButtons />
         </View>
       </TouchableWithoutFeedback>
-    </LinearGradient>
     );
   }
 }

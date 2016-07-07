@@ -32,7 +32,6 @@ class AuthFormComponent extends Component {
     } = this.props;
 
     return (
-
       <View style={styles.formContainer}>
         <View style={styles.flowRight}>
           <TextInput
