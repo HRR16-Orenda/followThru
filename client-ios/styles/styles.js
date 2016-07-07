@@ -62,7 +62,6 @@ export default StyleSheet.create({
     borderColor: 'rgba(255,255,255,0)',
     borderRadius: 6,
     backgroundColor: 'rgba(255,255,255,0)',
-    color: '#ffffff'
   },
 
   image: {
