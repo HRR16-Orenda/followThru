@@ -103,8 +103,8 @@ export default StyleSheet.create({
   },
 
   rightArrow: {
-    height: 25,
-    width: 25
+    height: 20,
+    width: 20
   },
 
   followButtonImage: {
