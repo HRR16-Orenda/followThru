@@ -214,7 +214,7 @@ export default StyleSheet.create({
     width: 105,
     position: 'relative',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,.5)',
+    borderColor: 'rgba(0,128,128,.9)',
     borderRadius: 6,
     backgroundColor: 'rgba(255,255,255,0)',
     justifyContent: 'center',
