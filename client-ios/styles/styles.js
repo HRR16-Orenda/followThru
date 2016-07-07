@@ -46,7 +46,12 @@ export default StyleSheet.create({
     paddingTop: 30,
     paddingLeft: 20,
     paddingRight: 20,
-    paddingBottom: 20
+    paddingBottom: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,.2)',
+    color: '#ffffff'
   },
 
   image: {
