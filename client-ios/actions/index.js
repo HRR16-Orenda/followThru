@@ -231,14 +231,14 @@ const deleteListItemDatabase = (item) => {
             throw new Error('Unauthorized User');
           } else {
             // return response.json();
-            return response.json();
+            return response;
           }
         })
         .then((data) => {
           dispatch(deleteListItemDatabaseSuccess());
         })
         .catch((error) => {
-          console.log('Deletion error');
+          console.log('Deletion error', error);
           dispatch(deleteListItemDatabaseFailure());
         })
       }
