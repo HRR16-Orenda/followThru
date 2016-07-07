@@ -169,7 +169,7 @@ export default StyleSheet.create({
 
   buttonContainerWithKeyboard: {
     marginTop: -65,
-    marginBottom: 80,
+    marginBottom: 70,
     flexDirection: 'row',
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
