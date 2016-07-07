@@ -22,6 +22,8 @@ export default class SettingsScreen extends Component {
 
   render() {
     return (
+      <Image source={require('../assets/final2.jpg')} style={styles.backgroundImage}>
+
       <View style={ styles.container } >
         <View style={ styles.formContainer }>
           <TouchableOpacity
@@ -35,6 +37,7 @@ export default class SettingsScreen extends Component {
           </TouchableOpacity>
         </View>
       </View>
+      </Image>
     );
   }
 };
