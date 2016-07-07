@@ -7,7 +7,7 @@ import Form from '../../../client-ios/components/form';
 import mainButtons from '../../../client-ios/components/mainButtons';
 import SingleListScreen from '../../../client-ios/components/singleListScreen';
 
-import ListItem from '../../../client-ios/components/ListItem';
+import ListItem from '../../../client-ios/components/listItem';
 
 // Problem with using redux is the wrapper is looking for Connect(Form) rather than just Form so it won't find it
 describe('<ListItem />', () => {
