@@ -98,6 +98,16 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start'
   },
+  settingsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingTop: 100,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20
+  },
 
   autocompleteContainerWithKeyboard: {
     marginTop: -50,
