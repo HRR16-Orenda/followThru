@@ -41,13 +41,32 @@ export default StyleSheet.create({
     flex: 1
   },
   listContainer: {
-    flex: 1,
-    flexDirection: 'column',
+    // flex: 1,
+    // flexDirection: 'column',
     // backgroundColor: '#F5FCFF',
+    position: 'absolute',
+    left: 100,
+    right: 100,
     paddingTop: 30,
     paddingBottom: 20,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0)',
+    borderColor: 'rgba(255,50,255,1)',
+    borderRadius: 6,
+    // backgroundColor: 'rgba(255,255,255,.2)',
+    // color: '#ffffff'
+  },
+
+  swipeoutContainer: {
+    // flex: 1,
+    // flexDirection: 'column',
+    // backgroundColor: '#F5FCFF',
+    position: 'absolute',
+    left: 100,
+    right: 100,
+    paddingTop: 30,
+    paddingBottom: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(50,255,255,1)',
     borderRadius: 6,
     // backgroundColor: 'rgba(255,255,255,.2)',
     // color: '#ffffff'
@@ -55,9 +74,13 @@ export default StyleSheet.create({
 
 // Background of the listView (aka when scrolling)
   singleListContainer: {
-    flex: 1,
-    flexDirection: 'column',
+    // flex: 1,
+    // flexDirection: 'column',
     // backgroundColor: '#F5FCFF',
+    left: -170,
+    right: 90,
+    top: -250,
+    position: 'absolute',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0)',
     borderRadius: 6,
@@ -308,6 +331,7 @@ export default StyleSheet.create({
   },
   listView: {
     // marginTop: 60,
+    width: 340
   },
   loading: {
     flex: 1,

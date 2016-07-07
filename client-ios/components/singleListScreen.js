@@ -47,7 +47,11 @@ export default class SingleListScreen extends Component {
       }
     ];
     return (
-      <Swipeout right={swipeBtns} autoClose={true} backgroundColor={'rgba(255,255,255,.1)'}>
+      <Swipeout right={swipeBtns}
+        autoClose={true}
+        backgroundColor={'rgba(255,255,255,.1)'}
+        //style={styles.swipeoutContainer}
+      >
         <TouchableOpacity
           onPress={this._setModalVisible.bind(this, true, item)}
           onLongPress = {() => {this.props.toggleItem(item)}}
