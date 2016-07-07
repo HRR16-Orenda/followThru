@@ -50,7 +50,7 @@ export default StyleSheet.create({
     borderColor: 'rgba(255,255,255,0)',
     borderRadius: 6,
     // backgroundColor: 'rgba(255,255,255,.2)',
-    color: '#ffffff'
+    // color: '#ffffff'
   },
 
 // Background of the listView (aka when scrolling)
