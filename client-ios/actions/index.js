@@ -664,6 +664,7 @@ export const verifyUserToken = () => {
         dispatch(authorizeFailure())
       } else {
         if(tokenObj){
+          Actions.addScreen();
           dispatch(authorizeSuccess(JSON.parse(tokenObj)));
           dispatch(fetchInitialDatabase())
         } else {
