@@ -536,9 +536,10 @@ export default StyleSheet.create({
     marginBottom: 5,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC',
+    borderColor: 'rgba(255,255,255,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,.2)',
+    color: '#ffffff',
     justifyContent: 'center',
     alignSelf: 'center'
   },
