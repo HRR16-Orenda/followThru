@@ -115,7 +115,7 @@ module.exports.amazonBuy = function(newItem) {
     var refinedData = {
       url: 'https://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=' + newItem.title,
       img: results[0]['LargeImage'][0]['URL'][0],
-      content: results[0]['ItemAttributes'][0]['Title']
+      content: results[0]['ItemAttributes'][0]['Title'][0]
     }
 
     _.assign(newItem, refinedData);

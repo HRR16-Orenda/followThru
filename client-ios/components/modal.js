@@ -34,7 +34,7 @@ export default class SingleListScreen extends Component {
       if (supported) {
         Linking.openURL(this.props.modal.item.url);
       } else {
-        console.log('Don\'t know how to open URI: ' + this.props.modal.item.url);
+        Linking.openURL(`https://www.google.com/#q=${this.props.modal.item.title}`);
       }
     });
   }
