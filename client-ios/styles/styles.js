@@ -15,7 +15,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'blue',
     paddingTop: 100,
     paddingLeft: 20,
     paddingRight: 20,
@@ -44,13 +43,23 @@ export default StyleSheet.create({
     flexDirection: 'column',
     // backgroundColor: '#F5FCFF',
     paddingTop: 30,
-    paddingLeft: 20,
-    paddingRight: 20,
     paddingBottom: 20,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0)',
     borderRadius: 6,
-    backgroundColor: 'rgba(255,255,255,.2)',
+    // backgroundColor: 'rgba(255,255,255,.2)',
+    color: '#ffffff'
+  },
+
+// Background of the listView (aka when scrolling)
+  singleListContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    // backgroundColor: '#F5FCFF',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0)',
     color: '#ffffff'
   },
 
@@ -266,7 +275,6 @@ export default StyleSheet.create({
       alignItems: 'center',
       backgroundColor: 'rgba(255,255,255,.25)',
       padding: 10,
-
   },
   listTitle: {
       fontSize: 20,
