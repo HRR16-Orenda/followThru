@@ -23,8 +23,7 @@ export default class SettingsScreen extends Component {
   render() {
     return (
       <Image source={require('../assets/final2.jpg')} style={styles.backgroundImage}>
-        <View style={ styles.container } >
-          <View style={ styles.formContainer }>
+          <View style={ styles.settingsContainer }>
             <TouchableOpacity
               style={styles.button}
               onPress={this._userLogout}
@@ -35,7 +34,6 @@ export default class SettingsScreen extends Component {
               </Text>
             </TouchableOpacity>
           </View>
-        </View>
       </Image>
     );
   }

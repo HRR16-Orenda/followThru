@@ -15,7 +15,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#ffffff',
+    backgroundColor: 'blue',
     paddingTop: 100,
     paddingLeft: 20,
     paddingRight: 20,
@@ -46,7 +46,12 @@ export default StyleSheet.create({
     paddingTop: 30,
     paddingLeft: 20,
     paddingRight: 20,
-    paddingBottom: 20
+    paddingBottom: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,.2)',
+    color: '#ffffff'
   },
 
   image: {
@@ -90,6 +95,9 @@ export default StyleSheet.create({
 
   },
 
+  navigationBarText: {
+    color: 'white'
+  },
   /*********************************
   Add Screen Specific Styles
   *********************************/
@@ -97,6 +105,16 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-start'
+  },
+  settingsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingTop: 100,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20
   },
 
   autocompleteContainerWithKeyboard: {
@@ -117,12 +135,23 @@ export default StyleSheet.create({
   },
 
   autocompleteInputContainer: {
-    borderRadius:2,
-    borderColor: '#f3398e'
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,.2)'
+  },
+
+  autocompleteInputContainerTextInput: {
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,.2)',
+    color: '#ffffff'
   },
 
   autocompleteSuggestionText: {
-    fontSize: 18
+    fontSize: 18,
+    color: '#ffffff'
   },
 
   buttonContainerWithKeyboard: {
@@ -152,25 +181,26 @@ export default StyleSheet.create({
     height: 85,
     width: 105,
     position: 'relative',
-    backgroundColor: '#ffffff',
-    // borderColor: '#000000',
-    // borderWidth: 1,
-    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,.5)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0)',
     justifyContent: 'center',
     alignItems: 'center',
     margin: 2
   },
 
   mainButtonItemAdded: {
-    height: 90,
-    width: 110,
+    height: 85,
+    width: 105,
     position: 'relative',
-    backgroundColor: '#00d9a3',
-    // borderColor: '#000000',
-    // borderWidth: 1,
-    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,.5)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,0)',
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 2
   },
 
   buttonCategoryText: {
@@ -506,9 +536,10 @@ export default StyleSheet.create({
     marginBottom: 5,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC',
+    borderColor: 'rgba(255,255,255,0)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,.2)',
+    color: '#ffffff',
     justifyContent: 'center',
     alignSelf: 'center'
   },
