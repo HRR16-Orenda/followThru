@@ -22,12 +22,10 @@ class FormComponent extends Component {
 
 
   render () {
-    // was originally styles.formContainer
-
     return (
       <View style={styles.formContainer}>
         <Autocomplete
-          containerStyle={styles.autocompleteContainer}
+          containerStyle={this.props.isKeyboardShowing ? styles.autocompleteContainerWithKeyboard : styles.autocompleteContainerWithoutKeyboard}
           inputContainerStyle={styles.autocompleteInputContainer}
           value={this.props.userInput}
           placeholder={"What would you like to add?"}

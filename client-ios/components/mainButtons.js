@@ -22,7 +22,7 @@ export default class mainButtons extends Component {
     const adding = !(this.props.userInput.length === 0);
 
     return (
-      <View style={styles.buttonContainer} >
+      <View style={this.props.isKeyboardShowing ? styles.buttonContainerWithKeyboard : styles.buttonContainerWithoutKeyboard} >
         <View>
           <TouchableOpacity
             style={(this.props.filter === 'DO' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}

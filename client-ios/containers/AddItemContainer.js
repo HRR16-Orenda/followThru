@@ -8,6 +8,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     clearSuggestion: () => {
       dispatch(actions.clearSuggestion());
+    },
+    keyboardIsShowing: () => {
+      dispatch(actions.keyboardIsShowing());
+    },
+    keyboardIsNotShowing: () => {
+      dispatch(actions.keyboardIsNotShowing());
     }
   };
 };

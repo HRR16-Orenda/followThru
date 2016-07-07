@@ -45,6 +45,10 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
+  navigationBar: {
+    backgroundColor: 'rgba(255,255,255,.5)'
+  },
+
   /*********************************
   Add Screen Specific Styles
   *********************************/
@@ -54,8 +58,16 @@ export default StyleSheet.create({
     alignItems: 'flex-start'
   },
 
-  autocompleteContainer: {
-    marginTop: -30,
+  autocompleteContainerWithKeyboard: {
+    marginTop: -50,
+    flex: 1,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 20
+  },
+
+  autocompleteContainerWithoutKeyboard: {
     flex: 1,
     left: 0,
     position: 'absolute',
@@ -71,12 +83,23 @@ export default StyleSheet.create({
     fontSize: 18
   },
 
-  buttonContainer: {
+  buttonContainerWithKeyboard: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     // backgroundColor: '#F5FCFF',
     top: 190,
-    marginTop: -30,
+    marginTop: -65,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // borderColor: '#000000',
+    // borderWidth: 1
+  },
+
+  buttonContainerWithoutKeyboard: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    // backgroundColor: '#F5FCFF',
+    top: 190,
     justifyContent: 'center',
     alignItems: 'center',
     // borderColor: '#000000',
@@ -157,6 +180,11 @@ export default StyleSheet.create({
       height: 81,
       marginRight: 10
   },
+  musicThumbnail: {
+      width: 81,
+      height: 81,
+      marginRight: 10
+  },
   listContainer: {
       flex: 1,
       flexDirection: 'row',
@@ -197,11 +225,17 @@ export default StyleSheet.create({
   /*********************************
   Signup Screen Specific Styles
   *********************************/
-  signUpContainer: {
+  signUpContainerWithKeyboard: {
+    justifyContent: 'center',
+    marginTop: -80,
+    padding: 20,
+    // backgroundColor: '#ffffff',
+  },
+  signUpContainerWithoutKeyboard: {
     justifyContent: 'center',
     marginTop: 50,
     padding: 20,
-    backgroundColor: '#ffffff',
+    // backgroundColor: '#ffffff',
   },
   signUpTitle: {
     fontSize: 30,
@@ -372,6 +406,11 @@ export default StyleSheet.create({
   },
   modalImage: {
     width: 200,
+    height: 280,
+    marginBottom: 20
+  },
+  modalMuiscImage: {
+    width: 280,
     height: 280,
     marginBottom: 20
   },

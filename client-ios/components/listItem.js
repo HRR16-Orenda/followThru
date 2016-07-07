@@ -19,7 +19,7 @@ export default class ListItem extends Component {
       <View style={ styles.listContainer }>
         {this.props.itemImage ?
           <Image source={{uri: this.props.itemImage}}
-          style={styles.thumbnail} />
+          style={this.props.filter === "LISTEN" ? styles.musicThumbnail : styles.thumbnail} />
           :
           null
         }

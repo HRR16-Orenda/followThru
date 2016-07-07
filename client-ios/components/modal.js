@@ -83,7 +83,7 @@ export default class SingleListScreen extends Component {
                   dateChange={dateChange}
                 />
                   : <Image
-                    style={styles.modalImage}
+                    style={this.props.filter === "LISTEN" ? styles.modalMuiscImage : styles.modalImage}
                     source={{uri: modal.item.img}}
                     />
               }

@@ -57,6 +57,7 @@ export default class SingleListScreen extends Component {
             itemContent={ item.content }
               completed={ item.completed }
               itemImage={ item.img }
+              filter = { this.props.filter }
             />
             <View style={ styles.separator } />
           </View>
@@ -89,6 +90,7 @@ export default class SingleListScreen extends Component {
             pressHandler={deleteListItem}
             dateChange={dateChange}
             date={date}
+            filter = { this.props.filter }
           />
           <View style={styles.container}>
             {/* Default Text */}

@@ -148,6 +148,18 @@ export const clearInputAfterSubmit = () => {
   }
 }
 
+export const keyboardIsShowing = () => {
+  return {
+    type: types.KEYBOARD_IS_SHOWING
+  }
+}
+
+export const keyboardIsNotShowing = () => {
+  return {
+    type: types.KEYBOARD_IS_NOT_SHOWING
+  }
+}
+
 // ******* EDIT ITEMS SECTION ******
 
 // listItemEdited
@@ -688,7 +700,7 @@ export const authorizeFailure = () => {
 export const queryWikipedia = (input) => {
   return function (dispatch) {
     let formattedSearchQuery = putInWikipediaFormat(input);
-    fetch('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + formattedSearchQuery + '&limit=5', {
+    fetch('https://en.wikipedia.org//w/api.php?action=opensearch&format=json&search=' + formattedSearchQuery + '&limit=4', {
       method: 'GET'
     })
     .then((response) => {
