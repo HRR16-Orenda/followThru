@@ -20,7 +20,8 @@ followThru
 1. [Contributing](#contributing)
 
 ## Usage
-Super smart and simple todo app
+Super smart and simple todo app  
+[![followthru demo](./client-ios/assets/addscreen.png)](https://vimeo.com/173844724)
 
 ## Requirements
 
