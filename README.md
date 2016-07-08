@@ -21,6 +21,7 @@ followThru
 
 ## Usage
 Super smart and simple todo app
+<iframe width="640" height="480" src="https://www.youtube.com/embed/oD3PB9B-1ek" frameborder="0" allowfullscreen></iframe>
 
 ## Requirements
 
