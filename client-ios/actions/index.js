@@ -22,29 +22,28 @@ export const mainButtonPressed = (buttonCategory) => {
   return (dispatch, getState) => {
     let userInput = getState().lists.userInput;
     let user = getState().auth.user;
-    // let locationAuthStatus = Location.getAuthorizationStatus();
     if (userInput) {
       let newItem = {
         user_id: user.id,
         title: userInput,
         category: buttonCategory
       }
-      if(buttonCategory.toUpperCase() === "EAT"){
-        Location.getAuthorizationStatus(function(authorization) {
-          if(authorization !== "authorizedWhenInUse"){
-            Location.requestWhenInUseAuthorization();
-          }
-        });
-        Location.setDistanceFilter(5.0);
-        Location.startUpdatingLocation();
-        let subscription = DeviceEventEmitter.addListener(
-            'locationUpdated',
-            (location) => {
-              console.log("Location from device!: ", location);
-              dispatch(updateLocation(location))
-            }
-        );
-      }
+      // if(buttonCategory.toUpperCase() === "EAT"){
+      //   Location.getAuthorizationStatus(function(authorization) {
+      //     if(authorization !== "authorizedWhenInUse"){
+      //       Location.requestWhenInUseAuthorization();
+      //     }
+      //   });
+      //   Location.setDistanceFilter(5.0);
+      //   Location.startUpdatingLocation();
+      //   let subscription = DeviceEventEmitter.addListener(
+      //       'locationUpdated',
+      //       (location) => {
+      //         console.log("Location from device!: ", location);
+      //         dispatch(updateLocation(location))
+      //       }
+      //   );
+      // }
       dispatch(updateFilter(buttonCategory));
       dispatch(addItemLocally(newItem));
       dispatch(addItemToDatabase(newItem));
@@ -88,12 +87,15 @@ export const addItemToDatabase = (item) => {
   return (dispatch, getState) => {
     dispatch(addNewListItemDatabaseRequest());
     let user = getState().auth.user;
+    console.log("user location!!!!!!: ", user.location)
     let newInput = {
       title: item.title,
       category: item.category,
       url: null,
-      user_id: user.id
+      user_id: user.id,
+      location: user.location.coords
     };
+
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
@@ -352,6 +354,20 @@ const toggleItemFailure = () => {
 
 const fetchInitialDatabase = () => {
   return function(dispatch, getState) {
+    Location.getAuthorizationStatus(function(authorization) {
+      if(authorization !== "authorizedWhenInUse"){
+        Location.requestWhenInUseAuthorization();
+      }
+    });
+    Location.setDistanceFilter(5.0);
+    Location.startUpdatingLocation();
+    let subscription = DeviceEventEmitter.addListener(
+        'locationUpdated',
+        (location) => {
+          console.log("Location from device!: ", location);
+          dispatch(updateLocation(location))
+        }
+    );
     dispatch(fetchDatabaseListsRequest());
     var id = getState().auth.user.id;
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){

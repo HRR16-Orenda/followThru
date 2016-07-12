@@ -153,7 +153,10 @@ module.exports.yelp = function(newItem) {
   });
   // location is hard coded
   // should be refactored after testing Geolocation feature
-  return yelp.search({ term: newItem.title, location: 'SF', limit: 1 })
+
+  var location = newItem.location.latitude + "," + newItem.location.longitude
+
+  return yelp.search({ term: newItem.title, ll: location, limit: 1 })
     .then(function(data) {
       var result = data.businesses[0];
       var refinedData = {
