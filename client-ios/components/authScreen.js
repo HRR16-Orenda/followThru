@@ -71,28 +71,26 @@ export default class AuthScreen extends Component {
         <TouchableWithoutFeedback
           onPress={dismissKeyboard}
         >
-          <View style={ styles.footer }>
-            <Image source={require('../assets/final2.jpg')} style={styles.image}>
+          <Image source={require('../assets/final2.jpg')} style={styles.image}>
 
-              <View style = {this.props.isKeyboardShowing ? styles.signUpContainerWithKeyboard : styles.signUpContainerWithoutKeyboard}>
-                <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>
-                { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
-                { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
-                { spinner }
-                <AuthForm formType={formType} onSubmit={handler}/>
+            <View style = {this.props.isKeyboardShowing ? styles.signUpContainerWithKeyboard : styles.signUpContainerWithoutKeyboard}>
+              <Text style={ styles.signUpTitle } onPress={() => console.log(this.props)} >followthru</Text>
+              { loginError === true && formType === "login" ? this._displayError(loginErrorMsg) : null }
+              { signupError === true && formType === "signup" ? this._displayError(signupErrorMsg) : null }
+              { spinner }
+              <AuthForm formType={formType} onSubmit={handler}/>
+            </View>
+
+            {formType === 'login' ?
+              <View>
+                <Text style={styles.signUpPrompt}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignup()}>Sign Up.</Text></Text>
               </View>
-
-              {formType === 'login' ?
+              :
                 <View>
-                  <Text style={styles.signUpPrompt}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignup()}>Sign Up.</Text></Text>
+                  <Text style={styles.signUpPrompt}>Already have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignin()}>Sign In.</Text></Text>
                 </View>
-                :
-                  <View>
-                    <Text style={styles.signUpPrompt}>Already have an account? <Text style={{fontWeight: 'bold'}} onPress={() => this.props.goToSignin()}>Sign In.</Text></Text>
-                  </View>
-              }
-            </Image>
-          </View>
+            }
+          </Image>
         </TouchableWithoutFeedback>
       );
     } else {

@@ -34,19 +34,17 @@ export default class AddScreen extends Component {
     return (
       <TouchableWithoutFeedback
         onPress={() => {
-            dismissKeyboard();
-            clearSuggestion();
-          }
+          dismissKeyboard();
+          clearSuggestion();
+        }
         }
       >
-      <View style={styles.footer}>
         <Image source={require('../assets/final2.jpg')} style={styles.image}>
-        <View style={styles.containerTest}>
-          <Form />
-          <MainButtons />
-        </View>
+          <View style={styles.containerTest}>
+            <Form />
+            <MainButtons />
+          </View>
         </Image>
-        </View>
       </TouchableWithoutFeedback>
     );
   }
