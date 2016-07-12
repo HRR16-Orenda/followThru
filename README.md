@@ -15,12 +15,12 @@ followThru
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
-    1. [Run ios app](#run-ios-aoo)
+    1. [Run ios simulator](#run-ios-simulator)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
 ## Usage
-Super smart and simple todo app  
+A mobile productivity application for creating lists that helps users follow through on completing added items
 [![followthru demo](./client-ios/assets/addscreen.png)](https://vimeo.com/173844724)
 
 ## Requirements
@@ -50,7 +50,7 @@ This will build bundle.js file and run server with automated test and nodemon
 $ gulp
 ```
 
-### Run ios app
+### Run ios simulator
 
 From within the root directory:
 
