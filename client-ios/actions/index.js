@@ -75,6 +75,12 @@ export const toggleCheck = () => {
   }
 }
 
+export const updateLocation = (userLocation) => {
+  return {
+    type: types.LOCATION_UPDATE,
+    location: userLocation
+  }
+}
 
 
 // REFACTORED version
