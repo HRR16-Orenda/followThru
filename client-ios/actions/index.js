@@ -14,27 +14,6 @@ import { Actions } from 'react-native-router-flux';
 
 //Device location module/methods
 var Location = NativeModules.RNLocation;
-Location.setDistanceFilter(5.0);
-let subscription = DeviceEventEmitter.addListener(
-    'locationUpdated',
-    (location) => {
-      AlertIOS("Location from device!: ", location);
-        /* Example location returned
-        {
-          coords: {
-            speed: -1,
-            longitude: -0.1337,
-            latitude: 51.50998,
-            accuracy: 5,
-            heading: -1,
-            altitude: 0,
-            altitudeAccuracy: -1
-          },
-          timestamp: 1446007304457.029
-        }
-        */
-    }
-);
 
 // ******* ADD ITEM SECTION ******
 
@@ -56,8 +35,15 @@ export const mainButtonPressed = (buttonCategory) => {
             Location.requestWhenInUseAuthorization();
           }
         });
+        Location.setDistanceFilter(5.0);
         Location.startUpdatingLocation();
-
+        let subscription = DeviceEventEmitter.addListener(
+            'locationUpdated',
+            (location) => {
+              console.log("Location from device!: ", location);
+              dispatch(updateLocation(location))
+            }
+        );
       }
       dispatch(updateFilter(buttonCategory));
       dispatch(addItemLocally(newItem));
