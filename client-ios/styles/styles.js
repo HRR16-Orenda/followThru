@@ -147,10 +147,10 @@ export default StyleSheet.create({
   },
 
   autocompleteContainerWithoutKeyboard: {
+    marginTop: 50,
     flex: 1,
-    marginTop: 20,
     marginLeft: -8,
-    marginRight: -8
+    marginRight: -8,
   },
 
   autocompleteInputContainer: {
@@ -196,7 +196,12 @@ export default StyleSheet.create({
 
   mainButtonContainer: {
     flex: 1,
-    marginTop : 20,
+    justifyContent: 'center',
+    marginBottom: 50
+  },
+
+  mainButtonContainerWithKeyboard: {
+    flex: 1,
     justifyContent: 'flex-start',
   },
 
@@ -210,6 +215,8 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
     margin: 2
   },
 
@@ -224,6 +231,8 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
     margin: 2
   },
 
