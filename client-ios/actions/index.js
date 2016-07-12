@@ -87,13 +87,20 @@ export const addItemToDatabase = (item) => {
   return (dispatch, getState) => {
     dispatch(addNewListItemDatabaseRequest());
     let user = getState().auth.user;
-    console.log("user location!!!!!!: ", user.location)
+    let location = {};
+    //hardcode location if user does not give authorization to use device location
+    if(!user.location){
+      location.latitude = 37.331730;
+      location.longitude = -122.030826;
+    } else {
+      location = user.location.coords
+    }
     let newInput = {
       title: item.title,
       category: item.category,
       url: null,
       user_id: user.id,
-      location: user.location.coords
+      location: location
     };
 
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
