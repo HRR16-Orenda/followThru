@@ -22,85 +22,77 @@ export default class mainButtons extends Component {
     const adding = !(this.props.userInput.length === 0);
 
     return (
-      <View>
-      <View style={this.props.isKeyboardShowing ? styles.buttonContainerWithKeyboard : styles.buttonContainerWithoutKeyboard} >
-        <View>
-          <TouchableOpacity
-            style={(this.props.filter === 'DO' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
-            onPress={() => {this.props.mainButtonPressed('DO')}}>
+      <View style={styles.mainButtonContainer}>
+        <View style={this.props.isKeyboardShowing ? styles.buttonContainerWithKeyboard : styles.buttonContainerWithoutKeyboard} >
+          <View style={styles.buttonWrapper}>
+            <TouchableOpacity
+              style={(this.props.filter === 'DO' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
+              onPress={() => {this.props.mainButtonPressed('DO')}}>
               <Image
                 style={adding ? 'ios-add-outline' : styles.buttonImage}
                 style={styles.buttonImage}
                 source={adding ? require('../assets/PlusMath-50-white.png') :require('../assets/Clipboard-50-white.png')}
               />
               {(this.props.filter === 'DO' && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>DO</Text>}
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
 
-        <View>
-          <TouchableOpacity
-            style={(this.props.filter === 'BUY' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
-            onPress={() => {this.props.mainButtonPressed('BUY')}}>
+            <TouchableOpacity
+              style={(this.props.filter === 'BUY' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
+              onPress={() => {this.props.mainButtonPressed('BUY')}}>
               <Image
                 style={adding ? 'ios-add-outline' : styles.buttonImage}
                 style={styles.buttonImage}
                 source={adding ? require('../assets/PlusMath-50-white.png') :require('../assets/ShoppingCart-50-white.png')}
               />
               {(this.props.filter === 'BUY' && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>BUY</Text>}
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
 
-        <View>
-          <TouchableOpacity
-            style={(this.props.filter === 'READ' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
-            onPress={() => {this.props.mainButtonPressed('READ')}}>
+            <TouchableOpacity
+              style={(this.props.filter === 'READ' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
+              onPress={() => {this.props.mainButtonPressed('READ')}}>
               <Image
                 style={adding ? 'ios-add-outline' : styles.buttonImage}
                 style={styles.buttonImage}
                 source={adding ? require('../assets/PlusMath-50-white.png') :require('../assets/Literature-50-white.png')}/>
               {(this.props.filter === 'READ' && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>READ</Text>}
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
         </View>
-     </View>
-     <View style={this.props.isKeyboardShowing ? styles.buttonContainerWithKeyboard : styles.buttonContainerWithoutKeyboard} >
-        <View>
-          <TouchableOpacity
-            style={(this.props.filter === 'LISTEN' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
-            onPress={() => {this.props.mainButtonPressed('LISTEN')}}>
+        <View style={this.props.isKeyboardShowing ? styles.buttonContainerWithKeyboard : styles.buttonContainerWithoutKeyboard} >
+          <View style={styles.buttonWrapper}>
+            <TouchableOpacity
+              style={(this.props.filter === 'LISTEN' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
+              onPress={() => {this.props.mainButtonPressed('LISTEN')}}>
               <Image
                 style={adding ? 'ios-add-outline' : styles.buttonImage}
                 style={styles.buttonImage}
                 source={adding ? require('../assets/PlusMath-50-white.png') :require('../assets/Headphones-50-white.png')}
               />
               {(this.props.filter === 'LISTEN' && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>LISTEN</Text>}
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
 
-        <View>
-          <TouchableOpacity
-            style={(this.props.filter === 'EAT' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
-            onPress={() => {this.props.mainButtonPressed('EAT')}}>
+            <TouchableOpacity
+              style={(this.props.filter === 'EAT' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
+              onPress={() => {this.props.mainButtonPressed('EAT')}}>
               <Image
                 style={adding ? 'ios-add-outline' : styles.buttonImage}
                 style={styles.buttonImage}
                 source={adding ? require('../assets/PlusMath-50-white.png') :require('../assets/Restaurant-50-white.png')}
               />
               {(this.props.filter === 'EAT' && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>EAT</Text>}
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
 
-        <View>
-          <TouchableOpacity
-            style={(this.props.filter === 'WATCH' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
-            onPress={() => {this.props.mainButtonPressed('WATCH')}}>
+            <TouchableOpacity
+              style={(this.props.filter === 'WATCH' && this.props.saved) ? styles.mainButtonItemAdded : styles.mainButton}
+              onPress={() => {this.props.mainButtonPressed('WATCH')}}>
               <Image
                 style={adding ? 'ios-add-outline' : styles.buttonImage}
                 style={styles.buttonImage}
                 source={adding ? require('../assets/PlusMath-50-white.png') :require('../assets/Documentary-50-white.png')}/>
-            {(this.props.filter === 'WATCH' && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>WATCH</Text>}
-          </TouchableOpacity>
+              {(this.props.filter === 'WATCH' && this.props.saved) ? <Text style={styles.buttonCategoryText}>Added!</Text> : <Text style={styles.buttonCategoryText}>WATCH</Text>}
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
       </View>
     );
   }

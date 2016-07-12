@@ -22,38 +22,26 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)'
   },
   containerTest: {
-    // flex: 1,
-    // flexDirection: 'column',
-    backgroundColor: 'rgba(0,0,0,0)',
-    paddingTop: 10,
-    paddingBottom: 20,
-    marginTop: -250,
-    marginLeft: 200,
-    marginRight: 20,
-    position: 'absolute'
-  },
-  footer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: 'column',
+    backgroundColor: 'rgba(0,0,0,0)',
+    paddingBottom: 20,
+    marginTop: 70,
+    marginLeft: 20,
+    marginRight: 20
+  },
+  listScreenContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    backgroundColor: 'rgba(0,0,0,0)',
+    paddingBottom: 20,
+    marginTop: 70,
+    marginLeft: 10,
+    marginRight: 10
   },
   wrapper: {
     flex: 1
-  },
-  listContainer: {
-    // flex: 1,
-    // flexDirection: 'column',
-    // backgroundColor: '#F5FCFF',
-    position: 'absolute',
-    left: 100,
-    right: 100,
-    paddingTop: 30,
-    paddingBottom: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(255,50,255,1)',
-    borderRadius: 6,
-    // backgroundColor: 'rgba(255,255,255,.2)',
-    // color: '#ffffff'
   },
 
   swipeoutContainer: {
@@ -74,13 +62,10 @@ export default StyleSheet.create({
 
 // Background of the listView (aka when scrolling)
   singleListContainer: {
-    // flex: 1,
-    // flexDirection: 'column',
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'stretch',
     // backgroundColor: '#F5FCFF',
-    left: -170,
-    right: 90,
-    top: -250,
-    position: 'absolute',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0)',
     borderRadius: 6,
@@ -90,8 +75,9 @@ export default StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    resizeMode: 'contain'
+    alignItems: 'stretch',
+    width: undefined,
+    height: undefined
   },
 
   buttonImage: {
@@ -156,29 +142,23 @@ export default StyleSheet.create({
   },
 
   autocompleteContainerWithKeyboard: {
-    marginTop: -50,
-    // flex: 1,
-    left: -10,
-    marginLeft: 200,
-    position: 'absolute',
-    right: -150,
-    top: 20
+    flex: 1,
+    justifyContent: 'flex-start'
   },
 
   autocompleteContainerWithoutKeyboard: {
-    // flex: 1,
-    left: -10,
-    marginLeft: 200,
-    position: 'absolute',
-    right: -150,
-    top: 20
+    flex: 1,
+    marginTop: 20,
+    marginLeft: -8,
+    marginRight: -8
   },
 
   autocompleteInputContainer: {
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0)',
     borderRadius: 6,
-    backgroundColor: 'rgba(255,255,255,.2)'
+    backgroundColor: 'rgba(255,255,255,.2)',
+    alignSelf: 'stretch'
   },
 
   autocompleteInputContainerTextInput: {
@@ -186,7 +166,8 @@ export default StyleSheet.create({
     borderColor: 'rgba(255,255,255,0)',
     borderRadius: 6,
     backgroundColor: 'rgba(255,255,255,.2)',
-    color: '#ffffff'
+    color: '#ffffff',
+    alignSelf: 'stretch'
   },
 
   autocompleteSuggestionText: {
@@ -195,39 +176,34 @@ export default StyleSheet.create({
   },
 
   buttonContainerWithKeyboard: {
-    marginTop: -65,
-    marginBottom: 70,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // backgroundColor: '#F5FCFF',
-    top: 190,
-    left: 180,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: -100,
-    paddingRight: -100
-    // borderColor: '#000000',
-    // borderWidth: 1
+    alignItems: 'flex-start',
+  },
+
+  buttonWrapper: {
+    flex: 1,
+    flexDirection: 'row'
   },
 
   buttonContainerWithoutKeyboard: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // backgroundColor: '#F5FCFF',
-    top: 190,
-    left: 180,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: -100,
-    paddingRight: -100
-    // borderColor: '#000000',
-    // borderWidth: 1
+    alignItems: 'flex-start',
+  },
+
+  mainButtonContainer: {
+    flex: 1,
+    marginTop : 20,
+    justifyContent: 'flex-start',
   },
 
   mainButton: {
-    height: 85,
-    width: 105,
-    position: 'relative',
+    flex: 1,
+    // height: 85,
+    // width: 105,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,.5)',
     borderRadius: 6,
@@ -238,8 +214,9 @@ export default StyleSheet.create({
   },
 
   mainButtonItemAdded: {
-    height: 85,
-    width: 105,
+    flex: 1,
+    // height: 85,
+    // width: 105,
     position: 'relative',
     borderWidth: 1,
     borderColor: 'rgba(0,128,128,.9)',
@@ -310,6 +287,7 @@ export default StyleSheet.create({
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'center',
+      alignSelf: 'stretch',
       alignItems: 'center',
       backgroundColor: 'rgba(255,255,255,.25)',
       padding: 10,
@@ -339,7 +317,7 @@ export default StyleSheet.create({
   },
   listView: {
     // marginTop: 60,
-    width: 340
+    alignSelf: 'stretch'
   },
   loading: {
     flex: 1,
@@ -385,12 +363,11 @@ export default StyleSheet.create({
   *********************************/
   formContainer: {
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start'
+    justifyContent: 'flex-start',
+    alignItems: 'stretch'
   },
   inputField: {
     height: 30,
-    width: 200,
     padding: 4,
     flex: 4,
     fontSize: 14,
@@ -405,7 +382,6 @@ export default StyleSheet.create({
   },
   loginButton: {
     height: 30,
-    width: 200,
     padding: 4,
     flex: 4,
     marginBottom: 10,

@@ -166,8 +166,8 @@ export default class FollowScreen extends Component {
       follow
     } = this.props;
     return (
-      <Image source={require('../assets/final2.jpg')} style={styles.backgroundImage}>
-        <View style={styles.container}>
+      <Image source={require('../assets/final2.jpg')} style={styles.image}>
+        <View style={styles.containerTest}>
           <View style={styles.categoryContainer}>
             <TouchableOpacity
               style={styles.mainButton}

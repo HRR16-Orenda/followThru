@@ -59,7 +59,7 @@ export default class SingleListScreen extends Component {
           <View>
             <ListItem
               itemTitle={ item.title }
-            itemContent={ item.content }
+              itemContent={ item.content }
               completed={ item.completed }
               itemImage={ item.img }
               filter = { this.props.filter }
@@ -85,8 +85,8 @@ export default class SingleListScreen extends Component {
       dateChange
     } = this.props
       return (
-        <Image source={require('../assets/final2.jpg')} style={styles.backgroundImage}>
-          <View>
+        <Image source={require('../assets/final2.jpg')} style={styles.image}>
+          <View style={styles.listScreenContainer}>
             <Modal
               modal={modal}
               toggler={this._setModalVisible.bind(this)}
@@ -98,7 +98,7 @@ export default class SingleListScreen extends Component {
               date={date}
               filter = { this.props.filter }
             />
-            <View style={styles.singleListContainer}>
+            <View style={styles.wrapper}>
               {/* Default Text */}
               {dataSource.rowIdentities[0].length === 0 ? <Text>No Items</Text>
                 :  <ListView
