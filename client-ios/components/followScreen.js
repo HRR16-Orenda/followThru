@@ -163,14 +163,15 @@ export default class FollowScreen extends Component {
       selectInbox,
       selectFollowers,
       selectFollowings,
-      follow
+      follow,
+      selection
     } = this.props;
     return (
       <Image source={require('../assets/final2.jpg')} style={styles.image}>
         <View style={styles.containerTest}>
           <View style={styles.categoryContainer}>
             <TouchableOpacity
-              style={styles.mainButton}
+              style={selection === 'inbox' ? styles.selectedButton : styles.mainButton}
               onPress={selectInbox}
             >
               <Image
@@ -181,7 +182,7 @@ export default class FollowScreen extends Component {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.mainButton}
+            style={selection === 'followings' ? styles.selectedButton : styles.mainButton}
               onPress={selectFollowings}
             >
               <Image
@@ -191,7 +192,7 @@ export default class FollowScreen extends Component {
               <Text style={styles.buttonCategoryText}>FRIENDS</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.mainButton}
+            style={selection === 'followers' ? styles.selectedButton : styles.mainButton}
               onPress={selectFollowers}
             >
               <Image

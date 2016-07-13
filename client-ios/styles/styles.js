@@ -72,6 +72,10 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
 
+  noItems: {
+    color: '#ffffff'
+  },
+
   image: {
     flex: 1,
     justifyContent: 'center',
@@ -622,5 +626,19 @@ export default StyleSheet.create({
   },
   recommendationText: {
     width: 100,
+  },
+  selectedButton: {
+    flex: 1,
+    // height: 85,
+    // width: 105,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,.5)',
+    borderRadius: 6,
+    backgroundColor: 'rgba(255,255,255,.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    margin: 2
   }
 });
