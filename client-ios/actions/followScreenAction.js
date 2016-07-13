@@ -120,7 +120,7 @@ export const searchUser = (username: string) => {
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        fetch('http://localhost:3000/api/users/', {
+        fetch('https://orenda-smartlist.herokuapp.com/api/users/', {
           method: 'GET',
           headers: {
             'User': id.toString(),
@@ -157,7 +157,7 @@ export const followUser = (user: Object) => {
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        fetch('http://localhost:3000/api/users/following', {
+        fetch('https://orenda-smartlist.herokuapp.com/api/users/following', {
           method: 'POST',
           headers: {
             'User': id.toString(),
@@ -204,7 +204,7 @@ export const unfollowUser = (user: Object) => {
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        fetch('http://localhost:3000/api/users/following', {
+        fetch('https://orenda-smartlist.herokuapp.com/api/users/following', {
           method: 'DELETE',
           headers: {
             'User': id.toString(),
@@ -251,7 +251,7 @@ export const acceptRecommend = (item: Object) => {
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        fetch('http://localhost:3000/api/items/' + id, {
+        fetch('https://orenda-smartlist.herokuapp.com/api/items/' + id, {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',

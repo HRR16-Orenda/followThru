@@ -73,7 +73,7 @@ export const shareItem = (item: Object) => {
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
       } else {
-        fetch('http://localhost:3000/api/items/share', {
+        fetch('https://orenda-smartlist.herokuapp.com/api/items/share', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
