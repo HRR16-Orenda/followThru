@@ -13,7 +13,7 @@ export function loginUser( creds ) {
 //need to create this API endpoint in the server.  Also, is this
 //how you make a REST call on a native device? refer to the Auth0
 //example for reference
-    return fetch('http://localhost:3001/api/auth', config)
+    return fetch('https://orenda-smartlist.herokuapp.com/api/auth', config)
       .then(response =>
         response.json()
         .then( user => ({ user, response })))
