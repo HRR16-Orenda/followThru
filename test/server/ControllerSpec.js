@@ -159,14 +159,16 @@ describe('Server-side Unit test', function () {
         expect(user.getAll).to.be.a('function');
         expect(user.getAll.length).to.equal(2);
       });
-      // it('should invoke callback func with users data when succeed', function (done) {
-      //   findAllStub.resolves(expectedArray)
-      //   user.getAll(1, function (err, data) {
-      //     expect(data).to.deep.equal([]);
-      //     expect(err).to.equal(null);
-      //     done();
-      //   });
-      // });
+      it('should invoke callback func with users data when succeed', function (done) {
+        var stub2 = this.sandbox.stub(helper, 'filterUser');
+        findAllStub.resolves(expectedArray)
+        stub2.returns([])
+        user.getAll(1, function (err, data) {
+          expect(data).to.deep.equal([]);
+          expect(err).to.equal(null);
+          done();
+        });
+      });
       it('should invoke callback func with error when fail', function (done) {
         findAllStub.rejects(expectedError)
         user.getAll(1, function (err, data) {

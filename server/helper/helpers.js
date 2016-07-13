@@ -22,3 +22,11 @@ module.exports.cleanUser = function(user) {
   }
   return result;
 };
+
+module.exports.filterUser = function(users, id) {
+  return users.filter(function(user) {
+    return user.followers.every(function(follower) {
+      return follower.id !== +id;
+    });
+  });
+}

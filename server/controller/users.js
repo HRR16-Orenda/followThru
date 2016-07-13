@@ -133,11 +133,7 @@ module.exports = {
       ]
     })
       .then(function(users) {
-        var refinedUser = users.filter(function(user) {
-          return user.followers.every(function(follower) {
-            return follower.id !== +id;
-          });
-        });
+        var refinedUser = helpers.filterUser(users, id);
         callback(null, refinedUser);
       })
       .catch(function(error) {
@@ -154,9 +150,6 @@ module.exports = {
   **/
   follow: function(id, following, callback) {
     User.findById(id)
-      // .then(function(user) {
-      //   return User.findById(+following);
-      // })
       .then(function(user) {
         return user.addFollowing(following);
       })
