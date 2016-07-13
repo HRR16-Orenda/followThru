@@ -100,7 +100,7 @@ export default class SingleListScreen extends Component {
             />
             <View style={styles.wrapper}>
               {/* Default Text */}
-              {dataSource.rowIdentities[0].length === 0 ? <Text>No Items</Text>
+              {dataSource.rowIdentities[0].length === 0 ? <Text style={styles.noItems}>No Items</Text>
                 :  <ListView
                   dataSource={dataSource}
                   renderRow={this.renderItem.bind(this)}

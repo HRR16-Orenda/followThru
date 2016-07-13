@@ -72,6 +72,10 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
 
+  noItems: {
+    color: '#ffffff'
+  },
+
   image: {
     flex: 1,
     justifyContent: 'center',
