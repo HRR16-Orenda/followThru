@@ -177,13 +177,14 @@ describe('Server-side Unit test', function () {
         })
       });
 
+      // Revisit 
       // describe('addOneItem()', function(){
       //   it('should call items.addOne() method and send added item back', function () {
       //     var apis = {
-      //       amazon: function() {}
+      //       amazonBook: function() {}
       //     };
       //     var stub = this.sandbox.stub(item, 'addOne');
-      //     var stub2 = this.sandbox.stub(apis, 'amazon');
+      //     var stub2 = this.sandbox.stub(apis, 'amazonBook');
       //     stub2.resolves('');
       //     stub.callsArgWith(1, null, expectedObject);
       //
