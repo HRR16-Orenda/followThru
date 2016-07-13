@@ -2,7 +2,8 @@
 import * as types from '../constants/ActionTypes';
 import {
   AsyncStorage,
-  Vibration
+  Vibration,
+  AlertIOS
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -63,6 +64,7 @@ const shareItemFailure = () => {
 
 export const shareItem = (item: Object) => {
   return (dispatch, getState) => {
+    AlertIOS.alert("'" + item.title + "'" +  ' has been shared with your followers');
     dispatch(shareItemRequest());
     var id = getState().auth.user.id;
     var users = getState().auth.user.followings.map(user => user.id);
