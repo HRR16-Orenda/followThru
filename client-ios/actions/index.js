@@ -6,9 +6,14 @@ import { reset } from 'redux-form';
 import _ from 'lodash';
 import {
   AsyncStorage,
-  AlertIOS
+  AlertIOS,
+  NativeModules,
+  DeviceEventEmitter
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+
+//Device location module/methods
+var Location = NativeModules.RNLocation;
 
 // ******* ADD ITEM SECTION ******
 
@@ -23,6 +28,22 @@ export const mainButtonPressed = (buttonCategory) => {
         title: userInput,
         category: buttonCategory
       }
+      // if(buttonCategory.toUpperCase() === "EAT"){
+      //   Location.getAuthorizationStatus(function(authorization) {
+      //     if(authorization !== "authorizedWhenInUse"){
+      //       Location.requestWhenInUseAuthorization();
+      //     }
+      //   });
+      //   Location.setDistanceFilter(5.0);
+      //   Location.startUpdatingLocation();
+      //   let subscription = DeviceEventEmitter.addListener(
+      //       'locationUpdated',
+      //       (location) => {
+      //         console.log("Location from device!: ", location);
+      //         dispatch(updateLocation(location))
+      //       }
+      //   );
+      // }
       dispatch(updateFilter(buttonCategory));
       dispatch(addItemLocally(newItem));
       dispatch(addItemToDatabase(newItem));
@@ -53,17 +74,35 @@ export const toggleCheck = () => {
   }
 }
 
+export const updateLocation = (userLocation) => {
+  return {
+    type: types.LOCATION_UPDATE,
+    location: userLocation
+  }
+}
+
+
 // REFACTORED version
 export const addItemToDatabase = (item) => {
   return (dispatch, getState) => {
     dispatch(addNewListItemDatabaseRequest());
     let user = getState().auth.user;
+    let location = {};
+    //hardcode location if user does not give authorization to use device location
+    if(!user.location){
+      location.latitude = 37.331730;
+      location.longitude = -122.030826;
+    } else {
+      location = user.location.coords
+    }
     let newInput = {
       title: item.title,
       category: item.category,
       url: null,
-      user_id: user.id
+      user_id: user.id,
+      location: location
     };
+
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){
       if(err) {
         console.log("error accessing JWT_TOKEN in local storage: ", err);
@@ -322,6 +361,20 @@ const toggleItemFailure = () => {
 
 const fetchInitialDatabase = () => {
   return function(dispatch, getState) {
+    Location.getAuthorizationStatus(function(authorization) {
+      if(authorization !== "authorizedWhenInUse"){
+        Location.requestWhenInUseAuthorization();
+      }
+    });
+    Location.setDistanceFilter(5.0);
+    Location.startUpdatingLocation();
+    let subscription = DeviceEventEmitter.addListener(
+        'locationUpdated',
+        (location) => {
+          console.log("Location from device!: ", location);
+          dispatch(updateLocation(location))
+        }
+    );
     dispatch(fetchDatabaseListsRequest());
     var id = getState().auth.user.id;
     AsyncStorage.getItem('JWT_TOKEN', function(err, userToken){

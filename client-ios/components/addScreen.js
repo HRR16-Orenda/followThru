@@ -8,16 +8,16 @@ import {
   View,
   TextInput,
   Keyboard,
-  Image
+  Image,
+  DeviceEventEmitter
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import Form from '../containers/FormContainer.js';
 import styles from '../styles/styles.js';
 import MainButtons from '../containers/MainButtonsContainer.js'
-
-
-
+import { NativeModules } from 'react-native';
+var Location = NativeModules.RNLocation;
 
 export default class AddScreen extends Component {
   constructor(props) {
