@@ -792,11 +792,13 @@
 					"$(SRCROOT)/../node_modules/react-native-location",
 				);
 				INFOPLIST_FILE = Orenda/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.orenda-smartlist.followThru";
 				PRODUCT_NAME = Orenda;
 			};
 			name = Debug;
@@ -815,11 +817,13 @@
 					"$(SRCROOT)/../node_modules/react-native-location",
 				);
 				INFOPLIST_FILE = Orenda/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.orenda-smartlist.followThru";
 				PRODUCT_NAME = Orenda;
 			};
 			name = Release;
