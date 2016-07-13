@@ -33,7 +33,7 @@ router.post('/signup/', handler.signupUser);
 
 /**
  * handler for following one user
- * @input: user is as req.headers & target username as req.body
+ * @input: user id as req.headers & target username as req.body
  * @return: <Object> - empty object
 **/
 router.post('/following', passport.authenticate('jwt', { session: false }), handler.followUser);

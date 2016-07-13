@@ -10,6 +10,7 @@ var path = require('path');
 
 var app = express();
 
+// Logger for dev environment
 if(process.env.NODE_ENV !== 'production') {
   var morgan = require('morgan');
   app.use(morgan('dev'));
@@ -22,7 +23,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/', express.static(path.resolve(__dirname, '../build')));
 app.use(passport.initialize());
-console.log(path.resolve(__dirname, '../build'));
 
 //Bring in passport strategy
 require('./helper/passport.js')(passport);

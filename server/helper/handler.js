@@ -1,9 +1,7 @@
 var item = require('../controller/items.js');
 var user = require('../controller/users.js');
 var helper = require('./helpers.js');
-var bcrypt = require('bcrypt');
 var User = require('../models/users.js');
-var amazon = require('amazon-product-api');
 var _ = require('lodash');
 var apis = require('./apis.js');
 
@@ -64,11 +62,6 @@ module.exports = {
     } )
   },
 
-  /**
-   * handler for updating item
-   * @input: user id as req.params.id & new data as req.body
-   * @return: updated item
-  **/
   updateOneItem: function(req, res) {
     var id = req.params.id;
     var newProps = req.body;
@@ -146,11 +139,6 @@ module.exports = {
     });
   },
 
-  /**
-   * handler for following user
-   * @input: user id as req.headers & target user id as req.body.id
-   * @return: null
-  **/
   followUser: function (req, res) {
     var id = req.headers.user;
     var following = req.body.id;
@@ -160,11 +148,6 @@ module.exports = {
     })
   },
 
-  /**
-   * handler for unfollowing user
-   * @input: user id as req.headers & target user id as req.body.id
-   * @return: null
-  **/
   unfollowUser: function (req, res) {
     var id = req.headers.user;
     var unfollowing = req.body.id;
@@ -174,11 +157,6 @@ module.exports = {
     })
   },
 
-  /**
-   * handler for sharing item
-   * @input: item to be shared as req.body.item & id of users who get recommendation as req.body.users
-   * @return: null
-  **/
   shareItem: function(req, res) {
     var itemToBeShared = req.body.item;
     var users = req.body.users;

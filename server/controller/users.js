@@ -150,9 +150,6 @@ module.exports = {
   **/
   follow: function(id, following, callback) {
     User.findById(id)
-      // .then(function(user) {
-      //   return User.findById(+following);
-      // })
       .then(function(user) {
         return user.addFollowing(following);
       })

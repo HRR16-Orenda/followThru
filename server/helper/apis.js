@@ -151,9 +151,8 @@ module.exports.yelp = function(newItem) {
       token: process.env['YELP_API_TOKEN'],
       token_secret: process.env['YELP_API_TOKEN_SECRET']
   });
-  // location is hard coded
-  // should be refactored after testing Geolocation feature
 
+  // coordinates of user's location
   var location = newItem.location.latitude + "," + newItem.location.longitude
 
   return yelp.search({ term: newItem.title, ll: location, limit: 1 })
